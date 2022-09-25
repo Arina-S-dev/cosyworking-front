@@ -1,9 +1,9 @@
-import { Logout } from '@mui/icons-material';
 import {
-  Avatar, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip,
+  Avatar, Divider, IconButton, Menu, MenuItem, Tooltip,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import * as React from 'react';
+import ModalInscription from '../ModalInscription/ModalInscription';
 
 function InscriptionMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -11,13 +11,14 @@ function InscriptionMenu() {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
   return (
     <div className="InscriptionMenu">
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Tooltip title="Connexion">
+          {/* Icone Avatar dans la navbar */}
           <IconButton
             onClick={handleClick}
             size="small"
@@ -38,8 +39,8 @@ function InscriptionMenu() {
         anchorEl={anchorEl}
         id="account-menu"
         open={open}
-        onClose={handleClose}
-        onClick={handleClose}
+        // onClose={handleClose}
+        // onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -69,16 +70,12 @@ function InscriptionMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
+        {/* Contenu de l'onglet 'inscription' */}
         <MenuItem>
           <Avatar /> S'inscrire
         </MenuItem>
         <Divider />
-        <MenuItem>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Se Connecter
-        </MenuItem>
+        <ModalInscription />
       </Menu>
     </div>
   );

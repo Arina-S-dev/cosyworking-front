@@ -1,0 +1,40 @@
+@use '../../../styles/vars';
+@use 'sass:color';
+
+.ModalInscription{
+    &-Box{
+        &-logo{
+        //    max-height: 30px;
+           background-color: none;
+           
+           &-Google{
+            margin: auto;
+            margin-bottom: 1rem;
+            width: 40px;
+            } 
+        }
+
+        &-ou{
+            display: flex;
+            flex-direction: row;
+            align-items:center;
+            justify-content: center;
+            width: 100%;
+
+            &-textline{
+                content: '';
+                height: 1rem;
+                display: block;
+                width: 30px;
+                border-bottom: solid 1px black;
+                margin: 0.5rem;
+            }
+
+            &-text{
+                margin: 0.5rem;
+            }
+        }
+        
+            
+    }
+}

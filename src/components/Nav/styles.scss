@@ -1,3 +1,10 @@
 @use '../../styles/vars';
 @use 'sass:color';
 
+.Nav{
+    &-leftNavBar{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+    }
+}

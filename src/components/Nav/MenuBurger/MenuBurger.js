@@ -1,6 +1,7 @@
 import { Button, Menu, MenuItem } from '@mui/material';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import * as React from 'react';
+import './styles.scss';
 
 function MenuBurger() {
   const [anchorEl, setAnchorEl] = React.useState(null);
