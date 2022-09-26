@@ -1,0 +1,8 @@
+@use '../../styles/vars';
+@use 'sass:color';
+
+.Footer{
+    &-links{
+    font-size: 0.9rem;
+    }
+}

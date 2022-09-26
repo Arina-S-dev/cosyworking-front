@@ -23,14 +23,13 @@ function Nav() {
       >
         {/* Elements de la navbar */}
         <BottomNavigation
-          hideLabels
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
           }}
         >
           <MenuBurger />
-          <img src={logo} alt="logo" label="Logo" />
+          <img src={logo} alt="logo" />
           <div className="Nav-leftNavBar">
             <Typography
               sx={{
