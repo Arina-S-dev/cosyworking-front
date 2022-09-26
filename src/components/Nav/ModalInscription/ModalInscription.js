@@ -1,15 +1,18 @@
-import { Logout } from '@mui/icons-material';
 import {
   Button,
   Modal,
   Typography,
   MenuItem,
   ListItemIcon,
-  Input,
+  Avatar,
+  Grid,
+  TextField,
+//   FormControlLabel,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { useState } from 'react';
-import logoGoogle from '../../../img/logo_google.png';
+import { Link } from 'react-router-dom';
+import ModalConnexion from '../ModalConnexion/ModalConnexion';
 import './styles.scss';
 
 function ModalInscription() {
@@ -21,9 +24,9 @@ function ModalInscription() {
     <div className="ModalInscription">
       <MenuItem onClick={handleOpen}>
         <ListItemIcon>
-          <Logout fontSize="small" />
+          <Avatar />
         </ListItemIcon>
-        Se Connecter
+        S'inscrire
       </MenuItem>
       <Modal
         open={open}
@@ -54,7 +57,7 @@ function ModalInscription() {
               width: '100%',
             }}
           >
-            Connexion
+            S'inscrire
           </Typography>
           <div className="ModalBurger-listButtons">
             <Typography
@@ -65,46 +68,72 @@ function ModalInscription() {
                 margin: 'auto',
               }}
             >
-              {/* logo de Google */}
-              <div className="ModalInscription-Box-logo">
-                <img className="ModalInscription-Box-logo-Google" src={logoGoogle} alt="logo-Google" />
-              </div>
-              {/* Emplacement du 'ou'  */}
-              <div className="ModalInscription-Box-ou">
-                <span className="ModalInscription-Box-ou-textline" />
-                <p className="ModalInscription-Box-ou-text">
-                  ou
-                </p>
-                <p className="ModalInscription-Box-ou-textline" />
-              </div>
-              <form>
-                <Input
-                  type="email"
-                  placeholder="Email"
-                  sx={{
-                    width: '100%',
-                    margin: '0.5rem',
-                  }}
-                />
-                <Input
-                  type="password"
-                  placeholder="Mot de passe"
-                  sx={{
-                    width: '100%',
-                    margin: '0.5rem',
-                  }}
-                />
+              <Box
+                component="form"
+                noValidate
+                // onSubmit={handleSubmit}
+                sx={{ mt: 3 }}
+              >
+                <Grid container spacing={2}>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      autoComplete="given-name"
+                      name="firstName"
+                      required
+                      fullWidth
+                      id="firstName"
+                      label="First Name"
+                      autoFocus
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      required
+                      fullWidth
+                      id="lastName"
+                      label="Last Name"
+                      name="lastName"
+                      autoComplete="family-name"
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      id="email"
+                      label="Email Address"
+                      name="email"
+                      autoComplete="email"
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      name="password"
+                      label="Password"
+                      type="password"
+                      id="password"
+                      autoComplete="new-password"
+                    />
+                  </Grid>
+                </Grid>
                 <Button
+                  type="submit"
+                  fullWidth
                   variant="contained"
-                  disableElevation
-                  sx={{
-                    width: '100%',
-                    margin: '0.5rem',
-                  }}
+                  sx={{ mt: 3, mb: 2 }}
                 >
-                  Connexion
+                  Sign Up
                 </Button>
-              </form>
+                <Grid container justifyContent="flex-end">
+                  <Grid item>
+                    <Link href="#" variant="body2">
+                      <ModalConnexion />
+                    </Link>
+                  </Grid>
+                </Grid>
+              </Box>
             </Typography>
           </div>
         </Box>

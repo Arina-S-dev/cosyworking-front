@@ -1,11 +1,12 @@
 import Nav from '../Nav/Nav';
 import './App.scss';
+// import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <Nav />
-      coucou
+      coucou cosyworking
     </div>
   );
 }

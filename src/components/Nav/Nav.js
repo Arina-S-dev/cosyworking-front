@@ -18,6 +18,7 @@ function Nav() {
           right: 0,
           paddingBottom: '0.3rem',
         }}
+        // z-index de la nav
         elevation={3}
       >
         {/* Elements de la navbar */}

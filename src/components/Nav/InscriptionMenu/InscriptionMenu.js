@@ -1,8 +1,9 @@
 import {
-  Avatar, Divider, IconButton, Menu, MenuItem, Tooltip,
+  Avatar, Divider, IconButton, Menu, Tooltip,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import * as React from 'react';
+import ModalConnexion from '../ModalConnexion/ModalConnexion';
 import ModalInscription from '../ModalInscription/ModalInscription';
 
 function InscriptionMenu() {
@@ -71,11 +72,12 @@ function InscriptionMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         {/* Contenu de l'onglet 'inscription' */}
-        <MenuItem>
+        {/* <MenuItem>
           <Avatar /> S'inscrire
-        </MenuItem>
-        <Divider />
+        </MenuItem> */}
         <ModalInscription />
+        <Divider />
+        <ModalConnexion />
       </Menu>
     </div>
   );
