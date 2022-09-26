@@ -12,6 +12,7 @@ import {
 import { Box } from '@mui/system';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import ModalConnexion from '../ModalConnexion/ModalConnexion';
 import './styles.scss';
 
@@ -44,6 +45,15 @@ function ModalInscription() {
           }}
         >
           {/* Titre de la modale */}
+          <Avatar
+            sx={{
+              m: 1,
+              margin: 'auto',
+              bgcolor: 'secondary.main',
+            }}
+          >
+            <LockOutlinedIcon />
+          </Avatar>
           <Typography
             id="modal-modal-title"
             variant="h6"
@@ -51,7 +61,6 @@ function ModalInscription() {
             sx={{
               display: 'inline-block',
               marginTop: '1rem',
-              marginBottom: '1rem',
               fontWeight: 'bold',
               textAlign: 'center',
               width: '100%',
@@ -64,7 +73,6 @@ function ModalInscription() {
               id="modal-modal-description"
               sx={{
                 width: '290px',
-                paddingTop: '0.3rem',
                 margin: 'auto',
               }}
             >
@@ -82,7 +90,7 @@ function ModalInscription() {
                       required
                       fullWidth
                       id="firstName"
-                      label="First Name"
+                      label="Prénom"
                       autoFocus
                     />
                   </Grid>
@@ -91,7 +99,7 @@ function ModalInscription() {
                       required
                       fullWidth
                       id="lastName"
-                      label="Last Name"
+                      label="Nom"
                       name="lastName"
                       autoComplete="family-name"
                     />
@@ -101,7 +109,7 @@ function ModalInscription() {
                       required
                       fullWidth
                       id="email"
-                      label="Email Address"
+                      label="Email"
                       name="email"
                       autoComplete="email"
                     />
@@ -111,7 +119,7 @@ function ModalInscription() {
                       required
                       fullWidth
                       name="password"
-                      label="Password"
+                      label="Mot de passe"
                       type="password"
                       id="password"
                       autoComplete="new-password"
@@ -124,7 +132,7 @@ function ModalInscription() {
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  Sign Up
+                  S'inscrire
                 </Button>
                 <Grid container justifyContent="flex-end">
                   <Grid item>
