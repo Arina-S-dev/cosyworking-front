@@ -9,6 +9,9 @@ import {
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { useState } from 'react';
+import {
+  useDispatch,
+} from 'react-redux';
 import logoGoogle from '../../../img/logo_google.png';
 import './styles.scss';
 
@@ -16,6 +19,36 @@ function ModalConnexion() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const dispatch = useDispatch();
+
+  // Obtention de l'email et enregistrement dans le state
+  const getEmail = (event) => {
+    // eslint-disable-next-line no-console
+    console.log(event.target.value);
+    const getWrittingEmail = event.target.value;
+    dispatch({
+      type: 'GET_EMAIL',
+      email: getWrittingEmail,
+    });
+  };
+
+  // Obtention du password et enregistrement dans le state
+  const getPassword = (event) => {
+    // eslint-disable-next-line no-console
+    console.log(event.target.value);
+    const getWrittingPassword = event.target.value;
+    dispatch({
+      type: 'GET_PASSWORD',
+      password: getWrittingPassword,
+    });
+  };
+
+  // Obtention de la connexion via le MiddleWare setConnexion
+  const getConnexion = () => {
+    dispatch({
+      type: 'SET_CONNEXION',
+    });
+  };
 
   return (
     <div className="ModalConnexion">
@@ -77,8 +110,9 @@ function ModalConnexion() {
                 </p>
                 <p className="ModalConnexion-Box-ou-textline" />
               </div>
-              <form>
+              <form onSubmit={getConnexion}>
                 <Input
+                  onChange={getEmail}
                   type="email"
                   placeholder="Email"
                   sx={{
@@ -87,6 +121,7 @@ function ModalConnexion() {
                   }}
                 />
                 <Input
+                  onChange={getPassword}
                   type="password"
                   placeholder="Mot de passe"
                   sx={{
@@ -95,6 +130,7 @@ function ModalConnexion() {
                   }}
                 />
                 <Button
+                  type="submit"
                   variant="contained"
                   disableElevation
                   sx={{

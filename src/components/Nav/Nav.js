@@ -1,11 +1,15 @@
 import { BottomNavigation, Paper, Typography } from '@mui/material';
+import { useSelector } from 'react-redux';
 import logo from '../../img/logo.png';
 import './styles.scss';
 import MenuBurger from './MenuBurger/MenuBurger';
-// import AccountMenu from './AccountMenu/AccountMenu';
+import AccountMenu from './AccountMenu/AccountMenu';
 import InscriptionMenu from './InscriptionMenu/InscriptionMenu';
 
 function Nav() {
+  // Recupération du logged afin de savoir si on est connecté
+  const logged = useSelector((state) => state.user.logged);
+
   return (
     <div className="Nav">
       {/* Composant Mui de la navbar */}
@@ -47,10 +51,10 @@ function Nav() {
             </Typography>
             {/* Composant avec l'avatar de la navbar pour aller sur son espace perso ou */}
             {/* se deconnecter */}
-            {/* <AccountMenu /> */}
+            {logged && <AccountMenu />}
             {/* Composant avec l'avatar de la navbar pour se connecter si */}
             {/* l'on souhaite s'inscrire ou se connecter avec ses identifiants */}
-            <InscriptionMenu />
+            {!logged && <InscriptionMenu /> }
           </div>
         </BottomNavigation>
       </Paper>

@@ -1,8 +1,9 @@
 import { applyMiddleware, legacy_createStore as createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import setConnexion from '../Middlewares/setConnexion';
 import reducer from '../reducers';
 
-const middlewareEnhancer = applyMiddleware();
+const middlewareEnhancer = applyMiddleware(setConnexion);
 
 const composedEnhancers = composeWithDevTools(middlewareEnhancer);
 
