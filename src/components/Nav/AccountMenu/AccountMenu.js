@@ -4,6 +4,8 @@ import {
 } from '@mui/material';
 import { Box } from '@mui/system';
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
+import './styles.scss';
 
 function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -14,11 +16,20 @@ function AccountMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const dispatch = useDispatch();
+  const getLogout = () => {
+    dispatch({
+      type: 'LOGOUT',
+    });
+  };
+
   return (
     <div className="AccountMenu">
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Tooltip title="Account settings">
           <IconButton
+            className="AccountMenu-connected"
             onClick={handleClick}
             size="small"
             sx={{
@@ -73,7 +84,7 @@ function AccountMenu() {
           <Avatar /> Mon Espace Perso
         </MenuItem>
         <Divider />
-        <MenuItem>
+        <MenuItem onClick={getLogout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

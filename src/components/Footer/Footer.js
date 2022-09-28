@@ -9,6 +9,7 @@ function Footer() {
     <div className="Footer">
       {/* Composant Mui du footer */}
       <Paper
+        className="Footer-Paper"
         sx={{
           /* position du footer */
           position: 'fixed',
@@ -17,34 +18,64 @@ function Footer() {
           right: 0,
           paddingLeft: '1rem',
           paddingRight: '1rem',
-          height: '30px',
+          // height: '30px',
         }}
         // z-index du footer
         elevation={3}
       >
         {/* Elements du footer */}
         <BottomNavigation
+          className="Footer-Paper-BottomNavigation"
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
           }}
         >
-          <Typography>
-            <Link className="Footer-links" to="">A propos</Link>
+          <Typography
+            sx={{
+              lineHeight: '0.9rem',
+            }}
+          >
+            <Link
+              className="Footer-links"
+              to=""
+            >
+              A propos
+            </Link>
           </Typography>
-          <Typography>
+          <Typography
+            sx={{
+              lineHeight: '0.9rem',
+            }}
+          >
             <Link className="Footer-links" to="">Contactez-nous</Link>
           </Typography>
-          <Typography>
+          <Typography
+            sx={{
+              lineHeight: '0.9rem',
+            }}
+          >
             <Link className="Footer-links" to="">FAQ</Link>
           </Typography>
-          <Typography>
+          <Typography
+            sx={{
+              lineHeight: '0.9rem',
+            }}
+          >
             <Link className="Footer-links" to="">Mentions légales</Link>
           </Typography>
-          <Typography>
+          <Typography
+            sx={{
+              lineHeight: '0.9rem',
+            }}
+          >
             <Link className="Footer-links" to="">CGV</Link>
           </Typography>
-          <Typography>
+          <Typography
+            sx={{
+              lineHeight: '0.9rem',
+            }}
+          >
             <Link className="Footer-links" to="">@ {year} CosyWorking</Link>
           </Typography>
         </BottomNavigation>

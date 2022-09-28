@@ -2,7 +2,30 @@
 @use 'sass:color';
 
 .Footer{
-    &-links{
-    font-size: 0.9rem;
+    margin-top: 1rem;
+    
+    &-Paper{
+        height: 40px;
+        &-Typography{
+            line-height: 0.5rem;
+        }
+        &-BottomNavigation{
+            &-Typography{
+                line-height: 0.5rem;
+            }
+        }
     }
+    &-links{
+        font-size: 0.85rem;
+        padding-right: 0.3rem;
+    }
+}
+
+@media only screen and (min-width: 550px) {
+    .Footer{
+        &-Paper{
+            height: 30px;
+        }
+        
+    }    
 }

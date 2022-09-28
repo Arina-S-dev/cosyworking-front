@@ -1,4 +1,4 @@
-import { BottomNavigation, Paper, Typography } from '@mui/material';
+import { BottomNavigation, Button, Paper } from '@mui/material';
 import { useSelector } from 'react-redux';
 import logo from '../../img/logo.png';
 import './styles.scss';
@@ -30,25 +30,28 @@ function Nav() {
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
+            height: '50px',
           }}
         >
           <MenuBurger />
           <img src={logo} alt="logo" />
           <div className="Nav-leftNavBar">
-            <Typography
+            <Button
               sx={{
                 width: '90px',
                 border: 'solid 1px black',
-                paddingTop: '0.5rem',
-                paddingBottom: '0.5rem',
-                margin: '0.5rem',
+                paddingRight: '0px',
+                paddingLeft: '0px',
+                margin: 'auto',
                 fontSize: '0.8rem',
-                borderRadius: '10px',
+                borderRadius: '15px',
                 textAlign: 'center',
+                textTransform: 'none',
+                color: '#8A8A8A',
               }}
             >
               Devenir hôte
-            </Typography>
+            </Button>
             {/* Composant avec l'avatar de la navbar pour aller sur son espace perso ou */}
             {/* se deconnecter */}
             {logged && <AccountMenu />}

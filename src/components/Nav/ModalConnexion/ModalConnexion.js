@@ -7,12 +7,13 @@ import {
   ListItemIcon,
   Input,
 } from '@mui/material';
-import { Box } from '@mui/system';
+import { Box, ThemeProvider } from '@mui/system';
 import { useState } from 'react';
 import {
   useDispatch,
 } from 'react-redux';
 import logoGoogle from '../../../img/logo_google.png';
+import theme from '../../../tools/themeMui';
 import './styles.scss';
 
 function ModalConnexion() {
@@ -23,8 +24,9 @@ function ModalConnexion() {
 
   // Obtention de l'email et enregistrement dans le state
   const getEmail = (event) => {
+    event.preventDefault();
     // eslint-disable-next-line no-console
-    console.log(event.target.value);
+    // console.log(event.target.value);
     const getWrittingEmail = event.target.value;
     dispatch({
       type: 'GET_EMAIL',
@@ -34,8 +36,9 @@ function ModalConnexion() {
 
   // Obtention du password et enregistrement dans le state
   const getPassword = (event) => {
+    event.preventDefault();
     // eslint-disable-next-line no-console
-    console.log(event.target.value);
+    // console.log(event.target.value);
     const getWrittingPassword = event.target.value;
     dispatch({
       type: 'GET_PASSWORD',
@@ -44,7 +47,8 @@ function ModalConnexion() {
   };
 
   // Obtention de la connexion via le MiddleWare setConnexion
-  const getConnexion = () => {
+  const getConnexion = (event) => {
+    event.preventDefault();
     dispatch({
       type: 'SET_CONNEXION',
     });
@@ -129,17 +133,19 @@ function ModalConnexion() {
                     margin: '0.5rem',
                   }}
                 />
-                <Button
-                  type="submit"
-                  variant="contained"
-                  disableElevation
-                  sx={{
-                    width: '100%',
-                    margin: '0.5rem',
-                  }}
-                >
-                  Connexion
-                </Button>
+                <ThemeProvider theme={theme}>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    disableElevation
+                    sx={{
+                      width: '100%',
+                      margin: '0.5rem',
+                    }}
+                  >
+                    Connexion
+                  </Button>
+                </ThemeProvider>
               </form>
             </Typography>
           </div>

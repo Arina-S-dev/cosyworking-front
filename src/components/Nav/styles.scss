@@ -2,6 +2,9 @@
 @use 'sass:color';
 
 .Nav{
+    position: relative;
+    z-index: 3;
+    
     &-leftNavBar{
         display: flex;
         flex-direction: row;
