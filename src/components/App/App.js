@@ -1,9 +1,10 @@
+import SearchHome from '../SearchHome/SearchHome';
 import './App.scss';
-// import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
+      <SearchHome />
       coucou cosyworking
     </div>
   );
