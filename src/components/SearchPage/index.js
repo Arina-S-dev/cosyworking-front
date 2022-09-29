@@ -1,4 +1,5 @@
 import './style.scss';
+import { FormControl } from '@mui/material';
 import Map from './Map';
 import Input from './Input';
 import Calendar from './Calendar';
@@ -11,12 +12,12 @@ function SearchPage() {
   return (
     <div className="search-container">
       <p className="search-title"><Title /></p>
-      <section className="search-tools">
+      <FormControl className="search-tools">
         <Input />
         <Calendar />
         <Filters />
         <SearchButton />
-      </section>
+      </FormControl>
       <section className="result-container">
         <Cards />
         <Map />

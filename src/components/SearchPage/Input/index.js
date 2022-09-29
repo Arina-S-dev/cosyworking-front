@@ -41,6 +41,7 @@ function Input() {
         <Autocomplete
           size="small"
           disablePortal
+          freeSolo
           id="combo-box-demo"
           forcePopupIcon={false}
           options={cities}
