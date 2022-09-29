@@ -6,6 +6,7 @@ export const initialState = {
   gender: '',
   last_name: '',
   first_name: '',
+  error_connection: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -20,10 +21,16 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         password: action.password,
       };
+    case 'SET_CONNEXION':
+      return {
+        ...state,
+        // Cela permet d'enlever le message "Session expirée"
+        error_connection: false,
+      };
     case 'GET_CONNEXION':
       return {
         ...state,
-        logged: true,
+        logged: action.logged,
         email: '',
         password: '',
       };
@@ -46,6 +53,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         last_name: action.lastname,
+      };
+    case 'CONNECTION_STATE':
+      return {
+        ...state,
+        error_connection: action.error,
       };
     case 'LOGOUT':
       return {

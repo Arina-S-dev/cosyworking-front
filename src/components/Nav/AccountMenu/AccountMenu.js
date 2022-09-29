@@ -5,6 +5,7 @@ import {
 import { Box } from '@mui/system';
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import './styles.scss';
 
 function AccountMenu() {
@@ -17,10 +18,17 @@ function AccountMenu() {
     setAnchorEl(null);
   };
 
+  // Permet de se déconnecter et de supprimer le token en LocalStorage
   const dispatch = useDispatch();
   const getLogout = () => {
     dispatch({
       type: 'LOGOUT',
+    });
+  };
+
+  const checkToken = () => {
+    dispatch({
+      type: 'CHECK_CONNECTION',
     });
   };
 
@@ -81,7 +89,7 @@ function AccountMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Avatar /> Mon Espace Perso
+          <Link to="/espace-perso" onClick={checkToken}><Avatar /> Mon Espace Perso</Link>
         </MenuItem>
         <Divider />
         <MenuItem onClick={getLogout}>

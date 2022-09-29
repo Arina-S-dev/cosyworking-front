@@ -1,0 +1,11 @@
+@use '../../styles/vars';
+@use 'sass:color';
+
+.ModalAlertConnection{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+}

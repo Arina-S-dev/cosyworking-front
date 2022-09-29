@@ -17,10 +17,10 @@ import theme from '../../../tools/themeMui';
 import './styles.scss';
 
 function ModalConnexion() {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const dispatch = useDispatch();
 
   // Obtention de l'email et enregistrement dans le state
   const getEmail = (event) => {

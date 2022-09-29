@@ -1,5 +1,5 @@
 import { BottomNavigation, Button, Paper } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import logo from '../../img/logo.png';
 import './styles.scss';
 import MenuBurger from './MenuBurger/MenuBurger';
@@ -7,8 +7,22 @@ import AccountMenu from './AccountMenu/AccountMenu';
 import InscriptionMenu from './InscriptionMenu/InscriptionMenu';
 
 function Nav() {
+  const dispatch = useDispatch();
   // Recupération du logged afin de savoir si on est connecté
   const logged = useSelector((state) => state.user.logged);
+  const isThereAToken = localStorage.getItem('userToken');
+  if (isThereAToken) {
+    dispatch({
+      type: 'GET_CONNEXION',
+      logged: true,
+    });
+  }
+  else {
+    dispatch({
+      type: 'GET_CONNEXION',
+      logged: false,
+    });
+  }
 
   return (
     <div className="Nav">
