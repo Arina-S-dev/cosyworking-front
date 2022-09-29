@@ -16,22 +16,25 @@ function SearchInput() {
   };
 
   const other = useSelector((state) => state.searchhome.other);
-  const getSelectedCity = useSelector((state) => state.searchhome.city);
-  console.log(getSelectedCity);
+  // const getSelectedCity = useSelector((state) => state.searchhome.city);
   const getCity = (event) => {
-    console.log(event);
-    // dispatch({
-    // type: 'GET_CITY',
-    // city: city,
-    // });
+    const searchCity = event.target.value;
+    dispatch({
+      type: 'GET_CITY',
+      city: searchCity,
+    });
   };
   return (
     <div className="divBox">
       <Box sx={{
-        display: 'flex', flexDirection: 'column', alignItems: 'center', borderRadius: '16px', width: '20%', bgcolor: 'white', pt: 0.5, pb: 0.5,
+        display: 'flex', flexDirection: 'column', alignItems: 'center', borderRadius: '16px', Width: '20vw', bgcolor: 'white', pt: 0.5, pb: 0.5, pl: 6, pr: 6,
       }}
       >
+        <div className="textInfo">
+          <p>Trouvez facilement votre <br />prochain espace de travail</p>
+        </div>
         <div className="searchInput">
+
           <SearchIcon sx={{
             alignContent: 'left', color: 'black', mr: 1, ml: 1,
           }}
@@ -40,14 +43,16 @@ function SearchInput() {
             onClick={getOther}
             onChange={getCity}
             className="input"
-            placeholder="Demarrez votre recherche d'un workspace"
-            fullWidth
+            placeholder="Ou allez vous ? "
+            label="Ou ?"
           />
         </div>
         {other
       && (
       <div className="calendarButton">
-        <div><Calendar /></div>
+        <div className="textCalendar"><p className="wherewhen">Quand ?</p>
+          <Calendar />
+        </div>
         <Button variant="contained">Rechercher</Button>
       </div>
       )}
