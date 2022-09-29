@@ -1,0 +1,21 @@
+.leaflet-container {
+    width: 650px;
+    height: 590px;
+  }
+
+  .leaflet-popup-content p {
+    margin: 5px 0;
+}
+
+.popup {
+
+  &-flex {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-price {
+    margin-top: 0;
+    padding: 0.5rem;
+  }
+}

@@ -1,0 +1,12 @@
+.search-tools {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.result-container {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    height: 600px;
+}

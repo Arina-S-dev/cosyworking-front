@@ -1,6 +1,11 @@
 @use 'reset';
 @use 'vars';
 
+html, body {
+  min-height: 100% !important;
+  height: 100%;
+}
+
 body {
   font-family: sans-serif;
 }

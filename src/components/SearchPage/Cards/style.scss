@@ -1,0 +1,27 @@
+.cards-container {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    overflow-y:scroll;
+}
+.card {
+    padding: 0.5rem;
+
+    &-content {
+    display: flex;
+    flex-direction: row;
+
+      &-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        &-flex {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+      }
+    }
+}
+

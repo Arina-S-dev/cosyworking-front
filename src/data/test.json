@@ -1,0 +1,285 @@
+[
+    {
+      "id": 1,
+      "title": "Le bureau Cosy de John",
+      "description": "Ce super bureau bien équipé peut vous accueillir pour vos session de travail. Calme et tranquillité assueré.",
+      "address": "17 rue Richer",
+      "zipCode": "75009",
+      "city": "Paris",
+      "longitude": "2.3462242342639796",
+      "latitude": "48.87394904099592",
+      "morningPrice": "25",
+      "afternonPrice": "30",
+      "dayPrice": "50",
+      "availability": true,
+      "host": {
+        "id": 1,
+        "pseudo": "jdoeuf"
+      },
+      "images": [
+        {
+          "id": 1,
+          "link": "../../../img/desk.jpg"
+        },
+        {
+          "id": 2,
+          "link": "./lib/images/workspace/images2.jpg"
+        },
+        {
+          "id": 3,
+          "link": "./lib/images/workspace/images3.jpg"
+        },
+        {
+          "id": 4,
+          "link": "./lib/images/workspace/images4.jpg"
+        },
+        {
+          "id": 5,
+          "link": "./lib/images/workspace/images5.jpg"
+        }
+      ],
+      "created_at": "2022-09-20 17:16:44.546+02"
+    },
+    {
+      "id": 2,
+      "title": "Le bureau de Martin",
+      "description": "Ce super bureau bien équipé peut vous accueillir pour vos session de travail. Calme et tranquillité assueré.",
+      "address": "17 rue Richer",
+      "zipCode": "75009",
+      "city": "Paris",
+      "longitude": "7.2663",
+      "latitude": "43.7034",
+      "morningPrice": "25",
+      "afternonPrice": "30",
+      "dayPrice": "50",
+      "availability": true,
+      "host": {
+        "id": 1,
+        "pseudo": "jdoeuf"
+      },
+      "images": [
+        {
+          "id": 1,
+          "link": "../../../img/desk.jpg"
+        },
+        {
+          "id": 2,
+          "link": "./lib/images/workspace/images2.jpg"
+        },
+        {
+          "id": 3,
+          "link": "./lib/images/workspace/images3.jpg"
+        },
+        {
+          "id": 4,
+          "link": "./lib/images/workspace/images4.jpg"
+        },
+        {
+          "id": 5,
+          "link": "./lib/images/workspace/images5.jpg"
+        }
+      ],
+      "created_at": "2022-09-20 17:16:44.546+02"
+    },
+    {
+      "id": 3,
+      "title": "Le bureau de Laura",
+      "description": "Ce super bureau bien équipé peut vous accueillir pour vos session de travail. Calme et tranquillité assueré.",
+      "address": "17 rue Richer",
+      "zipCode": "75009",
+      "city": "Toulouse",
+      "longitude": "1.4440",
+      "latitude": "43.6045",
+      "morningPrice": "25",
+      "afternonPrice": "30",
+      "dayPrice": "50",
+      "availability": true,
+      "host": {
+        "id": 1,
+        "pseudo": "jdoeuf"
+      },
+      "images": [
+        {
+          "id": 1,
+          "link": "../../../img/desk.jpg"
+        },
+        {
+          "id": 2,
+          "link": "./lib/images/workspace/images2.jpg"
+        },
+        {
+          "id": 3,
+          "link": "./lib/images/workspace/images3.jpg"
+        },
+        {
+          "id": 4,
+          "link": "./lib/images/workspace/images4.jpg"
+        },
+        {
+          "id": 5,
+          "link": "./lib/images/workspace/images5.jpg"
+        }
+      ],
+      "created_at": "2022-09-20 17:16:44.546+02"
+    },{
+      "id": 4,
+      "title": "Le bureau de Michel",
+      "description": "Ce super bureau bien équipé peut vous accueillir pour vos session de travail. Calme et tranquillité assueré.",
+      "address": "17 rue Richer",
+      "zipCode": "75009",
+      "city": "Marseille",
+      "longitude": "5.3700",
+      "latitude": "43.2964",
+      "morningPrice": "25",
+      "afternonPrice": "30",
+      "dayPrice": "50",
+      "availability": true,
+      "host": {
+        "id": 1,
+        "pseudo": "jdoeuf"
+      },
+      "images": [
+        {
+          "id": 1,
+          "link": "../../../img/desk.jpg"
+        },
+        {
+          "id": 2,
+          "link": "./lib/images/workspace/images2.jpg"
+        },
+        {
+          "id": 3,
+          "link": "./lib/images/workspace/images3.jpg"
+        },
+        {
+          "id": 4,
+          "link": "./lib/images/workspace/images4.jpg"
+        },
+        {
+          "id": 5,
+          "link": "./lib/images/workspace/images5.jpg"
+        }
+      ],
+      "created_at": "2022-09-20 17:16:44.546+02"
+    },{
+      "id": 5,
+      "title": "Le bureau de Nicolas",
+      "description": "Ce super bureau bien équipé peut vous accueillir pour vos session de travail. Calme et tranquillité assueré.",
+      "address": "17 rue Richer",
+      "zipCode": "75009",
+      "city": "Rennes",
+      "longitude": "-1.6794",
+      "latitude": "48.1147",
+      "morningPrice": "25",
+      "afternonPrice": "30",
+      "dayPrice": "50",
+      "availability": true,
+      "host": {
+        "id": 1,
+        "pseudo": "jdoeuf"
+      },
+      "images": [
+        {
+          "id": 1,
+          "link": "../../../img/desk.jpg"
+        },
+        {
+          "id": 2,
+          "link": "./lib/images/workspace/images2.jpg"
+        },
+        {
+          "id": 3,
+          "link": "./lib/images/workspace/images3.jpg"
+        },
+        {
+          "id": 4,
+          "link": "./lib/images/workspace/images4.jpg"
+        },
+        {
+          "id": 5,
+          "link": "./lib/images/workspace/images5.jpg"
+        }
+      ],
+      "created_at": "2022-09-20 17:16:44.546+02"
+    },{
+      "id": 6,
+      "title": "Le bureau de Joris",
+      "description": "Ce super bureau bien équipé peut vous accueillir pour vos session de travail. Calme et tranquillité assueré.",
+      "address": "17 rue Richer",
+      "zipCode": "75009",
+      "city": "Lyon",
+      "longitude": "4.8400",
+      "latitude": "45.7600",
+      "morningPrice": "25",
+      "afternonPrice": "30",
+      "dayPrice": "50",
+      "availability": true,
+      "host": {
+        "id": 1,
+        "pseudo": "jdoeuf"
+      },
+      "images": [
+        {
+          "id": 1,
+          "link": "../../../img/desk.jpg"
+        },
+        {
+          "id": 2,
+          "link": "./lib/images/workspace/images2.jpg"
+        },
+        {
+          "id": 3,
+          "link": "./lib/images/workspace/images3.jpg"
+        },
+        {
+          "id": 4,
+          "link": "./lib/images/workspace/images4.jpg"
+        },
+        {
+          "id": 5,
+          "link": "./lib/images/workspace/images5.jpg"
+        }
+      ],
+      "created_at": "2022-09-20 17:16:44.546+02"
+    },{
+      "id": 7,
+      "title": "Le bureau de Lili",
+      "description": "Ce super bureau bien équipé peut vous accueillir pour vos session de travail. Calme et tranquillité assueré.",
+      "address": "17 rue Richer",
+      "zipCode": "75009",
+      "city": "Paris",
+      "longitude": "2.33254",
+      "latitude": "48.86201",
+      "morningPrice": "25",
+      "afternonPrice": "30",
+      "dayPrice": "50",
+      "availability": true,
+      "host": {
+        "id": 1,
+        "pseudo": "jdoeuf"
+      },
+      "images": [
+        {
+          "id": 1,
+          "link": "../../../img/desk.jpg"
+        },
+        {
+          "id": 2,
+          "link": "./lib/images/workspace/images2.jpg"
+        },
+        {
+          "id": 3,
+          "link": "./lib/images/workspace/images3.jpg"
+        },
+        {
+          "id": 4,
+          "link": "./lib/images/workspace/images4.jpg"
+        },
+        {
+          "id": 5,
+          "link": "./lib/images/workspace/images5.jpg"
+        }
+      ],
+      "created_at": "2022-09-20 17:16:44.546+02"
+    }
+]
