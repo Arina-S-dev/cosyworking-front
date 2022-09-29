@@ -1,4 +1,68 @@
-.input::before{
-    border: none !important;
+
+.input{
+    width: 50%;
+    ::placeholder{
+    text-align: center;
+}
+}
+.searchInput{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 2em 0 2em 0;
 }
 
+.calendarButton{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin: 1em 1em 3em 1em;
+}
+
+.divBox{
+    width: 50%;
+}
+
+.calendar{
+    width: 20em;
+    border-radius: 1em;
+    height: 2em;
+    text-align: center;
+}
+
+.textInfo{
+    font-weight: 800;
+    font-size: 1.4em;
+    margin: 1em 0;
+}
+
+.textCalendar{
+    display: flex;
+    flex-direction: column;
+    
+}
+.wherewhen{
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1100px)
+{
+    .calendarButton{
+        flex-direction: column;
+        justify-content: space-around;
+        margin-bottom: 1em;
+    }
+    .textCalendar{
+        margin-bottom: 2em;
+    }
+    .divBox{
+        width: 90%;
+    }
+    .searchInput{
+        width: 100%;
+        margin: 1em 0
+    }
+    
+}
