@@ -9,6 +9,16 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         other: true,
       };
+    case 'GET_DATE':
+      return {
+        ...state,
+        date: action.date,
+      };
+    case 'GET_CITY':
+      return {
+        ...state,
+        city: action.city,
+      };
     default:
       return state;
   }
