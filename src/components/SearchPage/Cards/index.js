@@ -1,8 +1,12 @@
 import './style.scss';
+import { useSelector } from 'react-redux';
 import CardItem from './CardItem';
 import test from '../../../data/test.json';
 
 function Cards() {
+  const searchedCity = useSelector((state) => state.search.city);
+  console.log(searchedCity);
+
   return (
     <div className="cards-container">
       <ul className="cards">

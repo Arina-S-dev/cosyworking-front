@@ -27,10 +27,11 @@ function Input() {
     });
   };
 
-  const handleCityChange = (object, value) => {
+  const handleCityChange = (value) => {
+    const city = value.target.innerText;
     dispatch({
       type: 'SEARCH_CITY',
-      city: value.label,
+      city: city,
     });
   };
 

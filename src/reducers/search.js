@@ -1,5 +1,3 @@
-import { SEARCH_CITY } from '../actions/search';
-
 export const initialState = {
   city: '',
   dates: [],
@@ -9,7 +7,7 @@ export const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case SEARCH_CITY:
+    case 'SEARCH_CITY':
       return {
         ...state,
         city: action.city,
