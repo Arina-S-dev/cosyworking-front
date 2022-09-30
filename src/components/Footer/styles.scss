@@ -6,11 +6,21 @@
     
     &-Paper{
         height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content:space-between;
+        text-align: center;   
+        
         &-Typography{
             line-height: 0.5rem;
         }
         &-BottomNavigation{
-            &-Typography{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            &-Typography{                
                 line-height: 0.5rem;
             }
         }

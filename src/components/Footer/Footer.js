@@ -10,15 +10,19 @@ function Footer() {
       {/* Composant Mui du footer */}
       <Paper
         className="Footer-Paper"
+        component="footer"
+        square
+        variant="outlined"
         sx={{
           /* position du footer */
-          position: 'fixed',
+          // marginTop: '90%',
+          position: 'sticky',
           bottom: 0,
           left: 0,
           right: 0,
           paddingLeft: '1rem',
           paddingRight: '1rem',
-          // height: '30px',
+          borderBottom: 'none',
         }}
         // z-index du footer
         elevation={3}
@@ -29,6 +33,7 @@ function Footer() {
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
+            height: 'auto',
           }}
         >
           <Typography
