@@ -12,9 +12,9 @@ function InscriptionMenu() {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <div className="InscriptionMenu">
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -40,7 +40,7 @@ function InscriptionMenu() {
         anchorEl={anchorEl}
         id="account-menu"
         open={open}
-        // onClose={handleClose}
+        onClose={handleClose}
         // onClick={handleClose}
         PaperProps={{
           elevation: 0,
@@ -72,9 +72,6 @@ function InscriptionMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         {/* Contenu de l'onglet 'inscription' */}
-        {/* <MenuItem>
-          <Avatar /> S'inscrire
-        </MenuItem> */}
         <ModalInscription />
         <Divider />
         <ModalConnexion />

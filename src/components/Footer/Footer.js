@@ -12,7 +12,7 @@ function Footer() {
         className="Footer-Paper"
         component="footer"
         square
-        variant="outlined"
+        // variant="outlined"
         sx={{
           /* position du footer */
           // marginTop: '90%',

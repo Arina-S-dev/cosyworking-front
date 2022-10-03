@@ -1,13 +1,29 @@
-import { BottomNavigation, Button, Paper } from '@mui/material';
+/* eslint-disable no-else-return */
+// eslint-disable-next-line object-curly-newline
+import { BottomNavigation, Button, Paper, ThemeProvider } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import logo from '../../img/logo.png';
 import './styles.scss';
 import MenuBurger from './MenuBurger/MenuBurger';
 import AccountMenu from './AccountMenu/AccountMenu';
 import InscriptionMenu from './InscriptionMenu/InscriptionMenu';
+import theme from '../../tools/themeMui';
 
 function Nav() {
   const dispatch = useDispatch();
+
+  // Récupération du rôle de l'utilisateur
+  const userRole = useSelector((state) => state.user.role_id);
+
+  // Fonction pour gérer le bouton 'devenir hote'
+  const getRole = () => {
+    // eslint-disable-next-line brace-style, semi
+    if (userRole === 'host') { return true }
+    // eslint-disable-next-line brace-style, semi
+    else { return false }
+  };
+
   // Recupération du logged afin de savoir si on est connecté
   const logged = useSelector((state) => state.user.logged);
   const isThereAToken = localStorage.getItem('userToken');
@@ -34,7 +50,6 @@ function Nav() {
           top: 0,
           left: 0,
           right: 0,
-          paddingBottom: '0.3rem',
         }}
         // z-index de la nav
         elevation={3}
@@ -50,22 +65,23 @@ function Nav() {
           <MenuBurger />
           <img src={logo} alt="logo" />
           <div className="Nav-leftNavBar">
-            <Button
-              sx={{
-                width: '90px',
-                border: 'solid 1px black',
-                paddingRight: '0px',
-                paddingLeft: '0px',
-                margin: 'auto',
-                fontSize: '0.8rem',
-                borderRadius: '15px',
-                textAlign: 'center',
-                textTransform: 'none',
-                color: '#8A8A8A',
-              }}
-            >
-              Devenir hôte
-            </Button>
+            <ThemeProvider theme={theme}>
+              <Button
+                type="submit"
+                variant="contained"
+                disableElevation
+                sx={{
+                  width: '100%',
+                  margin: '0rem',
+                  height: '100%',
+                  textTransform: 'none',
+                  borderRadius: '0px',
+                }}
+              >
+                {/* Gestion du bouton dans la nav */}
+                {getRole() ? <Link path="/">Louer mon espace</Link> : <Link path="/">Devenir hôte</Link>}
+              </Button>
+            </ThemeProvider>
             {/* Composant avec l'avatar de la navbar pour aller sur son espace perso ou */}
             {/* se deconnecter */}
             {logged && <AccountMenu />}

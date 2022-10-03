@@ -1,5 +1,6 @@
 import { Button, Menu, MenuItem } from '@mui/material';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import * as React from 'react';
 import './styles.scss';
 
@@ -26,7 +27,8 @@ function MenuBurger() {
           color: 'black',
         }}
       >
-        <MenuRoundedIcon />
+        {/* Burger si fermé et croix si le menu est ouvert */}
+        {open ? <CloseRoundedIcon /> : <MenuRoundedIcon />}
       </Button>
       <Menu
         id="basic-menu"

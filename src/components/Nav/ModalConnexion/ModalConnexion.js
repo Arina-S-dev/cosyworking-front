@@ -6,11 +6,12 @@ import {
   MenuItem,
   ListItemIcon,
   Input,
+  Alert,
 } from '@mui/material';
 import { Box, ThemeProvider } from '@mui/system';
 import { useState } from 'react';
 import {
-  useDispatch,
+  useDispatch, useSelector,
 } from 'react-redux';
 import logoGoogle from '../../../img/logo_google.png';
 import theme from '../../../tools/themeMui';
@@ -21,6 +22,9 @@ function ModalConnexion() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  // Récupération de l'alerte en cas de mauvais password ou email
+  const getEmailPasswordAlert = useSelector((state) => state.user.statusconnection);
 
   // Obtention de l'email et enregistrement dans le state
   const getEmail = (event) => {
@@ -70,8 +74,8 @@ function ModalConnexion() {
       >
         <Box
           sx={{
+            margin: 'auto',
             backgroundColor: 'white',
-            margin: '3rem',
             border: '10px solid white',
             borderRadius: '10px',
             maxWidth: '400px',
@@ -95,6 +99,7 @@ function ModalConnexion() {
           </Typography>
           <div className="ModalBurger-listButtons">
             <Typography
+              component="div"
               id="modal-modal-description"
               sx={{
                 width: '290px',
@@ -114,6 +119,7 @@ function ModalConnexion() {
                 </p>
                 <p className="ModalConnexion-Box-ou-textline" />
               </div>
+              {getEmailPasswordAlert && <Alert className="ModalConnexion-Box-Alert" severity="error">L'email ou le mot de passe ne sont pas valides !</Alert>}
               <form onSubmit={getConnexion}>
                 <Input
                   onChange={getEmail}

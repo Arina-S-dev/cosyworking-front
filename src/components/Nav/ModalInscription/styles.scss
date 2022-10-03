@@ -1,0 +1,26 @@
+@use '../../../styles/vars';
+@use 'sass:color';
+
+.ModalInscription{
+
+    &-emailError{
+        margin-left: 1rem;
+        width: 100%;
+    }
+
+    &-passwordError{
+        margin-left: 1rem;
+        width: 100%;
+    }
+
+    &-emailFormat{
+        font-size: 0.5rem;
+        text-align: right;
+        width: 100%;
+    }
+
+    &-genderRequired{
+        font-size: 0.7rem;
+        color:red;
+    }
+}

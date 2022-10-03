@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import {
   Button,
   Modal,
@@ -10,6 +11,7 @@ import {
   FormGroup,
   FormControlLabel,
   Switch,
+  Alert,
 } from '@mui/material';
 import { Box, ThemeProvider } from '@mui/system';
 import { useState } from 'react';
@@ -17,7 +19,7 @@ import { Link } from 'react-router-dom';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import FormLabel from '@mui/material/FormLabel';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import ModalConnexion from '../ModalConnexion/ModalConnexion';
@@ -28,6 +30,21 @@ function ModalInscription() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  // Récupération du statut de l'inscription
+  const getStatus = useSelector((state) => state.user.statusinscriptionok);
+
+  // Alerte si un des élements n'a pas été rempli pour l'inscription
+  const errorRequiredElement = useSelector((state) => state.user.errorrequiredelement);
+
+  // Récupération de l'erreur pour l'email deja existant dans la BDD
+  const emailError = useSelector((state) => state.user.emailexistederror);
+
+  // Récupération de l'erreur pour le format du mot de passe
+  const paswordFormatError = useSelector((state) => state.user.passwordwrongformat);
+
+  // Récupération de l'erreur pour le format du mot de passe
+  const emailFormatError = useSelector((state) => state.user.emailwrongformat);
 
   const dispatch = useDispatch();
 
@@ -91,12 +108,39 @@ function ModalInscription() {
     });
   };
 
+  // eslint-disable-next-line camelcase, object-curly-newline
+  const { first_name, last_name, email, password, gender } = useSelector((state) => state.user);
+
+  // Alerte si un des élements demandés n'est pas rempli
+  let [getErrorEmail, getErrorFirstName, getErrorLastName, getErrorPassword, getErrorGender] = '';
+  // eslint-disable-next-line camelcase
+  if (errorRequiredElement && first_name === '') {
+    getErrorFirstName = true;
+  }
+  // eslint-disable-next-line camelcase
+  if (errorRequiredElement && last_name === '') {
+    getErrorLastName = true;
+  }
+  if (errorRequiredElement && email === '') {
+    getErrorEmail = true;
+  }
+  if (errorRequiredElement && password === '') {
+    getErrorPassword = true;
+  }
+  if (errorRequiredElement && gender === '') {
+    getErrorGender = true;
+  }
+
   // Envoi de la request pour l'inscription
   const setSignUp = (event) => {
     event.preventDefault();
-    dispatch({
-      type: 'SET_SIGNUP',
-    });
+    // eslint-disable-next-line indent
+          dispatch({
+            type: 'SET_SIGNUP',
+          });
+    if (getStatus) {
+     handleClose();
+    }
   };
 
   return (
@@ -138,7 +182,7 @@ function ModalInscription() {
             component="h2"
             sx={{
               display: 'inline-block',
-              marginTop: '1rem',
+              // marginTop: '1rem',
               fontWeight: 'bold',
               textAlign: 'center',
               width: '100%',
@@ -160,8 +204,10 @@ function ModalInscription() {
               >
                 Civilité
               </FormLabel> */}
+              { getErrorGender && <p className="ModalInscription-genderRequired">*Merci de renseigner votre civilité.</p>}
               <RadioGroup
                 onChange={getSelectedGender}
+                required
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
@@ -172,6 +218,7 @@ function ModalInscription() {
               </RadioGroup>
             </FormControl>
             <Typography
+              component="div"
               id="modal-modal-description"
               sx={{
                 width: '290px',
@@ -181,12 +228,12 @@ function ModalInscription() {
               <Box
                 component="form"
                 noValidate
-                // onSubmit={handleSubmit}
                 sx={{ mt: 3 }}
               >
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <TextField
+                      error={getErrorFirstName}
                       onChange={getFirstName}
                       autoComplete="given-name"
                       name="firstName"
@@ -199,6 +246,7 @@ function ModalInscription() {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
+                      error={getErrorLastName}
                       onChange={getLastName}
                       required
                       fullWidth
@@ -210,6 +258,7 @@ function ModalInscription() {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      error={getErrorEmail}
                       onChange={getEmail}
                       required
                       fullWidth
@@ -219,8 +268,13 @@ function ModalInscription() {
                       autoComplete="email"
                     />
                   </Grid>
+                  {/* Alerte si email deja existant dans la BDD */}
+                  {emailError && <Alert className="ModalInscription-emailError" severity="error">Cet email existe déjà !</Alert>}
+                  {/* Alerte si l'email' n'est pas au bon format */}
+                  {emailFormatError && <Alert className="ModalInscription-passwordError" severity="error">L'email n'est pas au bon format !</Alert>}
                   <Grid item xs={12}>
                     <TextField
+                      error={getErrorPassword}
                       onChange={getPassword}
                       required
                       fullWidth
@@ -231,6 +285,9 @@ function ModalInscription() {
                       autoComplete="new-password"
                     />
                   </Grid>
+                  <p className="ModalInscription-emailFormat">*inclure : minuscule, majuscule, caractère spécial, 8 caractères au minimum</p>
+                  {/* Alerte si le password n'est pas au bon format */}
+                  {paswordFormatError && <Alert className="ModalInscription-passwordError" severity="error">Le mot de passe n'est pas au bon format !</Alert>}
                 </Grid>
                 <FormGroup>
                   <FormControlLabel

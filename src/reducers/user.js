@@ -7,6 +7,12 @@ export const initialState = {
   last_name: '',
   first_name: '',
   error_connection: false,
+  emailexistederror: false,
+  passwordwrongformat: false,
+  emailwrongformat: false,
+  errorrequiredelement: false,
+  statusinscriptionok: false,
+  statusconnection: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -34,11 +40,13 @@ const reducer = (state = initialState, action = {}) => {
         email: '',
         password: '',
       };
+    // Sélection du rôle lors de l'inscription
     case 'GET_SELECTEDROLE':
       return {
         ...state,
         role_id: action.role,
       };
+    // Sélection de la civilité lors de l'inscription
     case 'GET_SELECTEDGENDER':
       return {
         ...state,
@@ -54,6 +62,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         last_name: action.lastname,
       };
+    // Pour indiquer que le token (donc la session) a expiré
     case 'CONNECTION_STATE':
       return {
         ...state,
@@ -63,6 +72,42 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         logged: false,
+      };
+    // Alerte erreur si, en cas d'inscription, l'email existe deja
+    case 'GET_EMAILEXISTEDERROR':
+      return {
+        ...state,
+        emailexistederror: true,
+      };
+    // Alerte erreur si, en cas d'inscription, le pasword n'est pas au bon format
+    case 'GET_PASWORD_FORMAT_ERROR':
+      return {
+        ...state,
+        passwordwrongformat: true,
+      };
+    // Alerte erreur si, en cas d'inscription, le pasword n'est pas au bon format
+    case 'GET_EMAIL_FORMAT_ERROR':
+      return {
+        ...state,
+        emailwrongformat: true,
+      };
+    // Alerte erreur si un des élements lors de l'inscription n'a pas été rempli
+    case 'GET_REQUIRED_ERROR':
+      return {
+        ...state,
+        errorrequiredelement: true,
+      };
+    // Vérifie que l'inscription est ok pour fermer la modale
+    case 'STATUS_INSCRIPTION_OK':
+      return {
+        ...state,
+        statusinscriptionok: true,
+      };
+    // Alerte à la connexion si l'email ou le password ne sont pas bons
+    case 'CONNECTION_EMAIL_OR_NOT_GOOD':
+      return {
+        ...state,
+        statusconnection: true,
       };
     default:
       return state;

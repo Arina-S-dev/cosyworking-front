@@ -5,12 +5,10 @@ const identification = (store) => (next) => (action) => {
   if (action.type === 'SET_CONNEXION') {
     // Obtention de l'email et du password du state
     const { email, password } = store.getState().user;
-    // eslint-disable-next-line no-console
-    console.log(email);
     axios.post('http://quentinroggy-server.eddi.cloud/api/auth/login', { email, password })
       .then((response) => {
         // eslint-disable-next-line no-console
-        console.log(response);
+        console.log(response.data);
         if (response.data.userToken) {
           localStorage.setItem('userToken', JSON.stringify(response.data.userToken));
           store.dispatch({
@@ -22,7 +20,12 @@ const identification = (store) => (next) => (action) => {
       .catch((error) => {
       // en cas d’échec de la requête
       // eslint-disable-next-line no-console
-        console.log(error);
+        console.log(error.response.data.message);
+        if (error.response.data.message === 'Invalid password' || error.response.data.message === 'User not found') {
+          store.dispatch({
+            type: 'CONNECTION_EMAIL_OR_NOT_GOOD',
+          });
+        }
       });
   }
   // MiddleWare d'inscription avec l'envoie des différents élements demandés
@@ -32,16 +35,46 @@ const identification = (store) => (next) => (action) => {
     const { email, password, gender, role_id, last_name, first_name } = store.getState().user;
     // eslint-disable-next-line no-console
     console.log(email, password, gender, role_id, last_name, first_name);
+    // eslint-disable-next-line camelcase
+    if (email === '' || password === '' || gender === '' || last_name === '' || first_name === '') {
+      store.dispatch({
+        type: 'GET_REQUIRED_ERROR',
+      });
+    }
     // eslint-disable-next-line object-curly-newline, camelcase
     axios.post('http://quentinroggy-server.eddi.cloud/api/auth/signup', { first_name, last_name, email, password, gender, role_id })
       .then((response) => {
         // eslint-disable-next-line no-console
         console.log(response);
+        // Vérifie que l'inscription est ok pour fermer la modale
+        if (response.status === 200) {
+          store.dispatch({
+            type: 'STATUS_INSCRIPTION_OK',
+          });
+        }
       })
       .catch((error) => {
       // en cas d’échec de la requête
       // eslint-disable-next-line no-console
         console.log(error);
+        // Si l'email existe déjà
+        if (error.response.data.message === 'Failed! Email is already in use!') {
+          store.dispatch({
+            type: 'GET_EMAILEXISTEDERROR',
+          });
+        }
+        // Si le pasword n'est pas au bon format
+        if (error.response.data.message === 'Password not respect pattern') {
+          store.dispatch({
+            type: 'GET_PASWORD_FORMAT_ERROR',
+          });
+        }
+        // Si l'email' n'est pas au bon format
+        if (error.response.data.message === 'Email not respect pattern') {
+          store.dispatch({
+            type: 'GET_EMAIL_FORMAT_ERROR',
+          });
+        }
       });
   }
   // MiddleWare afin de vérifier la validité du token présent dans le LocalStorage
@@ -80,11 +113,6 @@ const identification = (store) => (next) => (action) => {
   }
   // MiddleWare de déconnexion avec la suppression du token dans le LocalStorage
   if (action.type === 'LOGOUT') {
-    window.location.href = '/';
-    localStorage.removeItem('userToken');
-  }
-  // MiddleWare permettant la suppression du token dans le LocalStorage si ce dernier a expiré
-  if (action.type === 'RESET_TOGETNEWCONNECTION') {
     window.location.href = '/';
     localStorage.removeItem('userToken');
   }
