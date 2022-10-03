@@ -38,7 +38,9 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
     setTotalPrice(totalAmount);
   }, [bookings]);
 
+  // eslint-disable-next-line no-console
   console.log('CURRENTDAY===>', currentDay);
+  // eslint-disable-next-line no-console
   console.log('bookings===>', bookings);
 
   const bookingsList = [
@@ -124,6 +126,7 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
   };
 
   const handleSelect = (date) => {
+    // eslint-disable-next-line no-console
     console.log('selected date ==>', date);
     setCurrentDay(date);
   };
@@ -317,6 +320,7 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
           variant="contained"
           size="small"
           onClick={() => {
+            // eslint-disable-next-line no-console
             console.log('pouet!!!');
           }}
           sx={{

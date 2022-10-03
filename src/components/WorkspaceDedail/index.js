@@ -17,6 +17,7 @@ import './style.scss';
 
 function WorkspaceDetail() {
   const workspace = useSelector((state) => state.workspaces.currentWorkspace);
+  // eslint-disable-next-line no-console
   console.log(workspace);
   const [PictureModalOpen, setpictureModalOpen] = useState(false);
   const [CalendarModalOpen, setcalendarModalOpen] = useState(false);

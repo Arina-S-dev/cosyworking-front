@@ -18,6 +18,7 @@ import './style.scss';
 
 function PublicProfil() {
   const user = useSelector((state) => state.publicProfile.userToDisplay);
+  // eslint-disable-next-line no-console
   console.log(user.workSpaces);
 
   //   const [PictureModalOpen, setpictureModalOpen] = useState(false);
