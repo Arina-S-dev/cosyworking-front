@@ -1,0 +1,59 @@
+@use '../../styles/vars';
+@use 'sass:color';
+
+.EspacePerso{    
+    max-width: 600px;
+    margin: auto;
+    margin-top: 4rem;
+
+    &-AllCards{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &-title{
+        font-size: 1.2rem;
+        margin: 0.5rem;
+        text-align: center;
+    }
+    &-Card{
+        width: 90%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        
+        &-CardMedia{
+            height: 10rem;
+        }
+    }
+}
+
+@media only screen and (min-width: 550px) {
+    .EspacePerso{
+        max-width: 100%; 
+
+        &-AllCards{
+            width: 100%; 
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 850px;
+            margin: auto;
+        }
+
+        &-Card{
+            max-width: 400px;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            margin-right: 0.5rem;
+            margin-left: 0.5rem;            
+            
+            &-CardMedia{
+                height: 10rem;
+            }
+        }
+    }    
+}

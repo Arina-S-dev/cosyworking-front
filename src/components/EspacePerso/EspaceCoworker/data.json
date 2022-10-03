@@ -1,0 +1,86 @@
+[
+    {
+      "id": 1,
+      "startDate": "2022-09-21 08:00:00.000+02",
+      "endDate": "2022-09-21 12:00:00.000+02",
+      "workspace": {
+        "id": 1,
+        "title": "Le bureau Cosy de John",
+        "address": "17 rue Richer",
+        "zipCode": "75009",
+        "city": "Paris",
+        "image": {
+          "id": 1,
+          "link": "https://www.ikea.com/fr/fr/images/products/lagkapten-alex-bureau-plaque-chene-blanchi-blanc__1028405_pe835339_s5.jpg?f=s",
+          "mainImage": true
+        },
+        "morningPrice": 25,
+        "afternoonPrice": 32,
+        "dayPrice": 50,
+        "host": {
+          "id": 1,
+          "pseudo": "Jdoeuf"
+        }
+      },
+      "state": {
+        "id": "2",
+        "description": "validée"
+      }
+    },
+    {
+      "id": 2,
+      "startDate": "2021-10-21 08:00:00.000+02",
+      "endDate": "2021-10-21 17:00:00.000+02",
+      "workspace": {
+        "id": 1,
+        "title": "Le bureau Cosy de John",
+        "address": "17 rue Richer",
+        "zipCode": "75009",
+        "city": "Paris",
+        "image": {
+          "id": 1,
+          "link": "https://www.ikea.com/fr/fr/images/products/lagkapten-alex-bureau-plaque-chene-blanchi-blanc__1028405_pe835339_s5.jpg?f=s",
+          "mainImage": true
+        },
+        "morningPrice": 25,
+        "afternoonPrice": 32,
+        "dayPrice": 50,
+        "host": {
+          "id": 1,
+          "pseudo": "Jdoeuf"
+        }
+      },
+      "state": {
+        "id": "3",
+        "description": "Terminé"
+      }
+    },
+    {
+      "id": 3,
+      "startDate": "2022-10-21 08:00:00.000+02",
+      "endDate": "2022-10-21 17:00:00.000+02",
+      "workspace": {
+        "id": 1,
+        "title": "Le bureau Cosy de John",
+        "address": "17 rue Richer",
+        "zipCode": "75009",
+        "city": "Paris",
+        "image": {
+          "id": 1,
+          "link": "https://www.ikea.com/fr/fr/images/products/lagkapten-alex-bureau-plaque-chene-blanchi-blanc__1028405_pe835339_s5.jpg?f=s",
+          "mainImage": true
+        },
+        "morningPrice": 25,
+        "afternoonPrice": 32,
+        "dayPrice": 50,
+        "host": {
+          "id": 1,
+          "pseudo": "Jdoeuf"
+        }
+      },
+      "state": {
+        "id": "1",
+        "description": "En attente"
+      }
+    }
+  ]
