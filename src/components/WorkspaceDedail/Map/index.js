@@ -31,6 +31,7 @@ function LeafletMap({ latitude, longitude }) {
         pathOptions={{ weight: 1 }}
         eventHandlers={{
           click: (e) => {
+            // eslint-disable-next-line no-console
             console.log(e);
           },
         }}
