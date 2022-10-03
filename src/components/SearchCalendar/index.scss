@@ -1,0 +1,274 @@
+$datepicker__background-color: #f0f0f0 !default;
+$datepicker__border-color: #aeaeae !default;
+$datepicker__muted-color: #ccc !default;
+$datepicker__selected-color: #8A8A8A !default;
+$datepicker__text-color: #000 !default;
+$datepicker__header-color: #000 !default;
+
+
+$datepicker__border-radius: 0.3rem !default;
+$datepicker__font-size: 0.8rem !default;
+$datepicker__font-family: "Helvetica Neue", helvetica, arial, sans-serif !default;
+$datepicker__item-size: 1.7rem !default;
+$datepicker__margin: 0.4rem !default;
+
+
+.searchCalendar{
+    width: fit-content;
+    margin: auto;
+    
+    .dayContainer{
+      display: block;
+      align-items: center;
+      position: relative;
+    }
+
+    .halfDayModale{
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      z-index: 99;
+      left: -100%;
+      top: 115%;
+     
+      width: fit-content;
+      background-color: white;
+      border-radius: 20%;
+      box-shadow: 0px 0px 16px  rgba(196,192,196,0.5);
+    }
+    
+    .halfDayModale_button{
+      background-color: #fff;
+      border: none;
+      width: 5.5rem;
+      padding: .3rem;
+      font-size: .7rem;
+      border-radius: .5rem;
+    }
+    
+    .halfDayModale_button:hover:not(.halfDayModale_button--delete){
+      background-color: #ccc;
+      color: #fff;
+    }
+    
+    .halfDayModale_button--delete:hover{
+      border-top-left-radius: 0%;
+      border-top-right-radius: 0%;
+      background-color: #ccc;
+      color: crimson;
+    }
+    
+    .isHidden{
+      display: none;
+    }
+    
+    .selectedDay{
+      border-radius: 50%;
+      background-color: $datepicker__selected-color;
+      color: #fff;
+    }
+    
+    .react-datepicker {
+      font-family: $datepicker__font-family;
+      font-size: $datepicker__font-size;
+      background-color: #fff;
+      color: $datepicker__text-color;
+      border: 1px solid $datepicker__border-color;
+      border-radius: $datepicker__border-radius;
+      display: inline-block;
+      position: relative;
+      box-shadow: -10px -10px 15px rgba(255,255,255,0.5),
+                10px 10px 15px rgba(70,70,70,0.12);
+    
+      padding: 0 1rem;     
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: fit-content;
+    }
+    
+    .react-datepicker__header {
+      text-align: center;
+      background-color: white;
+      border-top-right-radius: $datepicker__border-radius;
+      border-top-left-radius: $datepicker__border-radius;
+      padding: 8px 0;
+      position: relative; 
+    }
+
+    .monthNav{
+      margin: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    
+    .react-datepicker__current-month{
+    //   margin-top: 1rem;
+      color: $datepicker__header-color;
+      font-weight: bold;
+      font-size: $datepicker__font-size * 1.18;
+    }
+
+    .buttonNav{
+        background-color: #fff;
+        border: none;
+    }
+    
+    
+    .react-datepicker__month-container {
+      float: left;
+      width: 15rem;
+      margin-bottom: .2rem;
+      width: 100%;
+      
+    }
+    
+    
+    .react-datepicker__month {
+      margin: $datepicker__margin;
+      text-align: center;
+    }
+    
+    
+    
+    .react-datepicker__day-names,
+    .react-datepicker__week {
+      white-space: nowrap;
+    }
+    
+    .react-datepicker__day-names{
+      margin-top: .5rem ;
+    }
+    
+    .react-datepicker__day-names {
+      margin-bottom: -8px;
+      display: flex;
+      gap: .5rem;
+    }
+    
+    .react-datepicker__day-name,
+    .react-datepicker__day,
+    .react-datepicker__time-name {
+      color: $datepicker__text-color;
+      display: inline-block;
+      width: $datepicker__item-size;
+      line-height: $datepicker__item-size;
+      text-align: center;
+    }
+    
+    // a modifier pour adaptation 
+    .react-datepicker__day{
+      cursor: pointer;
+      margin: .3rem .2rem;
+    
+      &:hover:not(&--selected, &--today, .morningSelected, .afternoonSelected, .fullDaySelected) {
+        border-radius: 50%;
+        background-color: $datepicker__background-color;
+      }
+    
+      &--today {
+        font-weight: bold;
+      }
+    
+      &--disabled {
+        cursor: default;
+        color: $datepicker__muted-color;
+    
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+    
+    
+    .react-datepicker__children-container {
+      width: 13.8rem;
+      margin: 0.4rem;
+      padding-right: 0.2rem;
+      padding-left: 0.2rem;
+      height: auto;
+    }
+    
+    
+    .react-datepicker__day.react-datepicker__day--selected:not(.morningSelected, .afternoonSelected, .fullDaySelected){
+      border-radius: 50%;
+        background-color: #8A8A8A;
+        color: white;
+    }
+    
+    
+    .morningSelected{
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FFC000 50%, white 50%);
+      
+    }
+    .afternoonSelected{
+      border-radius: 50%;
+      background: linear-gradient(135deg, white 50%, #FFC000 50%);
+    }
+    .fullDaySelected{
+      border-radius: 50%;
+      background-color: #FFC000;
+    }
+    
+    .bookingsContainer{
+      width: 100%;
+      text-align: start;
+    }
+    
+    .bookingsContainer_desc{
+      font-size: .8rem;
+      font-weight: 500;
+      padding: .3rem;
+      
+    }
+    
+    .bookingsContainer_desc--total{
+      font-size: .8rem;
+      font-weight: 500;
+      margin-top: .3rem;
+      margin-left: .4rem; 
+      font-weight: bold;
+    }
+    
+    .totalSelected{
+      margin-top: .2rem;
+    }
+    
+    .price{
+      color: #aeaeae;
+      font-size: .7rem;
+      
+    }
+    .searchCalendarButtonContainer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        // height: fit-content;
+    }
+
+    .clearSelectedDates{
+        border: none;
+        background-color: #fff;
+        color:#8A8A8A;
+        // padding: .1rem;
+        &:hover{
+            text-decoration: underline;
+            // border-bottom: #aeaeae 1px solid;
+        }
+    }
+    
+    @media (max-width: 1150px) {
+
+    
+    }
+    
+    @media (max-width: 900px) {
+    
+    
+    }
+}

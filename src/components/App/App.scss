@@ -1,5 +1,8 @@
+
 .App {
   text-align: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .App-logo {
@@ -7,11 +10,6 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #282c34;
@@ -35,4 +33,15 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.NavBar{
+  width: 100%;
+  height: 40px;
+  background-color: #CCC;
+}
+.footer{
+  width: 100vw;
+  height: 20px;
+  background-color: #CCC;
 }
