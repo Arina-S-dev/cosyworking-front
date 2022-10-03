@@ -6,24 +6,14 @@ import {
   lightFormat,
 } from 'date-fns';
 
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import WorkspaceCard from './WorkspaceCard';
 
 // import style
 import './style.scss';
 
 function PublicProfil() {
   const user = useSelector((state) => state.publicProfile.userToDisplay);
-  console.log(user.workSpaces);
 
-  //   const [PictureModalOpen, setpictureModalOpen] = useState(false);
-  //   const [CalendarModalOpen, setcalendarModalOpen] = useState(false);
-
-  //   const calendarModalClassName = CalendarModalOpen ? 'calendarModal' : 'isHidden';
   const membershipDate = lightFormat(new Date(user.created_at), 'dd-MM-yy');
   return (
 
@@ -45,69 +35,79 @@ function PublicProfil() {
         </p>
       </div>
 
+      {
+        user.role_id === 1
+      && (
       <div className="publicProfileContainer__workspaces">
         <h3>Workspaces</h3>
         <div className="publicProfileContainer__workspaces__cardsContainer">
 
-          <Card sx={{ maxWidth: 300, borderRadius: 3, boxShadow: 9 }}>
-            <CardMedia
-              component="img"
-              height="60%"
-              image={user.workSpaces[0].mainImage}
-              alt="green iguana"
-            />
-            <CardContent sx={{ paddingBottom: 0 }}>
-              <Typography variant="h3" sx={{ fontSize: 14 }} component="div">
-                {user.workSpaces[0].title}
-              </Typography>
-
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-
-          <Card sx={{ maxWidth: 300, borderRadius: 3, boxShadow: 9 }}>
-            <CardMedia
-              component="img"
-              height="60%"
-              image={user.workSpaces[0].mainImage}
-              alt="green iguana"
-            />
-            <CardContent sx={{ paddingBottom: 0 }}>
-              <Typography variant="h3" sx={{ fontSize: 14 }} component="div">
-                {user.workSpaces[0].title}
-              </Typography>
-
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-
-          <Card sx={{ maxWidth: 300, borderRadius: 3, boxShadow: 9 }}>
-            <CardMedia
-              component="img"
-              height="60%"
-              image={user.workSpaces[0].mainImage}
-              alt="green iguana"
-            />
-            <CardContent sx={{ paddingBottom: 0 }}>
-              <Typography variant="h3" sx={{ fontSize: 14 }} component="div">
-                {user.workSpaces[0].title}
-              </Typography>
-
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
+          {
+          user.workSpaces.map((workspace) => (
+            <WorkspaceCard key={workspace.id} mainImage={workspace.mainImage} title={workspace.title} />
+          ))
+        }
 
         </div>
       </div>
+      )
+      }
 
-      <div className="publicProfileContainer__comment">
-        commentaires
+      <div className="publicProfileContainer__comments">
+        <h3>commentaires</h3>
+
+        <div className="publicProfileContainer__comments__container">
+
+          <div className="publicProfileContainer__comments__container__comment">
+
+            <div className="publicProfileContainer__comments__container__comment__header">
+              <Avatar alt="image de jane" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" />
+              <div className="publicProfileContainer__comments__container__comment__header__infos">
+                <p className="publicProfileContainer__comments__container__comment__header__infos--userName">jane Doeuf</p>
+                <p className="publicProfileContainer__comments__container__comment__header__infos--date">22/09/22</p>
+              </div>
+            </div>
+
+            <div className="publicProfileContainer__comments__container__comment__content">
+              <p className="publicProfileContainer__comments__container__comment__content--desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem praesentium repellat et quis eaque architecto distinctio quibusdam aspernatur quaerat, voluptas, dicta excepturi incidunt veniam porro at eius cupiditate vero a minima. Veritatis mollitia omnis dicta!</p>
+            </div>
+
+          </div>
+
+          <div className="publicProfileContainer__comments__container__comment">
+
+            <div className="publicProfileContainer__comments__container__comment__header">
+              <Avatar alt="image de jane" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" />
+              <div className="publicProfileContainer__comments__container__comment__header__infos">
+                <p className="publicProfileContainer__comments__container__comment__header__infos--userName">jane Doeuf</p>
+                <p className="publicProfileContainer__comments__container__comment__header__infos--date">22/09/22</p>
+              </div>
+            </div>
+
+            <div className="publicProfileContainer__comments__container__comment__content">
+              <p className="publicProfileContainer__comments__container__comment__content--desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem praesentium repellat et quis eaque architecto distinctio quibusdam aspernatur quaerat, voluptas, dicta excepturi incidunt veniam porro at eius cupiditate vero a minima. Veritatis mollitia omnis dicta!</p>
+            </div>
+
+          </div>
+
+          <div className="publicProfileContainer__comments__container__comment">
+
+            <div className="publicProfileContainer__comments__container__comment__header">
+              <Avatar alt="image de jane" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" />
+              <div className="publicProfileContainer__comments__container__comment__header__infos">
+                <p className="publicProfileContainer__comments__container__comment__header__infos--userName">jane Doeuf</p>
+                <p className="publicProfileContainer__comments__container__comment__header__infos--date">22/09/22</p>
+              </div>
+            </div>
+
+            <div className="publicProfileContainer__comments__container__comment__content">
+              <p className="publicProfileContainer__comments__container__comment__content--desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem praesentium repellat et quis eaque architecto distinctio quibusdam aspernatur quaerat, voluptas, dicta excepturi incidunt veniam porro at eius cupiditate vero a minima. Veritatis mollitia omnis dicta!</p>
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
 
     </div>
