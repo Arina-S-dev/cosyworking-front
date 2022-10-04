@@ -3,6 +3,7 @@ export const initialState = {
   password: '',
   logged: false,
   role_id: 'coworker',
+  user_id: '',
   gender: '',
   last_name: '',
   first_name: '',
@@ -13,6 +14,10 @@ export const initialState = {
   errorrequiredelement: false,
   statusinscriptionok: false,
   statusconnection: false,
+  // Tableau des réservations du coworker non organisé
+  datacoworkerreservations: [],
+  // Tableau des réservations du coworker réorganisé
+  datacoworkerreservationsOrdered: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -39,6 +44,11 @@ const reducer = (state = initialState, action = {}) => {
         logged: action.logged,
         email: '',
         password: '',
+      };
+    case 'GET_USER_ID':
+      return {
+        ...state,
+        user_id: action.getuserid,
       };
     // Sélection du rôle lors de l'inscription
     case 'GET_SELECTEDROLE':
@@ -108,6 +118,12 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         statusconnection: true,
+      };
+    // Recupère les reservations du coworker
+    case 'GET_DATA_COWORKER_RESERVATIONS':
+      return {
+        ...state,
+        datacoworkerreservations: action.coworkerreservations,
       };
     default:
       return state;

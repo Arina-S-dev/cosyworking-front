@@ -10,7 +10,12 @@ const identification = (store) => (next) => (action) => {
         // eslint-disable-next-line no-console
         console.log(response.data);
         if (response.data.userToken) {
+          const { userId } = response.data;
           localStorage.setItem('userToken', JSON.stringify(response.data.userToken));
+          store.dispatch({
+            type: 'GET_USER_ID',
+            getuserid: userId,
+          });
           store.dispatch({
             type: 'GET_CONNEXION',
             logged: true,
@@ -45,9 +50,10 @@ const identification = (store) => (next) => (action) => {
     axios.post('http://quentinroggy-server.eddi.cloud/api/auth/signup', { first_name, last_name, email, password, gender, role_id })
       .then((response) => {
         // eslint-disable-next-line no-console
-        console.log(response);
+        console.log(response.request.status);
         // Vérifie que l'inscription est ok pour fermer la modale
-        if (response.status === 200) {
+        // eslint-disable-next-line eqeqeq
+        if (response.status == 200) {
           store.dispatch({
             type: 'STATUS_INSCRIPTION_OK',
           });
@@ -75,6 +81,43 @@ const identification = (store) => (next) => (action) => {
             type: 'GET_EMAIL_FORMAT_ERROR',
           });
         }
+      });
+  }
+  // MiddleWare afin de récupérer les réservations du coworker
+  if (action.type === 'GET_COWORKER_RESERVATIONS') {
+    // Récupération du token présent dans le LocalStorage
+    const getUserToken = JSON.parse(localStorage.getItem('userToken'));
+    // eslint-disable-next-line camelcase
+    const { user_id } = store.getState().user;
+    // eslint-disable-next-line no-console
+    // console.log(user_id);
+    // eslint-disable-next-line object-curly-newline, camelcase
+    axios.get(`http://quentinroggy-server.eddi.cloud/api/personalspace/${user_id}/coworkerbooking`, { headers: {
+      // eslint-disable-next-line quote-props, comma-dangle
+      'x-access-token': getUserToken
+    // eslint-disable-next-line object-curly-spacing, object-curly-newline
+    }})
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log(response);
+        const getDataReservations = response.data;
+        if (response) {
+          store.dispatch({
+            type: 'GET_DATA_COWORKER_RESERVATIONS',
+            coworkerreservations: getDataReservations,
+          });
+        }
+      })
+      .catch((error) => {
+      // en cas d’échec de la requête
+      // eslint-disable-next-line no-console
+        console.log(error);
+        // if (error) {
+        //   store.dispatch({
+        //     type: 'CONNECTION_STATE',
+        //     error: true,
+        //   });
+        // }
       });
   }
   // MiddleWare afin de vérifier la validité du token présent dans le LocalStorage

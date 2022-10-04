@@ -2,9 +2,13 @@
 @use 'sass:color';
 
 .EspacePerso{    
-    max-width: 600px;
     margin: auto;
     margin-top: 4rem;
+    min-width: 100vh;
+
+    &-Link{
+        width: auto;
+    }
 
     &-AllCards{
         display: flex;
@@ -19,19 +23,14 @@
         text-align: center;
     }
     &-Card{
-        width: 90%;
+        margin: 1.5rem;
         margin-top: 1rem;
         margin-bottom: 1rem;
-        
-        &-CardMedia{
-            height: 10rem;
-        }
     }
 }
 
 @media only screen and (min-width: 550px) {
     .EspacePerso{
-        max-width: 100%; 
 
         &-AllCards{
             width: 100%; 
@@ -45,7 +44,7 @@
         }
 
         &-Card{
-            max-width: 400px;
+            min-width: 400px;
             margin-top: 1rem;
             margin-bottom: 1rem;
             margin-right: 0.5rem;

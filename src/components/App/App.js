@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import Footer from '../Footer/Footer';
 import Nav from '../Nav/Nav';
 import EspacePerso from '../EspacePerso/EspacePerso';
+import EspaceCoworker from '../EspacePerso/EspaceCoworker/EspaceCoworker';
 import './App.scss';
 import ModalAlertConnection from '../ModalAlertConnection/ModalAlertConnection';
 import WorkspaceDetail from '../WorkspaceDedail';
@@ -23,13 +24,11 @@ function App() {
       {errorConnection && <ModalAlertConnection />}
       <Routes>
         <Route path="/espace-perso" element={<EspacePerso />} />
+        <Route path="/espace-perso/mes-reservations" element={<EspaceCoworker />} />
         <Route path="/workspace" element={<WorkspaceDetail />} />
         <Route path="/profil" element={<PublicProfil />} />
-
       </Routes>
-
       <Footer />
-
     </div>
   );
 }
