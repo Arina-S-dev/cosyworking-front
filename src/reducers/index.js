@@ -1,13 +1,14 @@
 import { combineReducers } from 'redux';
 
-import userReducer from './user';
 import workspacesReducer from './workspaces';
 import searchhomeReducer from './searchhome';
+import randomannounceReducer from './randomAnnounce';
 
 const rootReducer = combineReducers({
   workspaces: workspacesReducer,
-  user: userReducer,
   searchhome: searchhomeReducer,
+  randomannounce: randomannounceReducer,
+
 });
 
 export default rootReducer;
