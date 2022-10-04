@@ -1,15 +1,13 @@
 @use 'reset';
 @use 'vars';
 
+body {
+  font-family: sans-serif;
+}
 html, body {
   min-height: 100% !important;
   height: 100%;
 }
-
-body {
-  font-family: sans-serif;
-}
-
 /* 
   // or you can import your own font
   @font-face {

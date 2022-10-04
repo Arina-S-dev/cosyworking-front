@@ -12,6 +12,19 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         city: action.city,
       };
+    case 'ADD_FILTER':
+      return {
+        ...state,
+        filters: [
+          ...state.filters,
+          action.filters,
+        ],
+      };
+    case 'REMOVE_FILTER':
+      return {
+        ...state,
+        filters: state.filters.filter((filter) => filter !== action.value),
+      };
 
     default:
       return state;

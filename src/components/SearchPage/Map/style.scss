@@ -1,7 +1,9 @@
 .leaflet-container {
-    width: 650px;
-    height: 590px;
-  }
+    height: 15rem;
+    width: 100%;
+    margin: 0.5rem 0 ;
+    border-radius: .7rem;
+}
 
   .leaflet-popup-content p {
     margin: 5px 0;
@@ -19,3 +21,15 @@
     padding: 0.5rem;
   }
 }
+
+/* Tablettes */
+@media (min-width: 750px) { 
+    .leaflet-container  {
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: auto;
+      }
+    }
+
+

@@ -1,6 +1,7 @@
 import './style.scss';
 
 import Button from '@mui/material/Button';
+import SearchIcon from '@mui/icons-material/Search';
 
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../../../tools/themeMui';
@@ -13,7 +14,7 @@ function SearchButton() {
           color="primary"
           variant="contained"
         >
-          Rechercher
+          <SearchIcon />
         </Button>
       </ThemeProvider>
     </div>

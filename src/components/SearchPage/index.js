@@ -12,15 +12,17 @@ function SearchPage() {
   return (
     <div className="search-container">
       <p className="search-title"><Title /></p>
-      <FormControl className="search-tools">
-        <Input />
-        <Calendar />
-        <Filters />
-        <SearchButton />
-      </FormControl>
+      <div className="search-form">
+        <FormControl className="search-form">
+          <Input />
+          <Calendar />
+          <Filters />
+          <SearchButton />
+        </FormControl>
+      </div>
       <section className="result-container">
-        <Cards />
         <Map />
+        <Cards />
       </section>
     </div>
   );

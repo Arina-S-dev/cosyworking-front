@@ -46,7 +46,14 @@ function Input() {
           forcePopupIcon={false}
           options={cities}
           onChange={handleCityChange}
-          sx={{ width: 500 }}
+          sx={{
+            width: {
+              xs: 150,
+              md: 400,
+              lg: 600,
+            },
+            textAlign: 'center',
+          }}
           renderInput={(params) => (
             <TextField
               {...params}

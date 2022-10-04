@@ -1,6 +1,7 @@
 import './style.scss';
 
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -13,6 +14,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
 import { ThemeProvider } from '@mui/material/styles';
+import dataF from '../../../data/dataF.json';
+
 import theme from '../../../tools/themeMui';
 
 import style from './modalStyle';
@@ -22,6 +25,30 @@ function Modalfilters() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const filters = useSelector((state) => state.search.filters);
+  const dispatch = useDispatch();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  const handleFiltersChange = (event) => {
+    const index = filters.indexOf(event.target.value);
+    const { value } = event.target;
+    if (index === -1) {
+      dispatch({
+        type: 'ADD_FILTER',
+        filters: event.target.value,
+      });
+    }
+    else {
+      dispatch({
+        type: 'REMOVE_FILTER',
+        value: value,
+      });
+    }
+  };
+
   return (
     <div>
       <ThemeProvider theme={theme}>
@@ -30,9 +57,9 @@ function Modalfilters() {
             onClick={handleOpen}
             color="neutral"
             variant="outlined"
-            startIcon={<TuneIcon />}
           >
-            Filtres
+            <TuneIcon />
+            <span>Filtres</span>
           </Button>
 
         </div>
@@ -55,19 +82,26 @@ function Modalfilters() {
               <Typography id="transition-modal-description" sx={{ mt: 2 }}>
                 Choisissez les équipements :
               </Typography>
-              <FormGroup>
-                <FormControlLabel control={<Checkbox />} label="Cafétière" />
-                <FormControlLabel control={<Checkbox />} label="Wifi" />
-                <FormControlLabel control={<Checkbox />} label="Imprimante" />
-                <FormControlLabel control={<Checkbox />} label="Cuisine à disposition" />
-                <FormControlLabel control={<Checkbox />} label="Parking gratuit" />
-                <Button
-                  color="primary"
-                  variant="contained"
-                  onClick={handleClose}
-                >Appliquer
-                </Button>
-              </FormGroup>
+              <form className="form-filters" onSubmit={handleSubmit}>
+                <FormGroup>
+                  {dataF.map((filter) => (
+                    <FormControlLabel
+                      control={<Checkbox checked={filters.includes(filter)} />}
+                      label={filter}
+                      value={filter}
+                      onClick={handleFiltersChange}
+                    />
+                  ))}
+                  <Button
+                    color="primary"
+                    variant="contained"
+                    type="submit"
+                    onClick={handleClose}
+                  >Appliquer
+                  </Button>
+                </FormGroup>
+              </form>
+
             </Box>
           </Fade>
         </Modal>

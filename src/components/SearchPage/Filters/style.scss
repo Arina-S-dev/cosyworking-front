@@ -1,3 +1,13 @@
 .filters-button {
-    padding: 1rem;
+    padding: 0.1rem;
 }
+
+span {
+    display: none;
+}
+
+@media (min-width: 750px) { 
+    span {
+        display: block;
+      }
+    }

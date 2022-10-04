@@ -25,36 +25,33 @@ const markerIcon = new L.Icon({
 
 function Map() {
   return (
-    <div className="map-container">
-      <MapContainer center={center} zoom={12} scrollWheelZoom>
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    <MapContainer center={center} zoom={12} scrollWheelZoom>
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          url="https://api.maptiler.com/maps/pastel/{z}/{x}/{y}.png?key=6IRFLhFyQhR2SSllVfb2"
-        />
-        {test.map(
-          (workspace) => (
-            <Marker
-              key={workspace.id}
-              position={[workspace.latitude, workspace.longitude]}
-              icon={markerIcon}
-            >
-              <ThemeProvider theme={theme}>
-                <Popup className="popup" margin="0">
-                  <img className="popup-image" src={image} width="200" height="150" alt="workspace" />
-                  <p className="popup-title">{workspace.title}</p>
-                  <div className="popup-flex">
-                    <p className="popup-flex-price">{workspace.dayPrice}€/jour</p>
-                    <Button className="popup-flex-favorite" sx={{ minWidth: 0 }}> <FavoriteBorderIcon onClick={() => console.log('Je clique sur le coeur!')} /></Button>
-                  </div>
-                </Popup>
-              </ThemeProvider>
-            </Marker>
-          ),
-        )}
-      </MapContainer>
-    </div>
-
+        url="https://api.maptiler.com/maps/pastel/{z}/{x}/{y}.png?key=6IRFLhFyQhR2SSllVfb2"
+      />
+      {test.map(
+        (workspace) => (
+          <Marker
+            key={workspace.id}
+            position={[workspace.latitude, workspace.longitude]}
+            icon={markerIcon}
+          >
+            <ThemeProvider theme={theme}>
+              <Popup className="popup" margin="0">
+                <img className="popup-image" src={image} width="200" height="150" alt="workspace" />
+                <p className="popup-title">{workspace.title}</p>
+                <div className="popup-flex">
+                  <p className="popup-flex-price">{workspace.dayPrice}€/jour</p>
+                  <Button className="popup-flex-favorite" sx={{ minWidth: 0 }}> <FavoriteBorderIcon onClick={() => console.log('Je clique sur le coeur!')} /></Button>
+                </div>
+              </Popup>
+            </ThemeProvider>
+          </Marker>
+        ),
+      )}
+    </MapContainer>
   );
 }
 

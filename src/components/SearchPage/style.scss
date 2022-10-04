@@ -1,10 +1,36 @@
-.css-1nrlq1o-MuiFormControl-root {
-    flex-direction: row!important;
+.search-buttons {
+    display: inline;
 }
 
-.result-container {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    height: 600px;
+.search-title {
+    display: none;
 }
+
+.search-form {
+    text-align: center;
+}
+
+.css-1nrlq1o-MuiFormControl-root {
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* Tablettes */
+@media (min-width: 750px) { 
+    .result-container {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .search-title {
+        display: inline;
+    }
+
+    .search-form {
+        padding-bottom: 0.5rem;
+    }
+}
+
+    

@@ -13,9 +13,9 @@ function Calendar() {
         <Button
           color="neutral"
           variant="outlined"
-          startIcon={<CalendarMonthIcon />}
         >
-          Dates
+          <CalendarMonthIcon />
+          <span>Dates</span>
         </Button>
       </ThemeProvider>
     </div>

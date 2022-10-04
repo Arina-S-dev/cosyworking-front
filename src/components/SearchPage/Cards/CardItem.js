@@ -18,18 +18,27 @@ function CardItem({ title, /* image, */ dayPrice, description }) {
   return (
     <ThemeProvider theme={theme}>
       <div className="card">
-        <Card sx={{ width: 790, boxShadow: 3 }} className="card-content">
+        <Card
+          sx={{
+            width: {
+              xs: 300,
+              md: 400,
+              lg: 650,
+            },
+            boxShadow: 3,
+          }}
+          className="card-content"
+        >
           <CardMedia
             className="card-content-left"
-            sx={{ margin: 1 }}
             component="img"
             alt={title}
             height="200"
             width="250"
             image={img}
           />
-          <CardContent className="card-content-right">
-            <div className="card-content-right-flex">
+          <CardContent className="card-content">
+            <div className="card-content-flex">
               <Typography gutterBottom variant="h5" component="div" textAlign="left" margin="0">
                 {title}
               </Typography>
@@ -38,7 +47,7 @@ function CardItem({ title, /* image, */ dayPrice, description }) {
             <Typography gutterBottom variant="h7" component="div" textAlign="left">
               {description}
             </Typography>
-            <Typography className="card-content-right-flex" variant="body2" color="text.secondary" textAlign="left">
+            <Typography className="card-content-flex" variant="body2" color="text.secondary" textAlign="left">
               {dayPrice}€/jour
               <p><StarIcon color="primary" fontSize="small" />5 (17 avis)</p>
             </Typography>
