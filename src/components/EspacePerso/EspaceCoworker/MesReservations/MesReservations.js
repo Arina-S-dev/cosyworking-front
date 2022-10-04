@@ -1,11 +1,12 @@
 // eslint-disable-next-line object-curly-newline
-import { Accordion, AccordionDetails, AccordionSummary, Avatar, Button, Card, CardContent, CardMedia, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Avatar, Card, CardContent, CardMedia, TableContainer, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+// import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import { useSelector } from 'react-redux';
 // import data from '../data.json';
 import './styles.scss';
+import MesTables from './MesTables';
 
 function MesReservations() {
   // On récupère les réservations du coworker coté back et
@@ -45,8 +46,6 @@ function MesReservations() {
     });
   }
   getOrderDataCoworker();
-  // eslint-disable-next-line no-console
-  console.log(newDataArray);
 
   return (
     <div className="MesReservations">
@@ -113,68 +112,7 @@ function MesReservations() {
             </AccordionSummary>
             <AccordionDetails>
               <TableContainer>
-                <Table
-                  sx={{
-                    minWidth: 'auto',
-                  }}
-                  aria-label="simple table"
-                >
-                  <TableHead>
-                    <TableRow>
-                      <TableCell
-                        sx={{
-                          fontWeight: 'bold',
-                        }}
-                        align="center"
-                      >
-                        Date(s)
-                      </TableCell>
-                      <TableCell
-                        sx={{
-                          fontWeight: 'bold',
-                        }}
-                        align="center"
-                      >
-                        Creneau(x)
-                      </TableCell>
-                      <TableCell
-                        sx={{
-                          fontWeight: 'bold',
-                        }}
-                        align="center"
-                      >
-                        Prix
-                      </TableCell>
-                      <TableCell
-                        sx={{
-                          fontWeight: 'bold',
-                        }}
-                        align="center"
-                      >
-                        Gérer
-                      </TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {newDataArray.map((row) => (
-                      <TableRow
-                        key={row.timeslot[0].start}
-                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                      >
-                        <TableCell align="center" component="th" scope="row">
-                          du {row.timeslot[0].start} au {row.timeslot[0].end}
-                        </TableCell>
-                        <TableCell align="center">Matinée</TableCell>
-                        <TableCell align="center">50 euros</TableCell>
-                        <TableCell align="center">
-                          <Button>
-                            <DeleteRoundedIcon />
-                          </Button>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                <MesTables data={list.timeslot} />
               </TableContainer>
             </AccordionDetails>
           </Accordion>
