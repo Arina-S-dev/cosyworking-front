@@ -16,6 +16,7 @@ import Error from '../Error/Error';
 import Faq from '../Faq/Faq';
 import MentionsLegales from '../MentionsLegales/MentionsLegales';
 import CGV from '../CGV/CGV';
+import ContactUs from '../ContactUs/ContactUs';
 
 function App() {
   // On vérifie si le token n'a pas expiré en récupérant l'état de connexion
@@ -31,6 +32,7 @@ function App() {
         <Route path="/workspace" element={<WorkspaceDetail />} />
         <Route path="/profil" element={<PublicProfil />} />
         <Route path="faq" element={<Faq />} />
+        <Route path="contact" element={<ContactUs />} />
         <Route path="mentionslegales" element={<MentionsLegales />} />
         <Route path="cgv" element={<CGV />} />
         <Route path="/" element={<Homepage />} />
