@@ -1,0 +1,14 @@
+@use '../../styles/vars';
+@use 'sass:color';
+
+.Nav{
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    
+    &-leftNavBar{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+    }
+}

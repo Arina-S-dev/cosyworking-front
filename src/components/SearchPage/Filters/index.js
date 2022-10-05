@@ -1,6 +1,5 @@
 import './style.scss';
 
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
@@ -21,15 +20,17 @@ import theme from '../../../tools/themeMui';
 import style from './modalStyle';
 
 function Modalfilters() {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  const filters = useSelector((state) => state.search.filters);
+  const filters = useSelector((state) => state.search.equipments);
+  const open = useSelector((state) => state.search.modaleFilterIsOpen);
   const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
     event.preventDefault();
+  };
+  const handleToggle = () => {
+    dispatch({
+      type: 'SET_MODAL_FILTERS',
+    });
   };
 
   const handleFiltersChange = (event) => {
@@ -54,7 +55,7 @@ function Modalfilters() {
       <ThemeProvider theme={theme}>
         <div className="filters-button">
           <Button
-            onClick={handleOpen}
+            onClick={handleToggle}
             color="neutral"
             variant="outlined"
           >
@@ -67,7 +68,7 @@ function Modalfilters() {
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
           open={open}
-          onClose={handleClose}
+          onClose={handleToggle}
           closeAfterTransition
           BackdropComponent={Backdrop}
           BackdropProps={{
@@ -96,7 +97,7 @@ function Modalfilters() {
                     color="primary"
                     variant="contained"
                     type="submit"
-                    onClick={handleClose}
+                    onClick={handleToggle}
                   >Appliquer
                   </Button>
                 </FormGroup>

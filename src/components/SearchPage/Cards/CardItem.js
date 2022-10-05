@@ -21,7 +21,7 @@ function CardItem({ title, /* image, */ dayPrice, description }) {
         <Card
           sx={{
             width: {
-              xs: 300,
+              xs: 360,
               md: 400,
               lg: 650,
             },

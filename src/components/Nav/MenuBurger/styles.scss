@@ -1,0 +1,11 @@
+@use '../../../styles/vars';
+@use 'sass:color';
+
+.ModalBurger{
+    &-listButtons{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+}

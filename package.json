@@ -11,16 +11,24 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "axios": "^0.27.2",
+    "classnames": "^2.3.2",
+    "date-fns": "^2.29.3",
+    "dayjs": "^1.11.5",
     "leaflet": "^1.9.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
+    "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
+    "react-feather": "^2.0.10",
     "react-leaflet": "^4.1.0",
     "react-redux": "^8.0.4",
     "react-router-dom": "6",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
+    "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
@@ -57,5 +65,9 @@
     "sass": "^1.54.9",
     "sass-loader": "^13.0.2",
     "webpack": "^5.74.0"
-  }
+  },
+  "main": "index.js",
+  "repository": "git@github.com:O-clock-Flamel/projet-09-airbnb-du-coworking-front.git",
+  "author": "Cyrillus <chenetcyril@free.fr>",
+  "license": "MIT"
 }

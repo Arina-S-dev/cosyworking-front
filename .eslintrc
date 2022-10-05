@@ -40,6 +40,7 @@
       "react/react-in-jsx-scope": "off"
     },
     "settings": {
+      "import/no-unresolved": "off",
       "import/resolver": {
         "alias": {
           "extensions": [".js"],
