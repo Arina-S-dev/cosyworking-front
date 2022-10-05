@@ -13,7 +13,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
 import { ThemeProvider } from '@mui/material/styles';
-import dataF from '../../../data/dataF.json';
+// import dataF from '../../../data/dataF.json';
 
 import theme from '../../../tools/themeMui';
 
@@ -22,6 +22,8 @@ import style from './modalStyle';
 function Modalfilters() {
   const filters = useSelector((state) => state.search.equipments);
   const open = useSelector((state) => state.search.modaleFilterIsOpen);
+  const equipmentsListFromAPI = useSelector((state) => state.search.equipmentsListFromAPI);
+  const isLoading = useSelector((state) => state.search.equipementsAPIisLoading);
   const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
@@ -85,11 +87,13 @@ function Modalfilters() {
               </Typography>
               <form className="form-filters" onSubmit={handleSubmit}>
                 <FormGroup>
-                  {dataF.map((filter) => (
+                  {!isLoading
+                  && equipmentsListFromAPI.map((filter) => (
                     <FormControlLabel
-                      control={<Checkbox checked={filters.includes(filter)} />}
-                      label={filter}
-                      value={filter}
+                      control={<Checkbox checked={filters.includes(filter.desciption)} />}
+                      key={filter.id}
+                      label={filter.description}
+                      value={filter.description}
                       onClick={handleFiltersChange}
                     />
                   ))}

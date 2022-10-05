@@ -195,11 +195,6 @@ function SearchCalendar() {
           <button
             className="clearSelectedDates"
             type="button"
-            onClick={() => {
-              dispatch({
-                type: 'REMOVE_DATES',
-              });
-            }}
           >
             Effacer
           </button>

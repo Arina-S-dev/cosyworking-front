@@ -8,11 +8,27 @@ const searchMiddleware = (store) => (next) => (action) => {
     axios.post('http://quentinroggy-server.eddi.cloud/api/workspace/search', { city, date_list, equipments })
       .then((response) => {
         // eslint-disable-next-line no-console
-        console.log(response.data);
+        // console.log(response.data);
         if (response.data) {
           store.dispatch({
             type: 'SAVE_WORKSPACES',
             workspaces: response.data,
+          });
+        }
+      })
+      .catch((error) => {
+      // eslint-disable-next-line no-console
+        console.log(error.response.data.message);
+      });
+  } next(action);
+
+  if (action.type === 'GET_EQUIPMENTS') {
+    axios.get('http://quentinroggy-server.eddi.cloud/api/equipments')
+      .then((response) => {
+        if (response.data) {
+          store.dispatch({
+            type: 'SAVE_EQUIPMENTS',
+            equipmentsListFromAPI: response.data,
           });
         }
       })

@@ -61,7 +61,7 @@ function CardItem({ title, /* image, */ dayPrice, description }) {
 CardItem.propTypes = {
   title: PropTypes.string.isRequired,
   // image: PropTypes.string.isRequired,
-  dayPrice: PropTypes.string.isRequired,
+  dayPrice: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
 };
 

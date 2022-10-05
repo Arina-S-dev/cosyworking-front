@@ -5,6 +5,9 @@ export const initialState = {
   workspaces: [],
   modaleFilterIsOpen: false,
   modaleCalendarIsOpen: false,
+  equipmentsListFromAPI: '',
+  equipementsAPIisLoading: true,
+  worspacesAPIisLoading: true,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -56,6 +59,13 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         workspaces: action.workspaces,
+        worspacesAPIisLoading: false,
+      };
+    case 'SAVE_EQUIPMENTS':
+      return {
+        ...state,
+        equipmentsListFromAPI: action.equipmentsListFromAPI,
+        equipementsAPIisLoading: false,
       };
 
     default:
