@@ -14,6 +14,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import Homepage from '../Homepage/Homepage';
 import Error from '../Error/Error';
 import Faq from '../Faq/Faq';
+import MentionsLegales from '../MentionsLegales/MentionsLegales';
 
 function App() {
   // On vérifie si le token n'a pas expiré en récupérant l'état de connexion
@@ -29,6 +30,7 @@ function App() {
         <Route path="/workspace" element={<WorkspaceDetail />} />
         <Route path="/profil" element={<PublicProfil />} />
         <Route path="faq" element={<Faq />} />
+        <Route path="mentionslegales" element={<MentionsLegales />} />
         <Route path="/" element={<Homepage />} />
         <Route path="*" element={<Error />} />
       </Routes>
