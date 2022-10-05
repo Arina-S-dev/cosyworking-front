@@ -15,6 +15,7 @@ import Homepage from '../Homepage/Homepage';
 import Error from '../Error/Error';
 import Faq from '../Faq/Faq';
 import MentionsLegales from '../MentionsLegales/MentionsLegales';
+import CGV from '../CGV/CGV';
 
 function App() {
   // On vérifie si le token n'a pas expiré en récupérant l'état de connexion
@@ -31,6 +32,7 @@ function App() {
         <Route path="/profil" element={<PublicProfil />} />
         <Route path="faq" element={<Faq />} />
         <Route path="mentionslegales" element={<MentionsLegales />} />
+        <Route path="cgv" element={<CGV />} />
         <Route path="/" element={<Homepage />} />
         <Route path="*" element={<Error />} />
       </Routes>
