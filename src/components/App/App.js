@@ -11,6 +11,7 @@ import PublicProfil from '../PublicProfile';
 // import css du caroussel de la page de detail du workspace
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Homepage from '../Homepage/Homepage';
 
 function App() {
   // On vérifie si le token n'a pas expiré en récupérant l'état de connexion
@@ -25,6 +26,7 @@ function App() {
         {/* <Route path="/espace-perso" element={<EspacePerso />} /> */}
         <Route path="/workspace" element={<WorkspaceDetail />} />
         <Route path="/profil" element={<PublicProfil />} />
+        <Route path="/" element={<Homepage />} />
 
       </Routes>
 

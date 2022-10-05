@@ -1,0 +1,41 @@
+.Card{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    p{
+        text-align: left;
+    }
+    //box-shadow: 1px 1px 10px black;
+    border-radius: 16px;
+     
+    background-color: rgba(221, 221, 221, 0.272);
+}
+.cardIMG{
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+}
+.nameAnnounce{
+        display: flex;
+        justify-content: space-between;  
+        align-items: center;  
+        font-weight: bold;
+}
+.priceButton{
+        display: flex;
+        justify-content: space-between;
+
+        align-items: center; 
+        margin-bottom: 1em;
+}
+.infoText{
+        padding: 0 0.5em;   
+        margin: 0.5em 0 1em 0; 
+}
+.cityName{
+    margin: 0.3em 0 2em 0;
+    font-size: 0.75em;
+ }
+
