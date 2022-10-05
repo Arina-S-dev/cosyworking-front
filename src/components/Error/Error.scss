@@ -1,0 +1,48 @@
+
+
+.containerError{
+height: calc(100vh - 370px);
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+background-image:url(../../img/404.jpg);
+    background-attachment: fixed;
+    background-size: cover ;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.error404{
+    font-size: 10em;
+    color: #FFC000;
+    text-align: center;
+}
+.errormessage{
+    margin-top: 1em;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+}
+.buttonBackToHome{
+    background-color: #FFC000;
+    padding: 1em 1.5em;
+    border-radius: 16px;
+    margin-top: 1em;
+}
+
+@media screen and (max-width: 660px)
+{
+    .containerError{
+    height: 100vh;
+    margin-top: -184px;
+    }
+}
+@media screen and (max-width: 460px)
+{
+    .error404{
+        font-size: 7em;
+    }
+    .errormessage{
+        font-size: 1em;
+    }
+}

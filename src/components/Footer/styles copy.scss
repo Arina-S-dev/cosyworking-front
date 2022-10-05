@@ -2,8 +2,7 @@
 @use 'sass:color';
 
 .Footer{
-    margin-top: 1rem;
-    
+     
     &-Paper{
         height: 40px;
         display: flex;
@@ -17,8 +16,8 @@
         &-BottomNavigation{
             width: 100%;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: space-around;
+            align-items: center; 
             
             &-Typography{                
                 line-height: 0.5rem;
