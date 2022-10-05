@@ -7,6 +7,7 @@ import './App.scss';
 import ModalAlertConnection from '../ModalAlertConnection/ModalAlertConnection';
 import WorkspaceDetail from '../WorkspaceDedail';
 import PublicProfil from '../PublicProfile';
+import MyAccountMenu from '../MyAccountMenu';
 
 // import css du caroussel de la page de detail du workspace
 import 'slick-carousel/slick/slick.css';
@@ -29,6 +30,7 @@ function App() {
         <Route path="/profil" element={<PublicProfil />} />
         <Route path="/" element={<Homepage />} />
         <Route path="*" element={<Error />} />
+        <Route path="/espace-perso" element={<MyAccountMenu />} />
       </Routes>
 
       <Footer />
