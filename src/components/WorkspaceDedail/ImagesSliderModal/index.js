@@ -31,9 +31,9 @@ ImagesSliderModal.propTypes = {
   closePictureModal: PropTypes.func.isRequired,
   imagesList: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      image_id: PropTypes.number.isRequired,
       link: PropTypes.string.isRequired,
-      mainImage: PropTypes.bool.isRequired,
+      main: PropTypes.bool.isRequired,
     }),
   ).isRequired,
 

@@ -7,6 +7,7 @@ import './App.scss';
 import ModalAlertConnection from '../ModalAlertConnection/ModalAlertConnection';
 import WorkspaceDetail from '../WorkspaceDedail';
 import PublicProfil from '../PublicProfile';
+import WorkspaceEdition from '../WorkspaceEdition';
 
 // import css du caroussel de la page de detail du workspace
 import 'slick-carousel/slick/slick.css';
@@ -25,6 +26,7 @@ function App() {
         {/* <Route path="/espace-perso" element={<EspacePerso />} /> */}
         <Route path="/workspace" element={<WorkspaceDetail />} />
         <Route path="/profil" element={<PublicProfil />} />
+        <Route path="/espace-perso/hote//mes-annonces/annonce/" element={<WorkspaceEdition />} />
 
       </Routes>
 

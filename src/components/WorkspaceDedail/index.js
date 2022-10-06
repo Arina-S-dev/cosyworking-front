@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
 import { Avatar } from '@mui/material';
 
 // imports components
@@ -11,102 +11,123 @@ import BookingBarMobile from './BookingBarMobile';
 import ImagesContainer from './ImagesContainer';
 import CalendarModal from './ModalCalendar';
 import ImagesSliderModal from './ImagesSliderModal';
+import { actionGetWorkspaceDetail } from '../../actions/workspaces';
 
 // import style
 import './style.scss';
 
 function WorkspaceDetail() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log('useEFFECT');
+    dispatch(actionGetWorkspaceDetail(1));
+  }, []);
+
   const workspace = useSelector((state) => state.workspaces.currentWorkspace);
+  // const isLoading = useSelector((state) => state.workspaces.isLoading);
   // eslint-disable-next-line no-console
-  console.log(workspace);
+  console.log('WORSPACE====>', workspace);
+  if (workspace) {
+    console.log('WORSPACEIMAGES====>', workspace.images);
+    console.log('WORSPACEUSER====>', workspace.user[0]);
+  }
+
   const [PictureModalOpen, setpictureModalOpen] = useState(false);
   const [CalendarModalOpen, setcalendarModalOpen] = useState(false);
 
   const calendarModalClassName = CalendarModalOpen ? 'calendarModal' : 'isHidden';
-  const equipmentsList = workspace.equipments_list;
+  // const equipmentsList = workspace.equipments_list;
 
   return (
 
-    <div className=" workspaceDetail">
+    <div>
 
-      {/* modale calendrier pour version mobile */}
-      <CalendarModal className={calendarModalClassName} halfDayPrice={workspace.halfDayPrice} dayPrice={workspace.dayPrice} closeCalendarModale={() => (setcalendarModalOpen(false))} />
+      {workspace && (
 
-      {/* carousel d'images (version mobile) */}
-      <div className="sliderMobileContainer">
-        <SliderComponent classCss="slider" imagesList={workspace.images} />
-      </div>
+      <div className=" workspaceDetail">
 
-      {/* modale avec carousel d'images (version desktop) */}
-      <ImagesSliderModal PictureModalOpen={PictureModalOpen} closePictureModal={() => (setpictureModalOpen(false))} imagesList={workspace.images} />
+        {/* modale calendrier pour version mobile */}
+        <CalendarModal className={calendarModalClassName} halfDayPrice={workspace.workspace.half_day_price} dayPrice={workspace.workspace.day_price} closeCalendarModale={() => (setcalendarModalOpen(false))} />
 
-      {/* mosaique d'images pour la version desktop    */}
-      <ImagesContainer
-        imagesList={workspace.images}
-        openPicturesModale={() => {
-          setpictureModalOpen(true);
-        }}
-      />
-
-      {/* entete titre et lien vers les commentaires commentaires  */}
-      <div className="titleContainer">
-
-        <h2 className="title">{workspace.title}</h2>
-
-        <div className="hostDesc_comments">
-          <p className="stars">&#9733; 4.5</p>
-          <a href="#">comments(12)</a>
+        {/* carousel d'images (version mobile) */}
+        <div className="sliderMobileContainer">
+          <SliderComponent classCss="slider" imagesList={workspace.images} />
         </div>
-      </div>
 
-      {/* description hote */}
-      <div className="hostDesc">
-        <div className="hostDesc_hostInfos">
-          <Avatar alt={workspace.user.host} src={workspace.user.host_avatar} />
-          <p className="hostName">{workspace.user.host}</p>
+        {/* modale avec carousel d'images (version desktop) */}
+        <ImagesSliderModal PictureModalOpen={PictureModalOpen} closePictureModal={() => (setpictureModalOpen(false))} imagesList={workspace.images} />
+
+        {/* mosaique d'images pour la version desktop    */}
+        <ImagesContainer
+          imagesList={workspace.images}
+          openPicturesModale={() => {
+            setpictureModalOpen(true);
+          }}
+        />
+
+        {/* entete titre et lien vers les commentaires commentaires  */}
+        <div className="titleContainer">
+
+          <h2 className="title">{workspace.workspace.title}</h2>
+
+          <div className="hostDesc_comments">
+            <p className="stars">&#9733; 4.5</p>
+            <a href="#">comments(12)</a>
+          </div>
         </div>
-      </div>
 
-      <section className="detailContainer">
+        {/* description hote */}
+        <div className="hostDesc">
+          <div className="hostDesc_hostInfos">
+            <Avatar alt={workspace.user[0].host} src={workspace.user[0].host_avatar} />
+            <p className="hostName">{workspace.user[0].host}</p>
+          </div>
+        </div>
 
-        <div className="detailContainer_left">
+        <section className="detailContainer">
 
-          <div className="detailContainer_left_equipmentContainer">
-            <h3>Liste des equipements disponibles</h3>
-            <div className="equipmentDesc">
-              {
-              equipmentsList.map((equipment) => (
-                <div className="equipment" key={equipment.id}>
-                  <Avatar alt={equipment.description} src={equipment.icon} />
-                  <p className="equipmentName">{equipment.description}</p>
-                </div>
-              ))
-            }
+          <div className="detailContainer_left">
+
+            <div className="detailContainer_left_equipmentContainer">
+              <h3>Liste des equipements disponibles</h3>
+              <div className="equipmentDesc">
+                {
+                  workspace.equipments_list.map((equipment) => (
+                    <div className="equipment" key={equipment.equipment_id}>
+                      <Avatar alt={equipment.description} src={equipment.icon_link} />
+                      <p className="equipmentName">{equipment.description}</p>
+                    </div>
+                  ))
+        }
+              </div>
+            </div>
+
+            <div className="detailContainer_left_workspaceDesc">
+              <h3>Description du bien</h3>
+              <p className="Desc">
+                {workspace.workspace.description}
+              </p>
             </div>
           </div>
 
-          <div className="detailContainer_left_workspaceDesc">
-            <h3>Description du bien</h3>
-            <p className="Desc">
-              {workspace.description}
-            </p>
+          <div className="detailContainer_right">
+
+            <Calendar dayPrice={workspace.workspace.day_price} halfDayPrice={workspace.workspace.half_day_price} />
+
           </div>
-        </div>
+        </section>
 
-        <div className="detailContainer_right">
+        {/* map leaflet  */}
+        <LeafletMap latitude={Number(workspace.workspace.latitude)} longitude={Number(workspace.workspace.longitude)} />
 
-          <Calendar dayPrice={workspace.dayPrice} halfDayPrice={workspace.halfDayPrice} />
+        {/* barre de reservation pour la version mobile  */}
+        <BookingBarMobile halfDayPrice={workspace.workspace.half_day_price} dayPrice={workspace.workspace.day_price} openCalendarModale={() => (setcalendarModalOpen(true))} />
 
-        </div>
-      </section>
-
-      {/* map leaflet  */}
-      <LeafletMap latitude={workspace.latitude} longitude={workspace.longitude} />
-
-      {/* barre de reservation pour la version mobile  */}
-      <BookingBarMobile halfDayPrice={workspace.halfDayPrice} dayPrice={workspace.dayPrice} openCalendarModale={() => (setcalendarModalOpen(true))} />
-
+      </div>
+      )}
     </div>
+
   );
 }
 

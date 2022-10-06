@@ -7,8 +7,8 @@ import Slider from 'react-slick';
 import PropTypes from 'prop-types';
 
 function SliderComponent({ classCss, imagesList }) {
-  const mainImage = imagesList.find((image) => image.mainImage === true);
-  const otherImages = imagesList.filter((image) => image.mainImage === false);
+  const mainImage = imagesList.find((image) => image.main === true);
+  const otherImages = imagesList.filter((image) => image.main === false);
   const settings = {
     dots: true,
   };
@@ -20,7 +20,7 @@ function SliderComponent({ classCss, imagesList }) {
         </div>
         {
         otherImages.map((image) => (
-          <div key={image.id}>
+          <div key={image.image_id}>
             <img src={image.link} alt="" />
           </div>
         ))
@@ -36,9 +36,9 @@ SliderComponent.propTypes = {
   classCss: PropTypes.string.isRequired,
   imagesList: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      image_id: PropTypes.number.isRequired,
       link: PropTypes.string.isRequired,
-      mainImage: PropTypes.bool.isRequired,
+      main: PropTypes.bool.isRequired,
     }),
   ).isRequired,
 
