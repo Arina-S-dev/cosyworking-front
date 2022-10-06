@@ -5,6 +5,7 @@ import searchMiddleware from '../Middlewares/searchMiddleware';
 import reducer from '../reducers/index';
 import randomAnnouncesMiddleware from '../Middlewares/randomAnnounceMiddleware';
 
+// eslint-disable-next-line max-len
 const middlewareEnhancer = applyMiddleware(randomAnnouncesMiddleware, identification, searchMiddleware);
 
 const composedEnhancers = composeWithDevTools(middlewareEnhancer);

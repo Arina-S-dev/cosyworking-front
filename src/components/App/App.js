@@ -31,7 +31,7 @@ function App() {
         <Route path="/profil" element={<PublicProfil />} />
         <Route path="/" element={<Homepage />} />
         <Route path="*" element={<Error />} />
-        <Route path="/espace-perso" element={<SearchPage />} />
+        <Route path="/recherche" element={<SearchPage />} />
       </Routes>
 
       <Footer />
