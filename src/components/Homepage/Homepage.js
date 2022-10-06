@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import CallToAction from '../CallToAction/CallToAction';
-import InfoStatic from '../InfoStatic/InfoStatic';
-import RandomAnnounces from '../RandomAnnounces/RandomAnnounces';
-import SearchHome from '../SearchHome/SearchHome';
+import InfoStatic from './InfoStatic/InfoStatic';
+import RandomAnnounces from './RandomAnnounces/RandomAnnounces';
+import SearchHome from './SearchHome/SearchHome';
 import './Homepage.scss';
 
 function Homepage() {

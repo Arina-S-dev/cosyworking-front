@@ -7,8 +7,8 @@ import './SearchInput.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
-import SearchCalendar from '../../SearchCalendar';
-import theme from '../../../tools/themeMui';
+import SearchCalendar from '../../../SearchCalendar';
+import theme from '../../../../tools/themeMui';
 
 function SearchInput() {
   const dispatch = useDispatch();
