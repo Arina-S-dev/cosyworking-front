@@ -21,10 +21,10 @@ function Footer() {
         <div className="footerNavBar">
           <p className="titleFooter"> Navigation</p>
           <Link className="navigationFooter-links" to="/">Accueil</Link>
-          <Link className="navigationFooter-links" to="">Rechercher une Location</Link>
-          <Link className="navigationFooter-links" to="">FAQ</Link>
-          <Link className="navigationFooter-links" to="">A Propos</Link>
-          <Link className="navigationFooter-links" to="">Contactez-nous</Link>
+          <Link className="navigationFooter-links" to="/recherche">Rechercher une Location</Link>
+          <Link className="navigationFooter-links" to="/faq">FAQ</Link>
+          <Link className="navigationFooter-links" to="/">A Propos</Link>
+          <Link className="navigationFooter-links" to="/contact">Contactez-nous</Link>
         </div>
         <div className="follow">
           <p className="titleFooter"> Suivez-nous</p>
@@ -38,9 +38,9 @@ function Footer() {
       <div className="bottomFooter">
         <div className="border" />
         <div className="bottomLinks">
-          <Link className="bottomFooter-links" to="">Mentions légales</Link>
-          <Link className="bottomFooter-links" to="">CGV</Link>
-          <Link className="bottomFooter-links" to="">@ {year} CosyWorking</Link>
+          <Link className="bottomFooter-links" to="/mentionslegales">Mentions légales</Link>
+          <Link className="bottomFooter-links" to="/cgv">CGV</Link>
+          <Link className="bottomFooter-links" to="/">@ {year} CosyWorking</Link>
         </div>
       </div>
     </div>

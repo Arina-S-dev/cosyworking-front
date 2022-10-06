@@ -12,12 +12,13 @@ import Announce from './Announce/Announce';
 
 function RandomAnnounces() {
   const data = useSelector((state) => state.randomannounce.randomannounce);
+  console.log(data);
 
   const datainfos = data.map((dataresults) => (
 
     <SwiperSlide>
       <Announce
-        key={dataresults.image_link}
+        key={dataresults.workspace_id}
         image={dataresults.image_link}
         announceName={dataresults.title}
         cityName={dataresults.city}
