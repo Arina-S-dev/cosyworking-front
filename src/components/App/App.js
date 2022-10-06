@@ -18,6 +18,10 @@ import './App.scss';
 // import css du caroussel de la page de detail du workspace
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Faq from '../Faq/Faq';
+import MentionsLegales from '../MentionsLegales/MentionsLegales';
+import CGV from '../CGV/CGV';
+import ContactUs from '../ContactUs/ContactUs';
 
 function App() {
   // On vérifie si le token n'a pas expiré en récupérant l'état de connexion
@@ -39,6 +43,11 @@ function App() {
         <Route path="/espace-perso/espace-coworker/mes-reservations" element={<MesReservations />} />
         <Route path="/espace-perso/espace-hote" element={<EspaceHost />} />
         <Route path="/espace-perso/espace-hote/mes-annonces" element={<MesAnnonces />} />
+        <Route path="faq" element={<Faq />} />
+        <Route path="contact" element={<ContactUs />} />
+        <Route path="mentionslegales" element={<MentionsLegales />} />
+        <Route path="cgv" element={<CGV />} />
+        <Route path="/" element={<Homepage />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
