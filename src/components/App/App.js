@@ -7,6 +7,7 @@ import './App.scss';
 import ModalAlertConnection from '../ModalAlertConnection/ModalAlertConnection';
 import WorkspaceDetail from '../WorkspaceDedail';
 import PublicProfil from '../PublicProfile';
+import SearchPage from '../SearchPage';
 import MyAccountMenu from '../MyAccountMenu';
 
 // import css du caroussel de la page de detail du workspace
@@ -25,12 +26,12 @@ function App() {
       {/* Si le token a expiré, on récupère une erreur et donc on incite l'user à se reconnecter */}
       {errorConnection && <ModalAlertConnection />}
       <Routes>
-        {/* <Route path="/espace-perso" element={<EspacePerso />} /> */}
+        <Route path="/espace-perso" element={<MyAccountMenu />} />
         <Route path="/workspace" element={<WorkspaceDetail />} />
         <Route path="/profil" element={<PublicProfil />} />
         <Route path="/" element={<Homepage />} />
         <Route path="*" element={<Error />} />
-        <Route path="/espace-perso" element={<MyAccountMenu />} />
+        <Route path="/espace-perso" element={<SearchPage />} />
       </Routes>
 
       <Footer />

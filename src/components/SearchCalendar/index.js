@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import {
   getDate, setHours, addMonths, lightFormat, getMonth, getYear, format,
@@ -12,10 +13,13 @@ import { Button } from '@mui/material';
 import './index.scss';
 
 function SearchCalendar() {
-  const [bookings, setBookings] = useState([]);
+  const dateList = useSelector((state) => state.search.date_list);
+  const [bookings, setBookings] = useState(dateList);
 
   const [currentMonth, setCurrentMonth] = useState(getMonth(new Date()) + 1);
   const [currentDay, setCurrentDay] = useState(null);
+
+  const dispatch = useDispatch();
 
   const bookingAlreadySelected = (date, startHour, endHour) => {
     const result = bookings.find((booking) => (
@@ -189,7 +193,16 @@ function SearchCalendar() {
 
         <div className="searchCalendarButtonContainer">
 
-          <button className="clearSelectedDates" type="button">
+          <button
+            className="clearSelectedDates"
+            type="button"
+            onClick={() => {
+              setBookings([]);
+              dispatch({
+                type: 'REMOVE_DATES',
+              });
+            }}
+          >
             Effacer
           </button>
 
@@ -197,7 +210,13 @@ function SearchCalendar() {
             variant="contained"
             size="small"
             onClick={() => {
-              console.log('pouet!!!');
+              dispatch({
+                type: 'ADD_DATES',
+                dates: bookings,
+              });
+              dispatch({
+                type: 'CLOSE_MODAL_CALENDAR',
+              });
             }}
             sx={{
               color: '#8A8A8A',
