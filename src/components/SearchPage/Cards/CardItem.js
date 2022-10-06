@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import './style.scss';
 import PropTypes from 'prop-types';
 

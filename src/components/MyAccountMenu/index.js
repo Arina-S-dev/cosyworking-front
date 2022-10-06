@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import './style.scss';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -16,6 +17,7 @@ function MyAccountMenu() {
             color="neutral"
             className="account-menu-elem"
             onClick={() => {
+              // eslint-disable-next-line no-console
               console.log('je clique');
             }}
           >
@@ -26,6 +28,7 @@ function MyAccountMenu() {
             color="neutral"
             className="account-menu-elem"
             onClick={() => {
+              // eslint-disable-next-line no-console
               console.log('je clique');
             }}
           >

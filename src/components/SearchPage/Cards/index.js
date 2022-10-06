@@ -4,6 +4,7 @@ import CardItem from './CardItem';
 
 function Cards() {
   const searchedCity = useSelector((state) => state.search.city);
+  // eslint-disable-next-line no-console
   console.log(searchedCity);
 
   const workspaces = useSelector((state) => state.search.workspaces);
