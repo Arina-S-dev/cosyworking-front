@@ -4,7 +4,7 @@ import './Footer.scss';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import logo from '../../img/logo.png';
+import logo from '../../img/logo_normal.png';
 
 function Footer() {
   const year = dayjs().year();
@@ -15,7 +15,7 @@ function Footer() {
           <img className="logoFooter" src={logo} alt="logo" />
           <div className="infos">
             <p className="adressFooter"> Boulevard des Champs Elysées <br /> 75000 PARIS</p>
-            <Link className="contactButton" to="/">Revenir à l'accueil</Link>
+            <Link className="contactButton" to="/contact">Contactez-Nous</Link>
           </div>
         </div>
         <div className="footerNavBar">

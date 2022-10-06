@@ -3,7 +3,7 @@
 import { BottomNavigation, Button, Paper, ThemeProvider } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import logo from '../../img/logo.png';
+import logo from '../../img/logo_reduit.png';
 import './styles.scss';
 import MenuBurger from './MenuBurger/MenuBurger';
 import AccountMenu from './AccountMenu/AccountMenu';
@@ -92,7 +92,6 @@ function Nav() {
           </div>
         </BottomNavigation>
       </Paper>
-      coucou
     </div>
   );
 }
