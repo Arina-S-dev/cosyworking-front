@@ -119,6 +119,13 @@ const identification = (store) => (next) => (action) => {
       // en cas d’échec de la requête
       // eslint-disable-next-line no-console
         console.log(error);
+        const errorToken = error.response.data.message;
+        if (errorToken === 'Token Expired !') {
+          store.dispatch({
+            type: 'CONNECTION_STATE',
+            error: true,
+          });
+        }
       });
   }
   // MiddleWare afin de récupérer les réservations des annonces de l'Hote
@@ -150,40 +157,9 @@ const identification = (store) => (next) => (action) => {
       // en cas d’échec de la requête
       // eslint-disable-next-line no-console
         console.log(error);
-      });
-  }
-  // MiddleWare afin de vérifier la validité du token présent dans le LocalStorage
-  if (action.type === 'CHECK_CONNECTION') {
-    // Récupération du token présent dans le LocalStorage
-    const getUserToken = JSON.parse(localStorage.getItem('userToken'));
-    // eslint-disable-next-line no-console
-    console.log(getUserToken);
-    // On recupère le role de l'utilisateur
-    // eslint-disable-next-line camelcase
-    const { role_id } = store.getState().user;
-    // eslint-disable-next-line object-curly-newline, camelcase
-    axios.get(`http://quentinroggy-server.eddi.cloud/api/${role_id}`, { headers: {
-      // eslint-disable-next-line quote-props, comma-dangle
-      'x-access-token': getUserToken
-    // eslint-disable-next-line object-curly-spacing, object-curly-newline
-    }})
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log(response);
-        if (response) {
-          store.dispatch({
-            type: 'CONNECTION_STATE',
-            error: false,
-          });
-        }
-      })
-      .catch((error) => {
-      // en cas d’échec de la requête
-      // eslint-disable-next-line no-console
-        // console.log(error.response.data.message);
-        // eslint-disable-next-line no-console
-        console.log(error);
-        if (error) {
+        // Erreur si jamais le token est expiré
+        const errorToken = error.response.data.message;
+        if (errorToken === 'Token Expired !') {
           store.dispatch({
             type: 'CONNECTION_STATE',
             error: true,

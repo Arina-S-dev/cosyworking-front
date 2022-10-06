@@ -18,8 +18,8 @@ function MesAnnoncesDates(allDates) {
   function getCreneau(a, b) {
     const date1 = new Date(a);
     const date2 = new Date(b);
-    const time1 = `${date1.getHours()}h`;
-    const time2 = `${date2.getHours()}h`;
+    const time1 = `${date1.getHours('fr-FR')}h`;
+    const time2 = `${date2.getHours('fr-FR')}h`;
     const getTheGoodCreneau = `de ${time1} à ${time2}`;
 
     if (getTheGoodCreneau === 'de 13h à 17h') {

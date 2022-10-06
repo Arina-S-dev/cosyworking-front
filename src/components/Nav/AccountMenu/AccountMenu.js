@@ -26,11 +26,11 @@ function AccountMenu() {
     });
   };
 
-  const checkToken = () => {
-    dispatch({
-      type: 'CHECK_CONNECTION',
-    });
-  };
+  // const checkToken = () => {
+  //   dispatch({
+  //     type: 'CHECK_CONNECTION',
+  //   });
+  // };
 
   return (
     <div className="AccountMenu">
@@ -89,7 +89,7 @@ function AccountMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Link to="/espace-perso" onClick={checkToken}><Avatar /> Mon Espace Perso</Link>
+          <Link to="/espace-perso"><Avatar /> Mon Espace Perso</Link>
         </MenuItem>
         <Divider />
         <MenuItem onClick={getLogout}>
