@@ -1,7 +1,7 @@
 @use '../../../../styles/vars';
 @use 'sass:color';
 
-.MesReservations{
+.MesAnnonces{
     margin: auto;
     margin-top: 4rem;
     min-height: 100vh;
@@ -61,7 +61,7 @@
 }
 
 @media only screen and (min-width: 800px) {
-    .MesReservations{
+    .MesAnnonces{
         
         &-Card{
             &-CardMedia{

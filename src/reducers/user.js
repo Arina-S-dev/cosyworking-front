@@ -17,7 +17,11 @@ export const initialState = {
   // Tableau des réservations du coworker non organisé
   datacoworkerreservations: [],
   // Tableau des réservations du coworker réorganisé
-  datacoworkerreservationsOrdered: [],
+  // datacoworkerreservationsOrdered: [],
+  // Tableau des réservations des espaces de l'hôte non organisé
+  datahostrequests: [],
+  // Tableau des réservations du coworker réorganisé
+  // datahostrequestsOrdered: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -42,13 +46,18 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         logged: action.logged,
-        email: '',
-        password: '',
+        // email: '',
+        // password: '',
       };
     case 'GET_USER_ID':
       return {
         ...state,
         user_id: action.getuserid,
+      };
+    case 'GET_ROLE':
+      return {
+        ...state,
+        role_id: action.role,
       };
     // Sélection du rôle lors de l'inscription
     case 'GET_SELECTEDROLE':
@@ -124,6 +133,12 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         datacoworkerreservations: action.coworkerreservations,
+      };
+    // Recupère les reservations du coworker
+    case 'GET_DATA_HOST_REQUESTS':
+      return {
+        ...state,
+        datahostrequests: action.hostrequests,
       };
     default:
       return state;

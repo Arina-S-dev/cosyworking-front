@@ -5,12 +5,15 @@ const identification = (store) => (next) => (action) => {
   if (action.type === 'SET_CONNEXION') {
     // Obtention de l'email et du password du state
     const { email, password } = store.getState().user;
+    // eslint-disable-next-line no-console
+    console.log(email, password);
     axios.post('http://quentinroggy-server.eddi.cloud/api/auth/login', { email, password })
       .then((response) => {
         // eslint-disable-next-line no-console
-        console.log(response.data);
+        console.log(response);
         if (response.data.userToken) {
           const { userId } = response.data;
+          const role = response.data.userRoleDescription;
           localStorage.setItem('userToken', JSON.stringify(response.data.userToken));
           store.dispatch({
             type: 'GET_USER_ID',
@@ -20,12 +23,16 @@ const identification = (store) => (next) => (action) => {
             type: 'GET_CONNEXION',
             logged: true,
           });
+          store.dispatch({
+            type: 'GET_ROLE',
+            role: role,
+          });
         }
       })
       .catch((error) => {
       // en cas d’échec de la requête
       // eslint-disable-next-line no-console
-        console.log(error.response.data.message);
+        console.log(error);
         if (error.response.data.message === 'Invalid password' || error.response.data.message === 'User not found') {
           store.dispatch({
             type: 'CONNECTION_EMAIL_OR_NOT_GOOD',
@@ -112,12 +119,37 @@ const identification = (store) => (next) => (action) => {
       // en cas d’échec de la requête
       // eslint-disable-next-line no-console
         console.log(error);
-        // if (error) {
-        //   store.dispatch({
-        //     type: 'CONNECTION_STATE',
-        //     error: true,
-        //   });
-        // }
+      });
+  }
+  // MiddleWare afin de récupérer les réservations des annonces de l'Hote
+  if (action.type === 'GET_HOST_REQUESTS') {
+    // Récupération du token présent dans le LocalStorage
+    const getUserToken = JSON.parse(localStorage.getItem('userToken'));
+    // eslint-disable-next-line camelcase
+    const { user_id } = store.getState().user;
+    // eslint-disable-next-line no-console
+    // console.log(user_id);
+    // eslint-disable-next-line object-curly-newline, camelcase
+    axios.get(`http://quentinroggy-server.eddi.cloud/api/personalspace/${user_id}/booking`, { headers: {
+      // eslint-disable-next-line quote-props, comma-dangle
+      'x-access-token': getUserToken
+    // eslint-disable-next-line object-curly-spacing, object-curly-newline
+    }})
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log('Mes annonces', response);
+        const getDataRequestsHost = response.data;
+        if (response) {
+          store.dispatch({
+            type: 'GET_DATA_HOST_REQUESTS',
+            hostrequests: getDataRequestsHost,
+          });
+        }
+      })
+      .catch((error) => {
+      // en cas d’échec de la requête
+      // eslint-disable-next-line no-console
+        console.log(error);
       });
   }
   // MiddleWare afin de vérifier la validité du token présent dans le LocalStorage
@@ -126,8 +158,11 @@ const identification = (store) => (next) => (action) => {
     const getUserToken = JSON.parse(localStorage.getItem('userToken'));
     // eslint-disable-next-line no-console
     console.log(getUserToken);
+    // On recupère le role de l'utilisateur
+    // eslint-disable-next-line camelcase
+    const { role_id } = store.getState().user;
     // eslint-disable-next-line object-curly-newline, camelcase
-    axios.get('http://quentinroggy-server.eddi.cloud/api/coworker', { headers: {
+    axios.get(`http://quentinroggy-server.eddi.cloud/api/${role_id}`, { headers: {
       // eslint-disable-next-line quote-props, comma-dangle
       'x-access-token': getUserToken
     // eslint-disable-next-line object-curly-spacing, object-curly-newline
@@ -145,7 +180,7 @@ const identification = (store) => (next) => (action) => {
       .catch((error) => {
       // en cas d’échec de la requête
       // eslint-disable-next-line no-console
-        console.log(error);
+        console.log(error.data.message);
         if (error) {
           store.dispatch({
             type: 'CONNECTION_STATE',

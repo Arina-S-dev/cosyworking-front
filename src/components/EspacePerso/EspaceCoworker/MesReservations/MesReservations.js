@@ -1,6 +1,7 @@
 // eslint-disable-next-line object-curly-newline
-import { Accordion, AccordionDetails, AccordionSummary, Avatar, Card, CardContent, CardMedia, TableContainer, Typography } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Avatar, Button, Card, CardContent, CardMedia, TableContainer, Typography } from '@mui/material';
 import { Box } from '@mui/system';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 // import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import { useSelector } from 'react-redux';
@@ -35,6 +36,7 @@ function MesReservations() {
           image_link: element.image_link,
           title: element.title,
           workspace_id: element.workspace_id,
+          state: element.state,
           timeslot: [
             {
               start: element.start_date,
@@ -46,6 +48,10 @@ function MesReservations() {
     });
   }
   getOrderDataCoworker();
+
+  // Options afin de modifier le format de la date
+  // eslint-disable-next-line object-curly-newline
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
   return (
     <div className="MesReservations">
@@ -62,8 +68,9 @@ function MesReservations() {
             <CardMedia
               className="MesReservations-Card-CardMedia"
               component="img"
-              sx={{ width: 151 }}
-              image={list.image_link}
+              // sx={{ width: 151 }}
+              image="https://digitalsynopsis.com/wp-content/uploads/2016/01/beautiful-desks-minimal-workstations-33.jpg"
+              // image={list.image_link}
               alt=""
             />
             <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
@@ -75,12 +82,13 @@ function MesReservations() {
                   {list.title}
                 </Typography>
                 <Typography variant="subtitle1" color="text.secondary" component="div">
-                  À partir du {list.timeslot[0].start}
+                  {/* eslint-disable-next-line quotes */}
+                  À partir du { (new Date(list.timeslot[0].start)).toLocaleDateString("fr-FR", options) }
+                  {/* {list.timeslot[0].start} */}
                 </Typography>
                 <Typography variant="subtitle1" color="text.secondary" component="div">
-                  {list.address}
+                  {list.address} à {list.city}
                   {/* {list.zipCode} */}
-                  {list.city}
                 </Typography>
                 <Box className="MesReservations-Card-CardContent-Box">
                   <Typography
@@ -92,9 +100,18 @@ function MesReservations() {
                     <Avatar className="MesReservations-Card-CardContent-Box-Host-Avatar" />
                     <p className="MesReservations-Card-CardContent-Box-Host-Name"> {list.host}</p>
                   </Typography>
-                  <Typography variant="subtitle1" color="text.secondary" component="div">
-                    {list.state}
+                  <Typography className="MesReservations-Card-CardContent-Box-State" variant="string" color="text.secondary" component="div">
+                    Statut : {list.state}
                   </Typography>
+                  <Button
+                    sx={{
+                      textTransform: 'none',
+                      textAlign: 'left',
+                      maxWidth: '200px',
+                    }}
+                  >
+                    Annuler ma réservation <DeleteRoundedIcon />
+                  </Button>
                 </Box>
               </CardContent>
             </Box>
@@ -103,12 +120,20 @@ function MesReservations() {
             className="MesReservations-Card-CardContent-Accordion"
           >
             <AccordionSummary
-              className="MesReservations-Card-CardContent-Accordion-AccordionSummary"
+              className="MesReservations-Card-CardContent-Accordion-Summary"
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>Plus de détails</Typography>
+              <Typography
+                sx={{
+                  fontSize: '0.9rem',
+                  textAlign: 'right',
+                  width: '100%',
+                }}
+              >
+                Plus de détails
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <TableContainer>

@@ -6,15 +6,31 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import './styles.scss';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+// Obtention des réservations du coworker
 function EspacePerso() {
   const dispatch = useDispatch();
+  const getrole = useSelector((state) => state.user.role_id);
   const getCoworkerReservations = () => {
     dispatch({
       type: 'GET_COWORKER_RESERVATIONS',
     });
   };
+
+  const getHostSpacesRequests = () => {
+    dispatch({
+      type: 'GET_HOST_REQUESTS',
+    });
+  };
+
+  // Gestion de la rubrique 'Mon espace Hote'
+  function getRoleUser() {
+    if (getrole === 'host') {
+      return true;
+    }
+    return false;
+  }
 
   return (
     <div className="EspacePerso">
@@ -54,23 +70,43 @@ function EspacePerso() {
             </CardActionArea>
           </Card>
         </Link>
-        <Link to="#" className="EspacePerso-Link">
-          <Card className="EspacePerso-Card">
-            <CardActionArea>
-              <CardMedia
-                className="EspacePerso-Card-CardMedia"
-                component="img"
-                image="https://cdn.pixabay.com/photo/2017/03/28/12/10/chairs-2181947_1280.jpg"
-                alt="mon profil"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h7" component="div">
-                  Mon espace hôte
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </Link>
+        {getRoleUser() ? (
+          <Link to="/espace-perso/mes-locations" className="EspacePerso-Link" onClick={getHostSpacesRequests}>
+            <Card className="EspacePerso-Card">
+              <CardActionArea>
+                <CardMedia
+                  className="EspacePerso-Card-CardMedia"
+                  component="img"
+                  image="https://cdn.pixabay.com/photo/2017/03/28/12/10/chairs-2181947_1280.jpg"
+                  alt="mon profil"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h7" component="div">
+                    Mon espace hôte
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Link>
+        ) : (
+          <Link to="" className="EspacePerso-Link">
+            <Card className="EspacePerso-Card">
+              <CardActionArea>
+                <CardMedia
+                  className="EspacePerso-Card-CardMedia"
+                  component="img"
+                  image="https://cdn.pixabay.com/photo/2017/03/28/12/10/chairs-2181947_1280.jpg"
+                  alt="mon profil"
+                />
+                <CardContent sx={{ backgroundColor: '#e8e8e8' }}>
+                  <Typography gutterBottom variant="h7" component="div">
+                    Devenir hôte et louer son bureau !
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Link>
+        )}
       </div>
     </div>
   );
