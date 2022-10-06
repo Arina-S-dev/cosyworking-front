@@ -3,6 +3,7 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import * as React from 'react';
 import './styles.scss';
+import { Link } from 'react-router-dom';
 
 function MenuBurger() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -39,8 +40,12 @@ function MenuBurger() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Accueil</MenuItem>
-        <MenuItem onClick={handleClose}>Recherche</MenuItem>
+        <Link to="/">
+          <MenuItem onClick={handleClose}>Accueil</MenuItem>
+        </Link>
+        <Link to="/recherche">
+          <MenuItem onClick={handleClose}>Recherche</MenuItem>
+        </Link>
         <MenuItem onClick={handleClose}>A propos</MenuItem>
         <MenuItem onClick={handleClose}>FAQ</MenuItem>
         <MenuItem onClick={handleClose}>Contact</MenuItem>

@@ -151,7 +151,9 @@ function ModalInscription() {
         </ListItemIcon>
         S'inscrire
       </MenuItem>
+      {/* {!getStatus && ( */}
       <Modal
+        onSubmit={setSignUp}
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -308,7 +310,6 @@ function ModalInscription() {
                 </Typography>
                 <ThemeProvider theme={theme}>
                   <Button
-                    onClick={setSignUp}
                     type="submit"
                     fullWidth
                     variant="contained"
@@ -329,6 +330,7 @@ function ModalInscription() {
           </div>
         </Box>
       </Modal>
+      {/* )} */}
     </div>
   );
 }

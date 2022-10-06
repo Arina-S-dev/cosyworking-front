@@ -2,6 +2,7 @@
 import './style.scss';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import { Link } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import { useSelector } from 'react-redux';
 import theme from '../../tools/themeMui';
@@ -21,19 +22,21 @@ function MyAccountMenu() {
               console.log('je clique');
             }}
           >
-            Mes infos
+            Mon Profil
           </Button>
-          <Button
-            sx={{ whiteSpace: 'nowrap', minWidth: 'max-content' }}
-            color="neutral"
-            className="account-menu-elem"
-            onClick={() => {
+          <Link to="/espace-perso/espace-coworker/mes-reservations">
+            <Button
+              sx={{ whiteSpace: 'nowrap', minWidth: 'max-content' }}
+              color="neutral"
+              className="account-menu-elem"
+              onClick={() => {
               // eslint-disable-next-line no-console
-              console.log('je clique');
-            }}
-          >
-            Mes réservations
-          </Button>
+                console.log('je clique');
+              }}
+            >
+              Mes réservations
+            </Button>
+          </Link>
           {userRole === 'hote'
           && (
           <Button
@@ -47,16 +50,18 @@ function MyAccountMenu() {
             Mes demandes
           </Button>
           )}
-          <Button
-            sx={{ whiteSpace: 'nowrap', minWidth: 'max-content' }}
-            color="neutral"
-            className="account-menu-elem"
-            onClick={() => {
-              console.log('je clique');
-            }}
-          >
-            Mes annonces
-          </Button>
+          <Link to="/espace-perso/espace-hote/mes-annonces">
+            <Button
+              sx={{ whiteSpace: 'nowrap', minWidth: 'max-content' }}
+              color="neutral"
+              className="account-menu-elem"
+              onClick={() => {
+                console.log('je clique');
+              }}
+            >
+              Mes annonces
+            </Button>
+          </Link>
           <Button
             color="neutral"
             className="account-menu-elem"
