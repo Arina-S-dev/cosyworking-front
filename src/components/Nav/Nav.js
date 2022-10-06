@@ -63,7 +63,9 @@ function Nav() {
           }}
         >
           <MenuBurger />
-          <img className="imgLogo" src={logo} alt="logo" />
+          <Link to="/">
+            <img className="imgLogo" src={logo} alt="logo" />
+          </Link>
           <div className="Nav-leftNavBar">
             <ThemeProvider theme={theme}>
               <Button
