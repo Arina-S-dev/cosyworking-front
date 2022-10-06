@@ -6,10 +6,28 @@ import TextField from '@mui/material/TextField';
 import ContactIMG from '../../img/contactus.png';
 
 function ContactUs() {
-  const [value, setValue] = React.useState('');
+  const [Name, setName] = React.useState('');
+  const [FirstName, setFirstName] = React.useState('');
+  const [Mail, setMail] = React.useState('');
+  const [Object, SetObject] = React.useState('');
+  const [Message, SetMessage] = React.useState('');
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
+  console.log(Name, FirstName, Mail);
+
+  const handleName = (event) => {
+    setName(event.target.value);
+  };
+  const handleFirstName = (event) => {
+    setFirstName(event.target.value);
+  };
+  const handleMail = (event) => {
+    setMail(event.target.value);
+  };
+  const handleObject = (event) => {
+    SetObject(event.target.value);
+  };
+  const handleMessage = (event) => {
+    SetMessage(event.target.value);
   };
 
   return (
@@ -31,11 +49,15 @@ function ContactUs() {
               id="outlined-required"
               label="Nom"
               size="medium"
+              value={Name}
+              onChange={handleName}
             />
             <TextField
               required
               id="outlined-required"
               label="Prénom"
+              value={FirstName}
+              onChange={handleFirstName}
             />
           </div>
         </Box>
@@ -53,6 +75,8 @@ function ContactUs() {
               id="fullWidth"
               label="Adresse Email"
               className="inputlarge"
+              value={Mail}
+              onChange={handleMail}
             />
           </div>
           <div className="formLine">
@@ -61,6 +85,8 @@ function ContactUs() {
               id="fullWidth"
               label="Sujet de votre demande"
               className="inputlarge"
+              value={Object}
+              onChange={handleObject}
             />
           </div>
           <div className="formLine">
@@ -69,8 +95,8 @@ function ContactUs() {
               label="Votre Message"
               multiline
               maxRows={4}
-              value={value}
-              onChange={handleChange}
+              value={Message}
+              onChange={handleMessage}
             />
           </div>
           <div className="buttonContainer">
