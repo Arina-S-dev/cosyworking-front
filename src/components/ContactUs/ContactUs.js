@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as React from 'react';
 import './ContactUs.scss';
 import Box from '@mui/material/Box';
