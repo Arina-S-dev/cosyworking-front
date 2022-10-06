@@ -180,7 +180,9 @@ const identification = (store) => (next) => (action) => {
       .catch((error) => {
       // en cas d’échec de la requête
       // eslint-disable-next-line no-console
-        console.log(error.data.message);
+        // console.log(error.response.data.message);
+        // eslint-disable-next-line no-console
+        console.log(error);
         if (error) {
           store.dispatch({
             type: 'CONNECTION_STATE',
