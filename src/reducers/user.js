@@ -7,6 +7,10 @@ export const initialState = {
   gender: '',
   last_name: '',
   first_name: '',
+  // avatar, username et about pour la page 'Mon Profil'
+  avatar: '',
+  username: '',
+  about: '',
   error_connection: false,
   emailexistederror: false,
   passwordwrongformat: false,
@@ -139,6 +143,17 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         datahostrequests: action.hostrequests,
+      };
+      // Obtention des informations pour la page 'Mon Profil'
+    case 'GET_USER_PRIVATE_INFO':
+      return {
+        ...state,
+        first_name: action.firstName,
+        last_name: action.lastName,
+        gender: action.gender,
+        username: action.username,
+        about: action.about,
+        avatar: action.avatar,
       };
     default:
       return state;

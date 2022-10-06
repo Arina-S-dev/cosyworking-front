@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 // import data from '../data.json';
 import './styles.scss';
 import MesTables from './MesTables';
+import MyAccountMenu from '../../../MyAccountMenu';
 
 function MesReservations() {
   // On récupère les réservations du coworker coté back et
@@ -55,6 +56,7 @@ function MesReservations() {
 
   return (
     <div className="MesReservations">
+      <MyAccountMenu />
       <h1 className="MesReservations-title">Mes Réservations</h1>
       {newDataArray.map((list) => (
         <Card
