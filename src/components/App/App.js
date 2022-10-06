@@ -22,6 +22,7 @@ import Faq from '../Faq/Faq';
 import MentionsLegales from '../MentionsLegales/MentionsLegales';
 import CGV from '../CGV/CGV';
 import ContactUs from '../ContactUs/ContactUs';
+import MonProfil from '../EspacePerso/MonProfil/MonProfil';
 
 function App() {
   // On vérifie si le token n'a pas expiré en récupérant l'état de connexion
@@ -43,6 +44,7 @@ function App() {
         <Route path="cgv" element={<CGV />} />
         <Route path="/recherche" element={<SearchPage />} />
         <Route path="/espace-perso" element={<EspacePerso />} />
+        <Route path="/espace-perso/mon-profil" element={<MonProfil />} />
         <Route path="/espace-perso/espace-coworker" element={<EspaceCoworker />} />
         <Route path="/espace-perso/espace-coworker/mes-reservations" element={<MesReservations />} />
         <Route path="/espace-perso/espace-hote" element={<EspaceHost />} />
