@@ -1,6 +1,6 @@
 export const initialState = {
   city: '',
-  date_list: '',
+  date_list: [],
   equipments: [],
   workspaces: [],
   modaleFilterIsOpen: false,
@@ -12,10 +12,15 @@ export const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case 'SET_MODAL_FILTERS':
+    case 'OPEN_MODAL_FILTERS':
       return {
         ...state,
-        modaleFilterIsOpen: !state.modaleFilterIsOpen,
+        modaleFilterIsOpen: true,
+      };
+    case 'CLOSE_MODAL_FILTERS':
+      return {
+        ...state,
+        modaleFilterIsOpen: false,
       };
     case 'OPEN_MODAL_CALENDAR':
       return {
@@ -48,7 +53,7 @@ const reducer = (state = initialState, action = {}) => {
     case 'REMOVE_DATES':
       return {
         ...state,
-        date_list: '',
+        date_list: [],
       };
     case 'ADD_DATES':
       return {

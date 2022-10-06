@@ -7,9 +7,7 @@ function Cards() {
   console.log(searchedCity);
 
   const workspaces = useSelector((state) => state.search.workspaces);
-  console.log(workspaces);
   const isLoading = useSelector((state) => state.search.worspacesAPIisLoading);
-  console.log(isLoading);
 
   return (
     <div className="cards-container">

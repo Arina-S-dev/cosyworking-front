@@ -21,19 +21,9 @@ function SearchPage() {
 
   const workspaces = useSelector((state) => state.search.workspaces);
 
-  // const searchIsOK = () => {
-  //   if (workspaces.length === 0) {
-  //     return (
-  //       false
-  //     );
-  //   }
-  //   return (
-  //     true
-  //   );
-  // };
   return (
     <div className="search-container">
-      <p className="search-title"><Title /></p>
+      <div className="search-title"><Title /></div>
       <div className="search-form">
         <FormControl className="search-form">
           <Input />

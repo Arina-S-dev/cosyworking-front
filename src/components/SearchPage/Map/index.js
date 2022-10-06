@@ -26,9 +26,7 @@ const markerIcon = new L.Icon({
 
 function Map() {
   const workspaces = useSelector((state) => state.search.workspaces);
-  console.log(workspaces);
   const isLoading = useSelector((state) => state.search.worspacesAPIisLoading);
-  console.log(isLoading);
   return (
     <MapContainer center={center} zoom={12} scrollWheelZoom>
       <TileLayer

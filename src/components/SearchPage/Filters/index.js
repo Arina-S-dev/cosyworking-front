@@ -24,19 +24,34 @@ function Modalfilters() {
   const open = useSelector((state) => state.search.modaleFilterIsOpen);
   const equipmentsListFromAPI = useSelector((state) => state.search.equipmentsListFromAPI);
   const isLoading = useSelector((state) => state.search.equipementsAPIisLoading);
+
+  // const equipments = () => {
+  //   if (!isLoading) {
+  //     const newArray = equipmentsListFromAPI.map((equipment) => equipment.description);
+  //     return newArray;
+  //   }
+  //   return [];
+  // };
   const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
     event.preventDefault();
   };
-  const handleToggle = () => {
+  const handleOpen = () => {
     dispatch({
-      type: 'SET_MODAL_FILTERS',
+      type: 'OPEN_MODAL_FILTERS',
+    });
+  };
+
+  const handleClose = () => {
+    dispatch({
+      type: 'CLOSE_MODAL_FILTERS',
     });
   };
 
   const handleFiltersChange = (event) => {
     const index = filters.indexOf(event.target.value);
+    console.log(event.target.value);
     const { value } = event.target;
     if (index === -1) {
       dispatch({
@@ -57,7 +72,7 @@ function Modalfilters() {
       <ThemeProvider theme={theme}>
         <div className="filters-button">
           <Button
-            onClick={handleToggle}
+            onClick={handleOpen}
             color="neutral"
             variant="outlined"
           >
@@ -70,7 +85,7 @@ function Modalfilters() {
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
           open={open}
-          onClose={handleToggle}
+          onClose={handleClose}
           closeAfterTransition
           BackdropComponent={Backdrop}
           BackdropProps={{
@@ -90,7 +105,7 @@ function Modalfilters() {
                   {!isLoading
                   && equipmentsListFromAPI.map((filter) => (
                     <FormControlLabel
-                      control={<Checkbox checked={filters.includes(filter.desciption)} />}
+                      control={<Checkbox checked={filters.includes(filter.description)} />}
                       key={filter.id}
                       label={filter.description}
                       value={filter.description}
@@ -101,7 +116,7 @@ function Modalfilters() {
                     color="primary"
                     variant="contained"
                     type="submit"
-                    onClick={handleToggle}
+                    onClick={handleClose}
                   >Appliquer
                   </Button>
                 </FormGroup>
