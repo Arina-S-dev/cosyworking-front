@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import './style.scss';
 
 import Button from '@mui/material/Button';

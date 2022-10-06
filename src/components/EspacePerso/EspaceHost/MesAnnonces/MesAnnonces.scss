@@ -1,0 +1,86 @@
+@use '../../../../styles/vars';
+@use 'sass:color';
+
+.MesAnnonces{
+    margin: auto;
+    margin-top: 4rem;
+    min-height: 100vh;
+
+    &-Card{
+        margin: 0.7rem;
+        margin-bottom: 0rem;
+        display: flex;
+
+        &-CardMedia{
+            max-width: 151px;
+        }
+
+        &-CardContent{
+            width: 100%;
+
+            &-Accordion{
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+
+            &-Box{ 
+                margin-top: 0.6rem;               
+                display: flex;
+                flex-direction: column;
+                justify-content: left;
+
+                &-State{
+                    padding-left: 0.7rem;
+                    padding-top: 0.5rem;
+                    font-size: 0.8rem;
+                }
+
+                &-Host{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+
+                &-Avatar{
+                    margin-right: 0.5rem;
+                    margin-left: 0.5rem;
+                }
+
+                &-Name{
+                    font-size: 0.9rem;
+                }                
+              }  
+            }            
+        }            
+    }
+
+    &-title{
+        font-size: 1.2rem;
+        margin: 0.5rem;
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .MesAnnonces{
+        
+        &-Card{
+            &-CardMedia{
+                max-width: 300px;
+            }
+            &-CardContent{
+                &-Box{ 
+                    margin-top: 0.6rem;               
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;   
+                    
+                    &-State{
+                        padding-left: 0rem;
+                        padding-top: 0.5rem;
+                    }
+                }
+            }
+        }
+    }
+}

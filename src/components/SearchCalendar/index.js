@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable max-len */
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
