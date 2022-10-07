@@ -16,10 +16,8 @@ import './index.scss';
 function SearchCalendar() {
   const dateList = useSelector((state) => state.search.date_list);
   const [bookings, setBookings] = useState(dateList);
-
   const [currentMonth, setCurrentMonth] = useState(getMonth(new Date()) + 1);
   const [currentDay, setCurrentDay] = useState(null);
-
   const dispatch = useDispatch();
 
   const bookingAlreadySelected = (date, startHour, endHour) => {
@@ -107,7 +105,7 @@ function SearchCalendar() {
           { isHidden: getMonth(date) !== currentMonth - 1 },
         )}
       >
-        <span className="calendar-span" title={tooltipText}>{getDate(date)}</span>
+        <span className="calendarSpan" title={tooltipText}>{getDate(date)}</span>
         {
           currentDay && lightFormat(date, 'dd-MM-yy') === lightFormat(currentDay, 'dd-MM-yy')
           && (
