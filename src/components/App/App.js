@@ -37,10 +37,10 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/workspace" element={<WorkspaceDetail />} />
         <Route path="/profil" element={<PublicProfil />} />
-        <Route path="faq" element={<Faq />} />
-        <Route path="contact" element={<ContactUs />} />
-        <Route path="mentionslegales" element={<MentionsLegales />} />
-        <Route path="cgv" element={<CGV />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/mentionslegales" element={<MentionsLegales />} />
+        <Route path="/cgv" element={<CGV />} />
         <Route path="/recherche" element={<SearchPage />} />
         <Route path="/espace-perso" element={<EspacePerso />} />
         <Route path="/espace-perso/espace-coworker" element={<EspaceCoworker />} />
