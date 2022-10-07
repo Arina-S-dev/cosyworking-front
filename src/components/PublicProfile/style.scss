@@ -91,6 +91,11 @@ align-items: center;
         align-items: center;
         gap: 2rem;
     }
+
+    .MuiCardMedia-img{
+        max-height: 14rem;
+        min-width: 18rem;
+    }
 }
 
 

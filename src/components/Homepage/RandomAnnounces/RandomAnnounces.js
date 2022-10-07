@@ -24,6 +24,7 @@ function RandomAnnounces() {
         announceName={dataresults.title}
         cityName={dataresults.city}
         price={`${dataresults.day_price} €/Jour`}
+        workspaceId={dataresults.workspace_id}
       />
     </SwiperSlide>
   ));

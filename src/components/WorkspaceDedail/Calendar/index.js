@@ -4,7 +4,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
-// import getDate from 'date-fns/getDate';
 import {
   getHours, getDate, setHours, addMonths, lightFormat, getMonth, getYear, format, isWithinInterval, eachDayOfInterval,
 } from 'date-fns';
@@ -15,10 +14,15 @@ import { Button } from '@mui/material';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 
 import './index.scss';
+import { useSelector, useDispatch } from 'react-redux';
 
 // eslint-disable-next-line max-len
 
-function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
+function MultipleReactDatePicker({ dayPrice, halfDayPrice, workspaceId }) {
+  const bookingsList = useSelector((state) => state.workspaces.currentWorkspace.booking_list);
+  // const bookingsList = useSelector((state) => [state.workspaces.currentWorkspace.booking_list[0]]);
+  // const userId = useSelector((state) => state.user.user_id);
+  const dispatch = useDispatch();
   const [bookings, setBookings] = useState([]);
   const [totalSelectedDays, setTotalSelectedDays] = useState(null);
   const [totalPrice, setTotalPrice] = useState(null);
@@ -40,46 +44,20 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
 
   // eslint-disable-next-line no-console
   console.log('CURRENTDAY===>', currentDay);
+  console.log('bookedDatesList===>', bookingsList);
   // eslint-disable-next-line no-console
   console.log('bookings===>', bookings);
-
-  const bookingsList = [
-    {
-      startDate: 'Wed Oct 12 2022 08:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-      endDate: 'Wed Oct 12 2022 17:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-    },
-    {
-      startDate: 'Sat Oct 15 2022 08:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-      endDate: 'Sat Oct 15 2022 12:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-    },
-    {
-      startDate: 'Mon Oct 17 2022 13:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-      endDate: 'Mon Oct 17 2022 17:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-    },
-    {
-      startDate: 'Thu Oct 20 2022 13:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-      endDate: 'Thu Oct 20 2022 17:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-    },
-    {
-      startDate: 'Sat Oct 22 2022 08:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-      endDate: 'Sat Oct 22 2022 17:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-    },
-    {
-      startDate: 'Wed Oct 26 2022 08:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-      endDate: 'Wed Oct 26 2022 12:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-    },
-  ];
 
   const DateIsBooked = (dateToTest) => {
     let isBooked = false;
     bookingsList.forEach((booking) => {
       const isInInterval = isWithinInterval(setHours(dateToTest, 8), {
-        start: new Date(booking.startDate),
-        end: new Date(booking.endDate),
+        start: new Date(booking.start_date),
+        end: new Date(booking.end_date),
       })
       && isWithinInterval(setHours(dateToTest, 17), {
-        start: new Date(booking.startDate),
-        end: new Date(booking.endDate),
+        start: new Date(booking.start_date),
+        end: new Date(booking.end_date),
       });
       if (isInInterval) {
         isBooked = true;
@@ -93,8 +71,8 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
 
     bookingsList.forEach((booking) => {
       const isInInterval = isWithinInterval(setHours(dateToTest, hour), {
-        start: new Date(booking.startDate),
-        end: new Date(booking.endDate),
+        start: new Date(booking.start_date),
+        end: new Date(booking.end_date),
       });
       if (isInInterval) {
         isBooked = true;
@@ -108,8 +86,8 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
 
     bookingsList.forEach((booking) => {
       const arrayOfDaysInIntervale = eachDayOfInterval({
-        start: new Date(booking.startDate),
-        end: new Date(booking.endDate),
+        start: new Date(booking.start_date),
+        end: new Date(booking.end_date),
       });
       unvalidDates = [...unvalidDates, ...arrayOfDaysInIntervale];
     });
@@ -119,8 +97,8 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
 
   const bookingAlreadySelected = (date, startHour, endHour) => {
     const result = bookings.find((booking) => (
-      (lightFormat(booking.startDate, 'dd-MM-yy-HH') === lightFormat(setHours(date, startHour), 'dd-MM-yy-HH'))
-      && (lightFormat(booking.endDate, 'dd-MM-yy-HH') === lightFormat(setHours(date, endHour), 'dd-MM-yy-HH'))
+      (lightFormat(booking.start_date, 'dd-MM-yy-HH') === lightFormat(setHours(date, startHour), 'dd-MM-yy-HH'))
+      && (lightFormat(booking.end_date, 'dd-MM-yy-HH') === lightFormat(setHours(date, endHour), 'dd-MM-yy-HH'))
     ));
     return Boolean(result);
   };
@@ -133,8 +111,8 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
 
   const dayIsInBookingList = (date) => {
     const result = bookings.find((booking) => (
-      (lightFormat(booking.startDate, 'dd-MM-yy') === lightFormat(date, 'dd-MM-yy'))
-        && (lightFormat(booking.endDate, 'dd-MM-yy') === lightFormat(date, 'dd-MM-yy'))
+      (lightFormat(booking.start_date, 'dd-MM-yy') === lightFormat(date, 'dd-MM-yy'))
+        && (lightFormat(booking.end_date, 'dd-MM-yy') === lightFormat(date, 'dd-MM-yy'))
     ));
     return Boolean(result);
   };
@@ -143,19 +121,19 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
     if (!bookingAlreadySelected(date, startHour, endHour)) {
       if (dayIsInBookingList(date)) {
         const filteredBooking = bookings.filter((booking) => (
-          (lightFormat(booking.startDate, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
-        && (lightFormat(booking.endDate, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
+          (lightFormat(booking.start_date, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
+        && (lightFormat(booking.end_date, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
         ));
 
         setBookings([...filteredBooking, {
-          startDate: new Date(setHours(date, startHour)),
-          endDate: new Date(setHours(date, endHour)),
+          start_date: new Date(setHours(date, startHour)),
+          end_date: new Date(setHours(date, endHour)),
         }]);
       }
       else {
         setBookings([...bookings, {
-          startDate: new Date(setHours(date, startHour)),
-          endDate: new Date(setHours(date, endHour)),
+          start_date: new Date(setHours(date, startHour)),
+          end_date: new Date(setHours(date, endHour)),
         }]);
       }
     }
@@ -184,8 +162,8 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
   const removeFromBookingsList = (event, date) => {
     event.stopPropagation();
     const filteredBooking = bookings.filter((booking) => (
-      (lightFormat(booking.startDate, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
-    && (lightFormat(booking.endDate, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
+      (lightFormat(booking.start_date, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
+    && (lightFormat(booking.end_date, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
     ));
 
     setBookings([...filteredBooking]);
@@ -320,8 +298,15 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
           variant="contained"
           size="small"
           onClick={() => {
+            dispatch({
+              type: 'SEND_NEW_BOOKING',
+              payload: {
+                workspace_id: workspaceId,
+                date_list: bookings,
+              },
+            });
             // eslint-disable-next-line no-console
-            console.log('pouet!!!');
+            // console.log('pouet!!!');
           }}
           sx={{
             color: '#8A8A8A',
@@ -345,126 +330,7 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
 MultipleReactDatePicker.propTypes = {
   halfDayPrice: PropTypes.number.isRequired,
   dayPrice: PropTypes.number.isRequired,
+  workspaceId: PropTypes.number.isRequired,
 };
 
 export default MultipleReactDatePicker;
-
-// const startDatesOfBookings = [
-//   // new Date('Mon Oct 03 2022 08:00:00 GMT+0200 (heure d’été d’Europe centrale)'),
-//   // new Date('Thu Oct 06 2022 13:00:00 GMT+0200 (heure d’été d’Europe centrale)'),
-//   // new Date('Fri Oct 07 2022 13:00:00 GMT+0200 (heure d’été d’Europe centrale)'),
-// ];
-
-// const endDatesOfBookings = [
-//   // new Date('Wed Oct 05 2022 17:00:00 GMT+0200 (heure d’été d’Europe centrale)'),
-//   // new Date('Fri Oct 07 2022 12:00:00 GMT+0200 (heure d’été d’Europe centrale)'),
-//   // new Date('Sun Oct 09 2022 17:00:00 GMT+0200 (heure d’été d’Europe centrale)'),
-// ];
-
-// const DateIsBooked = (dateToTest) => {
-//   if (endDatesOfBookings.length === startDatesOfBookings.length) {
-//     let isBooked = false;
-//     startDatesOfBookings.forEach((dateOfBooking, index) => {
-//       const isInInterval = isWithinInterval(setHours(dateToTest, 8), {
-//         start: new Date(dateOfBooking),
-//         end: new Date(endDatesOfBookings[index]),
-//       })
-//       && isWithinInterval(setHours(dateToTest, 17), {
-//         start: new Date(dateOfBooking),
-//         end: new Date(endDatesOfBookings[index]),
-//       });
-
-//       if (isInInterval) {
-//         isBooked = true;
-//       }
-//     });
-//     return isBooked;
-//   }
-//   return console.log('ERROR ==> ARRAYS MUST BE SAME LENGTH !!!');
-// };
-
-// const halfDayIsBooked = (dateToTest, hour) => {
-//   if (endDatesOfBookings.length === startDatesOfBookings.length) {
-//     let isBooked = false;
-
-//     startDatesOfBookings.forEach((dateOfBooking, index) => {
-//       const isInInterval = isWithinInterval(setHours(dateToTest, hour), {
-//         start: new Date(dateOfBooking),
-//         end: new Date(endDatesOfBookings[index]),
-//       });
-
-//       if (isInInterval) {
-//         isBooked = true;
-//       }
-//     });
-
-//     return isBooked;
-//   }
-//   return console.log('ERROR ==> ARRAYS MUST BE SAME LENGTH !!!');
-// };
-
-// if (event.target.value === 'matin'
-//   && !isInBookingList(date, 8, 12)
-// ) {
-//   if (dayIsInBookingList(date)) {
-//     const filteredBooking = bookings.filter((booking) => (
-//       (lightFormat(booking.startDate, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
-//     && (lightFormat(booking.endDate, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
-//     ));
-
-//     setBookings([...filteredBooking, {
-//       startDate: new Date(setHours(date, 8)),
-//       endDate: new Date(setHours(date, 12)),
-//     }]);
-//   }
-//   else {
-//     setBookings([...bookings, {
-//       startDate: new Date(setHours(date, 8)),
-//       endDate: new Date(setHours(date, 12)),
-//     }]);
-//   }
-// }
-
-// if (event.target.value === 'aprem'
-//   && !isInBookingList(date, 13, 17)
-// ) {
-//   if (dayIsInBookingList(date)) {
-//     const filteredBooking = bookings.filter((booking) => (
-//       (lightFormat(booking.startDate, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
-//       && (lightFormat(booking.endDate, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
-//     ));
-
-//     setBookings([...filteredBooking, {
-//       startDate: new Date(setHours(date, 13)),
-//       endDate: new Date(setHours(date, 17)),
-//     }]);
-//   }
-//   else {
-//     setBookings([...bookings, {
-//       startDate: new Date(setHours(date, 13)),
-//       endDate: new Date(setHours(date, 17)),
-//     }]);
-//   }
-// }
-
-// if (event.target.value === 'full'
-//   && !isInBookingList(date, 8, 17)
-// ) {
-//   if (dayIsInBookingList(date)) {
-//     const filteredBooking = bookings.filter((booking) => (
-//       (lightFormat(booking.startDate, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
-//       && (lightFormat(booking.endDate, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
-//     ));
-
-//     setBookings([...filteredBooking, {
-//       startDate: new Date(setHours(date, 8)),
-//       endDate: new Date(setHours(date, 17)),
-//     }]);
-//   }
-//   else {
-//     setBookings([...bookings, {
-//       startDate: new Date(setHours(date, 8)),
-//       endDate: new Date(setHours(date, 17)),
-//     }]);
-//   }
-// }

@@ -2,9 +2,10 @@ import './Announce.scss';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function Announce({
-  image, announceName, cityName, price,
+  image, announceName, cityName, price, workspaceId,
 }) {
   return (
     <div className="Card">
@@ -17,7 +18,9 @@ function Announce({
         <p className="cityName">{cityName}</p>
         <div className="priceButton">
           <p>{price}</p>
-          <Button variant="contained" size="small">Voir l'annonce</Button>
+          <Link to={`/workspace/${workspaceId}`}>
+            <Button variant="contained" size="small">Voir l'annonce</Button>
+          </Link>
         </div>
       </div>
     </div>
@@ -29,6 +32,7 @@ Announce.propTypes = {
   announceName: PropTypes.string.isRequired,
   cityName: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
+  workspaceId: PropTypes.number.isRequired,
 };
 
 export default Announce;

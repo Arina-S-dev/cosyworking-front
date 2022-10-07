@@ -303,7 +303,7 @@ $datepicker__margin: 0.4rem !default;
   
   }
   
-  @media (max-width: 900px) {
+  @media (max-width: 750px) {
   
   
     // .react-datepicker {
@@ -324,6 +324,29 @@ $datepicker__margin: 0.4rem !default;
     //     margin-right: 1.5rem;         
                  
     //   }
+
+    // .react-datepicker__day{
+    //   cursor: pointer;
+    //   margin: .3rem .2rem;
+    
+    //   &:hover:not(&--selected, &--today, .morningSelected, .afternoonSelected, .fullDaySelected) {
+    //     border-radius: 50%;
+    //     background-color: $datepicker__background-color;
+    //   }
+    
+    //   &--today {
+    //     font-weight: bold;
+    //   }
+    
+    //   &--disabled {
+    //     cursor: default;
+    //     color: $datepicker__muted-color;
+    
+    //     &:hover {
+    //       background-color: transparent;
+    //     }
+    //   }
+    // }
   
   }
 }
