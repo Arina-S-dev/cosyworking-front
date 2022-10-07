@@ -20,7 +20,7 @@ const searchMiddleware = (store) => (next) => (action) => {
       // eslint-disable-next-line no-console
         console.log(error.response.data.message);
       });
-  } next(action);
+  }
 
   if (action.type === 'GET_EQUIPMENTS') {
     axios.get('https://cosyworking-api.onrender.com/api/equipments')

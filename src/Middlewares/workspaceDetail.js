@@ -36,10 +36,7 @@ const WorkspaceDetailMiddleware = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log('requette API ok', response);
-          /*
-            Le middleware a récupéré les data , il dispatche SAVE_RECIPE avec les data en payload
-            pour le reducer qui ira les placer dans le state
-            */
+
           console.log('responsepostBOOKING ==>', response.data);
         })
         .catch((error) => {
