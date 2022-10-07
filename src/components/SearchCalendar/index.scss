@@ -23,6 +23,10 @@ $datepicker__margin: 0.4rem !default;
       position: relative;
     }
 
+    .calendar-span {
+      display: block;
+    }
+
     .halfDayModale{
       display: flex;
       flex-direction: column;

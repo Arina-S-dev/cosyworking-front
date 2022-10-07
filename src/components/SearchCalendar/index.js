@@ -107,7 +107,7 @@ function SearchCalendar() {
           { isHidden: getMonth(date) !== currentMonth - 1 },
         )}
       >
-        <span title={tooltipText}>{getDate(date)}</span>
+        <span className="calendar-span" title={tooltipText}>{getDate(date)}</span>
         {
           currentDay && lightFormat(date, 'dd-MM-yy') === lightFormat(currentDay, 'dd-MM-yy')
           && (
