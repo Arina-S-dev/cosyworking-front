@@ -37,10 +37,10 @@ function App() {
       <Routes>
         {/* <Route path="/espace-perso" element={<MyAccountMenu />} /> */}
         <Route path="/" element={<Homepage />} />
-        <Route path="faq" element={<Faq />} />
-        <Route path="contact" element={<ContactUs />} />
-        <Route path="mentionslegales" element={<MentionsLegales />} />
-        <Route path="cgv" element={<CGV />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/mentionslegales" element={<MentionsLegales />} />
+        <Route path="/cgv" element={<CGV />} />
         <Route path="/workspace/:id" element={<WorkspaceDetail />} />
         <Route path="/profil/:id" element={<PublicProfil />} />
         <Route path="/espace-perso/espace-hote/mes-annonces/annonce/" element={<WorkspaceEdition />} />

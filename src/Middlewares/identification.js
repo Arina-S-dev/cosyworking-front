@@ -9,7 +9,7 @@ const identification = (store) => (next) => (action) => {
     const { email, password } = store.getState().user;
     // eslint-disable-next-line no-console
     console.log(email, password);
-    axios.post('http://quentinroggy-server.eddi.cloud/api/auth/login', { email, password })
+    axios.post('https://cosyworking-api.onrender.com/api/auth/login', { email, password })
       .then((response) => {
         // eslint-disable-next-line no-console
         console.log(response);
@@ -56,7 +56,7 @@ const identification = (store) => (next) => (action) => {
       });
     }
     // eslint-disable-next-line object-curly-newline, camelcase
-    axios.post('http://quentinroggy-server.eddi.cloud/api/auth/signup', { first_name, last_name, email, password, gender, role_id })
+    axios.post('https://cosyworking-api.onrender.com/api/auth/signup', { first_name, last_name, email, password, gender, role_id })
       .then((response) => {
         // eslint-disable-next-line no-console
         console.log(response.request.status);
@@ -101,7 +101,7 @@ const identification = (store) => (next) => (action) => {
     // eslint-disable-next-line no-console
     // console.log(user_id);
     // eslint-disable-next-line object-curly-newline, camelcase
-    axios.get(`http://quentinroggy-server.eddi.cloud/api/personalspace/${user_id}/coworkerbooking`, { headers: {
+    axios.get(`https://cosyworking-api.onrender.com/api/personalspace/${user_id}/coworkerbooking`, { headers: {
       // eslint-disable-next-line quote-props, comma-dangle
       'x-access-token': getUserToken
     // eslint-disable-next-line object-curly-spacing, object-curly-newline
@@ -139,7 +139,7 @@ const identification = (store) => (next) => (action) => {
     // eslint-disable-next-line no-console
     // console.log(user_id);
     // eslint-disable-next-line object-curly-newline, camelcase
-    axios.get(`http://quentinroggy-server.eddi.cloud/api/personalspace/${user_id}/booking`, { headers: {
+    axios.get(`https://cosyworking-api.onrender.com/api/personalspace/${user_id}/booking`, { headers: {
       // eslint-disable-next-line quote-props, comma-dangle
       'x-access-token': getUserToken
     // eslint-disable-next-line object-curly-spacing, object-curly-newline
@@ -178,7 +178,7 @@ const identification = (store) => (next) => (action) => {
     // eslint-disable-next-line no-console
     // console.log(user_id);
     // eslint-disable-next-line object-curly-newline, camelcase
-    axios.get(`http://quentinroggy-server.eddi.cloud/api/personalspace/${user_id}/profil`, { headers: {
+    axios.get(`https://cosyworking-api.onrender.com/api/personalspace/${user_id}/profil`, { headers: {
       // eslint-disable-next-line quote-props, comma-dangle
       'x-access-token': getUserToken
     // eslint-disable-next-line object-curly-spacing, object-curly-newline
