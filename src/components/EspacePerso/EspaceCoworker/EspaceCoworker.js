@@ -1,10 +1,9 @@
-import MyAccountMenu from '../../MyAccountMenu';
+import MesReservations from './MesReservations/MesReservations';
 
 function EspaceCoworker() {
   return (
     <div className="EspaceCoworker">
-      <MyAccountMenu />
-      Mon profil
+      <MesReservations />
     </div>
   );
 }

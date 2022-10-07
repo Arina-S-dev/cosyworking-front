@@ -1,10 +1,11 @@
+/* eslint-disable no-console */
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
-// import 'swiper/css';
-// import 'swiper/css/pagination';
-// import 'swiper/css/navigation';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import './RandomAnnounces.scss';
 import { Pagination, Navigation } from 'swiper';
 import { useSelector } from 'react-redux';
@@ -23,6 +24,7 @@ function RandomAnnounces() {
         announceName={dataresults.title}
         cityName={dataresults.city}
         price={`${dataresults.day_price} €/Jour`}
+        workspaceId={dataresults.workspace_id}
       />
     </SwiperSlide>
   ));

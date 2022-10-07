@@ -1,0 +1,122 @@
+@use '../../../styles/vars';
+@use 'sass:color';
+
+.MonProfil{
+    margin: auto;
+    margin-top: 4rem;
+    min-height: 100vh;
+
+    &-title{
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    &-Card{
+        margin: 0.7rem;
+        margin-bottom: 0rem;
+        display: flex;
+
+        &-CardMedia{
+            max-width: 20px;
+        }
+
+        &-MainBox{
+            width: 100%;
+
+            &-CardContent{  
+            //   width: 100%;              
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              &-Box{
+                // width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                
+                &-BoxAvatar{
+                    margin: auto;
+                    margin-top: 0.8rem;
+                    margin-bottom: 0.8rem;
+                }
+
+                &-BoxName{
+                    text-align: left;
+                }
+              }
+            }
+
+            &-BoxAbout{
+                margin: 1rem;
+
+                &-about{
+                    padding-left: 0.5rem;
+                }
+            }
+        }          
+    }            
+}    
+
+
+@media only screen and (min-width: 700px) {
+    .MonProfil{
+        margin: auto;
+        margin-top: 4rem;
+        min-height: 100vh;
+    
+        &-title{
+            font-size: 1.2rem;
+            text-align: center;
+        }
+    
+        &-Card{
+            margin: 0.7rem;
+            margin-bottom: 0rem;
+            display: flex;
+    
+            &-CardMedia{
+                max-width: 200px;
+            }
+    
+            &-MainBox{
+                width: 100%;
+    
+                &-CardContent{  
+                //   width: 100%;              
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+    
+                  &-Box{
+                    // width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: row;
+                    
+                    &-BoxAvatar{
+                        margin: auto;
+                        margin-top: 0.8rem;
+                        margin-bottom: 0.8rem;
+                    }
+    
+                    &-BoxName{
+                        text-align: left;
+                        margin-left: 2rem;
+                    }
+                  }
+                }
+    
+                &-BoxAbout{
+                    margin: 1rem;
+    
+                    &-about{
+                        padding-left: 0.5rem;
+                    }
+                }
+            }          
+        }            
+    }    
+}

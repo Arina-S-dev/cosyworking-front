@@ -9,6 +9,27 @@
     &-leftNavBar{
         display: flex;
         flex-direction: row;
-        align-items: flex-end;
+        align-items: center;
+    }
+    .imgLogo{
+        height: 100%;
+    }
+}
+
+
+@media screen and (max-width: 520px)
+{
+    .imgLogo{
+        width: 40%;
+        height: auto;
+        object-fit: contain;
+    }
+}
+@media screen and (max-width: 420px)
+{
+    .imgLogo{
+        width: 25%;
+        height: auto;
+        object-fit: contain;
     }
 }

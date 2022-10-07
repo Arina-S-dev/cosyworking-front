@@ -12,6 +12,7 @@ import MesAnnonces from '../EspacePerso/EspaceHost/MesAnnonces/MesAnnonces';
 import ModalAlertConnection from '../ModalAlertConnection/ModalAlertConnection';
 import WorkspaceDetail from '../WorkspaceDedail';
 import PublicProfil from '../PublicProfile';
+import WorkspaceEdition from '../WorkspaceEdition';
 import SearchPage from '../SearchPage';
 import './App.scss';
 
@@ -22,6 +23,7 @@ import Faq from '../Faq/Faq';
 import MentionsLegales from '../MentionsLegales/MentionsLegales';
 import CGV from '../CGV/CGV';
 import ContactUs from '../ContactUs/ContactUs';
+import MonProfil from '../EspacePerso/MonProfil/MonProfil';
 
 function App() {
   // On vérifie si le token n'a pas expiré en récupérant l'état de connexion
@@ -35,14 +37,16 @@ function App() {
       <Routes>
         {/* <Route path="/espace-perso" element={<MyAccountMenu />} /> */}
         <Route path="/" element={<Homepage />} />
-        <Route path="/workspace" element={<WorkspaceDetail />} />
-        <Route path="/profil" element={<PublicProfil />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/mentionslegales" element={<MentionsLegales />} />
         <Route path="/cgv" element={<CGV />} />
+        <Route path="/workspace/:id" element={<WorkspaceDetail />} />
+        <Route path="/profil/:id" element={<PublicProfil />} />
+        <Route path="/espace-perso/espace-hote/mes-annonces/annonce/" element={<WorkspaceEdition />} />
         <Route path="/recherche" element={<SearchPage />} />
         <Route path="/espace-perso" element={<EspacePerso />} />
+        <Route path="/espace-perso/mon-profil" element={<MonProfil />} />
         <Route path="/espace-perso/espace-coworker" element={<EspaceCoworker />} />
         <Route path="/espace-perso/espace-coworker/mes-reservations" element={<MesReservations />} />
         <Route path="/espace-perso/espace-hote" element={<EspaceHost />} />

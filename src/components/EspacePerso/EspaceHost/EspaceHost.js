@@ -1,11 +1,10 @@
-import MyAccountMenu from '../../MyAccountMenu';
+import MesAnnonces from './MesAnnonces/MesAnnonces';
 import './styles.scss';
 
 function EspaceHost() {
   return (
     <div className="EspaceHost">
-      <MyAccountMenu />
-      Mon Profil
+      <MesAnnonces />
     </div>
   );
 }
