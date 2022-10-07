@@ -1,0 +1,36 @@
+.containerCard{
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+    align-items: center;
+    padding-top:2em ;
+}
+.cardTitle{
+    color: black;
+    font-size: 2em;
+}
+.cardCarousel{
+    width: 80vw;
+    display: flex;
+    overflow: scroll;
+    gap: 2em;
+    margin: 4em 0;
+    height:fit-content;    
+}
+.mySwiper{
+    width: 100%;
+}
+
+@media screen and (max-width: 1200px)
+{
+    .cardCarousel{
+        width: 90vw;
+    }
+}
+
+@media screen and (min-width: 1700px)
+{
+    .cardCarousel{
+        width: 50vw;
+    }
+}

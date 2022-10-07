@@ -2,6 +2,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Avatar } from '@mui/material';
+import { Link, useParams } from 'react-router-dom';
 
 // imports components
 import LeafletMap from './Map';
@@ -18,10 +19,13 @@ import './style.scss';
 
 function WorkspaceDetail() {
   const dispatch = useDispatch();
+  const { id } = useParams();
 
   useEffect(() => {
     console.log('useEFFECT');
-    dispatch(actionGetWorkspaceDetail(1));
+    // console.log(new Date('2022-10-20T06:00:00+00:00'));
+    // console.log(new Date('2022-10-20T15:00:00+00:00'));
+    dispatch(actionGetWorkspaceDetail(id));
   }, []);
 
   const workspace = useSelector((state) => state.workspaces.currentWorkspace);
@@ -31,6 +35,7 @@ function WorkspaceDetail() {
   if (workspace) {
     console.log('WORSPACEIMAGES====>', workspace.images);
     console.log('WORSPACEUSER====>', workspace.user[0]);
+    console.log('WORSPACE ID====>', workspace.workspace.id);
   }
 
   const [PictureModalOpen, setpictureModalOpen] = useState(false);
@@ -69,7 +74,7 @@ function WorkspaceDetail() {
         {/* entete titre et lien vers les commentaires commentaires  */}
         <div className="titleContainer">
 
-          <h2 className="title">{workspace.workspace.title}</h2>
+          <h2 className="titleContainer_title">{workspace.workspace.title}</h2>
 
           <div className="hostDesc_comments">
             <p className="stars">&#9733; 4.5</p>
@@ -79,10 +84,14 @@ function WorkspaceDetail() {
 
         {/* description hote */}
         <div className="hostDesc">
-          <div className="hostDesc_hostInfos">
+          {/* <div className="hostDesc_hostInfos">
             <Avatar alt={workspace.user[0].host} src={workspace.user[0].host_avatar} />
             <p className="hostName">{workspace.user[0].host}</p>
-          </div>
+          </div> */}
+          <Link to={`/profil/${workspace.user[0].host_id}`} className="hostDesc_hostInfos">
+            <Avatar alt={workspace.user[0].host} src={workspace.user[0].host_avatar} />
+            <p className="hostName">{workspace.user[0].host}</p>
+          </Link>
         </div>
 
         <section className="detailContainer">
@@ -95,7 +104,8 @@ function WorkspaceDetail() {
                 {
                   workspace.equipments_list.map((equipment) => (
                     <div className="equipment" key={equipment.equipment_id}>
-                      <Avatar alt={equipment.description} src={equipment.icon_link} />
+                      {/* <Avatar alt={equipment.description} src={equipment.icon_link} /> */}
+                      <img className="equipment_icon" src={equipment.icon_link} alt={equipment.description} />
                       <p className="equipmentName">{equipment.description}</p>
                     </div>
                   ))
@@ -113,7 +123,7 @@ function WorkspaceDetail() {
 
           <div className="detailContainer_right">
 
-            <Calendar dayPrice={workspace.workspace.day_price} halfDayPrice={workspace.workspace.half_day_price} />
+            <Calendar dayPrice={workspace.workspace.day_price} halfDayPrice={workspace.workspace.half_day_price} workspaceId={workspace.workspace.id} />
 
           </div>
         </section>

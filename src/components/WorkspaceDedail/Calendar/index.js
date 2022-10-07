@@ -18,8 +18,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // eslint-disable-next-line max-len
 
-function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
+function MultipleReactDatePicker({ dayPrice, halfDayPrice, workspaceId }) {
   const bookingsList = useSelector((state) => state.workspaces.currentWorkspace.booking_list);
+  // const bookingsList = useSelector((state) => [state.workspaces.currentWorkspace.booking_list[0]]);
+  // const userId = useSelector((state) => state.user.user_id);
   const dispatch = useDispatch();
   const [bookings, setBookings] = useState([]);
   const [totalSelectedDays, setTotalSelectedDays] = useState(null);
@@ -95,8 +97,8 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
 
   const bookingAlreadySelected = (date, startHour, endHour) => {
     const result = bookings.find((booking) => (
-      (lightFormat(booking.startDate, 'dd-MM-yy-HH') === lightFormat(setHours(date, startHour), 'dd-MM-yy-HH'))
-      && (lightFormat(booking.endDate, 'dd-MM-yy-HH') === lightFormat(setHours(date, endHour), 'dd-MM-yy-HH'))
+      (lightFormat(booking.start_date, 'dd-MM-yy-HH') === lightFormat(setHours(date, startHour), 'dd-MM-yy-HH'))
+      && (lightFormat(booking.end_date, 'dd-MM-yy-HH') === lightFormat(setHours(date, endHour), 'dd-MM-yy-HH'))
     ));
     return Boolean(result);
   };
@@ -109,8 +111,8 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
 
   const dayIsInBookingList = (date) => {
     const result = bookings.find((booking) => (
-      (lightFormat(booking.startDate, 'dd-MM-yy') === lightFormat(date, 'dd-MM-yy'))
-        && (lightFormat(booking.endDate, 'dd-MM-yy') === lightFormat(date, 'dd-MM-yy'))
+      (lightFormat(booking.start_date, 'dd-MM-yy') === lightFormat(date, 'dd-MM-yy'))
+        && (lightFormat(booking.end_date, 'dd-MM-yy') === lightFormat(date, 'dd-MM-yy'))
     ));
     return Boolean(result);
   };
@@ -119,19 +121,19 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
     if (!bookingAlreadySelected(date, startHour, endHour)) {
       if (dayIsInBookingList(date)) {
         const filteredBooking = bookings.filter((booking) => (
-          (lightFormat(booking.startDate, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
-        && (lightFormat(booking.endDate, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
+          (lightFormat(booking.start_date, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
+        && (lightFormat(booking.end_date, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
         ));
 
         setBookings([...filteredBooking, {
-          startDate: new Date(setHours(date, startHour)),
-          endDate: new Date(setHours(date, endHour)),
+          start_date: new Date(setHours(date, startHour)),
+          end_date: new Date(setHours(date, endHour)),
         }]);
       }
       else {
         setBookings([...bookings, {
-          startDate: new Date(setHours(date, startHour)),
-          endDate: new Date(setHours(date, endHour)),
+          start_date: new Date(setHours(date, startHour)),
+          end_date: new Date(setHours(date, endHour)),
         }]);
       }
     }
@@ -160,8 +162,8 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
   const removeFromBookingsList = (event, date) => {
     event.stopPropagation();
     const filteredBooking = bookings.filter((booking) => (
-      (lightFormat(booking.startDate, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
-    && (lightFormat(booking.endDate, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
+      (lightFormat(booking.start_date, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
+    && (lightFormat(booking.end_date, 'dd-MM-yy') !== lightFormat(date, 'dd-MM-yy'))
     ));
 
     setBookings([...filteredBooking]);
@@ -299,22 +301,12 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
             dispatch({
               type: 'SEND_NEW_BOOKING',
               payload: {
-                user_id: 1,
-                workspace_id: 1,
-                date_list: [
-                  {
-                    start_date: '2022-10-02 08:00:00',
-                    end_date: '2022-10-02 17:00:00',
-                  },
-                  {
-                    start_date: '2022-10-03 08:00:00',
-                    end_date: '2022-10-03 12:00:00',
-                  },
-                ],
+                workspace_id: workspaceId,
+                date_list: bookings,
               },
             });
             // eslint-disable-next-line no-console
-            console.log('pouet!!!');
+            // console.log('pouet!!!');
           }}
           sx={{
             color: '#8A8A8A',
@@ -338,6 +330,7 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice }) {
 MultipleReactDatePicker.propTypes = {
   halfDayPrice: PropTypes.number.isRequired,
   dayPrice: PropTypes.number.isRequired,
+  workspaceId: PropTypes.number.isRequired,
 };
 
 export default MultipleReactDatePicker;

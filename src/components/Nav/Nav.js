@@ -87,7 +87,8 @@ function Nav() {
             {logged && <AccountMenu />}
             {/* Composant avec l'avatar de la navbar pour se connecter si */}
             {/* l'on souhaite s'inscrire ou se connecter avec ses identifiants */}
-            {!logged && <InscriptionMenu /> }
+            {!logged
+            && <InscriptionMenu /> }
           </div>
         </BottomNavigation>
       </Paper>

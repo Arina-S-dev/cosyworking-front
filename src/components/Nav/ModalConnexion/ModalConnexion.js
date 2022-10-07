@@ -67,6 +67,7 @@ function ModalConnexion() {
         Se Connecter
       </MenuItem>
       <Modal
+        onSubmit={getConnexion}
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -120,7 +121,7 @@ function ModalConnexion() {
                 <p className="ModalConnexion-Box-ou-textline" />
               </div>
               {getEmailPasswordAlert && <Alert className="ModalConnexion-Box-Alert" severity="error">L'email ou le mot de passe ne sont pas valides !</Alert>}
-              <form onSubmit={getConnexion}>
+              <form>
                 <Input
                   onChange={getEmail}
                   type="email"

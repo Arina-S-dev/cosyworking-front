@@ -2,9 +2,13 @@ import { applyMiddleware, legacy_createStore as createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import identification from '../Middlewares/identification';
 import WorkspaceDetailMiddleware from '../Middlewares/workspaceDetail';
-import reducer from '../reducers';
+import searchMiddleware from '../Middlewares/searchMiddleware';
+import reducer from '../reducers/index';
+import randomAnnouncesMiddleware from '../Middlewares/randomAnnounceMiddleware';
+import profilMiddleware from '../Middlewares/profilMiddleware';
 
-const middlewareEnhancer = applyMiddleware(identification, WorkspaceDetailMiddleware);
+// eslint-disable-next-line max-len
+const middlewareEnhancer = applyMiddleware(randomAnnouncesMiddleware, identification, searchMiddleware, WorkspaceDetailMiddleware, profilMiddleware);
 
 const composedEnhancers = composeWithDevTools(middlewareEnhancer);
 
