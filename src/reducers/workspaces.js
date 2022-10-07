@@ -3,7 +3,6 @@ import { SAVE_CURRENT_WORKSPACE } from '../actions/workspaces';
 
 export const initialState = {
   currentWorkspace: null,
-  isLoading: true,
   workspaceToEdit: {
     id: 1,
     title: 'Le bureau Cosy de John',
@@ -126,11 +125,6 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         currentWorkspace: action.data[0].workspace_details,
-      };
-    case 'CHANGE_LOADING':
-      return {
-        ...state,
-        isLoading: false,
       };
     default:
       return state;

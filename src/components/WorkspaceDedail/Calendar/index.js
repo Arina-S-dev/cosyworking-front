@@ -297,7 +297,9 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice, workspaceId }) {
         <Button
           variant="contained"
           size="small"
-          onClick={() => {
+          onClick={(event) => {
+            event.stopPropagation();
+            event.preventDefault();
             dispatch({
               type: 'SEND_NEW_BOOKING',
               payload: {
@@ -306,7 +308,7 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice, workspaceId }) {
               },
             });
             // eslint-disable-next-line no-console
-            // console.log('pouet!!!');
+            console.log('pouet!!!');
           }}
           sx={{
             color: '#8A8A8A',

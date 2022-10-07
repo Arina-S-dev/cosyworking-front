@@ -14,7 +14,6 @@ const WorkspaceDetailMiddleware = (store) => (next) => (action) => {
           */
           console.log('responseGETWORKSPACE ==>', response.data);
           store.dispatch(actionSaveCurrentWorkspace(response.data));
-          store.dispatch({ type: 'CHANGE_LOADING' });
         })
         .catch((error) => {
           console.log('requette API ERREUR', error);
