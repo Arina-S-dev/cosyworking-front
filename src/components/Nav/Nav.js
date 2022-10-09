@@ -13,19 +13,20 @@ import theme from '../../tools/themeMui';
 function Nav() {
   const dispatch = useDispatch();
 
+  // Recupération du logged afin de savoir si on est connecté
+  const logged = useSelector((state) => state.user.logged);
+
   // Récupération du rôle de l'utilisateur
   const userRole = useSelector((state) => state.user.role_id);
 
   // Fonction pour gérer le bouton 'devenir hote'
   const getRole = () => {
     // eslint-disable-next-line brace-style, semi
-    if (userRole === 'host') { return true }
+    if (userRole === 'host' && logged === true) { return true }
     // eslint-disable-next-line brace-style, semi
     else { return false }
   };
 
-  // Recupération du logged afin de savoir si on est connecté
-  const logged = useSelector((state) => state.user.logged);
   const isThereAToken = localStorage.getItem('userToken');
   if (isThereAToken) {
     dispatch({

@@ -52,7 +52,7 @@ function App() {
         <Route path="/espace-perso/espace-hote" element={<EspaceHost />} />
         <Route path="/espace-perso/espace-hote/mes-annonces" element={<MesAnnonces />} />
         <Route path="/" element={<Homepage />} />
-        <Route path="*" element={<Error />} />
+        <Route path="/*" element={<Error />} />
       </Routes>
       <Footer />
     </div>
