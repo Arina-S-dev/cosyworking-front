@@ -13,7 +13,6 @@ import Announce from './Announce/Announce';
 
 function RandomAnnounces() {
   const data = useSelector((state) => state.randomannounce.randomannounce);
-  console.log(data);
 
   const datainfos = data.map((dataresults) => (
 
