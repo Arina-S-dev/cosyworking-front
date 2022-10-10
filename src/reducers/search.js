@@ -20,6 +20,7 @@ const reducer = (state = initialState, action = {}) => {
         date_list: [],
         equipments: [],
         workspaces: [],
+        calendarHomePageIsOpen: false,
       };
     case 'OPEN_CALENDAR_ON_HOMEPAGE':
       return {
