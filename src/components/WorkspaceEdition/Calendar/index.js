@@ -15,8 +15,6 @@ import { fr } from 'date-fns/locale';
 // import { Button } from '@mui/material';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 
-import './style.scss';
-
 // eslint-disable-next-line max-len
 
 function MultipleReactDatePicker() {
