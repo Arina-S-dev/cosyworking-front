@@ -68,7 +68,8 @@ const identification = (store) => (next) => (action) => {
         // eslint-disable-next-line eqeqeq
         if (response.status == 200) {
           store.dispatch({
-            type: 'STATUS_INSCRIPTION_OK',
+            type: 'MODAL_INSCRIPTION_OPENING',
+            getOpening: false,
           });
         }
       })

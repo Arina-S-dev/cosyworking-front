@@ -11,12 +11,15 @@ export const initialState = {
   avatar: '',
   username: '',
   about: '',
+  // Gestion de la cession expirée
   error_connection: false,
+  // Gestion de l'ouverture / fermeture de la modale inscription
+  inscriptionModalOpen: false,
   emailexistederror: false,
   passwordwrongformat: false,
   emailwrongformat: false,
   errorrequiredelement: false,
-  statusinscriptionok: false,
+  // statusinscriptionok: false,
   statusconnection: false,
   // Tableau des réservations du coworker non organisé
   datacoworkerreservations: [],
@@ -113,11 +116,11 @@ const reducer = (state = initialState, action = {}) => {
         errorrequiredelement: true,
       };
     // Vérifie que l'inscription est ok pour fermer la modale
-    case 'STATUS_INSCRIPTION_OK':
-      return {
-        ...state,
-        statusinscriptionok: true,
-      };
+    // case 'STATUS_INSCRIPTION_OK':
+    //   return {
+    //     ...state,
+    //     statusinscriptionok: true,
+    //   };
     // Alerte à la connexion si l'email ou le password ne sont pas bons
     case 'CONNECTION_EMAIL_OR_NOT_GOOD':
       return {
@@ -152,6 +155,12 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         controlNavBarEspacePerso: action.getAccessNavBar,
+      };
+      // Gestion de l'ouverture / fermeture de la modale d'inscription
+    case 'MODAL_INSCRIPTION_OPENING':
+      return {
+        ...state,
+        inscriptionModalOpen: action.getOpening,
       };
     default:
       return state;
