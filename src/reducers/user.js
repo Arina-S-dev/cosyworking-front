@@ -26,6 +26,8 @@ export const initialState = {
   datahostrequests: [],
   // Tableau des réservations du coworker réorganisé
   // datahostrequestsOrdered: [],
+  // Control de la barre dans Espace Perso
+  controlNavBarEspacePerso: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -154,6 +156,12 @@ const reducer = (state = initialState, action = {}) => {
         username: action.username,
         about: action.about,
         avatar: action.avatar,
+      };
+      // Control de la barre de menu dans Espace Perso
+    case 'CONTROL_BAR_ESPACE_PERSO':
+      return {
+        ...state,
+        controlNavBarEspacePerso: action.getAccessNavBar,
       };
     default:
       return state;

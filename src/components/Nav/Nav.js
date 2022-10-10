@@ -53,7 +53,7 @@ function Nav() {
           right: 0,
         }}
         // z-index de la nav
-        elevation={99}
+        elevation={3}
       >
         {/* Elements de la navbar */}
         <BottomNavigation

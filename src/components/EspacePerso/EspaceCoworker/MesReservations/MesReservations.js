@@ -3,14 +3,22 @@ import { Accordion, AccordionDetails, AccordionSummary, Avatar, Button, Card, Ca
 import { Box } from '@mui/system';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-// import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 // import data from '../data.json';
 import './styles.scss';
 import MesTables from './MesTables';
 import MyAccountMenu from '../../../MyAccountMenu';
 
 function MesReservations() {
+  const dispatch = useDispatch();
+  // On controle les boutons à afficher pour la barre de navigation
+  useEffect(() => {
+    dispatch({
+      type: 'CONTROL_BAR_ESPACE_PERSO',
+      getAccessNavBar: false,
+    });
+  }, []);
   // On récupère les réservations du coworker coté back et
   // on les reorder pour les regrouper par id de réservation
   const getDataCoworker = useSelector((state) => state.user.datacoworkerreservations);
