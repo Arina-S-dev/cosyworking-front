@@ -9,13 +9,9 @@ import { useSelector } from 'react-redux';
 import theme from '../../tools/themeMui';
 
 function MyAccountMenu() {
-  const userRole = useSelector((state) => state.user.role_id);
-  function checkRole() {
-    if (userRole === 'host') {
-      return true;
-    }
-    return false;
-  }
+  // On récupère le controle de la barre de navigation de l'espace perso
+  // selon que l'on soit 'host' ou 'coworker'
+  const { controlNavBarEspacePerso } = useSelector((state) => state.user);
 
   return (
     <div className="account-menu">
@@ -34,7 +30,7 @@ function MyAccountMenu() {
               <ReplayRoundedIcon />Mon Espace Perso
             </Button>
           </Link>
-          {checkRole()
+          {controlNavBarEspacePerso
           && (
             <>
               <Link to="/espace-perso/espace-hote/mes-annonces">
@@ -61,7 +57,7 @@ function MyAccountMenu() {
               </Button>
             </>
           )}
-          {!checkRole()
+          {!controlNavBarEspacePerso
           && (
           <>
             <Link to="/espace-perso/espace-coworker/mes-reservations">
