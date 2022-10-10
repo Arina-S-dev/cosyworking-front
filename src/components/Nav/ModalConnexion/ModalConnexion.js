@@ -9,7 +9,7 @@ import {
   Alert,
 } from '@mui/material';
 import { Box, ThemeProvider } from '@mui/system';
-import { useState } from 'react';
+// import { useState } from 'react';
 import {
   useDispatch, useSelector,
 } from 'react-redux';
@@ -18,10 +18,21 @@ import theme from '../../../tools/themeMui';
 import './styles.scss';
 
 function ModalConnexion() {
+  // Gestion de l'ouverture et fermeture de la Modale d'inscription
+  const open = useSelector((state) => state.user.connexionModalOpen);
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleOpen = () => {
+    dispatch({
+      type: 'MODAL_CONNEXION_OPENING',
+      getOpening: true,
+    });
+  };
+  const handleClose = () => {
+    dispatch({
+      type: 'MODAL_CONNEXION_OPENING',
+      getOpening: false,
+    });
+  };
 
   // Récupération de l'alerte en cas de mauvais password ou email
   const getEmailPasswordAlert = useSelector((state) => state.user.statusconnection);

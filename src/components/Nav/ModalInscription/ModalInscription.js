@@ -147,6 +147,13 @@ function ModalInscription() {
           });
       };
 
+  const handleInscriptionModal = () => {
+    dispatch({
+      type: 'MODAL_INSCRIPTION_OPENING',
+      getOpening: false,
+    });
+  };
+
   return (
     <div className="ModalInscription">
       <MenuItem onClick={handleOpen}>
@@ -324,7 +331,7 @@ function ModalInscription() {
                 </ThemeProvider>
                 <Grid container justifyContent="flex-end">
                   <Grid item>
-                    <Link href="#" variant="body2">
+                    <Link href="#" variant="body2" onClick={handleInscriptionModal}>
                       <ModalConnexion />
                     </Link>
                   </Grid>

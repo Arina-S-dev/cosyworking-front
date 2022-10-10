@@ -13,8 +13,10 @@ export const initialState = {
   about: '',
   // Gestion de la cession expirée
   error_connection: false,
-  // Gestion de l'ouverture / fermeture de la modale inscription
+  // Gestion de l'ouverture / fermeture de la modale 'inscription'
   inscriptionModalOpen: false,
+  // Gestion de l'ouverture / fermeture de la modale 'connexion'
+  connexionModalOpen: false,
   emailexistederror: false,
   passwordwrongformat: false,
   emailwrongformat: false,
@@ -156,6 +158,12 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         inscriptionModalOpen: action.getOpening,
+      };
+      // Gestion de l'ouverture / fermeture de la modale de connexion
+    case 'MODAL_CONNEXION_OPENING':
+      return {
+        ...state,
+        connexionModalOpen: action.getOpening,
       };
     // Gestion du loading dans 'Mes réservations'
     case 'HANDLE_LOADING_RESERVATIONS':
