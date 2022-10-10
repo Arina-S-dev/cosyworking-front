@@ -1,6 +1,7 @@
 // eslint-disable-next-line object-curly-newline
 import { Accordion, AccordionDetails, AccordionSummary, Avatar, Button, Card, CardContent, CardMedia, CircularProgress, TableContainer, Typography } from '@mui/material';
 import { Box, ThemeProvider } from '@mui/system';
+import { Link } from 'react-router-dom';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useDispatch, useSelector } from 'react-redux';
@@ -65,10 +66,33 @@ function MesReservations() {
 
   // Gestion du loading
   const getLoading = useSelector((state) => state.user.loadingReservationsPage);
+
+  // Gestion du message 'pas encore de réservations'
+  const askReservations = useSelector((state) => state.user.datacoworkerreservations);
+  const getAskingreservations = () => {
+    if (askReservations.length === 0) {
+      return true;
+    } return false;
+  };
+  getAskingreservations();
+
   return (
     <div className="MesReservations">
       <MyAccountMenu />
       <h1 className="MesReservations-title">Mes Réservations</h1>
+      {getAskingreservations() && !getLoading
+      && (
+      <Card className="MesReservations-NoReservations">
+        Vous n'avez pas encore de réservation.
+        <ThemeProvider theme={theme}>
+          <Link to="/recherche">
+            <Button>
+              Faire une réservation
+            </Button>
+          </Link>
+        </ThemeProvider>
+      </Card>
+      )}
       {getLoading
       && (
         <Card className="MesReservations-LoadingCard">
