@@ -13,6 +13,14 @@ export const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case 'EMPTY_STATE':
+      return {
+        ...state,
+        city: '',
+        date_list: [],
+        equipments: [],
+        workspaces: [],
+      };
     case 'OPEN_CALENDAR_ON_HOMEPAGE':
       return {
         ...state,
