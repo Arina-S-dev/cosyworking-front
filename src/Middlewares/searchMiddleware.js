@@ -5,7 +5,7 @@ const searchMiddleware = (store) => (next) => (action) => {
     // eslint-disable-next-line camelcase
     const { city, date_list, equipments } = store.getState().search;
     // eslint-disable-next-line camelcase
-    axios.post('http://quentinroggy-server.eddi.cloud/api/workspace/search', { city, date_list, equipments })
+    axios.post('https://cosyworking-api.onrender.com/api/workspace/search', { city, date_list, equipments })
       .then((response) => {
         // eslint-disable-next-line no-console
         // console.log(response.data);
@@ -20,10 +20,9 @@ const searchMiddleware = (store) => (next) => (action) => {
       // eslint-disable-next-line no-console
         console.log(error.response.data.message);
       });
-  } next(action);
-
+  }
   if (action.type === 'GET_EQUIPMENTS') {
-    axios.get('http://quentinroggy-server.eddi.cloud/api/equipments')
+    axios.get('https://cosyworking-api.onrender.com/api/equipments')
       .then((response) => {
         if (response.data) {
           store.dispatch({

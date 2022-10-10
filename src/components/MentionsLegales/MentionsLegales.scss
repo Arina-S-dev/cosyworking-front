@@ -1,0 +1,17 @@
+.MentionsLegalesContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 2em;
+    height: calc(100vh - 370px);
+    img{
+        height: 400px;
+        width: auto;
+        object-fit: contain;
+    }
+    h1{
+        font-size: 3em;
+        font-weight: bold;
+        text-align: center;
+    }
+}

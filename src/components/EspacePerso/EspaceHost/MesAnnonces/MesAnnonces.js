@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 // import data from './data.json';
 import './MesAnnonces.scss';
 import MesAnnoncesRefs from './MesAnnoncesRefs/MesAnnoncesRefs';
+import MyAccountMenu from '../../../MyAccountMenu';
 
 function MesAnnonces() {
 // On récupère les réservations des annonces de l'hote que l'on regroupe
@@ -86,6 +87,7 @@ function MesAnnonces() {
   // eslint-disable-next-line indent
     return (
       <div className="MesAnnonces">
+        <MyAccountMenu />
         <h1 className="MesAnnonces-title">Mes Annonces</h1>
         {/* {newDataArray.map((list, index) => ( */}
         {newDataArray.map((list, index) => (

@@ -3,7 +3,7 @@
 import { BottomNavigation, Button, Paper, ThemeProvider } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import logo from '../../img/logo.png';
+import logo from '../../img/logo_reduit.png';
 import './styles.scss';
 import MenuBurger from './MenuBurger/MenuBurger';
 import AccountMenu from './AccountMenu/AccountMenu';
@@ -52,7 +52,7 @@ function Nav() {
           right: 0,
         }}
         // z-index de la nav
-        elevation={3}
+        elevation={99}
       >
         {/* Elements de la navbar */}
         <BottomNavigation
@@ -63,7 +63,9 @@ function Nav() {
           }}
         >
           <MenuBurger />
-          <img src={logo} alt="logo" />
+          <Link to="/">
+            <img className="imgLogo" src={logo} alt="logo" />
+          </Link>
           <div className="Nav-leftNavBar">
             <ThemeProvider theme={theme}>
               <Button
@@ -73,9 +75,11 @@ function Nav() {
                 sx={{
                   width: '100%',
                   margin: '0rem',
-                  height: '100%',
+                  height: '85%',
                   textTransform: 'none',
-                  borderRadius: '0px',
+                  borderRadius: '8px',
+                  verticalAlign: 'center',
+                  fontWeight: 'bold',
                 }}
               >
                 {/* Gestion du bouton dans la nav */}
@@ -92,7 +96,6 @@ function Nav() {
           </div>
         </BottomNavigation>
       </Paper>
-      coucou
     </div>
   );
 }

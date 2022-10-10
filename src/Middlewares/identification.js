@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable camelcase */
 import axios from 'axios';
 
 const identification = (store) => (next) => (action) => {
@@ -7,7 +9,7 @@ const identification = (store) => (next) => (action) => {
     const { email, password } = store.getState().user;
     // eslint-disable-next-line no-console
     console.log(email, password);
-    axios.post('http://quentinroggy-server.eddi.cloud/api/auth/login', { email, password })
+    axios.post('https://cosyworking-api.onrender.com/api/auth/login', { email, password })
       .then((response) => {
         // eslint-disable-next-line no-console
         console.log(response);
@@ -54,7 +56,7 @@ const identification = (store) => (next) => (action) => {
       });
     }
     // eslint-disable-next-line object-curly-newline, camelcase
-    axios.post('http://quentinroggy-server.eddi.cloud/api/auth/signup', { first_name, last_name, email, password, gender, role_id })
+    axios.post('https://cosyworking-api.onrender.com/api/auth/signup', { first_name, last_name, email, password, gender, role_id })
       .then((response) => {
         // eslint-disable-next-line no-console
         console.log(response.request.status);
@@ -99,7 +101,7 @@ const identification = (store) => (next) => (action) => {
     // eslint-disable-next-line no-console
     // console.log(user_id);
     // eslint-disable-next-line object-curly-newline, camelcase
-    axios.get(`http://quentinroggy-server.eddi.cloud/api/personalspace/${user_id}/coworkerbooking`, { headers: {
+    axios.get(`https://cosyworking-api.onrender.com/api/personalspace/${user_id}/coworkerbooking`, { headers: {
       // eslint-disable-next-line quote-props, comma-dangle
       'x-access-token': getUserToken
     // eslint-disable-next-line object-curly-spacing, object-curly-newline
@@ -137,7 +139,7 @@ const identification = (store) => (next) => (action) => {
     // eslint-disable-next-line no-console
     // console.log(user_id);
     // eslint-disable-next-line object-curly-newline, camelcase
-    axios.get(`http://quentinroggy-server.eddi.cloud/api/personalspace/${user_id}/booking`, { headers: {
+    axios.get(`https://cosyworking-api.onrender.com/api/personalspace/${user_id}/booking`, { headers: {
       // eslint-disable-next-line quote-props, comma-dangle
       'x-access-token': getUserToken
     // eslint-disable-next-line object-curly-spacing, object-curly-newline
@@ -152,6 +154,51 @@ const identification = (store) => (next) => (action) => {
             hostrequests: getDataRequestsHost,
           });
         }
+      })
+      .catch((error) => {
+      // en cas d’échec de la requête
+      // eslint-disable-next-line no-console
+        console.log(error);
+        // Erreur si jamais le token est expiré
+        const errorToken = error.response.data.message;
+        if (errorToken === 'Token Expired !') {
+          store.dispatch({
+            type: 'CONNECTION_STATE',
+            error: true,
+          });
+        }
+      });
+  }
+  // MiddleWare afin de récupérer les informations personnelles de l'utilisateur
+  if (action.type === 'GET_USER_PRIVATE_PROFIL') {
+    // Récupération du token présent dans le LocalStorage
+    const getUserToken = JSON.parse(localStorage.getItem('userToken'));
+    // eslint-disable-next-line camelcase
+    const { user_id } = store.getState().user;
+    // eslint-disable-next-line no-console
+    // console.log(user_id);
+    // eslint-disable-next-line object-curly-newline, camelcase
+    axios.get(`https://cosyworking-api.onrender.com/api/personalspace/${user_id}/profil`, { headers: {
+      // eslint-disable-next-line quote-props, comma-dangle
+      'x-access-token': getUserToken
+    // eslint-disable-next-line object-curly-spacing, object-curly-newline
+    }})
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log('Mes infos personnelles', response);
+        // eslint-disable-next-line camelcase, object-curly-newline
+        const { first_name, last_name, gender, username, about, avatar } = response.data[0];
+        console.log('mon username : ', username);
+        store.dispatch({
+          type: 'GET_USER_PRIVATE_INFO',
+          // eslint-disable-next-line camelcase
+          firstName: first_name,
+          lastName: last_name,
+          gender: gender,
+          username: username,
+          about: about,
+          avatar: avatar,
+        });
       })
       .catch((error) => {
       // en cas d’échec de la requête

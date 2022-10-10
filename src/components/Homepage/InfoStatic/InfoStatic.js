@@ -1,7 +1,7 @@
 import './InfoStatic.scss';
-import SearchIMG from '../../img/searchHouseWork.png';
-import Contact from '../../img/contact.png';
-import Desk from '../../img/desk.png';
+import SearchIMG from '../../../img/searchHouseWork.png';
+import Contact from '../../../img/contact.png';
+import Desk from '../../../img/desk.png';
 
 function InfoStatic() {
   return (

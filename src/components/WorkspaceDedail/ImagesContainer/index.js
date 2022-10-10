@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import { Button } from '@mui/material';
 
 function ImagesContainer({ imagesList, openPicturesModale }) {
-  const mainImage = imagesList.find((image) => image.mainImage === true);
-  const otherImages = imagesList.filter((image) => image.mainImage === false);
+  const mainImage = imagesList.find((image) => image.main === true);
+  const otherImages = imagesList.filter((image) => image.main === false);
 
   return (
     <section className="imagesContainer">
@@ -19,7 +19,7 @@ function ImagesContainer({ imagesList, openPicturesModale }) {
           index < 3
 
               && (
-              <div className="imageContainer_other-images-img" key={image.id}>
+              <div className="imageContainer_other-images-img" key={image.image_id}>
                 <img className="image" src={image.link} alt="" />
               </div>
               )
@@ -61,9 +61,9 @@ ImagesContainer.propTypes = {
 
   imagesList: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      image_id: PropTypes.number.isRequired,
       link: PropTypes.string.isRequired,
-      mainImage: PropTypes.bool.isRequired,
+      main: PropTypes.bool.isRequired,
     }),
   ).isRequired,
   openPicturesModale: PropTypes.func.isRequired,

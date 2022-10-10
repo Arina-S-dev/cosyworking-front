@@ -18,6 +18,12 @@ function EspacePerso() {
     });
   };
 
+  function getPrivatePersonnalInfos() {
+    dispatch({
+      type: 'GET_USER_PRIVATE_PROFIL',
+    });
+  }
+
   const getHostSpacesRequests = () => {
     dispatch({
       type: 'GET_HOST_REQUESTS',
@@ -36,7 +42,7 @@ function EspacePerso() {
     <div className="EspacePerso">
       <h1 className="EspacePerso-title">Mon Espace Perso</h1>
       <div className="EspacePerso-AllCards">
-        <Link to="#" className="EspacePerso-Link">
+        <Link to="/espace-perso/mon-profil" className="EspacePerso-Link" onClick={getPrivatePersonnalInfos()}>
           <Card className="EspacePerso-Card">
             <CardActionArea>
               <CardMedia
