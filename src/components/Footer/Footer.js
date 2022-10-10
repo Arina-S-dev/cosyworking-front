@@ -23,7 +23,7 @@ function Footer() {
           <Link className="navigationFooter-links" to="/">Accueil</Link>
           <Link className="navigationFooter-links" to="/recherche">Rechercher une Location</Link>
           <Link className="navigationFooter-links" to="/faq">FAQ</Link>
-          <Link className="navigationFooter-links" to="/">A Propos</Link>
+          <Link className="navigationFooter-links" to="/apropos">A Propos</Link>
           <Link className="navigationFooter-links" to="/contact">Contactez-nous</Link>
         </div>
         <div className="follow">

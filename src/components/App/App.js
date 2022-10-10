@@ -24,6 +24,7 @@ import MentionsLegales from '../MentionsLegales/MentionsLegales';
 import CGV from '../CGV/CGV';
 import ContactUs from '../ContactUs/ContactUs';
 import MonProfil from '../EspacePerso/MonProfil/MonProfil';
+import AboutUs from '../AboutUs/AboutUs';
 
 function App() {
   // On vérifie si le token n'a pas expiré en récupérant l'état de connexion
@@ -52,6 +53,7 @@ function App() {
         <Route path="/espace-perso/espace-hote" element={<EspaceHost />} />
         <Route path="/espace-perso/espace-hote/mes-annonces" element={<MesAnnonces />} />
         <Route path="/" element={<Homepage />} />
+        <Route path="/apropos" element={<AboutUs />} />
         <Route path="/*" element={<Error />} />
       </Routes>
       <Footer />

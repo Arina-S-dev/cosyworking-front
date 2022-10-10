@@ -1,0 +1,97 @@
+.aboutUs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ourProject{
+    margin: 2em 0 0em 0;
+    padding: 3em 1em;
+    text-align: center;
+    width: 70vw;
+    p{
+        color: white;
+        font-size: 1.2em;
+    }
+    background-color: #FFC000;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px ;
+}
+.aboutUsImgDiv{
+    display: flex;
+    justify-content: center;
+}
+.aboutUsIMG{
+    height: 100%;
+    max-height: 400px;
+    width: 100%;
+    margin-top: 4em;
+}
+.team{
+    width: 70vw;
+    padding: 3em 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5em;
+    background-color: #ffbf001f;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px ;
+    text-align: center;
+    
+}
+.projectTitle{
+    margin-bottom: 1em;
+    font-size: 3em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+}
+.teamTitle{
+    margin-bottom: 1em;
+    font-size: 3em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: black;
+}
+.teamCard{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    border-radius: 16px;
+    padding: 2em 0;
+}
+.card{
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+.teamCardIMG{
+    box-sizing: border-box;
+    width: 100%;
+}
+.teamCardInfos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 850px)
+{
+    .teamCard{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media screen and (max-width: 1200px)
+{
+    .team{
+        width: 85vw;
+    }
+    .ourProject{
+        width: 85vw;
+    }
+}
