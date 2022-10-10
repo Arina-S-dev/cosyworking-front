@@ -11,13 +11,21 @@ import SearchCalendar from '../../../SearchCalendar';
 import theme from '../../../../tools/themeMui';
 
 function SearchInput() {
+  const calendarIsOpen = useSelector((state) => state.search.calendarHomePageIsOpen);
   const dispatch = useDispatch();
   const getOther = () => {
-    dispatch({
-      type: 'OPEN_CALENDAR_ON_HOMEPAGE',
-    });
+    if (calendarIsOpen === false) {
+      dispatch({
+        type: 'OPEN_CALENDAR_ON_HOMEPAGE',
+      });
+    }
+    else {
+      dispatch({
+        type: 'CLOSE_CALENDAR_ON_HOMEPAGE',
+      });
+    }
   };
-  const calendarIsOpen = useSelector((state) => state.search.calendarHomePageIsOpen);
+
   const dateList = useSelector((state) => state.search.date_list);
   console.log(dateList);
   function dateintableau() {
