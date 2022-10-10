@@ -20,12 +20,8 @@ export const initialState = {
   statusconnection: false,
   // Tableau des réservations du coworker non organisé
   datacoworkerreservations: [],
-  // Tableau des réservations du coworker réorganisé
-  // datacoworkerreservationsOrdered: [],
   // Tableau des réservations des espaces de l'hôte non organisé
   datahostrequests: [],
-  // Tableau des réservations du coworker réorganisé
-  // datahostrequestsOrdered: [],
   // Control de la barre dans Espace Perso
   controlNavBarEspacePerso: false,
 };
@@ -41,12 +37,6 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         password: action.password,
-      };
-    case 'SET_CONNEXION':
-      return {
-        ...state,
-        // Cela permet d'enlever le message "Session expirée"
-        error_connection: false,
       };
     case 'GET_CONNEXION':
       return {
