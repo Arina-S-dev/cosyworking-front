@@ -1,10 +1,12 @@
-import MesAnnonces from './MesAnnonces/MesAnnonces';
+// import MesAnnonces from './MesAnnonces/MesAnnonces';
+import MyRequests from './MyRequests';
 import './styles.scss';
 
 function EspaceHost() {
   return (
     <div className="EspaceHost">
-      <MesAnnonces />
+      {/* <MesAnnonces /> */}
+      <MyRequests />
     </div>
   );
 }
