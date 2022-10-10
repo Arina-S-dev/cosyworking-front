@@ -19,7 +19,6 @@ export const initialState = {
   passwordwrongformat: false,
   emailwrongformat: false,
   errorrequiredelement: false,
-  // statusinscriptionok: false,
   statusconnection: false,
   // Tableau des réservations du coworker non organisé
   datacoworkerreservations: [],
@@ -27,6 +26,8 @@ export const initialState = {
   datahostrequests: [],
   // Control de la barre dans Espace Perso
   controlNavBarEspacePerso: false,
+  // Gestion du loading page 'Mes Réservations'
+  loadingReservationsPage: true,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -115,12 +116,6 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         errorrequiredelement: true,
       };
-    // Vérifie que l'inscription est ok pour fermer la modale
-    // case 'STATUS_INSCRIPTION_OK':
-    //   return {
-    //     ...state,
-    //     statusinscriptionok: true,
-    //   };
     // Alerte à la connexion si l'email ou le password ne sont pas bons
     case 'CONNECTION_EMAIL_OR_NOT_GOOD':
       return {
@@ -161,6 +156,12 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         inscriptionModalOpen: action.getOpening,
+      };
+    // Gestion du loading dans 'Mes réservations'
+    case 'HANDLE_LOADING_RESERVATIONS':
+      return {
+        ...state,
+        loadingReservationsPage: action.loadingReservations,
       };
     default:
       return state;

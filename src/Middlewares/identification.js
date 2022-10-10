@@ -115,10 +115,17 @@ const identification = (store) => (next) => (action) => {
         // eslint-disable-next-line no-console
         console.log(response);
         const getDataReservations = response.data;
+        const getStatus = response.request.status;
         if (response) {
           store.dispatch({
             type: 'GET_DATA_COWORKER_RESERVATIONS',
             coworkerreservations: getDataReservations,
+          });
+        }
+        if (getStatus === 200) {
+          store.dispatch({
+            type: 'HANDLE_LOADING_RESERVATIONS',
+            loadingReservations: false,
           });
         }
       })

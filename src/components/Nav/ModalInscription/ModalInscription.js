@@ -29,9 +29,6 @@ import './styles.scss';
 function ModalInscription() {
   // Gestion de l'ouverture et fermeture de la Modale d'inscription
   const open = useSelector((state) => state.user.inscriptionModalOpen);
-  // const [open, setOpen] = useState(false);
-  // const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
   const dispatch = useDispatch();
   const handleOpen = () => {
     dispatch({

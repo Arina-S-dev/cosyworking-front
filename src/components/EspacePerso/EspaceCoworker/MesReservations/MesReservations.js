@@ -1,6 +1,6 @@
 // eslint-disable-next-line object-curly-newline
-import { Accordion, AccordionDetails, AccordionSummary, Avatar, Button, Card, CardContent, CardMedia, TableContainer, Typography } from '@mui/material';
-import { Box } from '@mui/system';
+import { Accordion, AccordionDetails, AccordionSummary, Avatar, Button, Card, CardContent, CardMedia, CircularProgress, TableContainer, Typography } from '@mui/material';
+import { Box, ThemeProvider } from '@mui/system';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import './styles.scss';
 import MesTables from './MesTables';
 import MyAccountMenu from '../../../MyAccountMenu';
+import theme from '../../../../tools/themeMui';
 
 function MesReservations() {
   const dispatch = useDispatch();
@@ -62,10 +63,20 @@ function MesReservations() {
   // eslint-disable-next-line object-curly-newline
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
+  // Gestion du loading
+  const getLoading = useSelector((state) => state.user.loadingReservationsPage);
   return (
     <div className="MesReservations">
       <MyAccountMenu />
       <h1 className="MesReservations-title">Mes Réservations</h1>
+      {getLoading
+      && (
+        <Card className="MesReservations-LoadingCard">
+          <ThemeProvider theme={theme}>
+            <CircularProgress />
+          </ThemeProvider>
+        </Card>
+      )}
       {newDataArray.map((list) => (
         <Card
           key={list.id}
