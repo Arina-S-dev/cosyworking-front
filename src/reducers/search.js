@@ -18,6 +18,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         calendarHomePageIsOpen: true,
       };
+    case 'CLOSE_CALENDAR_ON_HOMEPAGE':
+      return {
+        ...state,
+        calendarHomePageIsOpen: false,
+      };
     case 'OPEN_MODAL_FILTERS':
       return {
         ...state,

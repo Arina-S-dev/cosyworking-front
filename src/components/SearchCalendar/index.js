@@ -216,6 +216,9 @@ function SearchCalendar() {
               dispatch({
                 type: 'CLOSE_MODAL_CALENDAR',
               });
+              dispatch({
+                type: 'CLOSE_CALENDAR_ON_HOMEPAGE',
+              });
             }}
             sx={{
               color: '#8A8A8A',
