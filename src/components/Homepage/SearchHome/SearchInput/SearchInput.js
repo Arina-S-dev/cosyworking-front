@@ -11,14 +11,28 @@ import SearchCalendar from '../../../SearchCalendar';
 import theme from '../../../../tools/themeMui';
 
 function SearchInput() {
+  const calendarIsOpen = useSelector((state) => state.search.calendarHomePageIsOpen);
   const dispatch = useDispatch();
   const getOther = () => {
-    dispatch({
-      type: 'OPEN_CALENDAR_ON_HOMEPAGE',
-    });
+    if (calendarIsOpen === false) {
+      dispatch({
+        type: 'OPEN_CALENDAR_ON_HOMEPAGE',
+      });
+    }
+    else {
+      dispatch({
+        type: 'CLOSE_CALENDAR_ON_HOMEPAGE',
+      });
+    }
   };
 
-  const calendarIsOpen = useSelector((state) => state.search.calendarHomePageIsOpen);
+  const dateList = useSelector((state) => state.search.date_list);
+  console.log(dateList);
+  function dateintableau() {
+    if (dateList.length === 0) {
+      return false;
+    } return true;
+  }
   // const getSelectedCity = useSelector((state) => state.searchhome.city);
   const getCity = (event) => {
     const city = event.target.value;
@@ -60,6 +74,13 @@ function SearchInput() {
 
       </div>
       )}
+          {dateintableau() && !calendarIsOpen && (
+            <div className="validationDate">
+              <p>Vos dates ont bien été prises en compte</p>
+
+              <Button sx={{ fontSize: 14 }} onClick={getOther}>Modifier mes dates</Button>
+            </div>
+          )}
           <Button
             variant="contained"
             sx={{ margin: 3 }}

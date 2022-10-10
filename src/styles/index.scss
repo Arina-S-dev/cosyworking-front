@@ -1,9 +1,14 @@
 @use 'reset';
 @use 'vars';
 
+
+html {
+  height: -webkit-fill-available; /* We have to fix html height */
+}
 body {
   font-family: sans-serif;
-  height: calc(100vh - 370px);
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 #root{
