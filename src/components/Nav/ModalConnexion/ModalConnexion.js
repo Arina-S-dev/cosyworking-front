@@ -7,6 +7,7 @@ import {
   ListItemIcon,
   Input,
   Alert,
+  AlertTitle,
 } from '@mui/material';
 import { Box, ThemeProvider } from '@mui/system';
 // import { useState } from 'react';
@@ -69,6 +70,9 @@ function ModalConnexion() {
     });
   };
 
+  // On vérifie si le token n'a pas expiré en récupérant l'état de connexion
+  const errorConnection = useSelector((state) => state.user.error_connection);
+
   return (
     <div className="ModalConnexion">
       <MenuItem onClick={handleOpen}>
@@ -108,15 +112,19 @@ function ModalConnexion() {
           >
             Connexion
           </Typography>
+          {/* On affiche un message si le token a exprié */}
+          {errorConnection
+          && (
+          <Alert severity="info" sx={{ zIndex: '4' }}>
+            <AlertTitle>Connexion</AlertTitle>
+            Votre session a expiré, veuillez vous <strong>reconnecter!</strong>
+          </Alert>
+          )}
           <div className="ModalBurger-listButtons">
             <Typography
               component="div"
               id="modal-modal-description"
-              sx={{
-                width: '290px',
-                paddingTop: '0.3rem',
-                margin: 'auto',
-              }}
+              sx={{ width: '290px', paddingTop: '0.3rem', margin: 'auto' }}
             >
               {/* logo de Google */}
               <div className="ModalConnexion-Box-logo">
@@ -136,29 +144,20 @@ function ModalConnexion() {
                   onChange={getEmail}
                   type="email"
                   placeholder="Email"
-                  sx={{
-                    width: '100%',
-                    margin: '0.5rem',
-                  }}
+                  sx={{ width: '100%', margin: '0.5rem' }}
                 />
                 <Input
                   onChange={getPassword}
                   type="password"
                   placeholder="Mot de passe"
-                  sx={{
-                    width: '100%',
-                    margin: '0.5rem',
-                  }}
+                  sx={{ width: '100%', margin: '0.5rem' }}
                 />
                 <ThemeProvider theme={theme}>
                   <Button
                     type="submit"
                     variant="contained"
                     disableElevation
-                    sx={{
-                      width: '100%',
-                      margin: '0.5rem',
-                    }}
+                    sx={{ width: '100%', margin: '0.5rem' }}
                   >
                     Connexion
                   </Button>

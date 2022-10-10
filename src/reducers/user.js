@@ -17,6 +17,10 @@ export const initialState = {
   inscriptionModalOpen: false,
   // Gestion de l'ouverture / fermeture de la modale 'connexion'
   connexionModalOpen: false,
+  // Gestion de l'ouverture de la modale d'annulation de réservation
+  cancelModalReservation: false,
+  // Obtention id de la réservation pour son annulation
+  getIdReservationForCancel: 0,
   emailexistederror: false,
   passwordwrongformat: false,
   emailwrongformat: false,
@@ -165,11 +169,23 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         connexionModalOpen: action.getOpening,
       };
+    // Gestion de l'ouverture / fermeture de la modale d'annulation d'une réservation
+    case 'MODAL_CANCEL_RESERVATION_OPENING':
+      return {
+        ...state,
+        cancelModalReservation: action.getOpening,
+      };
     // Gestion du loading dans 'Mes réservations'
     case 'HANDLE_LOADING_RESERVATIONS':
       return {
         ...state,
         loadingReservationsPage: action.loadingReservations,
+      };
+    // Gestion du loading dans 'Mes réservations'
+    case 'GET_ID_RESERVATION':
+      return {
+        ...state,
+        getIdReservationForCancel: action.idReservation,
       };
     default:
       return state;

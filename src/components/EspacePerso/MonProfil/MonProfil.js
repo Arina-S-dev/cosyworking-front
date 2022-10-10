@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import './MonProfil.scss';
+import { ThemeProvider } from '@emotion/react';
+import theme from '../../../tools/themeMui';
 
 function MonProfil() {
   // eslint-disable-next-line max-len, object-curly-newline
@@ -12,11 +14,14 @@ function MonProfil() {
 
   return (
     <div className="MonProfil">
-      <Link to="/espace-perso/">
-        <Button>
-          <ReplayRoundedIcon />Mon Espace Perso
-        </Button>
-      </Link>
+      <ThemeProvider theme={theme}>
+        <Link to="/espace-perso/">
+          <Button color="neutral">
+            <ReplayRoundedIcon />
+            Mon Espace Perso
+          </Button>
+        </Link>
+      </ThemeProvider>
       <h1 className="MonProfil-title">MonProfil</h1>
       <Card
         className="MonProfil-Card"

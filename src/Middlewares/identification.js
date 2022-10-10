@@ -142,6 +142,46 @@ const identification = (store) => (next) => (action) => {
         }
       });
   }
+  // MiddleWare afin de récupérer les réservations du coworker
+  if (action.type === 'CANCEL_RESERVATION') {
+    // Récupération du token présent dans le LocalStorage
+    const getUserToken = JSON.parse(localStorage.getItem('userToken'));
+    // eslint-disable-next-line camelcase
+    const reservationId = store.getState().user.getIdReservationForCancel;
+    // eslint-disable-next-line no-console
+    // console.log(user_id);
+    // eslint-disable-next-line object-curly-newline, camelcase
+    axios.patch(`https://cosyworking-api.onrender.com/api/booking/${reservationId}/state`, { state: 'Annulé' }, { headers: {
+      // eslint-disable-next-line quote-props, comma-dangle
+      'x-access-token': getUserToken
+    // eslint-disable-next-line object-curly-spacing, object-curly-newline
+    }})
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log(response);
+        if (response.request.status === 200) {
+          store.dispatch({
+            type: 'MODAL_CANCEL_RESERVATION_OPENING',
+            getOpening: false,
+          });
+          store.dispatch({
+            type: 'GET_COWORKER_RESERVATIONS',
+          });
+        }
+      })
+      .catch((error) => {
+      // en cas d’échec de la requête
+      // eslint-disable-next-line no-console
+        console.log(error);
+        const errorToken = error.response.data.message;
+        if (errorToken === 'Token Expired !') {
+          store.dispatch({
+            type: 'CONNECTION_STATE',
+            error: true,
+          });
+        }
+      });
+  }
   // MiddleWare afin de récupérer les réservations des annonces de l'Hote
   if (action.type === 'GET_HOST_REQUESTS') {
     // Récupération du token présent dans le LocalStorage
