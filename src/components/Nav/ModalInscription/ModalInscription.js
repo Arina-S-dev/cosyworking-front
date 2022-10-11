@@ -3,8 +3,6 @@ import {
   Button,
   Modal,
   Typography,
-  MenuItem,
-  ListItemIcon,
   Avatar,
   Grid,
   TextField,
@@ -30,12 +28,6 @@ function ModalInscription() {
   // Gestion de l'ouverture et fermeture de la Modale d'inscription
   const open = useSelector((state) => state.user.inscriptionModalOpen);
   const dispatch = useDispatch();
-  const handleOpen = () => {
-    dispatch({
-      type: 'MODAL_INSCRIPTION_OPENING',
-      getOpening: true,
-    });
-  };
   const handleClose = () => {
     dispatch({
       type: 'MODAL_INSCRIPTION_OPENING',
@@ -156,12 +148,6 @@ function ModalInscription() {
 
   return (
     <div className="ModalInscription">
-      <MenuItem onClick={handleOpen}>
-        <ListItemIcon>
-          <Avatar />
-        </ListItemIcon>
-        S'inscrire
-      </MenuItem>
       {/* {!getStatus && ( */}
       <Modal
         onSubmit={setSignUp}

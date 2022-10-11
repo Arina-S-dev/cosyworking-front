@@ -75,12 +75,11 @@ function Nav() {
                 disableElevation
                 sx={{
                   width: '100%',
-                  margin: '0rem',
                   height: '85%',
                   textTransform: 'none',
                   borderRadius: '8px',
-                  verticalAlign: 'center',
                   fontWeight: 'bold',
+                  lineHeight: '0.9rem',
                 }}
               >
                 {/* Gestion du bouton dans la nav */}

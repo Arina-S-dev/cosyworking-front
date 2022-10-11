@@ -15,7 +15,9 @@
     overflow: scroll;
     gap: 2em;
     margin: 4em 0;
-    height:fit-content;    
+    height:fit-content; 
+    overflow-y: hidden;
+    overflow-x: hidden; 
 }
 .mySwiper{
     width: 100%;

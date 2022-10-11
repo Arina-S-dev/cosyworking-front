@@ -26,7 +26,7 @@ function MesAnnonces() {
   // eslint-disable-next-line no-console
   // console.log(getDataCoworker);
   const newDataArray = [];
-  function getOrderDataCoworker() {
+  function getOrderDataHost() {
     getDataRequestsHost.forEach((element) => {
       // eslint-disable-next-line max-len
       const alreadyWorkplaceId = newDataArray.find((list) => list.workspace_id === element.workspace_id);
@@ -86,7 +86,7 @@ function MesAnnonces() {
     });
   }
 
-  getOrderDataCoworker();
+  getOrderDataHost();
   // eslint-disable-next-line no-console
   // console.log('Mon nouveau tableau', newDataArray);
 
