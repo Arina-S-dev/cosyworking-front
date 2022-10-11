@@ -9,7 +9,6 @@ import Error from '../Error/Error';
 import EspaceHost from '../EspacePerso/EspaceHost/EspaceHost';
 import MesReservations from '../EspacePerso/EspaceCoworker/MesReservations/MesReservations';
 import MesAnnonces from '../EspacePerso/EspaceHost/MesAnnonces/MesAnnonces';
-import ModalAlertConnection from '../ModalAlertConnection/ModalAlertConnection';
 import WorkspaceDetail from '../WorkspaceDedail';
 import PublicProfil from '../PublicProfile';
 import WorkspaceEdition from '../WorkspaceEdition';
@@ -24,19 +23,18 @@ import MentionsLegales from '../MentionsLegales/MentionsLegales';
 import CGV from '../CGV/CGV';
 import ContactUs from '../ContactUs/ContactUs';
 import MonProfil from '../EspacePerso/MonProfil/MonProfil';
+import AboutUs from '../AboutUs/AboutUs';
+import ModalConnexion from '../Nav/ModalConnexion/ModalConnexion';
 import MyRequests from '../EspacePerso/EspaceHost/MyRequests';
 
 function App() {
-  // On vérifie si le token n'a pas expiré en récupérant l'état de connexion
-  const errorConnection = useSelector((state) => state.user.error_connection);
+  const error = useSelector((state) => state.user.error_connection);
 
   return (
     <div className="App">
       <Nav />
-      {/* Si le token a expiré, on récupère une erreur et donc on incite l'user à se reconnecter */}
-      {errorConnection && <ModalAlertConnection />}
+      {error && <ModalConnexion />}
       <Routes>
-        {/* <Route path="/espace-perso" element={<MyAccountMenu />} /> */}
         <Route path="/" element={<Homepage />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/contact" element={<ContactUs />} />
@@ -54,6 +52,7 @@ function App() {
         <Route path="/espace-perso/espace-hote/mes-annonces" element={<MesAnnonces />} />
         <Route path="/espace-perso/espace-hote/mes-demandes" element={<MyRequests />} />
         <Route path="/" element={<Homepage />} />
+        <Route path="/apropos" element={<AboutUs />} />
         <Route path="/*" element={<Error />} />
       </Routes>
       <Footer />

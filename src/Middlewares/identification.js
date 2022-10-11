@@ -8,7 +8,7 @@ const identification = (store) => (next) => (action) => {
     // Obtention de l'email et du password du state
     const { email, password } = store.getState().user;
     // eslint-disable-next-line no-console
-    console.log(email, password);
+    // console.log(email, password);
     axios.post('https://cosyworking-api.onrender.com/api/auth/login', { email, password })
       .then((response) => {
         // eslint-disable-next-line no-console
@@ -29,12 +29,16 @@ const identification = (store) => (next) => (action) => {
             type: 'GET_ROLE',
             role: role,
           });
+          store.dispatch({
+            type: 'CONNECTION_STATE',
+            error: false,
+          });
         }
       })
       .catch((error) => {
       // en cas d’échec de la requête
       // eslint-disable-next-line no-console
-        console.log(error);
+        // console.log(error);
         if (error.response.data.message === 'Invalid password' || error.response.data.message === 'User not found') {
           store.dispatch({
             type: 'CONNECTION_EMAIL_OR_NOT_GOOD',
@@ -48,7 +52,7 @@ const identification = (store) => (next) => (action) => {
     // eslint-disable-next-line object-curly-newline, max-len, camelcase
     const { email, password, gender, role_id, last_name, first_name } = store.getState().user;
     // eslint-disable-next-line no-console
-    console.log(email, password, gender, role_id, last_name, first_name);
+    // console.log(email, password, gender, role_id, last_name, first_name);
     // eslint-disable-next-line camelcase
     if (email === '' || password === '' || gender === '' || last_name === '' || first_name === '') {
       store.dispatch({
@@ -59,19 +63,20 @@ const identification = (store) => (next) => (action) => {
     axios.post('https://cosyworking-api.onrender.com/api/auth/signup', { first_name, last_name, email, password, gender, role_id })
       .then((response) => {
         // eslint-disable-next-line no-console
-        console.log(response.request.status);
+        // console.log(response.request.status);
         // Vérifie que l'inscription est ok pour fermer la modale
         // eslint-disable-next-line eqeqeq
         if (response.status == 200) {
           store.dispatch({
-            type: 'STATUS_INSCRIPTION_OK',
+            type: 'MODAL_INSCRIPTION_OPENING',
+            getOpening: false,
           });
         }
       })
       .catch((error) => {
       // en cas d’échec de la requête
       // eslint-disable-next-line no-console
-        console.log(error);
+        // console.log(error);
         // Si l'email existe déjà
         if (error.response.data.message === 'Failed! Email is already in use!') {
           store.dispatch({
@@ -110,10 +115,17 @@ const identification = (store) => (next) => (action) => {
         // eslint-disable-next-line no-console
         console.log(response);
         const getDataReservations = response.data;
+        const getStatus = response.request.status;
         if (response) {
           store.dispatch({
             type: 'GET_DATA_COWORKER_RESERVATIONS',
             coworkerreservations: getDataReservations,
+          });
+        }
+        if (getStatus === 200) {
+          store.dispatch({
+            type: 'HANDLE_LOADING_RESERVATIONS',
+            loadingReservations: false,
           });
         }
       })
@@ -126,6 +138,54 @@ const identification = (store) => (next) => (action) => {
           store.dispatch({
             type: 'CONNECTION_STATE',
             error: true,
+          });
+          store.dispatch({
+            type: 'MODAL_CONNEXION_OPENING',
+            getOpening: true,
+          });
+        }
+      });
+  }
+  // MiddleWare afin de récupérer les réservations du coworker
+  if (action.type === 'CANCEL_RESERVATION') {
+    // Récupération du token présent dans le LocalStorage
+    const getUserToken = JSON.parse(localStorage.getItem('userToken'));
+    // eslint-disable-next-line camelcase
+    const reservationId = store.getState().user.getIdReservationForCancel;
+    // eslint-disable-next-line no-console
+    // console.log(user_id);
+    // eslint-disable-next-line object-curly-newline, camelcase
+    axios.patch(`https://cosyworking-api.onrender.com/api/booking/${reservationId}/state`, { state: 'Annulé' }, { headers: {
+      // eslint-disable-next-line quote-props, comma-dangle
+      'x-access-token': getUserToken
+    // eslint-disable-next-line object-curly-spacing, object-curly-newline
+    }})
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log(response);
+        if (response.request.status === 200) {
+          store.dispatch({
+            type: 'MODAL_CANCEL_RESERVATION_OPENING',
+            getOpening: false,
+          });
+          store.dispatch({
+            type: 'GET_COWORKER_RESERVATIONS',
+          });
+        }
+      })
+      .catch((error) => {
+      // en cas d’échec de la requête
+      // eslint-disable-next-line no-console
+        console.log(error);
+        const errorToken = error.response.data.message;
+        if (errorToken === 'Token Expired !') {
+          store.dispatch({
+            type: 'CONNECTION_STATE',
+            error: true,
+          });
+          store.dispatch({
+            type: 'MODAL_CONNEXION_OPENING',
+            getOpening: true,
           });
         }
       });
@@ -165,6 +225,10 @@ const identification = (store) => (next) => (action) => {
           store.dispatch({
             type: 'CONNECTION_STATE',
             error: true,
+          });
+          store.dispatch({
+            type: 'MODAL_CONNEXION_OPENING',
+            getOpening: true,
           });
         }
       });
@@ -253,6 +317,10 @@ const identification = (store) => (next) => (action) => {
           store.dispatch({
             type: 'CONNECTION_STATE',
             error: true,
+          });
+          store.dispatch({
+            type: 'MODAL_CONNEXION_OPENING',
+            getOpening: true,
           });
         }
       });

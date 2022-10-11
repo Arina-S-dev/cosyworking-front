@@ -3,8 +3,6 @@ import {
   Button,
   Modal,
   Typography,
-  MenuItem,
-  ListItemIcon,
   Avatar,
   Grid,
   TextField,
@@ -14,7 +12,7 @@ import {
   Alert,
 } from '@mui/material';
 import { Box, ThemeProvider } from '@mui/system';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -27,12 +25,15 @@ import theme from '../../../tools/themeMui';
 import './styles.scss';
 
 function ModalInscription() {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  // Récupération du statut de l'inscription
-  const getStatus = useSelector((state) => state.user.statusinscriptionok);
+  // Gestion de l'ouverture et fermeture de la Modale d'inscription
+  const open = useSelector((state) => state.user.inscriptionModalOpen);
+  const dispatch = useDispatch();
+  const handleClose = () => {
+    dispatch({
+      type: 'MODAL_INSCRIPTION_OPENING',
+      getOpening: false,
+    });
+  };
 
   // Alerte si un des élements n'a pas été rempli pour l'inscription
   const errorRequiredElement = useSelector((state) => state.user.errorrequiredelement);
@@ -45,8 +46,6 @@ function ModalInscription() {
 
   // Récupération de l'erreur pour le format du mot de passe
   const emailFormatError = useSelector((state) => state.user.emailwrongformat);
-
-  const dispatch = useDispatch();
 
   // Recupération de la selection du user pour le genre
   const getSelectedGender = (event) => {
@@ -138,19 +137,17 @@ function ModalInscription() {
           dispatch({
             type: 'SET_SIGNUP',
           });
-    if (getStatus) {
-     handleClose();
-    }
+      };
+
+  const handleInscriptionModal = () => {
+    dispatch({
+      type: 'MODAL_INSCRIPTION_OPENING',
+      getOpening: false,
+    });
   };
 
   return (
     <div className="ModalInscription">
-      <MenuItem onClick={handleOpen}>
-        <ListItemIcon>
-          <Avatar />
-        </ListItemIcon>
-        S'inscrire
-      </MenuItem>
       {/* {!getStatus && ( */}
       <Modal
         onSubmit={setSignUp}
@@ -320,7 +317,7 @@ function ModalInscription() {
                 </ThemeProvider>
                 <Grid container justifyContent="flex-end">
                   <Grid item>
-                    <Link href="#" variant="body2">
+                    <Link href="#" variant="body2" onClick={handleInscriptionModal}>
                       <ModalConnexion />
                     </Link>
                   </Grid>

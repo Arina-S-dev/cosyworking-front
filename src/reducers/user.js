@@ -11,21 +11,29 @@ export const initialState = {
   avatar: '',
   username: '',
   about: '',
+  // Gestion de la cession expirée
   error_connection: false,
+  // Gestion de l'ouverture / fermeture de la modale 'inscription'
+  inscriptionModalOpen: false,
+  // Gestion de l'ouverture / fermeture de la modale 'connexion'
+  connexionModalOpen: false,
+  // Gestion de l'ouverture de la modale d'annulation de réservation
+  cancelModalReservation: false,
+  // Obtention id de la réservation pour son annulation
+  getIdReservationForCancel: 0,
   emailexistederror: false,
   passwordwrongformat: false,
   emailwrongformat: false,
   errorrequiredelement: false,
-  statusinscriptionok: false,
   statusconnection: false,
   // Tableau des réservations du coworker non organisé
   datacoworkerreservations: [],
-  // Tableau des réservations du coworker réorganisé
-  // datacoworkerreservationsOrdered: [],
   // Tableau des réservations des espaces de l'hôte non organisé
   datahostrequests: [],
-  // Tableau des réservations du coworker réorganisé
-  // datahostrequestsOrdered: [],
+  // Control de la barre dans Espace Perso
+  controlNavBarEspacePerso: false,
+  // Gestion du loading page 'Mes Réservations'
+  loadingReservationsPage: true,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -39,12 +47,6 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         password: action.password,
-      };
-    case 'SET_CONNEXION':
-      return {
-        ...state,
-        // Cela permet d'enlever le message "Session expirée"
-        error_connection: false,
       };
     case 'GET_CONNEXION':
       return {
@@ -90,6 +92,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         error_connection: action.error,
+        connexionModalOpen: action.connexionModalOpen,
       };
     case 'LOGOUT':
       return {
@@ -120,12 +123,6 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         errorrequiredelement: true,
       };
-    // Vérifie que l'inscription est ok pour fermer la modale
-    case 'STATUS_INSCRIPTION_OK':
-      return {
-        ...state,
-        statusinscriptionok: true,
-      };
     // Alerte à la connexion si l'email ou le password ne sont pas bons
     case 'CONNECTION_EMAIL_OR_NOT_GOOD':
       return {
@@ -154,6 +151,42 @@ const reducer = (state = initialState, action = {}) => {
         username: action.username,
         about: action.about,
         avatar: action.avatar,
+      };
+      // Control de la barre de menu dans Espace Perso
+    case 'CONTROL_BAR_ESPACE_PERSO':
+      return {
+        ...state,
+        controlNavBarEspacePerso: action.getAccessNavBar,
+      };
+      // Gestion de l'ouverture / fermeture de la modale d'inscription
+    case 'MODAL_INSCRIPTION_OPENING':
+      return {
+        ...state,
+        inscriptionModalOpen: action.getOpening,
+      };
+      // Gestion de l'ouverture / fermeture de la modale de connexion
+    case 'MODAL_CONNEXION_OPENING':
+      return {
+        ...state,
+        connexionModalOpen: action.getOpening,
+      };
+    // Gestion de l'ouverture / fermeture de la modale d'annulation d'une réservation
+    case 'MODAL_CANCEL_RESERVATION_OPENING':
+      return {
+        ...state,
+        cancelModalReservation: action.getOpening,
+      };
+    // Gestion du loading dans 'Mes réservations'
+    case 'HANDLE_LOADING_RESERVATIONS':
+      return {
+        ...state,
+        loadingReservationsPage: action.loadingReservations,
+      };
+    // Gestion du loading dans 'Mes réservations'
+    case 'GET_ID_RESERVATION':
+      return {
+        ...state,
+        getIdReservationForCancel: action.idReservation,
       };
     default:
       return state;

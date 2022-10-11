@@ -1,21 +1,31 @@
 // eslint-disable-next-line object-curly-newline, max-len
 import { Accordion, AccordionDetails, AccordionSummary, Card, CardContent, CardMedia, TableContainer, Typography } from '@mui/material';
 import { Box } from '@mui/system';
+import { useEffect } from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import data from './data.json';
 import './MesAnnonces.scss';
 import MesAnnoncesRefs from './MesAnnoncesRefs/MesAnnoncesRefs';
 
 function MesAnnonces() {
-// On récupère les réservations des annonces de l'hote que l'on regroupe
-// par workspace et par reference de réservation
+  const dispatch = useDispatch();
+  // On controle les boutons qui apparaissent dans la barre de menu
+  useEffect(() => {
+    dispatch({
+      type: 'CONTROL_BAR_ESPACE_PERSO',
+      getAccessNavBar: true,
+    });
+  }, []);
+
+  // On récupère les réservations des annonces de l'hote que l'on regroupe
+  // par workspace et par reference de réservation
   const getDataRequestsHost = useSelector((state) => state.user.datahostrequests);
   // eslint-disable-next-line no-console
   // console.log(getDataCoworker);
   const newDataArray = [];
-  function getOrderDataCoworker() {
+  function getOrderDataHost() {
     getDataRequestsHost.forEach((element) => {
       // eslint-disable-next-line max-len
       const alreadyWorkplaceId = newDataArray.find((list) => list.workspace_id === element.workspace_id);
@@ -75,7 +85,7 @@ function MesAnnonces() {
     });
   }
 
-  getOrderDataCoworker();
+  getOrderDataHost();
   // eslint-disable-next-line no-console
   // console.log('Mon nouveau tableau', newDataArray);
 

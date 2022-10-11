@@ -1,12 +1,15 @@
+import { Logout } from '@mui/icons-material';
 import {
-  Avatar, Divider, IconButton, Menu, Tooltip,
+  Avatar, IconButton, ListItemIcon, Menu, MenuItem, Tooltip,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
 import ModalConnexion from '../ModalConnexion/ModalConnexion';
 import ModalInscription from '../ModalInscription/ModalInscription';
 
 function InscriptionMenu() {
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -14,6 +17,18 @@ function InscriptionMenu() {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleOpenModalInscription = () => {
+    dispatch({
+      type: 'MODAL_INSCRIPTION_OPENING',
+      getOpening: true,
+    });
+  };
+  const handleOpenModalConnexion = () => {
+    dispatch({
+      type: 'MODAL_CONNEXION_OPENING',
+      getOpening: true,
+    });
   };
   return (
     <div className="InscriptionMenu">
@@ -72,10 +87,22 @@ function InscriptionMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         {/* Contenu de l'onglet 'inscription' */}
-        <ModalInscription />
-        <Divider />
-        <ModalConnexion />
+        <MenuItem onClick={handleOpenModalInscription}>
+          <ListItemIcon>
+            <Avatar />
+          </ListItemIcon>
+          S'inscrire
+        </MenuItem>
+        <MenuItem onClick={handleOpenModalConnexion}>
+          <ListItemIcon>
+            <Logout fontSize="small" />
+          </ListItemIcon>
+          Se Connecter
+        </MenuItem>
+        {/* <Divider /> */}
       </Menu>
+      <ModalConnexion />
+      <ModalInscription />
     </div>
   );
 }
