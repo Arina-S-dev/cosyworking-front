@@ -115,10 +115,17 @@ const identification = (store) => (next) => (action) => {
         // eslint-disable-next-line no-console
         console.log(response);
         const getDataReservations = response.data;
+        const getStatus = response.request.status;
         if (response) {
           store.dispatch({
             type: 'GET_DATA_COWORKER_RESERVATIONS',
             coworkerreservations: getDataReservations,
+          });
+        }
+        if (getStatus === 200) {
+          store.dispatch({
+            type: 'HANDLE_LOADING_RESERVATIONS',
+            loadingReservations: false,
           });
         }
       })
@@ -131,6 +138,54 @@ const identification = (store) => (next) => (action) => {
           store.dispatch({
             type: 'CONNECTION_STATE',
             error: true,
+          });
+          store.dispatch({
+            type: 'MODAL_CONNEXION_OPENING',
+            getOpening: true,
+          });
+        }
+      });
+  }
+  // MiddleWare afin de récupérer les réservations du coworker
+  if (action.type === 'CANCEL_RESERVATION') {
+    // Récupération du token présent dans le LocalStorage
+    const getUserToken = JSON.parse(localStorage.getItem('userToken'));
+    // eslint-disable-next-line camelcase
+    const reservationId = store.getState().user.getIdReservationForCancel;
+    // eslint-disable-next-line no-console
+    // console.log(user_id);
+    // eslint-disable-next-line object-curly-newline, camelcase
+    axios.patch(`https://cosyworking-api.onrender.com/api/booking/${reservationId}/state`, { state: 'Annulé' }, { headers: {
+      // eslint-disable-next-line quote-props, comma-dangle
+      'x-access-token': getUserToken
+    // eslint-disable-next-line object-curly-spacing, object-curly-newline
+    }})
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log(response);
+        if (response.request.status === 200) {
+          store.dispatch({
+            type: 'MODAL_CANCEL_RESERVATION_OPENING',
+            getOpening: false,
+          });
+          store.dispatch({
+            type: 'GET_COWORKER_RESERVATIONS',
+          });
+        }
+      })
+      .catch((error) => {
+      // en cas d’échec de la requête
+      // eslint-disable-next-line no-console
+        console.log(error);
+        const errorToken = error.response.data.message;
+        if (errorToken === 'Token Expired !') {
+          store.dispatch({
+            type: 'CONNECTION_STATE',
+            error: true,
+          });
+          store.dispatch({
+            type: 'MODAL_CONNEXION_OPENING',
+            getOpening: true,
           });
         }
       });
@@ -170,6 +225,10 @@ const identification = (store) => (next) => (action) => {
           store.dispatch({
             type: 'CONNECTION_STATE',
             error: true,
+          });
+          store.dispatch({
+            type: 'MODAL_CONNEXION_OPENING',
+            getOpening: true,
           });
         }
       });
@@ -215,6 +274,10 @@ const identification = (store) => (next) => (action) => {
           store.dispatch({
             type: 'CONNECTION_STATE',
             error: true,
+          });
+          store.dispatch({
+            type: 'MODAL_CONNEXION_OPENING',
+            getOpening: true,
           });
         }
       });

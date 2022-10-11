@@ -7,9 +7,10 @@ import {
   ListItemIcon,
   Input,
   Alert,
+  AlertTitle,
 } from '@mui/material';
 import { Box, ThemeProvider } from '@mui/system';
-import { useState } from 'react';
+// import { useState } from 'react';
 import {
   useDispatch, useSelector,
 } from 'react-redux';
@@ -18,10 +19,21 @@ import theme from '../../../tools/themeMui';
 import './styles.scss';
 
 function ModalConnexion() {
+  // Gestion de l'ouverture et fermeture de la Modale d'inscription
+  const open = useSelector((state) => state.user.connexionModalOpen);
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleOpen = () => {
+    dispatch({
+      type: 'MODAL_CONNEXION_OPENING',
+      getOpening: true,
+    });
+  };
+  const handleClose = () => {
+    dispatch({
+      type: 'MODAL_CONNEXION_OPENING',
+      getOpening: false,
+    });
+  };
 
   // Récupération de l'alerte en cas de mauvais password ou email
   const getEmailPasswordAlert = useSelector((state) => state.user.statusconnection);
@@ -57,6 +69,9 @@ function ModalConnexion() {
       type: 'SET_CONNEXION',
     });
   };
+
+  // On vérifie si le token n'a pas expiré en récupérant l'état de connexion
+  const errorConnection = useSelector((state) => state.user.error_connection);
 
   return (
     <div className="ModalConnexion">
@@ -97,15 +112,19 @@ function ModalConnexion() {
           >
             Connexion
           </Typography>
+          {/* On affiche un message si le token a exprié */}
+          {errorConnection
+          && (
+          <Alert severity="info" sx={{ zIndex: '4' }}>
+            <AlertTitle>Connexion</AlertTitle>
+            Votre session a expiré, veuillez vous <strong>reconnecter!</strong>
+          </Alert>
+          )}
           <div className="ModalBurger-listButtons">
             <Typography
               component="div"
               id="modal-modal-description"
-              sx={{
-                width: '290px',
-                paddingTop: '0.3rem',
-                margin: 'auto',
-              }}
+              sx={{ width: '290px', paddingTop: '0.3rem', margin: 'auto' }}
             >
               {/* logo de Google */}
               <div className="ModalConnexion-Box-logo">
@@ -125,29 +144,20 @@ function ModalConnexion() {
                   onChange={getEmail}
                   type="email"
                   placeholder="Email"
-                  sx={{
-                    width: '100%',
-                    margin: '0.5rem',
-                  }}
+                  sx={{ width: '100%', margin: '0.5rem' }}
                 />
                 <Input
                   onChange={getPassword}
                   type="password"
                   placeholder="Mot de passe"
-                  sx={{
-                    width: '100%',
-                    margin: '0.5rem',
-                  }}
+                  sx={{ width: '100%', margin: '0.5rem' }}
                 />
                 <ThemeProvider theme={theme}>
                   <Button
                     type="submit"
                     variant="contained"
                     disableElevation
-                    sx={{
-                      width: '100%',
-                      margin: '0.5rem',
-                    }}
+                    sx={{ width: '100%', margin: '0.5rem' }}
                   >
                     Connexion
                   </Button>

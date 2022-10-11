@@ -29,9 +29,6 @@ import './styles.scss';
 function ModalInscription() {
   // Gestion de l'ouverture et fermeture de la Modale d'inscription
   const open = useSelector((state) => state.user.inscriptionModalOpen);
-  // const [open, setOpen] = useState(false);
-  // const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
   const dispatch = useDispatch();
   const handleOpen = () => {
     dispatch({
@@ -149,6 +146,13 @@ function ModalInscription() {
             type: 'SET_SIGNUP',
           });
       };
+
+  const handleInscriptionModal = () => {
+    dispatch({
+      type: 'MODAL_INSCRIPTION_OPENING',
+      getOpening: false,
+    });
+  };
 
   return (
     <div className="ModalInscription">
@@ -327,7 +331,7 @@ function ModalInscription() {
                 </ThemeProvider>
                 <Grid container justifyContent="flex-end">
                   <Grid item>
-                    <Link href="#" variant="body2">
+                    <Link href="#" variant="body2" onClick={handleInscriptionModal}>
                       <ModalConnexion />
                     </Link>
                   </Grid>
