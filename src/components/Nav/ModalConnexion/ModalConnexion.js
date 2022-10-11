@@ -14,7 +14,6 @@ import { Box, ThemeProvider } from '@mui/system';
 import {
   useDispatch, useSelector,
 } from 'react-redux';
-import logoGoogle from '../../../img/logo_google.png';
 import theme from '../../../tools/themeMui';
 import './styles.scss';
 
@@ -126,17 +125,11 @@ function ModalConnexion() {
               id="modal-modal-description"
               sx={{ width: '290px', paddingTop: '0.3rem', margin: 'auto' }}
             >
-              {/* logo de Google */}
-              <div className="ModalConnexion-Box-logo">
-                <img className="ModalConnexion-Box-logo-Google" src={logoGoogle} alt="logo-Google" />
-              </div>
               {/* Emplacement du 'ou'  */}
               <div className="ModalConnexion-Box-ou">
-                <span className="ModalConnexion-Box-ou-textline" />
                 <p className="ModalConnexion-Box-ou-text">
-                  ou
+                  Entrez votre identifiant et Mot de passe
                 </p>
-                <p className="ModalConnexion-Box-ou-textline" />
               </div>
               {getEmailPasswordAlert && <Alert className="ModalConnexion-Box-Alert" severity="error">L'email ou le mot de passe ne sont pas valides !</Alert>}
               <form onSubmit={getConnexion}>
