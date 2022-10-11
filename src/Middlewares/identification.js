@@ -103,8 +103,6 @@ const identification = (store) => (next) => (action) => {
     const getUserToken = JSON.parse(localStorage.getItem('userToken'));
     // eslint-disable-next-line camelcase
     const { user_id } = store.getState().user;
-    // eslint-disable-next-line no-console
-    // console.log(user_id);
     // eslint-disable-next-line object-curly-newline, camelcase
     axios.get(`https://cosyworking-api.onrender.com/api/personalspace/${user_id}/coworkerbooking`, { headers: {
       // eslint-disable-next-line quote-props, comma-dangle
@@ -172,6 +170,40 @@ const identification = (store) => (next) => (action) => {
             type: 'GET_COWORKER_RESERVATIONS',
           });
         }
+      })
+      .catch((error) => {
+      // en cas d’échec de la requête
+      // eslint-disable-next-line no-console
+        console.log(error);
+        const errorToken = error.response.data.message;
+        if (errorToken === 'Token Expired !') {
+          store.dispatch({
+            type: 'CONNECTION_STATE',
+            error: true,
+          });
+          store.dispatch({
+            type: 'MODAL_CONNEXION_OPENING',
+            getOpening: true,
+          });
+        }
+      });
+  }
+  // MiddleWare afin de récupérer les réservations du coworker
+  if (action.type === 'CHANGE_INFO_PRIVATE_PROFIL') {
+    // Récupération du token présent dans le LocalStorage
+    const getUserToken = JSON.parse(localStorage.getItem('userToken'));
+    // eslint-disable-next-line max-len, object-curly-newline
+    const { email, password, gender, last_name, first_name, username, about } = store.getState().user;
+    const { user_id } = store.getState().user;
+    // eslint-disable-next-line object-curly-newline, camelcase
+    axios.patch(`https://cosyworking-api.onrender.com/api/personalspace/${user_id}/profil`, { email, password, gender, last_name, first_name, username, about }, { headers: {
+      // eslint-disable-next-line quote-props, comma-dangle
+      'x-access-token': getUserToken
+    // eslint-disable-next-line object-curly-spacing, object-curly-newline
+    }})
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log(response);
       })
       .catch((error) => {
       // en cas d’échec de la requête
