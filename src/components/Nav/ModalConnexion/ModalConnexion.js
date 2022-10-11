@@ -1,10 +1,10 @@
-import { Logout } from '@mui/icons-material';
+// import { Logout } from '@mui/icons-material';
 import {
   Button,
   Modal,
   Typography,
-  MenuItem,
-  ListItemIcon,
+  // MenuItem,
+  // ListItemIcon,
   Input,
   Alert,
   AlertTitle,
@@ -22,12 +22,12 @@ function ModalConnexion() {
   // Gestion de l'ouverture et fermeture de la Modale d'inscription
   const open = useSelector((state) => state.user.connexionModalOpen);
   const dispatch = useDispatch();
-  const handleOpen = () => {
-    dispatch({
-      type: 'MODAL_CONNEXION_OPENING',
-      getOpening: true,
-    });
-  };
+  // const handleOpenModalConnexion = () => {
+  //   dispatch({
+  //     type: 'MODAL_CONNEXION_OPENING',
+  //     getOpening: true,
+  //   });
+  // };
   const handleClose = () => {
     dispatch({
       type: 'MODAL_CONNEXION_OPENING',
@@ -75,12 +75,6 @@ function ModalConnexion() {
 
   return (
     <div className="ModalConnexion">
-      <MenuItem onClick={handleOpen}>
-        <ListItemIcon>
-          <Logout fontSize="small" />
-        </ListItemIcon>
-        Se Connecter
-      </MenuItem>
       <Modal
         open={open}
         onClose={handleClose}
