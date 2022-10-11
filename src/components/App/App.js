@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Footer from '../Footer/Footer';
 import Nav from '../Nav/Nav';
 import EspacePerso from '../EspacePerso/EspacePerso';
@@ -22,13 +23,16 @@ import MentionsLegales from '../MentionsLegales/MentionsLegales';
 import CGV from '../CGV/CGV';
 import ContactUs from '../ContactUs/ContactUs';
 import MonProfil from '../EspacePerso/MonProfil/MonProfil';
+import ModalConnexion from '../Nav/ModalConnexion/ModalConnexion';
 
 function App() {
+  const error = useSelector((state) => state.user.error_connection);
+
   return (
     <div className="App">
       <Nav />
+      {error && <ModalConnexion />}
       <Routes>
-        {/* <Route path="/espace-perso" element={<MyAccountMenu />} /> */}
         <Route path="/" element={<Homepage />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/contact" element={<ContactUs />} />

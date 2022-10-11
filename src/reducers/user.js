@@ -92,6 +92,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         error_connection: action.error,
+        connexionModalOpen: action.connexionModalOpen,
       };
     case 'LOGOUT':
       return {

@@ -139,6 +139,10 @@ const identification = (store) => (next) => (action) => {
             type: 'CONNECTION_STATE',
             error: true,
           });
+          store.dispatch({
+            type: 'MODAL_CONNEXION_OPENING',
+            getOpening: true,
+          });
         }
       });
   }
@@ -179,6 +183,10 @@ const identification = (store) => (next) => (action) => {
             type: 'CONNECTION_STATE',
             error: true,
           });
+          store.dispatch({
+            type: 'MODAL_CONNEXION_OPENING',
+            getOpening: true,
+          });
         }
       });
   }
@@ -217,6 +225,10 @@ const identification = (store) => (next) => (action) => {
           store.dispatch({
             type: 'CONNECTION_STATE',
             error: true,
+          });
+          store.dispatch({
+            type: 'MODAL_CONNEXION_OPENING',
+            getOpening: true,
           });
         }
       });
@@ -262,6 +274,10 @@ const identification = (store) => (next) => (action) => {
           store.dispatch({
             type: 'CONNECTION_STATE',
             error: true,
+          });
+          store.dispatch({
+            type: 'MODAL_CONNEXION_OPENING',
+            getOpening: true,
           });
         }
       });
