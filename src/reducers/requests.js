@@ -1,6 +1,6 @@
 export const initialState = {
   openConfimModal: false,
-  buttonType: '',
+  description: '',
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -9,13 +9,13 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         openConfimModal: true,
-        buttonType: action.buttonType,
+        description: action.description,
       };
     case 'CLOSE_CONFIRM_MODAL':
       return {
         ...state,
         openConfimModal: false,
-        buttonType: '',
+        description: '',
       };
     default:
       return state;

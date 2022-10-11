@@ -99,7 +99,7 @@ const identification = (store) => (next) => (action) => {
     // eslint-disable-next-line camelcase
     const { user_id } = store.getState().user;
     // eslint-disable-next-line no-console
-    // console.log(user_id);
+    console.log(user_id);
     // eslint-disable-next-line object-curly-newline, camelcase
     axios.get(`https://cosyworking-api.onrender.com/api/personalspace/${user_id}/coworkerbooking`, { headers: {
       // eslint-disable-next-line quote-props, comma-dangle
@@ -152,6 +152,49 @@ const identification = (store) => (next) => (action) => {
           store.dispatch({
             type: 'GET_DATA_HOST_REQUESTS',
             hostrequests: getDataRequestsHost,
+          });
+        }
+      })
+      .catch((error) => {
+      // en cas d’échec de la requête
+      // eslint-disable-next-line no-console
+        console.log(error);
+        // Erreur si jamais le token est expiré
+        const errorToken = error.response.data.message;
+        if (errorToken === 'Token Expired !') {
+          store.dispatch({
+            type: 'CONNECTION_STATE',
+            error: true,
+          });
+        }
+      });
+  }
+  // MiddleWare afin de modifier le statut d'une réservation par l'Hote
+  if (action.type === 'UPDATE_BOOKING_STATUS') {
+    // Récupération du token présent dans le LocalStorage
+    const getUserToken = JSON.parse(localStorage.getItem('userToken'));
+    // eslint-disable-next-line camelcase
+    const { booking_id } = store.getState().user;
+    const { description } = store.getState().requests;
+    // eslint-disable-next-line no-console
+    // console.log(user_id);
+    // eslint-disable-next-line object-curly-newline, camelcase
+    axios.patch(`https://cosyworking-api.onrender.com/api/booking/${booking_id}/state`, { headers: {
+      // eslint-disable-next-line quote-props, comma-dangle
+      'x-access-token': getUserToken, description: description,
+    // eslint-disable-next-line object-curly-spacing, object-curly-newline
+    }})
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log('Mes annonces', response);
+        const getDataRequestsHost = response.data;
+        if (response) {
+          store.dispatch({
+            type: 'GET_DATA_HOST_REQUESTS',
+            hostrequests: getDataRequestsHost,
+          });
+          store.dispatch({
+            type: 'CLOSE_CONFIRM_MODAL',
           });
         }
       })

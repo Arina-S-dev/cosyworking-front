@@ -7,9 +7,9 @@ const profilMiddleware = (store) => (next) => (action) => {
       // on va faire l'appel API
       axios.get(`https://cosyworking-api.onrender.com/api/user/${action.id}`)
         .then((response) => {
-          console.log('requette API ok', response);
+          // console.log('requette API ok', response);
 
-          console.log('responseGETPROFILE ==>', response.data);
+          // console.log('responseGETPROFILE ==>', response.data);
           store.dispatch(actionSaveProfilToDisplay(response.data));
         })
         .catch((error) => {

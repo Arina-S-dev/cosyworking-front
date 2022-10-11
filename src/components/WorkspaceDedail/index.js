@@ -22,7 +22,7 @@ function WorkspaceDetail() {
   const { id } = useParams();
 
   useEffect(() => {
-    console.log('useEFFECT');
+    // console.log('useEFFECT');
     // console.log(new Date('2022-10-20T06:00:00+00:00'));
     // console.log(new Date('2022-10-20T15:00:00+00:00'));
     dispatch(actionGetWorkspaceDetail(id));
@@ -31,12 +31,12 @@ function WorkspaceDetail() {
   const workspace = useSelector((state) => state.workspaces.currentWorkspace);
   // const isLoading = useSelector((state) => state.workspaces.isLoading);
   // eslint-disable-next-line no-console
-  console.log('WORSPACE====>', workspace);
-  if (workspace) {
-    console.log('WORSPACEIMAGES====>', workspace.images);
-    console.log('WORSPACEUSER====>', workspace.user[0]);
-    console.log('WORSPACE ID====>', workspace.workspace.id);
-  }
+  // console.log('WORSPACE====>', workspace);
+  // if (workspace) {
+  //   console.log('WORSPACEIMAGES====>', workspace.images);
+  //   console.log('WORSPACEUSER====>', workspace.user[0]);
+  //   console.log('WORSPACE ID====>', workspace.workspace.id);
+  // }
 
   const [PictureModalOpen, setpictureModalOpen] = useState(false);
   const [CalendarModalOpen, setcalendarModalOpen] = useState(false);

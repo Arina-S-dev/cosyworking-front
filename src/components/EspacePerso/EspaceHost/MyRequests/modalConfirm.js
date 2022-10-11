@@ -20,12 +20,18 @@ const style = {
 
 export default function ModalConfirm() {
   const open = useSelector((state) => state.requests.openConfimModal);
-  const buttonType = useSelector((state) => state.requests.buttonType);
+  const description = useSelector((state) => state.requests.description);
 
   const dispatch = useDispatch();
   const handleClose = () => {
     dispatch({
       type: 'CLOSE_CONFIRM_MODAL',
+    });
+  };
+
+  const updateBooking = () => {
+    dispatch({
+      type: 'UPDATE_BOOKING_STATUS',
     });
   };
 
@@ -46,12 +52,12 @@ export default function ModalConfirm() {
           <Box sx={style}>
             <Typography className="modal-text" variant="h6" component="h2">
               Êtes-vous sûr de bien vouloir
-              { buttonType === 'confirm' && (<p>valider cette demande ?</p>)}
-              { buttonType === 'refuse' && (<p>annuler cette demande ?</p>)}
+              { description === 'Validé' && (<p>valider cette demande ?</p>)}
+              { description === 'Annulé' && (<p>annuler cette demande ?</p>)}
             </Typography>
             <Typography className="modal-buttons" sx={{ mt: 2 }}>
               <Button variant="outlined" onClick={handleClose}>Non</Button>
-              <Button variant="contained" onClick={console.log('je vais modifier le status de la résa et fermer la modale')}>Oui</Button>
+              <Button variant="contained" onClick={updateBooking}>Oui</Button>
             </Typography>
           </Box>
         </Fade>

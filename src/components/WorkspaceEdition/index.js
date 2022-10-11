@@ -36,10 +36,10 @@ function WorkspaceEdition() {
   const otherImages = images.filter((image) => (image.mainImage === false));
   const equipmentsList = workspace.equipments_list;
   const bookingList = workspace.booking_list;
-  console.log('MainImage ==>', mainImage);
-  console.log('otherImages ==>', otherImages);
-  console.log('bookingList ==>', bookingList);
-  console.log(workspace);
+  // console.log('MainImage ==>', mainImage);
+  // console.log('otherImages ==>', otherImages);
+  // console.log('bookingList ==>', bookingList);
+  // console.log(workspace);
   const [file, setFile] = useState(null);
   const [fileDataURL, setFileDataURL] = useState(mainImage.link);
 

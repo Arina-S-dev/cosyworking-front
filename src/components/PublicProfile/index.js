@@ -19,7 +19,7 @@ function PublicProfil() {
   const { id } = useParams();
 
   useEffect(() => {
-    console.log('useEFFECT');
+    // console.log('useEFFECT');
     dispatch(actionGetPublicProfil(id));
   }, []);
 

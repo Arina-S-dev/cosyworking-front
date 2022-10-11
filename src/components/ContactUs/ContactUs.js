@@ -13,7 +13,7 @@ function ContactUs() {
   const [Object, SetObject] = React.useState('');
   const [Message, SetMessage] = React.useState('');
 
-  console.log(Name, FirstName, Mail);
+  // console.log(Name, FirstName, Mail);
 
   const handleName = (event) => {
     setName(event.target.value);
