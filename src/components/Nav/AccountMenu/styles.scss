@@ -11,6 +11,10 @@
       opacity: 0.2;
     }
 }
+.avatarAccountdiv{
+  display: flex;
+  align-items: center;
+}
 
 .AccountMenu{
     &-connected{

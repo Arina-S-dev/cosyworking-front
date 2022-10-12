@@ -90,10 +90,12 @@
     }
 }
 
-@media screen and (max-width: 760px)
+@media screen and (max-width: 840px)
 {
     .Footer{
         width: 100%;
+        margin-top: 0;
+
     }
     .topFooter{
         flex-direction: column;
@@ -103,13 +105,14 @@
         margin-top: 2em;
         width: 90%;
     }
+    .bottomFooter{
+        margin-bottom: 70px;
+    }
     .logoContainer{
-        width: 70%;
-        margin-bottom: 2em;
+       display: none;
     }
     .footerNavBar{
-        width: 90%;
-        margin-top: 2em;
+       display: none;
     }
 }
 @media screen and (max-width: 450px)
@@ -118,13 +121,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-    
-}
-@media screen and (max-width: 800px)
-{
-    .bottomFooter{
-        margin-bottom: 70px;
     }
     
 }

@@ -3,14 +3,21 @@
 
 
 html {
-  height: -webkit-fill-available; /* We have to fix html height */
+  height: fill-available;
+    height: -webkit-fill-available;
 }
 body {
   font-family: sans-serif;
   min-height: 100vh;
+  min-height: fill-available;
   min-height: -webkit-fill-available;
 }
-
+@supports (-webkit-touch-callout: none) {
+  body {
+    /* The hack for Safari */
+    min-height: -webkit-fill-available;
+  }
+}
 #root{
   width: 100%;
 }
