@@ -1,5 +1,6 @@
 import './style.scss';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import CardItem from './CardItem';
 
 function Cards() {
@@ -9,21 +10,23 @@ function Cards() {
 
   const workspaces = useSelector((state) => state.search.workspaces);
   const isLoading = useSelector((state) => state.search.worspacesAPIisLoading);
+  console.log(workspaces);
 
   return (
     <div className="cards-container">
-      <ul className="cards">
-        {!isLoading
+      {!isLoading
         && workspaces.map((card) => (
-          <CardItem
-            key={card.id}
-            title={card.title}
-            dayPrice={card.day_price}
-            image={card.link}
-            description={card.description}
-          />
+          <Link to={`/workspace/${card.id}`} target="_blank">
+            <CardItem
+              key={card.id}
+              title={card.title}
+              dayPrice={card.day_price}
+              image={`https://cosyworking-api.onrender.com/${card.link}`}
+              description={card.description}
+            />
+          </Link>
+
         ))}
-      </ul>
     </div>
   );
 }

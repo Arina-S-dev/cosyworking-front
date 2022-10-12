@@ -1,8 +1,13 @@
 .calendar-button {
     padding: 0.1rem;
+
+    span {
+        display: none;
+    }
 }
 
-span {
-    display: none;
-}
-
+@media (min-width: 750px) { 
+    span {
+        display: block;
+      }
+    }
