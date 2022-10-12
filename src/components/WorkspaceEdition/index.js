@@ -9,6 +9,7 @@ import {
   Button, Avatar, IconButton, Modal, Typography, Box, TextField, FormControlLabel, Checkbox,
   TableBody, TableCell, TableHead, TableRow, Table,
 } from '@mui/material';
+// eslint-disable-next-line import/no-unresolved
 import LoadingButton from '@mui/lab/LoadingButton';
 import DeleteIcon from '@mui/icons-material/DeleteTwoTone';
 import Calendar from './Calendar';
@@ -52,17 +53,6 @@ function WorkspaceEdition() {
 
   //   const workspace = useSelector((state) => state.workspaces.currentWorkspace);
   const workspace = useSelector((state) => state.workspaces.workspaceToEdit);
-<<<<<<< HEAD
-  const { images } = workspace;
-  const mainImage = images.find((image) => (image.mainImage === true));
-  const otherImages = images.filter((image) => (image.mainImage === false));
-  const equipmentsList = workspace.equipments_list;
-  const bookingList = workspace.booking_list;
-  // console.log('MainImage ==>', mainImage);
-  // console.log('otherImages ==>', otherImages);
-  // console.log('bookingList ==>', bookingList);
-  // console.log(workspace);
-=======
   const imagesModalIsOpen = useSelector((state) => state.workspaces.imagesModalIsOpen);
   const imagesAreLoading = useSelector((state) => state.workspaces.imagesAreLoading);
   const workspaceIsLoading = useSelector((state) => state.workspaces.workspaceIsLoading);
@@ -90,7 +80,6 @@ function WorkspaceEdition() {
     setOpenModal({ ...openModal, [modaleName]: modalStatus });
   };
 
->>>>>>> c4c7de686fac901556b5641cd046757bf6302d65
   const [file, setFile] = useState(null);
   const [fileDataURL, setFileDataURL] = useState(null);
 

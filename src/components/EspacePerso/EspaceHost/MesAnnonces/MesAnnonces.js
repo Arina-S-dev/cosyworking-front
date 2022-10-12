@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import data from './data.json';
 import './MesAnnonces.scss';
 import MesAnnoncesRefs from './MesAnnoncesRefs/MesAnnoncesRefs';
+import MyAccountMenu from '../../../MyAccountMenu';
 
 function MesAnnonces() {
   const dispatch = useDispatch();
@@ -96,6 +97,7 @@ function MesAnnonces() {
   // eslint-disable-next-line indent
     return (
       <div className="MesAnnonces">
+        <MyAccountMenu />
         <h1 className="MesAnnonces-title">Mes Annonces</h1>
         {/* {newDataArray.map((list, index) => ( */}
         {newDataArray.map((list, index) => (

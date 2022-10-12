@@ -11,6 +11,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Typography } from '@mui/material';
 import Alert from '@mui/material/Alert';
+import { Link } from 'react-router-dom';
 import MyAccountMenu from '../../../MyAccountMenu';
 import theme from '../../../../tools/themeMui';
 import ModalConfirm from './modalConfirm';
@@ -78,7 +79,7 @@ function MyRequests() {
                 width: {
                   xs: 360,
                   md: 400,
-                  lg: 650,
+                  lg: 800,
                 },
                 boxShadow: 3,
                 margin: 1,
@@ -110,10 +111,12 @@ function MyRequests() {
                   <Typography gutterBottom variant="h6" component="div" textAlign="left">
                     Du {(new Date(element.start_date)).toLocaleDateString('fr-FR', options)} au {(new Date(element.end_date)).toLocaleDateString('fr-FR', options)}
                   </Typography>
-                ))};
-                <Typography gutterBottom variant="h6" component="div" textAlign="left">
-                  Coworker : {bookingList[booking][0].coworker}
-                </Typography>
+                ))}
+                <Link to={`/profil/${bookingList[booking][0].coworker_id}`}>
+                  <Typography gutterBottom variant="h6" component="div" textAlign="left">
+                    Réservation effectuée par {bookingList[booking][0].coworker}
+                  </Typography>
+                </Link>
                 <Stack className="card-buttons" spacing={2} direction="row">
                   <Button
                     value="Annulé"
