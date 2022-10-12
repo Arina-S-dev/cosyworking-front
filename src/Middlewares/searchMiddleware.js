@@ -21,7 +21,6 @@ const searchMiddleware = (store) => (next) => (action) => {
         console.log(error.response.data.message);
       });
   }
-
   if (action.type === 'GET_EQUIPMENTS') {
     axios.get('https://cosyworking-api.onrender.com/api/equipments')
       .then((response) => {

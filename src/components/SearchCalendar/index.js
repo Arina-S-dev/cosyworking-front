@@ -11,6 +11,8 @@ import { fr } from 'date-fns/locale';
 import { Trash2 } from 'react-feather';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 import { Button } from '@mui/material';
+import { ThemeProvider } from '@mui/system';
+import theme from '../../tools/themeMui';
 import './index.scss';
 
 function SearchCalendar() {
@@ -204,31 +206,32 @@ function SearchCalendar() {
           >
             Effacer
           </button>
+          <ThemeProvider theme={theme}>
+            <Button
+              variant="contained"
+              size="small"
+              onClick={() => {
+                dispatch({
+                  type: 'ADD_DATES',
+                  dates: bookings,
+                });
+                dispatch({
+                  type: 'CLOSE_MODAL_CALENDAR',
+                });
+                dispatch({
+                  type: 'CLOSE_CALENDAR_ON_HOMEPAGE',
+                });
+              }}
+              sx={{
 
-          <Button
-            variant="contained"
-            size="small"
-            onClick={() => {
-              dispatch({
-                type: 'ADD_DATES',
-                dates: bookings,
-              });
-              dispatch({
-                type: 'CLOSE_MODAL_CALENDAR',
-              });
-            }}
-            sx={{
-              color: '#8A8A8A',
-              margin: 1,
-              // fontSize: 10,
-              backgroundColor: '#FFC000',
-              ':hover': {
-                backgroundColor: '#8A8A8A',
-                color: '#FFC000',
-              },
-            }}
-          >Enregistrer
-          </Button>
+                margin: 1,
+
+              }}
+            >Enregistrer
+            </Button>
+
+          </ThemeProvider>
+
         </div>
 
       </DatePicker>

@@ -58,11 +58,11 @@ function InscriptionMenu() {
         onClose={handleClose}
         // onClick={handleClose}
         PaperProps={{
-          elevation: 0,
+          elevation: 2,
           sx: {
             overflow: 'visible',
             filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-            mt: 1.5,
+            mb: '5em',
             '& .MuiAvatar-root': {
               width: 32,
               height: 32,
@@ -73,7 +73,7 @@ function InscriptionMenu() {
               content: '""',
               display: 'block',
               position: 'absolute',
-              top: 0,
+              bottom: 0,
               right: 14,
               width: 10,
               height: 10,

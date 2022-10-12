@@ -46,9 +46,16 @@ function MenuBurger() {
         <Link to="/recherche">
           <MenuItem onClick={handleClose}>Recherche</MenuItem>
         </Link>
-        <MenuItem onClick={handleClose}>A propos</MenuItem>
-        <MenuItem onClick={handleClose}>FAQ</MenuItem>
-        <MenuItem onClick={handleClose}>Contact</MenuItem>
+        <Link to="/apropos">
+          <MenuItem onClick={handleClose}>A propos</MenuItem>
+        </Link>
+        <Link to="/faq">
+          <MenuItem onClick={handleClose}>FAQ</MenuItem>
+        </Link>
+        <Link to="/contact">
+          <MenuItem onClick={handleClose}>Contact</MenuItem>
+        </Link>
+
       </Menu>
     </div>
   );

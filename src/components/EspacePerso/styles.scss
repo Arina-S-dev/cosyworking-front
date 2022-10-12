@@ -4,10 +4,10 @@
 .EspacePerso{    
     margin: auto;
     margin-top: 4rem;
-    min-width: 100vh;
+    min-height: 100vh;
 
     &-Link{
-        width: auto;
+        width: 100%;
     }
 
     &-AllCards{
@@ -31,6 +31,10 @@
 
 @media only screen and (min-width: 550px) {
     .EspacePerso{
+
+        &-Link{
+            width: auto;
+        }
 
         &-AllCards{
             width: 100%; 
