@@ -9,6 +9,7 @@ import {
   Button, IconButton, Modal, Typography, Box, TextField, FormControlLabel, Checkbox,
   TableBody, TableCell, TableHead, TableRow, Table,
 } from '@mui/material';
+// eslint-disable-next-line import/no-unresolved
 import LoadingButton from '@mui/lab/LoadingButton';
 import DeleteIcon from '@mui/icons-material/DeleteTwoTone';
 import Calendar from './Calendar';

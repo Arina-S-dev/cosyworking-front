@@ -227,13 +227,14 @@ const identification = (store) => (next) => (action) => {
     // Récupération du token présent dans le LocalStorage
     const getUserToken = JSON.parse(localStorage.getItem('userToken'));
     // eslint-disable-next-line camelcase
-    const { user_id } = store.getState().user;
+    const { booking_id } = store.getState().user;
+    const { description } = store.getState().requests;
     // eslint-disable-next-line no-console
     // console.log(user_id);
     // eslint-disable-next-line object-curly-newline, camelcase
-    axios.get(`https://cosyworking-api.onrender.com/api/personalspace/${user_id}/booking`, { headers: {
+    axios.patch(`https://cosyworking-api.onrender.com/api/booking/${booking_id}/state`, { headers: {
       // eslint-disable-next-line quote-props, comma-dangle
-      'x-access-token': getUserToken
+      'x-access-token': getUserToken, description: description,
     // eslint-disable-next-line object-curly-spacing, object-curly-newline
     }})
       .then((response) => {
@@ -244,6 +245,9 @@ const identification = (store) => (next) => (action) => {
           store.dispatch({
             type: 'GET_DATA_HOST_REQUESTS',
             hostrequests: getDataRequestsHost,
+          });
+          store.dispatch({
+            type: 'CLOSE_CONFIRM_MODAL',
           });
         }
       })
@@ -257,10 +261,6 @@ const identification = (store) => (next) => (action) => {
           store.dispatch({
             type: 'CONNECTION_STATE',
             error: true,
-          });
-          store.dispatch({
-            type: 'MODAL_CONNEXION_OPENING',
-            getOpening: true,
           });
         }
       });
