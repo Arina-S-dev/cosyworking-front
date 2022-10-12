@@ -205,17 +205,51 @@ function WorkspaceCreation() {
 
   const handleCreateWorkspace = (event) => {
     event.preventDefault();
-    console.log('handleCreateWorkspace ==>');
-    console.log('title ==>', title);
-    console.log('adress ==>', adress);
-    console.log('zipCode ==>', zipCode);
-    console.log('city ==>', city);
-    console.log('fullDayPrice ==>', fullDayPrice);
-    console.log('halfDayPrice ==>', halfDayPrice);
-    console.log('description ==>', description);
-    console.log('equipments ==>', equipments);
-    console.log('otherImages ==>', otherImages);
-    console.log('mainImage ==>', file);
+    // const group = {
+    //   title: title,
+    //   address: adress,
+    //   zip_code: zipCode,
+    //   city: city,
+    //   description: description,
+    //   day_price: fullDayPrice,
+    //   half_day_price: halfDayPrice,
+    //   equipments: equipments,
+    //   otherImages: otherImages,
+    //   mainImage: file,
+    // };
+
+    // const images = [...file, ...otherImages]
+    const formData = new FormData();
+
+    otherImages.forEach((image) => formData.append('workspace_otherImages', image));
+    equipments.forEach((equipment) => formData.append('equipments', equipment.equipment_id));
+    formData.append('title', title);
+    formData.append('address', adress);
+    formData.append('zip_code', zipCode);
+    formData.append('city', 'city');
+    formData.append('description', description);
+    formData.append('day_price', fullDayPrice);
+    formData.append('half_day_price', halfDayPrice);
+    // formData.append('equipments', equipments);
+    // formData.append('otherImages', ...otherImages);
+    formData.append('workspace_mainImage', file);
+    console.log(formData);
+
+    dispatch({
+      type: 'CREATE_WORKSPACE',
+      payload: formData,
+    });
+    // console.log('handleCreateWorkspace ==>');
+    // console.log('title ==>', title);
+    // console.log('adress ==>', adress);
+    // console.log('zipCode ==>', zipCode);
+    // console.log('city ==>', city);
+    // console.log('fullDayPrice ==>', fullDayPrice);
+    // console.log('halfDayPrice ==>', halfDayPrice);
+    // console.log('description ==>', description);
+    // console.log('equipments ==>', equipments);
+    // console.log('otherImages ==>', otherImages);
+    // console.log('mainImage ==>', file);
   };
 
   const removeImageFromList = (event, imageName) => {

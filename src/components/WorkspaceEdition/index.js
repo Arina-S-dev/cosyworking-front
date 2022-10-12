@@ -9,6 +9,7 @@ import {
   Button, Avatar, IconButton, Modal, Typography, Box, TextField, FormControlLabel, Checkbox,
   TableBody, TableCell, TableHead, TableRow, Table,
 } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
 import DeleteIcon from '@mui/icons-material/DeleteTwoTone';
 import Calendar from './Calendar';
 
@@ -51,7 +52,9 @@ function WorkspaceEdition() {
 
   //   const workspace = useSelector((state) => state.workspaces.currentWorkspace);
   const workspace = useSelector((state) => state.workspaces.workspaceToEdit);
-  const workspaceEquipmentsList = useSelector((state) => state.workspaces.workspaceEquipmentsList);
+  const imagesModalIsOpen = useSelector((state) => state.workspaces.imagesModalIsOpen);
+  const imagesAreLoading = useSelector((state) => state.workspaces.imagesAreLoading);
+  const workspaceIsLoading = useSelector((state) => state.workspaces.workspaceIsLoading);
   const mainImage = useSelector((state) => state.workspaces.mainImage);
   const otherImages = useSelector((state) => state.workspaces.otherImages);
   const equipmentsListFromAPI = useSelector((state) => state.workspaces.equipmentsList);
@@ -60,7 +63,7 @@ function WorkspaceEdition() {
   console.log('otherImages ==>', otherImages);
   // console.log('bookingList ==>', workspace.booking_list);
   console.log('WORKSPACE====>', workspace);
-  console.log('workspaceEquipmentsList ==>', workspaceEquipmentsList);
+  console.log('imagesAreLoading ==>', imagesAreLoading);
   console.log('equipmentsListFromAPI ==>', equipmentsListFromAPI);
 
   const [openModal, setOpenModal] = useState({
@@ -155,9 +158,9 @@ function WorkspaceEdition() {
 
     const equipmentId = Number(event.target.value);
 
-    if (workspaceEquipmentsList.find((equipment) => equipment.equipment_id === equipmentId)) {
+    if (workspace.equipments_list.find((equipment) => equipment.equipment_id === equipmentId)) {
       console.log('EQUIPMENT IS IN LIST==>');
-      const filteredEquipmentsList = workspaceEquipmentsList.filter((equipment) => equipment.equipment_id !== equipmentId);
+      const filteredEquipmentsList = workspace.equipments_list.filter((equipment) => equipment.equipment_id !== equipmentId);
       console.log('filteredEquipmentsList==>', filteredEquipmentsList);
       dispatch({
         type: 'SET_WORKSPACE_EQUIPMENTS_LIST',
@@ -168,7 +171,7 @@ function WorkspaceEdition() {
       console.log('EQUIPMENT IS NOT IN LIST');
       const equipmentToAdd = equipmentsListFromAPI.find((equipment) => equipment.id === equipmentId);
       console.log(equipmentToAdd);
-      const modifiedEquipmentsList = [...workspaceEquipmentsList, { equipment_id: equipmentToAdd.id, description: equipmentToAdd.description, icon_link: equipmentToAdd.icon_link }];
+      const modifiedEquipmentsList = [...workspace.equipments_list, { equipment_id: equipmentToAdd.id, description: equipmentToAdd.description, icon_link: equipmentToAdd.icon_link }];
       dispatch({
         type: 'SET_WORKSPACE_EQUIPMENTS_LIST',
         workspaceEquipmentsList: modifiedEquipmentsList,
@@ -178,28 +181,74 @@ function WorkspaceEdition() {
 
   const handleAddNewImage = (event) => {
     event.preventDefault();
-    console.log('handleAddNewImage ==>');
+
+    const formData = new FormData();
+    formData.append('workspace_image', fileOtherImage);
+
+    console.log('handleAddNewImage ==>', formData);
+
+    dispatch({
+      type: 'ADD_NEW_IMAGE_TO_WORKSPACE',
+      payload: {
+        data: formData,
+        id: id,
+      },
+    });
   };
 
   const handleAddNewMainImage = (event) => {
     event.preventDefault();
+
+    const formData = new FormData();
+    formData.append('workspace_mainImage', file);
+
     console.log('handleAddNewMAINImage  ==>');
+
+    dispatch({
+      type: 'ADD_NEW_IMAGE_TO_WORKSPACE',
+      payload: {
+        data: formData,
+        id: id,
+      },
+    });
+
+    setOpenModal({ ...openModal, image: false });
   };
 
-  const handleDescriptionFormSubmit = (event) => {
+  const handleSubmit = (event, modalName) => {
     event.preventDefault();
-    console.log('handleDescriptionFormSubmit ==>');
-  };
 
-  const handleInfosSubmit = (event) => {
-    event.preventDefault();
+    const formData = new FormData();
+
+    workspace.equipments_list.forEach((equipment) => formData.append('equipments', equipment.equipment_id));
+    formData.append('title', workspace.workspace.title);
+    formData.append('address', workspace.workspace.address);
+    formData.append('zip_code', workspace.workspace.zip_code);
+    formData.append('city', workspace.workspace.city);
+    formData.append('description', workspace.workspace.description);
+    formData.append('day_price', workspace.workspace.day_price);
+    formData.append('half_day_price', workspace.workspace.half_day_price);
+
+    console.log(formData);
+
+    dispatch({
+      type: 'UPDATE_WORKSPACE',
+      payload: {
+        data: formData,
+        id: id,
+      },
+    });
     console.log('handleInfosSubmit ==>');
+
+    setOpenModal({ ...openModal, [modalName]: false });
+    // setOpenModal({ ...openModal, equipments: false });
+    // setOpenModal({ ...openModal, infos: false });
   };
 
-  const handleEquipmentsSubmit = (event) => {
-    event.preventDefault();
-    console.log('handleEquipmentsSubmit ==>');
-  };
+  // const handleEquipmentsSubmit = (event) => {
+  //   event.preventDefault();
+  //   console.log('handleEquipmentsSubmit ==>');
+  // };
 
   const handleInfosChange = (event, inputName) => {
     const inputNameToUpperCase = inputName.toUpperCase();
@@ -211,9 +260,19 @@ function WorkspaceEdition() {
     });
   };
 
-  const removeImageFromList = (event, imageId) => {
+  const removeImageFromList = (event, imageId, imageLink) => {
     event.stopPropagation();
-    console.log('handle remove', imageId);
+
+    dispatch({
+      type: 'DELETE_IMAGE_FROM_WORKSPACE',
+      payload: {
+        workspaceId: id,
+        imageId: imageId,
+        imageLink: imageLink,
+      },
+    });
+
+    console.log('handle remove', imageId, imageLink);
     // const filteredImagesList = otherImages.filter((image) => image.name !== imageId);
     // setOtherImages(filteredImagesList);
   };
@@ -222,7 +281,7 @@ function WorkspaceEdition() {
     <div>
 
       {
-        workspace
+        !workspaceIsLoading && equipmentsListFromAPI
       && (
       <div className="workspaceEdition">
 
@@ -267,7 +326,7 @@ function WorkspaceEdition() {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <Box sx={style} component="form" onSubmit={handleInfosSubmit}>
+            <Box sx={style} component="form" onSubmit={(event) => handleSubmit(event, 'infos')}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 Informations générales
               </Typography>
@@ -374,7 +433,12 @@ function WorkspaceEdition() {
 
             <h3 className="h3WorkspaceEdition">Image principale</h3>
             <div className="workspaceEditionContainer__mainImageContainer">
-              <img className="workspaceEditionContainer__mainImageContainer__img" src={fileDataURL || mainImage[0].link} alt="" />
+              {
+                mainImage
+                && (
+                  <img className="workspaceEditionContainer__mainImageContainer__img" src={fileDataURL || `https://cosyworking-api.onrender.com/${mainImage[0].link}`} alt="" />
+                )
+              }
             </div>
 
             {/* <form onSubmit={handleSubmit}> */}
@@ -416,7 +480,12 @@ function WorkspaceEdition() {
               </Typography>
 
               <div className="workspaceEditionContainer__mainImageContainer">
-                <img className="workspaceEditionContainer__mainImageContainer__img" src={fileDataURL || mainImage[0].link} alt="" />
+                {
+                  mainImage
+                  && (
+                    <img className="workspaceEditionContainer__mainImageContainer__img" src={fileDataURL || mainImage[0].link} alt="" />
+                  )
+                }
               </div>
 
               <Button
@@ -471,14 +540,14 @@ function WorkspaceEdition() {
             <h3 className="h3WorkspaceEdition">Autres images</h3>
             <div className="imagesListContainer">
               {
-              otherImages.map((image) => (
-                <div key={image.id} className="listItem">
+              otherImages && otherImages.map((image) => (
+                <div key={image.image_id} className="listItem">
                   <div className="listItem__imageContainer">
-                    <img className="listItem__imageContainer__img" src={image.link} alt="" />
+                    <img className="listItem__imageContainer__img" src={`https://cosyworking-api.onrender.com/${image.link}`} alt="" />
                   </div>
                   <IconButton
                     aria-label="delete"
-                    onClick={(event) => removeImageFromList(event, image.id)}
+                    onClick={(event) => removeImageFromList(event, image.image_id, image.link)}
                     sx={{
                       width: 30,
                       height: 30,
@@ -500,7 +569,12 @@ function WorkspaceEdition() {
             <Button
               variant="contained"
               size="small"
-              onClick={handleModal('images', true)}
+              onClick={() => {
+                dispatch({
+                  type: 'SET_IMAGES_MODAL_STATUS',
+                  isOpen: true,
+                });
+              }}
               sx={{
                 width: '30%',
                 height: 40,
@@ -518,8 +592,13 @@ function WorkspaceEdition() {
           </div>
 
           <Modal
-            open={openModal.images}
-            onClose={handleModal('images', false)}
+            open={imagesModalIsOpen}
+            onClose={() => {
+              dispatch({
+                type: 'SET_IMAGES_MODAL_STATUS',
+                isOpen: false,
+              });
+            }}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
@@ -529,9 +608,8 @@ function WorkspaceEdition() {
               </Typography>
 
               <div className="workspaceEditionContainer__mainImageContainer">
-                <img className="workspaceEditionContainer__mainImageContainer__img" src={fileDataURLOtherImage || mainImage.link} alt="" />
+                <img className="workspaceEditionContainer__mainImageContainer__img" src={fileDataURLOtherImage} alt="" />
               </div>
-
               <Button
                 variant="contained"
                 component="label"
@@ -558,24 +636,41 @@ function WorkspaceEdition() {
                 />
               </Button>
 
-              <Button
-                variant="contained"
-                size="small"
-                type="submit"
-                disabled={!fileOtherImage}
-                sx={{
-                  width: '30%',
-                  height: 40,
-                  color: '#8A8A8A',
-                  fontSize: 10,
-                  backgroundColor: '#FFC000',
-                  ':hover': {
-                    backgroundColor: '#8A8A8A',
-                    color: '#FFC000',
-                  },
-                }}
-              >valider
-              </Button>
+              {
+              !imagesAreLoading
+
+                && (
+                  <Button
+                    variant="contained"
+                    size="small"
+                    type="submit"
+                    disabled={!fileOtherImage}
+                    // onClick={handleModal('images', false)}
+                    sx={{
+                      width: '30%',
+                      height: 40,
+                      color: '#8A8A8A',
+                      fontSize: 10,
+                      backgroundColor: '#FFC000',
+                      ':hover': {
+                        backgroundColor: '#8A8A8A',
+                        color: '#FFC000',
+                      },
+                    }}
+                  >valider
+                  </Button>
+                )
+            }
+
+              {
+              imagesAreLoading
+
+                && (
+                  <LoadingButton loading variant="outlined">
+                    Submit
+                  </LoadingButton>
+                )
+            }
 
             </Box>
           </Modal>
@@ -611,7 +706,7 @@ function WorkspaceEdition() {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <Box sx={style} component="form" onSubmit={handleDescriptionFormSubmit}>
+            <Box sx={style} component="form" onSubmit={(event) => handleSubmit(event, 'description')}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 Text in a modal
               </Typography>
@@ -656,7 +751,7 @@ function WorkspaceEdition() {
             <h3 className="h3WorkspaceEdition">Liste des equipements disponibles</h3>
             <div className="equipmentsListContainer">
               {
-                workspaceEquipmentsList.map((equipment) => (
+                workspace.equipments_list.map((equipment) => (
                   <div className="equipmentsListContainer__equipment" key={equipment.id}>
                     <Avatar alt={equipment.description} src={equipment.icon} />
                     <p className="equipmentsListContainer__equipment__name">{equipment.description}</p>
@@ -690,7 +785,7 @@ function WorkspaceEdition() {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <Box sx={style} component="form" onSubmit={handleEquipmentsSubmit}>
+            <Box sx={style} component="form" onSubmit={(event) => handleSubmit(event, 'equipments')}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 Text in a modal
               </Typography>
@@ -698,7 +793,7 @@ function WorkspaceEdition() {
               <div className="equipmentsListModal">
                 {equipmentsListFromAPI.map((equipment) => (
                   <FormControlLabel
-                    control={<Checkbox checked={Boolean(workspaceEquipmentsList.find((equipmentInList) => equipmentInList.equipment_id === equipment.id))} />}
+                    control={<Checkbox checked={Boolean(workspace.equipments_list.find((equipmentInList) => equipmentInList.equipment_id === equipment.id))} />}
                     key={equipment.id}
                     label={equipment.description}
                     value={equipment.id}
@@ -733,74 +828,69 @@ function WorkspaceEdition() {
             </Box>
           </Modal>
 
-          <div className="workspaceEditionContainer__bookingsContainer">
-            <h3 className="h3WorkspaceEdition">Réservations</h3>
-            <div className="workspaceEditionContainer__bookingsContainer__content">
-              <Calendar />
-              <div className="workspaceEditionContainer__bookingsContainer__bookingsDate">
-                <Table
-                  sx={{
-                    minWidth: 'auto',
-                  }}
-                  aria-label="simple table"
-                >
-                  <TableHead>
-                    <TableRow>
-                      <TableCell
-                        sx={{
-                          fontWeight: 'bold',
-                        }}
-                        align="center"
-                      >
-                        Numero
-                      </TableCell>
-                      <TableCell
-                        sx={{
-                          fontWeight: 'bold',
-                        }}
-                        align="center"
-                      >
-                        Date
-                      </TableCell>
-                      <TableCell
-                        sx={{
-                          fontWeight: 'bold',
-                        }}
-                        align="center"
-                      >
-                        Creneau
-                      </TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {workspace.booking_list.map((booking) => (
-                      <TableRow
-              // eslint-disable-next-line react/no-array-index-key
-                        key={booking.booking_id}
-                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                      >
-                        <TableCell align="center" component="th" scope="row">{booking.booking_id}</TableCell>
-                        <TableCell align="center">{ format(new Date(booking.start_date), 'dd/MM/yy') }</TableCell>
-                        <TableCell align="center">{getHours(new Date(booking.start_date))}H-{getHours(new Date(booking.end_date))}H</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-                {/* {
-                  workspace.booking_list.map((booking) => (
-                    <div className="workspaceEditionContainer__bookingsContainer__bookingsDate__item" key={booking.booking_id}>
-                      <p className="workspaceEditionContainer__bookingsContainer__bookingsDate__item__num">Reservation n°: {booking.booking_id}</p>
-                      <p className="workspaceEditionContainer__bookingsContainer__bookingsDate__item__date">
-                        Du &nbsp; {lightFormat(new Date(booking.start_date), 'dd-MM-yy')} {getHours(new Date(booking.start_date))}H &nbsp; Au &nbsp; {lightFormat(new Date(booking.end_date), 'dd-MM-yy')} {getHours(new Date(booking.end_date))}H
-                      </p>
-                    </div>
-                  ))
-              } */}
+          {
+            workspace.booking_list
+            && (
 
+            <div className="workspaceEditionContainer__bookingsContainer">
+              <h3 className="h3WorkspaceEdition">Réservations</h3>
+              <div className="workspaceEditionContainer__bookingsContainer__content">
+                <Calendar />
+                <div className="workspaceEditionContainer__bookingsContainer__bookingsDate">
+                  <Table
+                    sx={{
+                      minWidth: 'auto',
+                    }}
+                    aria-label="simple table"
+                  >
+                    <TableHead>
+                      <TableRow>
+                        <TableCell
+                          sx={{
+                            fontWeight: 'bold',
+                          }}
+                          align="center"
+                        >
+                          Numero
+                        </TableCell>
+                        <TableCell
+                          sx={{
+                            fontWeight: 'bold',
+                          }}
+                          align="center"
+                        >
+                          Date
+                        </TableCell>
+                        <TableCell
+                          sx={{
+                            fontWeight: 'bold',
+                          }}
+                          align="center"
+                        >
+                          Creneau
+                        </TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {workspace.booking_list.map((booking) => (
+                        <TableRow
+              // e  slint-disable-next-line react/no-array-index-key
+                          key={booking.booking_id}
+                          sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                          <TableCell align="center" component="th" scope="row">{booking.booking_id}</TableCell>
+                          <TableCell align="center">{ format(new Date(booking.start_date), 'dd/MM/yy') }</TableCell>
+                          <TableCell align="center">{getHours(new Date(booking.start_date))}H-{getHours(new Date(booking.end_date))}H</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+
+                </div>
               </div>
             </div>
-          </div>
-
+            )
+          }
         </div>
       </div>
       )

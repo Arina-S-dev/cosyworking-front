@@ -79,22 +79,18 @@ function BookingModal({
         onSubmit={(event) => {
           event.stopPropagation();
           event.preventDefault();
-          if (localStorage.getItem('userToken')) {
-            dispatch({
-              type: 'SEND_NEW_BOOKING',
-              payload: {
-                workspace_id: workspaceId,
-                date_list: bookings,
-                receiverEmail: 'clement.duports@gmail.com',
-                userPseudo: userName,
-                message: messageToSend,
-              },
-            });
-          }
-          else {
-            console.log('pas connecter');
-            handleCloseBookingModal();
-          }
+
+          dispatch({
+            type: 'SEND_NEW_BOOKING',
+            payload: {
+              workspace_id: workspaceId,
+              date_list: bookings,
+              receiverEmail: 'clement.duports@gmail.com',
+              userPseudo: userName,
+              message: messageToSend,
+            },
+          });
+
           // eslint-disable-next-line no-console
           console.log('pouet!!!');
         }}

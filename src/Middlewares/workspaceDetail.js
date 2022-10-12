@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import axios from 'axios';
 import { actionSaveCurrentWorkspace, GET_WORKSPACE_DETAIL } from '../actions/workspaces';
 
@@ -28,9 +29,7 @@ const WorkspaceDetailMiddleware = (store) => (next) => (action) => {
         date_list: action.payload.date_list,
       }, {
         headers: {
-        // eslint-disable-next-line quote-props, comma-dangle
-          'x-access-token': getUserToken
-          // eslint-disable-next-line object-curly-spacing, object-curly-newline
+          'x-access-token': getUserToken,
         },
 
       })
@@ -80,6 +79,13 @@ const WorkspaceDetailMiddleware = (store) => (next) => (action) => {
         });
       break;
     case 'GET_WORKSPACE_TO_EDIT':
+      store.dispatch({
+        type: 'SET_WORKSPACE_LOADING_STATUS',
+      });
+      store.dispatch({
+        type: 'SET_IMAGES_LOADING_STATUS',
+        imagesAreLoading: true,
+      });
 
       axios.get(`https://cosyworking-api.onrender.com/api/workspace/${action.workspaceId}`)
         .then((response) => {
@@ -88,24 +94,139 @@ const WorkspaceDetailMiddleware = (store) => (next) => (action) => {
             type: 'SAVE_WORKSPACE_TO_EDIT',
             workspaceToEdit: response.data[0].workspace_details,
           });
+          // store.dispatch({
+          //   type: 'SAVE_WORKSPACE_EQUIPMENTS_LIST',
+          //   workspaceEquipmentsList: response.data[0].workspace_details.equipments_list,
+          // });
+          // store.dispatch({
+          //   type: 'SAVE_WORKSPACE_MAIN_IMAGE',
+          //   // eslint-disable-next-line max-len
+          //   mainImage: response.data[0].workspace_details.images.filter((image) => image.main === true),
+          // });
+          // store.dispatch({
+          //   type: 'SAVE_WORKSPACE_OTHER_IMAGES',
+          //   // eslint-disable-next-line max-len
+          //   otherImages: response.data[0].workspace_details.images.filter((image) => image.main !== true),
+          // });
           store.dispatch({
-            type: 'SAVE_WORKSPACE_EQUIPMENTS_LIST',
-            workspaceEquipmentsList: response.data[0].workspace_details.equipments_list,
-          });
-          store.dispatch({
-            type: 'SAVE_WORKSPACE_MAIN_IMAGE',
-            // eslint-disable-next-line max-len
-            mainImage: response.data[0].workspace_details.images.filter((image) => image.main === true),
-          });
-          store.dispatch({
-            type: 'SAVE_WORKSPACE_OTHER_IMAGES',
-            // eslint-disable-next-line max-len
-            otherImages: response.data[0].workspace_details.images.filter((image) => image.main !== true),
+            type: 'SAVE_WORKSPACE_IMAGES',
+            payload: {
+              mainImage: response.data[0].workspace_details.images.filter((image) => image.main === true),
+              otherImages: response.data[0].workspace_details.images.filter((image) => image.main !== true),
+            },
           });
         })
         .catch((error) => {
           console.log('requette API ERREUR', error);
         });
+      break;
+    case 'CREATE_WORKSPACE': {
+      const getUserToken = JSON.parse(localStorage.getItem('userToken'));
+
+      axios.post('https://cosyworking-api.onrender.com/api/workspace/create', action.payload, {
+        headers: {
+          'x-access-token': getUserToken,
+          'content-type': 'multipart/form-data',
+        },
+
+      })
+        .then((response) => {
+          console.log('response CREATE_WORKSPACE ==>', response.data);
+        })
+        .catch((error) => {
+          console.log('requette API ERREUR', error);
+        });
+    }
+      break;
+    case 'UPDATE_WORKSPACE': {
+      const getUserToken = JSON.parse(localStorage.getItem('userToken'));
+
+      axios.patch(`https://cosyworking-api.onrender.com/api/workspace/${action.payload.id}`, action.payload.data, {
+        headers: {
+          'x-access-token': getUserToken,
+          'content-type': 'multipart/form-data',
+        },
+
+      })
+        .then((response) => {
+          console.log('response UPDATE_WORKSPACE ==>', response.data);
+        })
+        .catch((error) => {
+          console.log('requette API ERREUR', error);
+        });
+    }
+      break;
+    case 'ADD_NEW_IMAGE_TO_WORKSPACE': {
+      console.log('jvjhvjhvjhvjhvjhvjhv ADD_NEW_IMAGE_TO_WORKSPACE ==>');
+      const getUserToken = JSON.parse(localStorage.getItem('userToken'));
+      store.dispatch({
+        type: 'SET_IMAGES_LOADING_STATUS',
+      });
+
+      axios.post(`https://cosyworking-api.onrender.com/api/workspace/${action.payload.id}/images/add`, action.payload.data, {
+        headers: {
+          'x-access-token': getUserToken,
+          'content-type': 'multipart/form-data',
+        },
+
+      })
+        .then((response) => {
+          console.log('response ADD_NEW_IMAGE_TO_WORKSPACE ==>', response.data);
+          // store.dispatch({
+          //   type: 'SAVE_WORKSPACE_MAIN_IMAGE',
+          //   // eslint-disable-next-line max-len
+          //   mainImage: response.data.filter((image) => image.main_image === true),
+          // });
+          // store.dispatch({
+          //   type: 'SAVE_WORKSPACE_OTHER_IMAGES',
+          //   // eslint-disable-next-line max-len
+          //   otherImages: response.data.filter((image) => image.main_image !== true),
+          // });
+          store.dispatch({
+            type: 'SAVE_WORKSPACE_IMAGES',
+            payload: {
+              mainImage: response.data.filter((image) => image.main_image === true),
+              otherImages: response.data.filter((image) => image.main_image !== true),
+            },
+          });
+        })
+        .catch((error) => {
+          console.log('requette API ERREUR', error);
+        });
+    }
+      break;
+    case 'DELETE_IMAGE_FROM_WORKSPACE': {
+      const getUserToken = JSON.parse(localStorage.getItem('userToken'));
+      console.log('USER TOKEN===>', getUserToken);
+      axios.post(`https://cosyworking-api.onrender.com/api/workspace/${action.payload.workspaceId}/image`, {
+        image_id: action.payload.imageId,
+        image_link: action.payload.imageLink,
+      }, {
+        headers: {
+          'x-access-token': getUserToken,
+        },
+
+      })
+        .then((response) => {
+          // store.dispatch({
+          //   type: 'SAVE_WORKSPACE_OTHER_IMAGES',
+          //   // eslint-disable-next-line max-len
+          //   otherImages: response.data.filter((image) => image.main_image !== true),
+          // });
+          store.dispatch({
+            type: 'SAVE_WORKSPACE_IMAGES',
+            payload: {
+              mainImage: response.data.filter((image) => image.main_image === true),
+              otherImages: response.data.filter((image) => image.main_image !== true),
+            },
+          });
+
+          console.log('response SAVE_WORKSPACE_OTHER_IMAGES ==>', response.data);
+        })
+        .catch((error) => {
+          console.log('requette API ERREUR', error);
+        });
+    }
       break;
     default:
   }
@@ -113,9 +234,3 @@ const WorkspaceDetailMiddleware = (store) => (next) => (action) => {
 };
 
 export default WorkspaceDetailMiddleware;
-
-// payload: {
-//   user_id: 7,
-//   workspace_id: workspaceId,
-//   date_list: bookings,
-// },

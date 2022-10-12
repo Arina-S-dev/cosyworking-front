@@ -6,9 +6,12 @@ export const initialState = {
   submitStatus: null,
   workspaceToEdit: null,
   equipmentsList: null,
-  workspaceEquipmentsList: null,
+  // workspaceEquipmentsList: null,
   mainImage: null,
   otherImages: null,
+  workspaceIsLoading: true,
+  imagesAreLoading: true,
+  imagesModalIsOpen: false,
 
 };
 
@@ -34,26 +37,54 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         workspaceToEdit: action.workspaceToEdit,
+        workspaceIsLoading: false,
+        imagesAreLoading: false,
       };
     case 'SAVE_WORKSPACE_EQUIPMENTS_LIST':
       return {
         ...state,
         workspaceEquipmentsList: action.workspaceEquipmentsList,
       };
-    case 'SAVE_WORKSPACE_MAIN_IMAGE':
+    case 'SET_IMAGES_MODAL_STATUS':
       return {
         ...state,
-        mainImage: action.mainImage,
+        imagesModalIsOpen: action.isOpen,
       };
-    case 'SAVE_WORKSPACE_OTHER_IMAGES':
+    // case 'SAVE_WORKSPACE_OTHER_IMAGES':
+    //   return {
+    //     ...state,
+    //     otherImages: action.otherImages,
+    //   };
+    case 'SAVE_WORKSPACE_IMAGES':
       return {
         ...state,
-        otherImages: action.otherImages,
+        otherImages: action.payload.otherImages,
+        mainImage: action.payload.mainImage,
+        imagesAreLoading: false,
+        imagesModalIsOpen: false,
       };
+    case 'SET_IMAGES_LOADING_STATUS':
+      return {
+        ...state,
+        imagesAreLoading: true,
+      };
+    case 'SET_WORKSPACE_LOADING_STATUS':
+      return {
+        ...state,
+        workspaceIsLoading: true,
+      };
+    // case 'SET_WORKSPACE_EQUIPMENTS_LIST':
+    //   return {
+    //     ...state,
+    //     workspaceEquipmentsList: action.workspaceEquipmentsList,
+    //   };
     case 'SET_WORKSPACE_EQUIPMENTS_LIST':
       return {
         ...state,
-        workspaceEquipmentsList: action.workspaceEquipmentsList,
+        workspaceToEdit: {
+          ...state.workspaceToEdit,
+          equipments_list: action.workspaceEquipmentsList,
+        },
       };
     case 'SET_TITLE':
       return {

@@ -34,7 +34,14 @@ function MultipleReactDatePicker({
   const [currentDay, setCurrentDay] = useState(null);
 
   const [isOpenBookingModal, setIsOpenModaleInfos] = useState(false);
-  const handleOpenBookingModal = () => setIsOpenModaleInfos(true);
+  const handleOpenBookingModal = () => {
+    if (localStorage.getItem('userToken')) {
+      setIsOpenModaleInfos(true);
+    }
+    else {
+      console.log('pas CONECTé');
+    }
+  };
   const handleCloseBookingModal = () => setIsOpenModaleInfos(false);
 
   useEffect(() => {
