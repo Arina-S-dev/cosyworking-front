@@ -83,7 +83,7 @@ function SearchInput() {
           )}
           <Button
             variant="contained"
-            sx={{ margin: 3 }}
+            sx={{ mt: 2.2, mb: 1 }}
             onClick={() => {
               dispatch({
                 type: 'GET_WORKSPACES',
