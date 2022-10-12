@@ -13,6 +13,8 @@ import theme from '../../../tools/themeMui';
 function MonProfil() {
   // eslint-disable-next-line max-len, object-curly-newline
   const { username, gender, first_name, last_name, avatar, email, about } = useSelector((state) => state.user);
+  // eslint-disable-next-line no-console
+  console.log(avatar);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -90,15 +92,15 @@ function MonProfil() {
             alt=""
           />
           <Box className="MonProfil-Card-MainBox">
+            <Button onClick={handleOpen} sx={{ width: '100%', display: 'flex', justifyContent: 'end' }}>
+              <CreateRoundedIcon />
+            </Button>
             <CardContent
               className="MonProfil-Card-MainBox-CardContent"
             >
-              <Button onClick={handleOpen}>
-                <CreateRoundedIcon />
-              </Button>
               <Box className="MonProfil-Card-MainBox-CardContent-Box">
                 <Box className="MonProfil-Card-MainBox-CardContent-Box-BoxAvatar">
-                  <Avatar sx={{ width: 150, height: 150 }} alt="" src={avatar} />
+                  <Avatar sx={{ width: 150, height: 150 }} alt="" src={`https://cosyworking-api.onrender.com/${avatar}`} />
                 </Box>
                 <Box className="MonProfil-Card-MainBox-CardContent-Box-BoxName">
                   <Typography variant="h6">
@@ -164,21 +166,23 @@ function MonProfil() {
             >
               <Box className="MonProfil-Card-MainBox-CardContent-Box">
                 <Box className="MonProfil-Card-MainBox-CardContent-Box-BoxAvatar">
-                  <Avatar sx={{ width: 150, height: 150 }} alt="" src={avatar} />
+                  <Avatar sx={{ width: 150, height: 150 }} alt="" src={`https://cosyworking-api.onrender.com/${avatar}`} />
                 </Box>
                 <Box className="MonProfil-Card-MainBox-CardContent-Box-BoxName">
-                  <Input placeholder={username} onChange={changeUsername} />
-                  <Input type="text" placeholder={first_name} onChange={changeFirstName} />
-                  <Input type="text" placeholder={last_name} onChange={changeLastName} />
-                  <Input type="text" placeholder={email} onChange={changeEmail} />
+                  <Input placeholder={username} onChange={changeUsername} sx={{ marginRight: '0.5rem' }} />
+                  <Input type="text" placeholder={first_name} onChange={changeFirstName} sx={{ marginRight: '0.5rem' }} />
+                  <Input type="text" placeholder={last_name} onChange={changeLastName} sx={{ marginRight: '0.5rem' }} />
+                  <Input type="text" placeholder={email} onChange={changeEmail} sx={{ marginRight: '0.5rem' }} />
                 </Box>
               </Box>
             </CardContent>
             <Card className="MonProfil-Card-MainBox-BoxAbout">
               <h3 className="MonProfil-Card-MainBox-BoxAbout-title">A propos</h3>
-              <Input type="text" placeholder={about} onChange={changeAbout} />
+              <Input type="text" placeholder={about} onChange={changeAbout} sx={{ marginRight: '0.5rem' }} />
             </Card>
-            <Button type="submit">Envoyer les modifications</Button>
+            <ThemeProvider theme={theme}>
+              <Button type="submit" sx={{ width: '100%', display: 'flex', justifyContent: 'end' }}>Envoyer les modifications</Button>
+            </ThemeProvider>
           </form>
         </Card>
       </div>
