@@ -27,6 +27,7 @@ function RandomAnnounces() {
       />
     </SwiperSlide>
   ));
+  console.log(data);
   return (
     <div className="containerCard">
       <div className="cardTitle">
