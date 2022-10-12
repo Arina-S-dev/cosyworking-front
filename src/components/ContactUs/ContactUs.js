@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import { useForm } from 'react-hook-form';
 import ContactIMG from '../../img/contact.png';
 import theme from '../../tools/themeMui';
-import './test.scss';
+import './ContactUs.scss';
 // import { useDispatch } from 'react-redux';
 
 function ContactUs() {
