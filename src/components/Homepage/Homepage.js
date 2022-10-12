@@ -11,6 +11,7 @@ function Homepage() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({ type: 'GET_RANDOM_ANNOUNCES' });
+    dispatch({ type: 'EMPTY_STATE' });
   }, []);
   return (
     <div className="Homepage">

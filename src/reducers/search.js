@@ -13,10 +13,24 @@ export const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case 'EMPTY_STATE':
+      return {
+        ...state,
+        city: '',
+        date_list: [],
+        equipments: [],
+        workspaces: [],
+        calendarHomePageIsOpen: false,
+      };
     case 'OPEN_CALENDAR_ON_HOMEPAGE':
       return {
         ...state,
         calendarHomePageIsOpen: true,
+      };
+    case 'CLOSE_CALENDAR_ON_HOMEPAGE':
+      return {
+        ...state,
+        calendarHomePageIsOpen: false,
       };
     case 'OPEN_MODAL_FILTERS':
       return {
