@@ -27,10 +27,12 @@ const style = {
 };
 
 function BookingModal({
-  handleCloseBookingModal, isOpenBookingModal, workspaceId, bookings, host, totalPrice,
+  handleCloseBookingModal, isOpenBookingModal, bookings, totalPrice,
 }) {
   const submitStatus = useSelector((state) => state.workspaces.submitStatus);
   const userName = useSelector((state) => state.user.username);
+  const workspaceId = useSelector((state) => state.workspaces.currentWorkspace.workspace.id);
+  const host = useSelector((state) => state.workspaces.currentWorkspace.user[0].host_id);
   const navigate = useNavigate();
   //   const workspace = useSelector((state) => state.workspaces.workspaceToEdit);
 
@@ -113,7 +115,7 @@ function BookingModal({
           id="outlined-multiline-flexible"
           label="Message"
           multiline
-          maxRows={8}
+          rows={8}
           value={messageToSend}
           onChange={handleChange}
           placeholder="Message"
@@ -126,12 +128,12 @@ function BookingModal({
         && (
         <Button
           variant="contained"
-          size="small"
+          size="medium"
           type="submit"
           sx={{
             color: '#8A8A8A',
-            margin: 1,
-            width: '50%',
+            margin: '1rem 0',
+            width: '100%',
             // fontSize: 10,
             backgroundColor: '#FFC000',
             ':hover': {
@@ -162,9 +164,7 @@ function BookingModal({
 
 BookingModal.propTypes = {
   handleCloseBookingModal: PropTypes.func.isRequired,
-  workspaceId: PropTypes.number.isRequired,
   isOpenBookingModal: PropTypes.bool.isRequired,
-  host: PropTypes.string.isRequired,
   totalPrice: PropTypes.number.isRequired,
   bookings: PropTypes.arrayOf(
     PropTypes.shape({

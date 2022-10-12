@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getHours, format } from 'date-fns/esm';
 import {
-  Button, Avatar, IconButton, Modal, Typography, Box, TextField, FormControlLabel, Checkbox,
+  Button, IconButton, Modal, Typography, Box, TextField, FormControlLabel, Checkbox,
   TableBody, TableCell, TableHead, TableRow, Table,
 } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -753,7 +753,7 @@ function WorkspaceEdition() {
               {
                 workspace.equipments_list.map((equipment) => (
                   <div className="equipmentsListContainer__equipment" key={equipment.id}>
-                    <Avatar alt={equipment.description} src={equipment.icon} />
+                    <img className="equipment_icon" src={`https://cosyworking-api.onrender.com/${equipment.icon_link}`} alt={equipment.description} />
                     <p className="equipmentsListContainer__equipment__name">{equipment.description}</p>
                   </div>
                 ))

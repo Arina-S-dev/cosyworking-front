@@ -13,7 +13,7 @@ import { fr } from 'date-fns/locale';
 import { Trash2 } from 'react-feather';
 import { Button } from '@mui/material';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import BookingModal from './BookingModal';
 
 import './index.scss';
@@ -21,9 +21,10 @@ import './index.scss';
 // eslint-disable-next-line max-len
 
 function MultipleReactDatePicker({
-  dayPrice, halfDayPrice, workspaceId, host,
+  dayPrice, halfDayPrice,
 }) {
   const bookingsList = useSelector((state) => state.workspaces.currentWorkspace.booking_list);
+  // const workspaceId = useSelector((state) => state.workspaces.currentWorkspace);
   // const bookingsList = useSelector((state) => [state.workspaces.currentWorkspace.booking_list[0]]);
   // const userId = useSelector((state) => state.user.user_id);
   // const dispatch = useDispatch();
@@ -35,12 +36,18 @@ function MultipleReactDatePicker({
   const [currentDay, setCurrentDay] = useState(null);
 
   const [isOpenBookingModal, setIsOpenModaleInfos] = useState(false);
+
+  const dispatch = useDispatch();
   const handleOpenBookingModal = () => {
     if (localStorage.getItem('userToken')) {
       setIsOpenModaleInfos(true);
     }
     else {
-      console.log('pas CONECTé');
+      // console.log('pas CONECTé');
+      dispatch({
+        type: 'MODAL_CONNEXION_OPENING',
+        getOpening: true,
+      });
     }
   };
   const handleCloseBookingModal = () => setIsOpenModaleInfos(false);
@@ -326,7 +333,7 @@ function MultipleReactDatePicker({
           }}
         >Reserver
         </Button>
-        <BookingModal handleCloseBookingModal={handleCloseBookingModal} isOpenBookingModal={isOpenBookingModal} workspaceId={workspaceId} bookings={bookings} setBookings={setBookings} host={host} totalPrice={totalPrice} />
+        <BookingModal handleCloseBookingModal={handleCloseBookingModal} isOpenBookingModal={isOpenBookingModal} bookings={bookings} setBookings={setBookings} totalPrice={totalPrice || 0} />
 
       </DatePicker>
 
@@ -337,8 +344,6 @@ function MultipleReactDatePicker({
 MultipleReactDatePicker.propTypes = {
   halfDayPrice: PropTypes.number.isRequired,
   dayPrice: PropTypes.number.isRequired,
-  workspaceId: PropTypes.number.isRequired,
-  host: PropTypes.string.isRequired,
 };
 
 export default MultipleReactDatePicker;
