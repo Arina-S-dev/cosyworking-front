@@ -5,6 +5,10 @@
     position: relative;
     z-index: 3;
     height: 100%;
+
+    .menuBurger{
+        width: 184.6px;
+    }
     
     .Nav-leftNavBar{
         display: flex;
@@ -27,21 +31,25 @@
         flex-direction: row;
         align-items: center;
     }
-    .imgLogo{
-        height: 100%;
-        width: 100%;
-        object-fit: contain;
-    }
     .buttonNavBar{
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        height: 55px;
+        .textNavBar{
+            text-align: center;
+            font-size: 0.8em;
+        }
+    }
+    .miniLogo{
+        height:85%;
+        object-fit: contain;
     }
 }
 
 
-@media screen and (max-width: 800px)
+@media screen and (max-width: 840px)
 {
     .NavDesktop{
        display: none;

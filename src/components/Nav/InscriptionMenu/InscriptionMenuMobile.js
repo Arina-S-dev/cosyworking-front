@@ -39,9 +39,10 @@ function InscriptionMenu() {
             onClick={handleClick}
             size="small"
             sx={{
-              ml: 0.5,
+              ml: 0.2,
               marginTop: '0.3rem',
-              marginRight: '0.5em',
+              marginBottom: '0.3rem',
+              marginRight: '0.2em',
             }}
             aria-controls={open ? 'account-menu' : undefined}
             aria-haspopup="true"

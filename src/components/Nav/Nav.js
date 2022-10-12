@@ -4,9 +4,12 @@ import { BottomNavigation, Button, Paper, ThemeProvider } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
+import KeyIcon from '@mui/icons-material/Key';
 import logo from '../../img/logo_reduit.png';
+import minilogo from '../../img/LogoNavBar.png';
 import './styles.scss';
 import MenuBurger from './MenuBurger/MenuBurger';
+import MenuBurgerMobile from './MenuBurger/MenuBurgerMobile';
 import AccountMenu from './AccountMenu/AccountMenu';
 import InscriptionMenuMobile from './InscriptionMenu/InscriptionMenuMobile';
 import InscriptionMenu from './InscriptionMenu/InscriptionMenu';
@@ -66,7 +69,9 @@ function Nav() {
               height: '50px',
             }}
           >
-            <MenuBurger />
+            <div className="menuBurger">
+              <MenuBurger />
+            </div>
             <Link to="/">
               <img className="imgLogo" src={logo} alt="logo" />
             </Link>
@@ -109,6 +114,7 @@ function Nav() {
             bottom: 0,
             left: 0,
             right: 0,
+            zIndex: 99,
           }}
       // z-index de la nav
           elevation={3}
@@ -119,14 +125,25 @@ function Nav() {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              height: '50px',
+              height: '55px',
             }}
           >
-            <MenuBurger />
+            <MenuBurgerMobile />
             <Link to="/recherche">
               <div className="buttonNavBar">
                 <SearchIcon />
-                Rechercher
+                <p className="textNavBar">Rechercher</p>
+              </div>
+            </Link>
+            <Link to="/">
+              <div className="buttonNavBar">
+                <img className="miniLogo" src={minilogo} alt="petit logo" />
+              </div>
+            </Link>
+            <Link to="/recherche">
+              <div className="buttonNavBar">
+                <KeyIcon />
+                {getRole() ? <Link path="/"><p className="textNavBar">Louer mon espace</p></Link> : <Link path="/"><p className="textNavBar">Devenir hôte</p></Link>}
               </div>
             </Link>
             <div className="Nav-leftNavBar">
