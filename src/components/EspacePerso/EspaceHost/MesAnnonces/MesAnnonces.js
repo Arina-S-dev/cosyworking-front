@@ -113,9 +113,7 @@ function MesAnnonces() {
               <CardMedia
                 className="MesAnnonces-Card-CardMedia"
                 component="img"
-                // sx={{ width: 151 }}
-                image="https://digitalsynopsis.com/wp-content/uploads/2016/01/beautiful-desks-minimal-workstations-33.jpg"
-                // image={list.main_image}
+                image={`https://cosyworking-api.onrender.com/${list.main_image}`}
                 alt=""
               />
               <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>

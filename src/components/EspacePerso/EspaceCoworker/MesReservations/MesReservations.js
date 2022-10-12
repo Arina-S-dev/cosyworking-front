@@ -150,9 +150,7 @@ function MesReservations() {
             <CardMedia
               className="MesReservations-Card-CardMedia"
               component="img"
-              // sx={{ width: 151 }}
-              image="https://digitalsynopsis.com/wp-content/uploads/2016/01/beautiful-desks-minimal-workstations-33.jpg"
-              // image={list.image_link}
+              image={`https://cosyworking-api.onrender.com/${list.image_link}`}
               alt=""
             />
             <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>

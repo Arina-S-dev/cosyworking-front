@@ -13,6 +13,8 @@ import theme from '../../../tools/themeMui';
 function MonProfil() {
   // eslint-disable-next-line max-len, object-curly-newline
   const { username, gender, first_name, last_name, avatar, email, about } = useSelector((state) => state.user);
+  // eslint-disable-next-line no-console
+  console.log(avatar);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -90,15 +92,15 @@ function MonProfil() {
             alt=""
           />
           <Box className="MonProfil-Card-MainBox">
+            <Button onClick={handleOpen} sx={{ width: '100%', display: 'flex', justifyContent: 'end' }}>
+              <CreateRoundedIcon />
+            </Button>
             <CardContent
               className="MonProfil-Card-MainBox-CardContent"
             >
-              <Button onClick={handleOpen}>
-                <CreateRoundedIcon />
-              </Button>
               <Box className="MonProfil-Card-MainBox-CardContent-Box">
                 <Box className="MonProfil-Card-MainBox-CardContent-Box-BoxAvatar">
-                  <Avatar sx={{ width: 150, height: 150 }} alt="" src={avatar} />
+                  <Avatar sx={{ width: 150, height: 150 }} alt="" src={`https://cosyworking-api.onrender.com/${avatar}`} />
                 </Box>
                 <Box className="MonProfil-Card-MainBox-CardContent-Box-BoxName">
                   <Typography variant="h6">

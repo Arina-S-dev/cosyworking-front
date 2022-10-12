@@ -193,10 +193,10 @@ const identification = (store) => (next) => (action) => {
     // Récupération du token présent dans le LocalStorage
     const getUserToken = JSON.parse(localStorage.getItem('userToken'));
     // eslint-disable-next-line max-len, object-curly-newline
-    const { email, password, gender, last_name, first_name, username, about } = store.getState().user;
+    const { email, gender, last_name, first_name, username, about } = store.getState().user;
     const { user_id } = store.getState().user;
     // eslint-disable-next-line object-curly-newline, camelcase
-    axios.patch(`https://cosyworking-api.onrender.com/api/personalspace/${user_id}/profil`, { email, password, gender, last_name, first_name, username, about }, { headers: {
+    axios.patch(`https://cosyworking-api.onrender.com/api/personalspace/${user_id}/profil`, { email, gender, last_name, first_name, username, about }, { headers: {
       // eslint-disable-next-line quote-props, comma-dangle
       'x-access-token': getUserToken
     // eslint-disable-next-line object-curly-spacing, object-curly-newline
