@@ -166,21 +166,23 @@ function MonProfil() {
             >
               <Box className="MonProfil-Card-MainBox-CardContent-Box">
                 <Box className="MonProfil-Card-MainBox-CardContent-Box-BoxAvatar">
-                  <Avatar sx={{ width: 150, height: 150 }} alt="" src={avatar} />
+                  <Avatar sx={{ width: 150, height: 150 }} alt="" src={`https://cosyworking-api.onrender.com/${avatar}`} />
                 </Box>
                 <Box className="MonProfil-Card-MainBox-CardContent-Box-BoxName">
-                  <Input placeholder={username} onChange={changeUsername} />
-                  <Input type="text" placeholder={first_name} onChange={changeFirstName} />
-                  <Input type="text" placeholder={last_name} onChange={changeLastName} />
-                  <Input type="text" placeholder={email} onChange={changeEmail} />
+                  <Input placeholder={username} onChange={changeUsername} sx={{ marginRight: '0.5rem' }} />
+                  <Input type="text" placeholder={first_name} onChange={changeFirstName} sx={{ marginRight: '0.5rem' }} />
+                  <Input type="text" placeholder={last_name} onChange={changeLastName} sx={{ marginRight: '0.5rem' }} />
+                  <Input type="text" placeholder={email} onChange={changeEmail} sx={{ marginRight: '0.5rem' }} />
                 </Box>
               </Box>
             </CardContent>
             <Card className="MonProfil-Card-MainBox-BoxAbout">
               <h3 className="MonProfil-Card-MainBox-BoxAbout-title">A propos</h3>
-              <Input type="text" placeholder={about} onChange={changeAbout} />
+              <Input type="text" placeholder={about} onChange={changeAbout} sx={{ marginRight: '0.5rem' }} />
             </Card>
-            <Button type="submit">Envoyer les modifications</Button>
+            <ThemeProvider theme={theme}>
+              <Button type="submit" sx={{ width: '100%', display: 'flex', justifyContent: 'end' }}>Envoyer les modifications</Button>
+            </ThemeProvider>
           </form>
         </Card>
       </div>
