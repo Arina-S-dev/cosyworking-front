@@ -16,12 +16,12 @@ function SliderComponent({ classCss, imagesList }) {
     <div className={classCss}>
       <Slider {...settings}>
         <div>
-          <img src={mainImage.link} alt="" />
+          <img src={`https://cosyworking-api.onrender.com/${mainImage.link}`} alt="" />
         </div>
         {
         otherImages.map((image) => (
           <div key={image.image_id}>
-            <img src={image.link} alt="" />
+            <img src={`https://cosyworking-api.onrender.com/${image.link}`} alt="" />
           </div>
         ))
       }
