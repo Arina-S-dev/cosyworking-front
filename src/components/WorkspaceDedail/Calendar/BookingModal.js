@@ -1,7 +1,6 @@
 import {
   Button, Modal, Typography, Box, TextField,
 } from '@mui/material';
-import LoadingButton from '@mui/lab/LoadingButton';
 import {
   format, getHours,
 } from 'date-fns';
@@ -9,6 +8,7 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import { LoadingButton } from '@mui/lab';
 
 const style = {
   position: 'absolute',

@@ -1,12 +1,11 @@
+import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import { ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { useForm } from 'react-hook-form';
 import ContactIMG from '../../img/contact.png';
 import theme from '../../tools/themeMui';
 import './test.scss';
-// import { useDispatch } from 'react-redux';
 
 function ContactUs() {
   const {

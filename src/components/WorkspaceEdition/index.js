@@ -5,11 +5,11 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getHours, format } from 'date-fns/esm';
+import { LoadingButton } from '@mui/lab';
 import {
   Button, Avatar, IconButton, Modal, Typography, Box, TextField, FormControlLabel, Checkbox,
   TableBody, TableCell, TableHead, TableRow, Table,
 } from '@mui/material';
-import LoadingButton from '@mui/lab/LoadingButton';
 import DeleteIcon from '@mui/icons-material/DeleteTwoTone';
 import Calendar from './Calendar';
 

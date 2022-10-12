@@ -11,6 +11,8 @@ export const initialState = {
   avatar: '',
   username: '',
   about: '',
+  // Récupération id du coworker pour annonces Host
+  coworker_id: '',
   // Gestion de la cession expirée
   error_connection: false,
   // Gestion de l'ouverture / fermeture de la modale 'inscription'
@@ -53,7 +55,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         logged: action.logged,
         // email: '',
-        // password: '',
+        password: '',
       };
     case 'GET_USER_ID':
       return {
@@ -64,6 +66,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         role_id: action.role,
+      };
+    case 'GET_COWORKER_ID_FOR_HOST':
+      return {
+        ...state,
+        coworker_id: action.coworkerId,
       };
     // Sélection du rôle lors de l'inscription
     case 'GET_SELECTEDROLE':

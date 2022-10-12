@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './MesAnnonces.scss';
 import MesAnnoncesRefs from './MesAnnoncesRefs/MesAnnoncesRefs';
 import MyAccountMenu from '../../../MyAccountMenu';
+import UrlImage from '../../../../axiosUrlImage';
 
 function MesAnnonces() {
   const dispatch = useDispatch();
@@ -113,7 +114,7 @@ function MesAnnonces() {
               <CardMedia
                 className="MesAnnonces-Card-CardMedia"
                 component="img"
-                image={`https://cosyworking-api.onrender.com/${list.main_image}`}
+                image={`${UrlImage}${list.main_image}`}
                 alt=""
               />
               <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>

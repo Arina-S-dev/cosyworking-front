@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 // eslint-disable-next-line object-curly-newline
 import { Accordion, AccordionDetails, AccordionSummary, Alert, AlertTitle, Avatar, Button, Card, CardContent, CardMedia, CircularProgress, Modal, TableContainer, Typography } from '@mui/material';
 import { Box, ThemeProvider } from '@mui/system';
@@ -13,6 +14,7 @@ import './styles.scss';
 import MesTables from './MesTables';
 import MyAccountMenu from '../../../MyAccountMenu';
 import theme from '../../../../tools/themeMui';
+import UrlImage from '../../../../axiosUrlImage';
 
 function MesReservations() {
   const dispatch = useDispatch();
@@ -37,6 +39,8 @@ function MesReservations() {
         alreadyBookingId.timeslot.push({
           start: element.start_date,
           end: element.end_date,
+          dayPrice: element.day_price,
+          halfDayPrice: element.half_day_price,
         });
       }
       else {
@@ -54,6 +58,8 @@ function MesReservations() {
             {
               start: element.start_date,
               end: element.end_date,
+              dayPrice: element.day_price,
+              halfDayPrice: element.half_day_price,
             },
           ],
         });
@@ -113,6 +119,9 @@ function MesReservations() {
     });
   };
 
+  // eslint-disable-next-line no-console
+  console.log('Mon nouveau tableau', newDataArray);
+
   return (
     <div className="MesReservations">
       <MyAccountMenu />
@@ -150,7 +159,7 @@ function MesReservations() {
             <CardMedia
               className="MesReservations-Card-CardMedia"
               component="img"
-              image={`https://cosyworking-api.onrender.com/${list.image_link}`}
+              image={`${UrlImage}${list.image_link}`}
               alt=""
             />
             <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
