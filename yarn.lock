@@ -1675,21 +1675,6 @@
     lodash.get "^4.4.2"
     lodash.isequal "^4.5.0"
 
-"@mui/base@5.0.0-alpha.100":
-  version "5.0.0-alpha.100"
-  resolved "https://registry.yarnpkg.com/@mui/base/-/base-5.0.0-alpha.100.tgz#5587c98fb8c6fdf9138b92c519fe3fd79682f7ac"
-  integrity sha512-bSoJEKCENtmJrJDECHUe9PiqztIUACuSskyqw9ypqE7Dz3WxL3e8puFsWBkUsz+WOCjXh4B4Xljn88Ucxxv5HA==
-  dependencies:
-    "@babel/runtime" "^7.19.0"
-    "@emotion/is-prop-valid" "^1.2.0"
-    "@mui/types" "^7.2.0"
-    "@mui/utils" "^5.10.6"
-    "@popperjs/core" "^2.11.6"
-    clsx "^1.2.1"
-    prop-types "^15.8.1"
-    react-is "^18.2.0"
-<<<<<<< HEAD
-
 "@mui/base@5.0.0-alpha.101":
   version "5.0.0-alpha.101"
   resolved "https://registry.yarnpkg.com/@mui/base/-/base-5.0.0-alpha.101.tgz#dba7e61716ecc946ad8cc3cba0b73796641c4022"
@@ -1703,13 +1688,11 @@
     clsx "^1.2.1"
     prop-types "^15.8.1"
     react-is "^18.2.0"
-=======
->>>>>>> c576573a113cc1742f6b12b9b99b9dde033afc48
 
-"@mui/core-downloads-tracker@^5.10.8":
-  version "5.10.8"
-  resolved "https://registry.yarnpkg.com/@mui/core-downloads-tracker/-/core-downloads-tracker-5.10.8.tgz#b00402dd0796e7e99a09cfc23cb0b0a6196c8e09"
-  integrity sha512-V5D7OInO4P9PdT/JACg7fwjbOORm3GklaMVgdGomjyxiyetgRND5CC9r35e1LK/DqHdoyDuhbFzdfrqWtpmEIw==
+"@mui/core-downloads-tracker@^5.10.9":
+  version "5.10.9"
+  resolved "https://registry.yarnpkg.com/@mui/core-downloads-tracker/-/core-downloads-tracker-5.10.9.tgz#0279aaeecd7903c91730258b242aba4cf674fde5"
+  integrity sha512-rqoFu4qww6KJBbXYhyRd9YXjwBHa3ylnBPSWbGf1bdfG0AYMKmVzg8zxkWvxAWOp97kvx3M2kNPb0xMIDZiogQ==
 
 "@mui/icons-material@^5.10.6":
   version "5.10.6"
@@ -1718,17 +1701,10 @@
   dependencies:
     "@babel/runtime" "^7.19.0"
 
-<<<<<<< HEAD
 "@mui/lab@^5.0.0-alpha.103":
   version "5.0.0-alpha.103"
   resolved "https://registry.yarnpkg.com/@mui/lab/-/lab-5.0.0-alpha.103.tgz#c8fe493a6eb15ad56fd7d71097f727efa8dbc799"
   integrity sha512-cYfkgSXZH/cG8BM4UGtPK0Vr9P79wfvF4S5VGiEbEsScU7yROylLZW1l11yg5nZEIVUJ7jQmcaLdlwVSTSbjzg==
-=======
-"@mui/lab@^5.0.0-alpha.102":
-  version "5.0.0-alpha.102"
-  resolved "https://registry.yarnpkg.com/@mui/lab/-/lab-5.0.0-alpha.102.tgz#c6238777d7b1ae94a97d5d56cbbd95b9716a9b2b"
-  integrity sha512-hIJ82FGdll2NmEp6b2kBhIZ5j/yiOThObBoSYo7WhH+cQCLowbgdAMH45JP9/R8J2qe2lq1K/PI3bLgcGVZ+Rw==
->>>>>>> c576573a113cc1742f6b12b9b99b9dde033afc48
   dependencies:
     "@babel/runtime" "^7.19.0"
     "@mui/base" "5.0.0-alpha.101"
@@ -1740,32 +1716,22 @@
     react-is "^18.2.0"
 
 "@mui/material@^5.10.8":
-  version "5.10.8"
-  resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.10.8.tgz#a223ec5f1128515107381e875f8d6257a00c3cd3"
-  integrity sha512-sF/Ka0IJjGXV52zoT4xAWEqXVRjNYbIjATo9L4Q5oQC5iJpGrKJFY16uNtWWB0+vp/nayAuPGZHrxtV+t3ecdQ==
+  version "5.10.9"
+  resolved "https://registry.npmjs.org/@mui/material/-/material-5.10.9.tgz"
+  integrity sha512-sdOzlgpCmyw48je+E7o9UGGJpgBaF+60FlTRpVpcd/z+LUhnuzzuis891yPI5dPPXLBDL/bO4SsGg51lgNeLBw==
   dependencies:
     "@babel/runtime" "^7.19.0"
-    "@mui/base" "5.0.0-alpha.100"
-    "@mui/core-downloads-tracker" "^5.10.8"
-    "@mui/system" "^5.10.8"
+    "@mui/base" "5.0.0-alpha.101"
+    "@mui/core-downloads-tracker" "^5.10.9"
+    "@mui/system" "^5.10.9"
     "@mui/types" "^7.2.0"
-    "@mui/utils" "^5.10.6"
+    "@mui/utils" "^5.10.9"
     "@types/react-transition-group" "^4.4.5"
     clsx "^1.2.1"
     csstype "^3.1.1"
     prop-types "^15.8.1"
     react-is "^18.2.0"
     react-transition-group "^4.4.5"
-
-"@mui/private-theming@^5.10.6":
-  version "5.10.6"
-  resolved "https://registry.npmjs.org/@mui/private-theming/-/private-theming-5.10.6.tgz"
-  integrity sha512-I/W0QyTLRdEx6py3lKAquKO/rNF/7j+nIOM/xCyI9kU0fcotVTcTY08mKMsS6vrzdWpi6pAkD0wP0KwWy5R5VA==
-  dependencies:
-    "@babel/runtime" "^7.19.0"
-    "@mui/utils" "^5.10.6"
-    prop-types "^15.8.1"
-<<<<<<< HEAD
 
 "@mui/private-theming@^5.10.9":
   version "5.10.9"
@@ -1775,22 +1741,10 @@
     "@babel/runtime" "^7.19.0"
     "@mui/utils" "^5.10.9"
     prop-types "^15.8.1"
-=======
->>>>>>> c576573a113cc1742f6b12b9b99b9dde033afc48
-
-"@mui/styled-engine@^5.10.6":
-  version "5.10.6"
-  resolved "https://registry.npmjs.org/@mui/styled-engine/-/styled-engine-5.10.6.tgz"
-  integrity sha512-OnVw5xnO4l0XzlJFhKif/RlLenBNhyEQQlSTwB9ApSWB05UAU5ZSbjNsRfyEKvgmQ/fPa+MqPD/dzxbIRCwyeg==
-  dependencies:
-    "@babel/runtime" "^7.19.0"
-    "@emotion/cache" "^11.10.3"
-    csstype "^3.1.0"
-    prop-types "^15.8.1"
 
 "@mui/styled-engine@^5.10.8":
   version "5.10.8"
-  resolved "https://registry.yarnpkg.com/@mui/styled-engine/-/styled-engine-5.10.8.tgz#2db411e4278f06f70ccb6b5cd56ace67109513f6"
+  resolved "https://registry.npmjs.org/@mui/styled-engine/-/styled-engine-5.10.8.tgz"
   integrity sha512-w+y8WI18EJV6zM/q41ug19cE70JTeO6sWFsQ7tgePQFpy6ToCVPh0YLrtqxUZXSoMStW5FMw0t9fHTFAqPbngw==
   dependencies:
     "@babel/runtime" "^7.19.0"
@@ -1810,20 +1764,6 @@
     "@mui/utils" "^5.10.6"
     clsx "^1.2.1"
     csstype "^3.1.0"
-    prop-types "^15.8.1"
-
-"@mui/system@^5.10.8":
-  version "5.10.8"
-  resolved "https://registry.yarnpkg.com/@mui/system/-/system-5.10.8.tgz#afea52aeed34bd2d98c993322b5b09585106953d"
-  integrity sha512-hRQ354zcrYP/KHqK8FheICSvE9raQaUgQaV+A3oD4JETaFUCVI9Ytt+RcQYgTqx02xlCXIjl8LK1rPjTneySqw==
-  dependencies:
-    "@babel/runtime" "^7.19.0"
-    "@mui/private-theming" "^5.10.6"
-    "@mui/styled-engine" "^5.10.8"
-    "@mui/types" "^7.2.0"
-    "@mui/utils" "^5.10.6"
-    clsx "^1.2.1"
-    csstype "^3.1.1"
     prop-types "^15.8.1"
 
 "@mui/system@^5.10.9":
@@ -1855,7 +1795,6 @@
     "@types/react-is" "^16.7.1 || ^17.0.0"
     prop-types "^15.8.1"
     react-is "^18.2.0"
-<<<<<<< HEAD
 
 "@mui/utils@^5.10.9":
   version "5.10.9"
@@ -1867,8 +1806,6 @@
     "@types/react-is" "^16.7.1 || ^17.0.0"
     prop-types "^15.8.1"
     react-is "^18.2.0"
-=======
->>>>>>> c576573a113cc1742f6b12b9b99b9dde033afc48
 
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"
@@ -7840,17 +7777,10 @@ react-feather@^2.0.10:
   dependencies:
     prop-types "^15.7.2"
 
-<<<<<<< HEAD
 react-hook-form@^7.37.0:
   version "7.37.0"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.37.0.tgz#4d1738f092d3d8a3ade34ee892d97350b1032b19"
   integrity sha512-6NFTxsnw+EXSpNNvLr5nFMjPdYKRryQcelTHg7zwBB6vAzfPIcZq4AExP4heVlwdzntepQgwiOQW4z7Mr99Lsg==
-=======
-react-hook-form@^7.36.1:
-  version "7.36.1"
-  resolved "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.36.1.tgz"
-  integrity sha512-EbYYkCG2p8ywe7ikOH2l02lAFMrrrslZi1I8fqd8ifDGNAkhomHZQzQsP6ksvzrWBKntRe8b5L5L7Zsd+Gm02Q==
->>>>>>> c576573a113cc1742f6b12b9b99b9dde033afc48
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
@@ -8057,6 +7987,11 @@ redux-devtools-extension@^2.13.9:
   version "2.13.9"
   resolved "https://registry.npmjs.org/redux-devtools-extension/-/redux-devtools-extension-2.13.9.tgz"
   integrity sha512-cNJ8Q/EtjhQaZ71c8I9+BPySIBVEKssbPpskBfsXqb8HJ002A3KRVHfeRzwRo6mGPqsm7XuHTqNSNeS1Khig0A==
+
+redux-persist@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-6.0.0.tgz#b4d2972f9859597c130d40d4b146fecdab51b3a8"
+  integrity sha512-71LLMbUq2r02ng2We9S215LtPu3fY0KgaGE0k8WRgl6RkqxtGfl7HUozz1Dftwsb0D/5mZ8dwAaPbtnzfvbEwQ==
 
 redux@^4.2.0:
   version "4.2.0"

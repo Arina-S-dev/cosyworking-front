@@ -1,6 +1,7 @@
 // import './styles.scss';
 // eslint-disable-next-line object-curly-newline
 import { TableCell, TableRow } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function MesAnnoncesDates(allDates) {
   // eslint-disable-next-line react/destructuring-assignment
@@ -47,7 +48,7 @@ function MesAnnoncesDates(allDates) {
           </TableCell>
           <TableCell align="center">{getCreneau((list.start), (list.end))}</TableCell>
           <TableCell align="center">50 euros</TableCell>
-          <TableCell align="center">{list.coworker}</TableCell>
+          <TableCell align="center"><Link to={`/profil/${list.coworker}`}>{list.coworker}</Link></TableCell>
           <TableCell align="center">{list.description}</TableCell>
         </TableRow>
       ))}

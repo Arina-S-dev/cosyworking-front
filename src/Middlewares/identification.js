@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable camelcase */
-import axios from 'axios';
+// import axios from 'axios';
+import axiosBaseUrl from '../axios';
 
 const identification = (store) => (next) => (action) => {
   // MiddleWare de Connexion avec l'envoi de l'email et du password
@@ -9,7 +10,7 @@ const identification = (store) => (next) => (action) => {
     const { email, password } = store.getState().user;
     // eslint-disable-next-line no-console
     // console.log(email, password);
-    axios.post('https://cosyworking-api.onrender.com/api/auth/login', { email, password })
+    axiosBaseUrl.post('/api/auth/login', { email, password })
       .then((response) => {
         // eslint-disable-next-line no-console
         console.log(response);
@@ -60,7 +61,7 @@ const identification = (store) => (next) => (action) => {
       });
     }
     // eslint-disable-next-line object-curly-newline, camelcase
-    axios.post('https://cosyworking-api.onrender.com/api/auth/signup', { first_name, last_name, email, password, gender, role_id })
+    axiosBaseUrl.post('/api/auth/signup', { first_name, last_name, email, password, gender, role_id })
       .then((response) => {
         // eslint-disable-next-line no-console
         // console.log(response.request.status);
@@ -104,7 +105,7 @@ const identification = (store) => (next) => (action) => {
     // eslint-disable-next-line camelcase
     const { user_id } = store.getState().user;
     // eslint-disable-next-line object-curly-newline, camelcase
-    axios.get(`https://cosyworking-api.onrender.com/api/personalspace/${user_id}/coworkerbooking`, { headers: {
+    axiosBaseUrl.get(`/api/personalspace/${user_id}/coworkerbooking`, { headers: {
       // eslint-disable-next-line quote-props, comma-dangle
       'x-access-token': getUserToken
     // eslint-disable-next-line object-curly-spacing, object-curly-newline
@@ -153,7 +154,7 @@ const identification = (store) => (next) => (action) => {
     // eslint-disable-next-line no-console
     // console.log(user_id);
     // eslint-disable-next-line object-curly-newline, camelcase
-    axios.patch(`https://cosyworking-api.onrender.com/api/booking/${reservationId}/state`, { state: 'Annulé' }, { headers: {
+    axiosBaseUrl.patch(`/api/booking/${reservationId}/state`, { state: 'Annulé' }, { headers: {
       // eslint-disable-next-line quote-props, comma-dangle
       'x-access-token': getUserToken
     // eslint-disable-next-line object-curly-spacing, object-curly-newline
@@ -196,7 +197,7 @@ const identification = (store) => (next) => (action) => {
     const { email, gender, last_name, first_name, username, about } = store.getState().user;
     const { user_id } = store.getState().user;
     // eslint-disable-next-line object-curly-newline, camelcase
-    axios.patch(`https://cosyworking-api.onrender.com/api/personalspace/${user_id}/profil`, { email, gender, last_name, first_name, username, about }, { headers: {
+    axiosBaseUrl.patch(`/api/personalspace/${user_id}/profil`, { email, gender, last_name, first_name, username, about }, { headers: {
       // eslint-disable-next-line quote-props, comma-dangle
       'x-access-token': getUserToken
     // eslint-disable-next-line object-curly-spacing, object-curly-newline
@@ -232,7 +233,7 @@ const identification = (store) => (next) => (action) => {
     // eslint-disable-next-line no-console
     // console.log(user_id);
     // eslint-disable-next-line object-curly-newline, camelcase
-    axios.patch(`https://cosyworking-api.onrender.com/api/booking/${booking_id}/state`, { headers: {
+    axiosBaseUrl.get(`/api/personalspace/${booking_id}/booking`, { headers: {
       // eslint-disable-next-line quote-props, comma-dangle
       'x-access-token': getUserToken, description: description,
     // eslint-disable-next-line object-curly-spacing, object-curly-newline
@@ -274,7 +275,7 @@ const identification = (store) => (next) => (action) => {
     // eslint-disable-next-line no-console
     // console.log(user_id);
     // eslint-disable-next-line object-curly-newline, camelcase
-    axios.get(`https://cosyworking-api.onrender.com/api/personalspace/${user_id}/profil`, { headers: {
+    axiosBaseUrl.get(`/api/personalspace/${user_id}/profil`, { headers: {
       // eslint-disable-next-line quote-props, comma-dangle
       'x-access-token': getUserToken
     // eslint-disable-next-line object-curly-spacing, object-curly-newline
