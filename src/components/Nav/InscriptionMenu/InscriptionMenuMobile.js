@@ -1,14 +1,15 @@
 import { Logout } from '@mui/icons-material';
 import {
-  Avatar, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip,
+  Avatar, IconButton, ListItemIcon, Menu, MenuItem, Tooltip,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import * as React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import './styles.scss';
+import { useDispatch } from 'react-redux';
+import ModalConnexion from '../ModalConnexion/ModalConnexion';
+import ModalInscription from '../ModalInscription/ModalInscription';
 
-function AccountMenu() {
+function InscriptionMenu() {
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -17,41 +18,37 @@ function AccountMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const avatar = useSelector((state) => state.user.avatar);
-
-  // Permet de se déconnecter et de supprimer le token en LocalStorage
-  const dispatch = useDispatch();
-  const getLogout = () => {
+  const handleOpenModalInscription = () => {
     dispatch({
-      type: 'LOGOUT',
+      type: 'MODAL_INSCRIPTION_OPENING',
+      getOpening: true,
     });
   };
-
-  // const checkToken = () => {
-  //   dispatch({
-  //     type: 'CHECK_CONNECTION',
-  //   });
-  // };
-
+  const handleOpenModalConnexion = () => {
+    dispatch({
+      type: 'MODAL_CONNEXION_OPENING',
+      getOpening: true,
+    });
+  };
   return (
-    <div className="AccountMenu">
+    <div className="InscriptionMenu">
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-        <Tooltip title="Account settings">
+        <Tooltip title="Connexion">
+          {/* Icone Avatar dans la navbar */}
           <IconButton
-            className="AccountMenu-connected"
             onClick={handleClick}
             size="small"
             sx={{
-              ml: 0.5,
+              ml: 0.2,
               marginTop: '0.3rem',
-              marginRight: '0.5rem',
+              marginBottom: '0.3rem',
+              marginRight: '0.2em',
             }}
             aria-controls={open ? 'account-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar src={`https://cosyworking-api.onrender.com/${avatar}`} />
+            <Avatar />
           </IconButton>
         </Tooltip>
       </Box>
@@ -60,23 +57,27 @@ function AccountMenu() {
         id="account-menu"
         open={open}
         onClose={handleClose}
-        onClick={handleClose}
+        // onClick={handleClose}
         PaperProps={{
-          elevation: 0,
+          elevation: 2,
           sx: {
             overflow: 'visible',
             filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-            mt: 1.5,
+            mb: '5em',
             '& .MuiAvatar-root': {
               width: 32,
               height: 32,
-              ml: 0.5,
+              ml: -0.5,
               mr: 1,
             },
             '&:before': {
               content: '""',
               display: 'block',
               position: 'absolute',
+              bottom: 0,
+              right: 14,
+              width: 10,
+              height: 10,
               bgcolor: 'background.paper',
               transform: 'translateY(-50%) rotate(45deg)',
               zIndex: 0,
@@ -86,21 +87,25 @@ function AccountMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem>
-          <Link to="/espace-perso">
-            <div className="avatarAccountdiv"><Avatar src={`https://cosyworking-api.onrender.com/${avatar}`} /> Mon Espace Perso</div>
-          </Link>
+        {/* Contenu de l'onglet 'inscription' */}
+        <MenuItem onClick={handleOpenModalInscription}>
+          <ListItemIcon>
+            <Avatar />
+          </ListItemIcon>
+          S'inscrire
         </MenuItem>
-        <Divider />
-        <MenuItem onClick={getLogout}>
+        <MenuItem onClick={handleOpenModalConnexion}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          Se Déconnecter
+          Se Connecter
         </MenuItem>
+        {/* <Divider /> */}
       </Menu>
+      <ModalConnexion />
+      <ModalInscription />
     </div>
   );
 }
 
-export default AccountMenu;
+export default InscriptionMenu;

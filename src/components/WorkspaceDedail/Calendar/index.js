@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable max-len */
 // import React and DatePicker
 
@@ -12,17 +13,21 @@ import { fr } from 'date-fns/locale';
 import { Trash2 } from 'react-feather';
 import { Button } from '@mui/material';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
+import { useSelector, useDispatch } from 'react-redux';
+import BookingModal from './BookingModal';
 
 import './index.scss';
-import { useSelector, useDispatch } from 'react-redux';
 
 // eslint-disable-next-line max-len
 
-function MultipleReactDatePicker({ dayPrice, halfDayPrice, workspaceId }) {
+function MultipleReactDatePicker({
+  dayPrice, halfDayPrice,
+}) {
   const bookingsList = useSelector((state) => state.workspaces.currentWorkspace.booking_list);
+  // const workspaceId = useSelector((state) => state.workspaces.currentWorkspace);
   // const bookingsList = useSelector((state) => [state.workspaces.currentWorkspace.booking_list[0]]);
   // const userId = useSelector((state) => state.user.user_id);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [bookings, setBookings] = useState([]);
   const [totalSelectedDays, setTotalSelectedDays] = useState(null);
   const [totalPrice, setTotalPrice] = useState(null);
@@ -30,9 +35,26 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice, workspaceId }) {
   const [currentMonth, setCurrentMonth] = useState(getMonth(new Date()) + 1);
   const [currentDay, setCurrentDay] = useState(null);
 
+  const [isOpenBookingModal, setIsOpenModaleInfos] = useState(false);
+
+  const dispatch = useDispatch();
+  const handleOpenBookingModal = () => {
+    if (localStorage.getItem('userToken')) {
+      setIsOpenModaleInfos(true);
+    }
+    else {
+      // console.log('pas CONECTé');
+      dispatch({
+        type: 'MODAL_CONNEXION_OPENING',
+        getOpening: true,
+      });
+    }
+  };
+  const handleCloseBookingModal = () => setIsOpenModaleInfos(false);
+
   useEffect(() => {
-    const fullDaysSelected = bookings.filter((booking) => (getHours(booking.startDate) === 8 && getHours(booking.endDate) === 17));
-    const halfDaysSelected = bookings.filter((booking) => (!(getHours(booking.startDate) === 8 && getHours(booking.endDate) === 17)));
+    const fullDaysSelected = bookings.filter((booking) => (getHours(booking.start_date) === 8 && getHours(booking.end_date) === 17));
+    const halfDaysSelected = bookings.filter((booking) => (!(getHours(booking.start_date) === 8 && getHours(booking.end_date) === 17)));
 
     // eslint-disable-next-line no-multi-assign
     const totalDays = (fullDaysSelected.length) + (halfDaysSelected.length * 0.5);
@@ -297,17 +319,8 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice, workspaceId }) {
         <Button
           variant="contained"
           size="small"
-          onClick={() => {
-            dispatch({
-              type: 'SEND_NEW_BOOKING',
-              payload: {
-                workspace_id: workspaceId,
-                date_list: bookings,
-              },
-            });
-            // eslint-disable-next-line no-console
-            // console.log('pouet!!!');
-          }}
+          onClick={handleOpenBookingModal}
+          disabled={bookings.length === 0}
           sx={{
             color: '#8A8A8A',
             margin: 1,
@@ -320,6 +333,7 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice, workspaceId }) {
           }}
         >Reserver
         </Button>
+        <BookingModal handleCloseBookingModal={handleCloseBookingModal} isOpenBookingModal={isOpenBookingModal} bookings={bookings} setBookings={setBookings} totalPrice={totalPrice || 0} />
 
       </DatePicker>
 
@@ -330,7 +344,6 @@ function MultipleReactDatePicker({ dayPrice, halfDayPrice, workspaceId }) {
 MultipleReactDatePicker.propTypes = {
   halfDayPrice: PropTypes.number.isRequired,
   dayPrice: PropTypes.number.isRequired,
-  workspaceId: PropTypes.number.isRequired,
 };
 
 export default MultipleReactDatePicker;

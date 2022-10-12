@@ -14,8 +14,7 @@ import { fr } from 'date-fns/locale';
 // import { Trash2 } from 'react-feather';
 // import { Button } from '@mui/material';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
-
-import './style.scss';
+import { useSelector } from 'react-redux';
 
 // eslint-disable-next-line max-len
 
@@ -40,44 +39,18 @@ function MultipleReactDatePicker() {
   // console.log('CURRENTDAY===>', currentDay);
   // eslint-disable-next-line no-console
   // console.log('bookings===>', bookings);
-
-  const bookingsList = [
-    {
-      startDate: 'Wed Oct 12 2022 08:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-      endDate: 'Wed Oct 12 2022 17:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-    },
-    {
-      startDate: 'Sat Oct 15 2022 08:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-      endDate: 'Sat Oct 15 2022 12:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-    },
-    {
-      startDate: 'Mon Oct 17 2022 13:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-      endDate: 'Mon Oct 17 2022 17:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-    },
-    {
-      startDate: 'Thu Oct 20 2022 13:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-      endDate: 'Thu Oct 20 2022 17:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-    },
-    {
-      startDate: 'Sat Oct 22 2022 08:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-      endDate: 'Sat Oct 22 2022 17:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-    },
-    {
-      startDate: 'Wed Oct 26 2022 08:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-      endDate: 'Wed Oct 26 2022 12:00:00 GMT+0200 (heure d’été d’Europe centrale)',
-    },
-  ];
+  const bookingsList = useSelector((state) => state.workspaces.workspaceToEdit.booking_list);
 
   const DateIsBooked = (dateToTest) => {
     let isBooked = false;
     bookingsList.forEach((booking) => {
       const isInInterval = isWithinInterval(setHours(dateToTest, 8), {
-        start: new Date(booking.startDate),
-        end: new Date(booking.endDate),
+        start: new Date(booking.start_date),
+        end: new Date(booking.end_date),
       })
       && isWithinInterval(setHours(dateToTest, 17), {
-        start: new Date(booking.startDate),
-        end: new Date(booking.endDate),
+        start: new Date(booking.start_date),
+        end: new Date(booking.end_date),
       });
       if (isInInterval) {
         isBooked = true;
@@ -91,8 +64,8 @@ function MultipleReactDatePicker() {
 
     bookingsList.forEach((booking) => {
       const isInInterval = isWithinInterval(setHours(dateToTest, hour), {
-        start: new Date(booking.startDate),
-        end: new Date(booking.endDate),
+        start: new Date(booking.start_date),
+        end: new Date(booking.end_date),
       });
       if (isInInterval) {
         isBooked = true;
@@ -106,8 +79,8 @@ function MultipleReactDatePicker() {
 
     bookingsList.forEach((booking) => {
       const arrayOfDaysInIntervale = eachDayOfInterval({
-        start: new Date(booking.startDate),
-        end: new Date(booking.endDate),
+        start: new Date(booking.start_date),
+        end: new Date(booking.end_date),
       });
       unvalidDates = [...unvalidDates, ...arrayOfDaysInIntervale];
     });

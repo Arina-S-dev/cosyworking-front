@@ -1,11 +1,23 @@
 @use 'reset';
 @use 'vars';
 
+
+html {
+  height: fill-available;
+    height: -webkit-fill-available;
+}
 body {
   font-family: sans-serif;
-  height: calc(100vh - 370px);
+  min-height: 100vh;
+  min-height: fill-available;
+  min-height: -webkit-fill-available;
 }
-
+@supports (-webkit-touch-callout: none) {
+  body {
+    /* The hack for Safari */
+    min-height: -webkit-fill-available;
+  }
+}
 #root{
   width: 100%;
 }

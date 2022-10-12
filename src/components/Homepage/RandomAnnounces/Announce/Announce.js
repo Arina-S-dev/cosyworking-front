@@ -9,7 +9,7 @@ function Announce({
 }) {
   return (
     <div className="Card">
-      <img className="cardIMG" src={image} alt="bureau" />
+      <img className="cardIMG" src={`https://cosyworking-api.onrender.com/${image}`} alt="bureau" />
       <div className="infoText">
         <div className="nameAnnounce">
           <p>{announceName}</p>

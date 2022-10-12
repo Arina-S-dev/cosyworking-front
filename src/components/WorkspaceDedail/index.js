@@ -4,6 +4,12 @@ import { useState, useEffect } from 'react';
 import { Avatar } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
 
+import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
+import IconButton from '@mui/material/IconButton';
+import Collapse from '@mui/material/Collapse';
+import CloseIcon from '@mui/icons-material/Close';
+
 // imports components
 import LeafletMap from './Map';
 import Calendar from './Calendar';
@@ -29,6 +35,7 @@ function WorkspaceDetail() {
   }, []);
 
   const workspace = useSelector((state) => state.workspaces.currentWorkspace);
+  const submitStatus = useSelector((state) => state.workspaces.submitStatus);
   // const isLoading = useSelector((state) => state.workspaces.isLoading);
   // eslint-disable-next-line no-console
   console.log('WORSPACE====>', workspace);
@@ -41,8 +48,18 @@ function WorkspaceDetail() {
   const [PictureModalOpen, setpictureModalOpen] = useState(false);
   const [CalendarModalOpen, setcalendarModalOpen] = useState(false);
 
+  const [openAlert, setOpenAlert] = useState(false);
+
   const calendarModalClassName = CalendarModalOpen ? 'calendarModal' : 'isHidden';
   // const equipmentsList = workspace.equipments_list;
+
+  if (submitStatus === 'fail' && !openAlert) {
+    setOpenAlert(true);
+    dispatch({
+      type: 'BOOKING_SUBMIT_STATUS',
+      submitStatus: null,
+    });
+  }
 
   return (
 
@@ -51,6 +68,35 @@ function WorkspaceDetail() {
       {workspace && (
 
       <div className=" workspaceDetail">
+        <Box sx={{
+          width: '100%',
+          position: 'fixed',
+          top: 50,
+          left: 0,
+          zIndex: 999999999999999,
+        }}
+        >
+          <Collapse in={openAlert}>
+            <Alert
+              action={(
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setOpenAlert(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+          )}
+              sx={{ mb: 2 }}
+              severity="error"
+            >
+              Quelque chose s'est mal passer veuillez reesayer ulterieurement!
+            </Alert>
+          </Collapse>
+        </Box>
 
         {/* modale calendrier pour version mobile */}
         <CalendarModal className={calendarModalClassName} halfDayPrice={workspace.workspace.half_day_price} dayPrice={workspace.workspace.day_price} closeCalendarModale={() => (setcalendarModalOpen(false))} />
@@ -105,7 +151,7 @@ function WorkspaceDetail() {
                   workspace.equipments_list.map((equipment) => (
                     <div className="equipment" key={equipment.equipment_id}>
                       {/* <Avatar alt={equipment.description} src={equipment.icon_link} /> */}
-                      <img className="equipment_icon" src={equipment.icon_link} alt={equipment.description} />
+                      <img className="equipment_icon" src={`https://cosyworking-api.onrender.com/${equipment.icon_link}`} alt={equipment.description} />
                       <p className="equipmentName">{equipment.description}</p>
                     </div>
                   ))
@@ -123,7 +169,7 @@ function WorkspaceDetail() {
 
           <div className="detailContainer_right">
 
-            <Calendar dayPrice={workspace.workspace.day_price} halfDayPrice={workspace.workspace.half_day_price} workspaceId={workspace.workspace.id} />
+            <Calendar dayPrice={workspace.workspace.day_price} halfDayPrice={workspace.workspace.half_day_price} workspaceId={workspace.workspace.id} host={workspace.user[0].host} />
 
           </div>
         </section>

@@ -278,6 +278,19 @@ h3{
 
 }  
 
+.bookingDatesModaleContainer{
+    margin: 1rem 0;
+
+    &_title{
+        margin: .5rem 0;
+    }
+
+    p{
+        padding: .1rem 0;
+    }
+    
+}
+
 @media (max-width: 2560px) {
 
     .workspaceDetail{
@@ -376,7 +389,7 @@ h3{
         justify-content: space-between;
         align-items: center;
         position: fixed;
-        bottom: 0px;
+        bottom: 50px;
         left: 0px;
         z-index: 9999;
         background-color: white;

@@ -24,8 +24,14 @@ function MenuBurger() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         sx={{
-          paddingTop: '0.9rem',
+          pl: 0,
+          pr: 0,
+          pt: 0,
+          pb: 0,
+          minWidth: 55,
           color: 'black',
+          display: 'flex',
+          alignContent: 'center',
         }}
       >
         {/* Burger si fermé et croix si le menu est ouvert */}
