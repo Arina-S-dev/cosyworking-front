@@ -67,6 +67,8 @@ function Nav() {
               display: 'flex',
               justifyContent: 'space-between',
               height: '50px',
+              mt: '1em',
+              mb: '1em',
             }}
           >
             <div className="menuBurger">
