@@ -29,9 +29,10 @@ export default function ModalConfirm() {
     });
   };
 
-  const updateBooking = () => {
+  const updateBookingStatus = () => {
     dispatch({
       type: 'UPDATE_BOOKING_STATUS',
+      alertSuccess: true,
     });
   };
 
@@ -57,7 +58,7 @@ export default function ModalConfirm() {
             </Typography>
             <Typography className="modal-buttons" sx={{ mt: 2 }}>
               <Button variant="outlined" onClick={handleClose}>Non</Button>
-              <Button variant="contained" onClick={updateBooking}>Oui</Button>
+              <Button variant="contained" onClick={updateBookingStatus}>Oui</Button>
             </Typography>
           </Box>
         </Fade>

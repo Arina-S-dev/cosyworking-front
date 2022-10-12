@@ -9,6 +9,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Typography } from '@mui/material';
+import Alert from '@mui/material/Alert';
 import MyAccountMenu from '../../../MyAccountMenu';
 import theme from '../../../../tools/themeMui';
 import ModalConfirm from './modalConfirm';
@@ -17,15 +18,24 @@ import './style.scss';
 
 function MyRequests() {
   const dispatch = useDispatch();
-  const handleOpen = (event) => {
+  // Ouverture de la modale, récupération de la description (Annulée / Validée), récupération du booking id
+  const handleOpen = (event, bookingId) => {
     const description = event.currentTarget.value;
     dispatch({
       type: 'OPEN_CONFIRM_MODAL',
       description: description,
+      bookigIdforUpdate: bookingId,
+    });
+  };
+
+  const handleCloseAlert = () => {
+    dispatch({
+      type: 'CLOSE_ALERT',
     });
   };
   const modalIsOpen = useSelector((state) => state.requests.openConfimModal);
   const requestsData = useSelector((state) => state.user.datahostrequests);
+  const alertIsOpen = useSelector((state) => state.requests.alertSuccess);
   // filtre les bookings avec le statut "en attente" uniquement
   const pendingRequests = requestsData.filter((req) => req.description === 'En attente');
   // eslint-disable-next-line object-curly-spacing, camelcase
@@ -48,9 +58,15 @@ function MyRequests() {
 
       <ThemeProvider theme={theme}>
         <div className="card-container">
-
+          {alertIsOpen
+          && (
+          <Alert onClose={handleCloseAlert} severity="success" sx={{ borderRadius: '15px' }}>
+            Le statut de la demande a bien été modifié
+          </Alert>
+          )}
           {Object.keys(bookingList).map((booking) => (
             <Card
+              key={bookingList[booking][0].bookig_ref_id}
               sx={{
                 width: {
                   xs: 360,
@@ -65,7 +81,7 @@ function MyRequests() {
                 component="img"
                 alt="workspace"
                 height="200"
-                image={bookingList[booking][0].main_image}
+                image={`https://cosyworking-api.onrender.com/${bookingList[booking][0].main_image}`}
                 width="250"
               />
               <CardContent className="card-details">
@@ -94,13 +110,14 @@ function MyRequests() {
                 <Stack className="card-buttons" spacing={2} direction="row">
                   <Button
                     value="Annulé"
-                    onClick={handleOpen}
+                    onClick={(event) => handleOpen(event, bookingList[booking][0].bookig_ref_id)}
                     title="Annuler la demande"
                   ><ClearIcon fontSize="large" sx={{ color: 'red', margin: 1 }} />
                   </Button>
                   <Button
                     value="Validé"
-                    onClick={handleOpen}
+                    onClick={(event) => handleOpen(event, bookingList[booking][0].bookig_ref_id)}
+                    className={bookingList[booking][0].bookig_ref_id}
                     title="Valider la demande"
                   ><CheckIcon fontSize="large" sx={{ color: 'green', margin: 1 }} />
                   </Button>
