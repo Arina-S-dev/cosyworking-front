@@ -4,7 +4,7 @@ import {
 } from '@mui/material';
 import { Box } from '@mui/system';
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './styles.scss';
 
@@ -17,6 +17,8 @@ function AccountMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const avatar = useSelector((state) => state.user.avatar);
 
   // Permet de se déconnecter et de supprimer le token en LocalStorage
   const dispatch = useDispatch();
@@ -41,15 +43,15 @@ function AccountMenu() {
             onClick={handleClick}
             size="small"
             sx={{
-              ml: 2,
+              ml: 0.5,
               marginTop: '0.3rem',
-              marginRight: '2rem',
+              marginRight: '0.5rem',
             }}
             aria-controls={open ? 'account-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar />
+            <Avatar src={`https://cosyworking-api.onrender.com/${avatar}`} />
           </IconButton>
         </Tooltip>
       </Box>
@@ -68,17 +70,13 @@ function AccountMenu() {
             '& .MuiAvatar-root': {
               width: 32,
               height: 32,
-              ml: -0.5,
+              ml: 0.5,
               mr: 1,
             },
             '&:before': {
               content: '""',
               display: 'block',
               position: 'absolute',
-              top: 0,
-              right: 14,
-              width: 10,
-              height: 10,
               bgcolor: 'background.paper',
               transform: 'translateY(-50%) rotate(45deg)',
               zIndex: 0,
@@ -89,7 +87,9 @@ function AccountMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Link to="/espace-perso"><Avatar /> Mon Espace Perso</Link>
+          <Link to="/espace-perso">
+            <div className="avatarAccountdiv"><Avatar src={`https://cosyworking-api.onrender.com/${avatar}`} /> Mon Espace Perso</div>
+          </Link>
         </MenuItem>
         <Divider />
         <MenuItem onClick={getLogout}>
