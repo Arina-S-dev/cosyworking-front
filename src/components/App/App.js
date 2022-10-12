@@ -13,6 +13,7 @@ import WorkspaceDetail from '../WorkspaceDedail';
 import PublicProfil from '../PublicProfile';
 import WorkspaceEdition from '../WorkspaceEdition';
 import SearchPage from '../SearchPage';
+import WorkspaceCreation from '../WorkspaceCreation';
 import './App.scss';
 
 // import css du caroussel de la page de detail du workspace
@@ -42,7 +43,8 @@ function App() {
         <Route path="/cgv" element={<CGV />} />
         <Route path="/workspace/:id" element={<WorkspaceDetail />} />
         <Route path="/profil/:id" element={<PublicProfil />} />
-        <Route path="/espace-perso/espace-hote/mes-annonces/annonce/" element={<WorkspaceEdition />} />
+        <Route path="/espace-perso/espace-hote/mes-annonces/annonce/:id" element={<WorkspaceEdition />} />
+        <Route path="/espace-perso/espace-hote/mes-annonces/create" element={<WorkspaceCreation />} />
         <Route path="/recherche" element={<SearchPage />} />
         <Route path="/espace-perso" element={<EspacePerso />} />
         <Route path="/espace-perso/mon-profil" element={<MonProfil />} />

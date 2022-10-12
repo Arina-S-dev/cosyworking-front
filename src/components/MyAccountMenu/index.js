@@ -45,16 +45,18 @@ function MyAccountMenu() {
                   Mes annonces
                 </Button>
               </Link>
-              <Button
-                sx={{ whiteSpace: 'nowrap', minWidth: 'max-content' }}
-                color="neutral"
-                className="account-menu-elem"
-                onClick={() => {
-                  console.log('je clique');
-                }}
-              >
-                Mes demandes
-              </Button>
+              <Link to="/espace-perso/espace-hote/mes-demandes">
+                <Button
+                  sx={{ whiteSpace: 'nowrap', minWidth: 'max-content' }}
+                  color="neutral"
+                  className="account-menu-elem"
+                  onClick={() => {
+                    console.log('je clique');
+                  }}
+                >
+                  Mes demandes
+                </Button>
+              </Link>
             </>
           )}
           {!controlNavBarEspacePerso

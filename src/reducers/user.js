@@ -87,6 +87,16 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         last_name: action.lastname,
       };
+    case 'GET_USERNAME':
+      return {
+        ...state,
+        username: action.username,
+      };
+    case 'GET_ABOUT':
+      return {
+        ...state,
+        about: action.about,
+      };
     // Pour indiquer que le token (donc la session) a expiré
     case 'CONNECTION_STATE':
       return {

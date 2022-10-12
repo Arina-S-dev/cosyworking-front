@@ -1,12 +1,16 @@
 @use '../../styles/vars';
 @use 'sass:color';
 
-.Nav{
+.NavDesktop{
     position: relative;
     z-index: 3;
     height: 100%;
+
+    .menuBurger{
+        width: 184.6px;
+    }
     
-    &-leftNavBar{
+    .Nav-leftNavBar{
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -18,4 +22,39 @@
     }
 }
 
+.NavMobile{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    .Nav-leftNavBar{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .buttonNavBar{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 55px;
+        .textNavBar{
+            text-align: center;
+            font-size: 0.8em;
+        }
+    }
+    .miniLogo{
+        height:85%;
+        object-fit: contain;
+    }
+}
 
+
+@media screen and (max-width: 840px)
+{
+    .NavDesktop{
+       display: none;
+    }
+    .NavMobile{
+        display: flex;
+    }
+}

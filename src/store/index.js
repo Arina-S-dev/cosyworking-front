@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { applyMiddleware, legacy_createStore as createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import identification from '../Middlewares/identification';
@@ -21,3 +22,15 @@ const store = createStore(
 );
 
 export default store;
+
+// // eslint-disable-next-line max-len
+// // const middlewareEnhancer = applyMiddleware(randomAnnouncesMiddleware, identification, searchMiddleware, WorkspaceDetailMiddleware, profilMiddleware);
+
+// const composedEnhancers = composeWithDevTools({ trace: true });
+
+// const store = createStore(
+//   // le reducer
+//   reducer,
+//   composedEnhancers(applyMiddleware(randomAnnouncesMiddleware, identification, searchMiddleware, WorkspaceDetailMiddleware, profilMiddleware)),
+
+// );

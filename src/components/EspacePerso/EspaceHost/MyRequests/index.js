@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import Card from '@mui/material/Card';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -18,6 +19,12 @@ import './style.scss';
 
 function MyRequests() {
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({
+      type: 'CONTROL_BAR_ESPACE_PERSO',
+      getAccessNavBar: true,
+    });
+  }, []);
   // Ouverture de la modale, récupération de la description (Annulée / Validée), récupération du booking id
   const handleOpen = (event, bookingId) => {
     const description = event.currentTarget.value;
