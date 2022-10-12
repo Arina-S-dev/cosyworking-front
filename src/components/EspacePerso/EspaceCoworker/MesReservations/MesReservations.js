@@ -122,6 +122,26 @@ function MesReservations() {
   // eslint-disable-next-line no-console
   console.log('Mon nouveau tableau', newDataArray);
 
+  // Efface 'annuler réservation' si deja annulé
+  function getIfCanceled(state) {
+    if (state === 'Annulé') {
+      return false;
+    }
+    return true;
+  }
+
+  // Gestion de la couleur du state
+  function getColor(state) {
+    if (state === 'En attente') {
+      return '#00b6ff';
+    }
+    // eslint-disable-next-line no-else-return
+    else if (state === 'Annulé') {
+      return 'red';
+    }
+    return 'green';
+  }
+
   return (
     <div className="MesReservations">
       <MyAccountMenu />
@@ -189,12 +209,15 @@ function MesReservations() {
                     <Avatar className="MesReservations-Card-CardContent-Box-Host-Avatar" />
                     <p className="MesReservations-Card-CardContent-Box-Host-Name"> {list.host}</p>
                   </Typography>
-                  <Typography className="MesReservations-Card-CardContent-Box-State" variant="string" color="text.secondary" component="div">
+                  <Typography className="MesReservations-Card-CardContent-Box-State" variant="string" color="text.secondary" component="div" sx={{ color: getColor(list.state) }}>
                     Statut : {list.state}
                     <ThemeProvider theme={theme}>
+                      {getIfCanceled(list.state)
+                      && (
                       <Button value={list.booking_ref_id} onClick={handleCancelReservation} sx={{ textTransform: 'none' }}>
                         Annuler ma réservation <DeleteRoundedIcon />
                       </Button>
+                      )}
                     </ThemeProvider>
                     <Modal
                       hideBackdrop

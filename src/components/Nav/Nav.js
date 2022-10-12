@@ -47,7 +47,7 @@ function Nav() {
   }
 
   return (
-    <div>
+    <>
       <div className="NavDesktop">
         {/* Composant Mui de la navbar */}
         <Paper
@@ -179,7 +179,7 @@ function Nav() {
           </BottomNavigation>
         </Paper>
       </div>
-    </div>
+    </>
   );
 }
 
