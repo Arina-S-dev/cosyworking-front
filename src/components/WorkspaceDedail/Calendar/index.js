@@ -23,7 +23,7 @@ import './index.scss';
 function MultipleReactDatePicker({
   dayPrice, halfDayPrice,
 }) {
-  const bookingsList = useSelector((state) => state.workspaces.currentWorkspace.booking_list);
+  const bookingsList = useSelector((state) => state.workspaces.currentWorkspace.booking_list) || [];
   // const workspaceId = useSelector((state) => state.workspaces.currentWorkspace);
   // const bookingsList = useSelector((state) => [state.workspaces.currentWorkspace.booking_list[0]]);
   // const userId = useSelector((state) => state.user.user_id);
@@ -148,14 +148,14 @@ function MultipleReactDatePicker({
         ));
 
         setBookings([...filteredBooking, {
-          start_date: new Date(setHours(date, startHour)),
-          end_date: new Date(setHours(date, endHour)),
+          start_date: setHours(date, startHour),
+          end_date: setHours(date, endHour),
         }]);
       }
       else {
         setBookings([...bookings, {
-          start_date: new Date(setHours(date, startHour)),
-          end_date: new Date(setHours(date, endHour)),
+          start_date: setHours(date, startHour),
+          end_date: setHours(date, endHour),
         }]);
       }
     }

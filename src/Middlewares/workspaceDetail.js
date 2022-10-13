@@ -24,7 +24,10 @@ const WorkspaceDetailMiddleware = (store) => (next) => (action) => {
         submitStatus: 'pending',
       });
 
+      console.log('action date_list ===> ', action.payload.date_list);
+
       axios.post('https://cosyworking-api.onrender.com/api/booking/request', {
+
         workspace_id: action.payload.workspace_id,
         date_list: action.payload.date_list,
       }, {

@@ -16,6 +16,14 @@
     margin-top: 2rem;
     
 }
+.leaflet-pane {
+    z-index: 2;
+}
+.leaflet-top, .leaflet-bottom {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+}
 .imagesContainer{
     display: flex;
     flex-direction: row;

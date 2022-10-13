@@ -32,14 +32,14 @@ function BookingModal({
   const submitStatus = useSelector((state) => state.workspaces.submitStatus);
   const userName = useSelector((state) => state.user.username);
   const workspaceId = useSelector((state) => state.workspaces.currentWorkspace.workspace.id);
-  const host = useSelector((state) => state.workspaces.currentWorkspace.user[0].host_id);
+  const host = useSelector((state) => state.workspaces.currentWorkspace.user[0].host);
   const navigate = useNavigate();
   //   const workspace = useSelector((state) => state.workspaces.workspaceToEdit);
 
   //   const [file, setFile] = useState(null);
   //   const [fileDataURL, setFileDataURL] = useState(mainImage.link);
   const dispatch = useDispatch();
-  const [messageToSend, setMessageToSend] = useState(null);
+  const [messageToSend, setMessageToSend] = useState('');
 
   const handleChange = (event) => {
     setMessageToSend(event.target.value);
@@ -94,7 +94,7 @@ function BookingModal({
           });
 
           // eslint-disable-next-line no-console
-          console.log('pouet!!!');
+          console.log('pouet!!!', bookings);
         }}
       >
         <Typography id="modal-modal-title" variant="h6" component="h3">
