@@ -301,6 +301,10 @@ $datepicker__margin: 0.4rem !default;
         box-shadow: -10px -10px 15px rgba(255,255,255,0.5),
                   10px 10px 15px rgba(70,70,70,0.12);
         padding: 0 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
                  
                  
       }

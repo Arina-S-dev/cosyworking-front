@@ -1,5 +1,6 @@
 import {
   Button, Modal, Typography, Box, TextField,
+  IconButton,
 } from '@mui/material';
 // eslint-disable-next-line import/no-unresolved
 import {
@@ -10,8 +11,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { LoadingButton } from '@mui/lab';
+import { CancelOutlined } from '@mui/icons-material';
 
-const style = {
+// const theme = createTheme({
+//   breakpoints: {
+//     values: {
+//       xs: 0,
+//       sm: 600,
+//       md: 900,
+//       lg: 1200,
+//       xl: 1536,
+//     },
+//   },
+// });
+
+const style = (theme) => ({
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -25,7 +39,11 @@ const style = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-};
+  [theme.breakpoints.down('sm')]: {
+    width: 350,
+  },
+
+});
 
 function BookingModal({
   handleCloseBookingModal, isOpenBookingModal, bookings, totalPrice,
@@ -75,6 +93,7 @@ function BookingModal({
       onClose={handleCloseBookingModal}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      sx={{ zIndex: 999999999999999 }}
     >
       <Box
         sx={style}
@@ -88,7 +107,7 @@ function BookingModal({
             payload: {
               workspace_id: workspaceId,
               date_list: bookings,
-              receiverEmail: 'clement.duports@gmail.com',
+              receiverEmail: 'cosyworking.dev@gmail.com',
               userPseudo: userName,
               message: messageToSend,
             },
@@ -156,6 +175,21 @@ function BookingModal({
         </LoadingButton>
         )
         }
+
+        <IconButton
+          aria-label="delete"
+          size="small"
+          onClick={handleCloseBookingModal}
+          sx={{
+
+            color: 'black',
+            position: 'absolute',
+            top: 10,
+            right: 10,
+          }}
+        >
+          <CancelOutlined sx={{ fontSize: 26 }} />
+        </IconButton>
 
       </Box>
     </Modal>
