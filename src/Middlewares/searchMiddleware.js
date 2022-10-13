@@ -1,11 +1,11 @@
-import axios from 'axios';
+import axiosBaseUrl from '../axios';
 
 const searchMiddleware = (store) => (next) => (action) => {
   if (action.type === 'GET_WORKSPACES') {
     // eslint-disable-next-line camelcase
     const { city, date_list, equipments } = store.getState().search;
     // eslint-disable-next-line camelcase
-    axios.post('https://cosyworking-api.onrender.com/api/workspace/search', { city, date_list, equipments })
+    axiosBaseUrl.post('/api/workspace/search', { city, date_list, equipments })
       .then((response) => {
         // eslint-disable-next-line no-console
         // console.log(response.data);
@@ -22,7 +22,7 @@ const searchMiddleware = (store) => (next) => (action) => {
       });
   }
   if (action.type === 'GET_EQUIPMENTS') {
-    axios.get('https://cosyworking-api.onrender.com/api/equipments')
+    axiosBaseUrl.get('/api/equipments')
       .then((response) => {
         if (response.data) {
           store.dispatch({

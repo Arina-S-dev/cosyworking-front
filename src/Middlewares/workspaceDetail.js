@@ -1,12 +1,12 @@
 /* eslint-disable max-len */
-import axios from 'axios';
+import axiosBaseUrl from '../axios';
 import { actionSaveCurrentWorkspace, GET_WORKSPACE_DETAIL } from '../actions/workspaces';
 
 const WorkspaceDetailMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case GET_WORKSPACE_DETAIL:
       // on va faire l'appel API
-      axios.get(`https://cosyworking-api.onrender.com/api/workspace/${action.id}`)
+      axiosBaseUrl.get(`/api/workspace/${action.id}`)
         .then((response) => {
           console.log('responseGETWORKSPACE ==>', response.data);
           store.dispatch(actionSaveCurrentWorkspace(response.data));
@@ -26,7 +26,7 @@ const WorkspaceDetailMiddleware = (store) => (next) => (action) => {
 
       console.log('action date_list ===> ', action.payload.date_list);
 
-      axios.post('https://cosyworking-api.onrender.com/api/booking/request', {
+      axiosBaseUrl.post('/api/booking/request', {
 
         workspace_id: action.payload.workspace_id,
         date_list: action.payload.date_list,
@@ -69,7 +69,7 @@ const WorkspaceDetailMiddleware = (store) => (next) => (action) => {
       break;
     case 'GET_EQUIPMENTS_LIST':
       // on va faire l'appel API
-      axios.get('https://cosyworking-api.onrender.com/api/equipments')
+      axiosBaseUrl.get('/api/equipments')
         .then((response) => {
           console.log('responseGET_EQUIPMENTS ==>', response.data);
           store.dispatch({
@@ -90,7 +90,7 @@ const WorkspaceDetailMiddleware = (store) => (next) => (action) => {
         imagesAreLoading: true,
       });
 
-      axios.get(`https://cosyworking-api.onrender.com/api/workspace/${action.workspaceId}`)
+      axiosBaseUrl.get(`/api/workspace/${action.workspaceId}`)
         .then((response) => {
           console.log('responseGET_WORKSPACE_TO_EDIT ==>', response.data);
           store.dispatch({
@@ -126,7 +126,7 @@ const WorkspaceDetailMiddleware = (store) => (next) => (action) => {
     case 'CREATE_WORKSPACE': {
       const getUserToken = JSON.parse(localStorage.getItem('userToken'));
 
-      axios.post('https://cosyworking-api.onrender.com/api/workspace/create', action.payload, {
+      axiosBaseUrl.post('/api/workspace/create', action.payload, {
         headers: {
           'x-access-token': getUserToken,
           'content-type': 'multipart/form-data',
@@ -144,7 +144,7 @@ const WorkspaceDetailMiddleware = (store) => (next) => (action) => {
     case 'UPDATE_WORKSPACE': {
       const getUserToken = JSON.parse(localStorage.getItem('userToken'));
 
-      axios.patch(`https://cosyworking-api.onrender.com/api/workspace/${action.payload.id}`, action.payload.data, {
+      axiosBaseUrl.patch(`/api/workspace/${action.payload.id}`, action.payload.data, {
         headers: {
           'x-access-token': getUserToken,
           'content-type': 'multipart/form-data',
@@ -166,7 +166,7 @@ const WorkspaceDetailMiddleware = (store) => (next) => (action) => {
         type: 'SET_IMAGES_LOADING_STATUS',
       });
 
-      axios.post(`https://cosyworking-api.onrender.com/api/workspace/${action.payload.id}/images/add`, action.payload.data, {
+      axiosBaseUrl.post(`/api/workspace/${action.payload.id}/images/add`, action.payload.data, {
         headers: {
           'x-access-token': getUserToken,
           'content-type': 'multipart/form-data',
@@ -201,7 +201,7 @@ const WorkspaceDetailMiddleware = (store) => (next) => (action) => {
     case 'DELETE_IMAGE_FROM_WORKSPACE': {
       const getUserToken = JSON.parse(localStorage.getItem('userToken'));
       console.log('USER TOKEN===>', getUserToken);
-      axios.post(`https://cosyworking-api.onrender.com/api/workspace/${action.payload.workspaceId}/image`, {
+      axiosBaseUrl.post(`/api/workspace/${action.payload.workspaceId}/image`, {
         image_id: action.payload.imageId,
         image_link: action.payload.imageLink,
       }, {
