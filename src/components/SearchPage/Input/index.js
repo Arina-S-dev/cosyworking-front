@@ -48,8 +48,9 @@ function Input() {
           onChange={handleCityChange}
           sx={{
             width: {
-              xs: 150,
-              md: 400,
+              xs: 280,
+              sm: 400,
+              md: 600,
               lg: 600,
             },
             textAlign: 'center',

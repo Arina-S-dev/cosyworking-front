@@ -25,11 +25,13 @@ function SearchPage() {
     <div className="search-container">
       <div className="search-title"><Title /></div>
       <div className="search-form">
-        <FormControl className="search-form">
+        <FormControl className="searchBlock">
           <Input />
-          <Calendar />
-          <Filters />
-          <SearchButton />
+          <div className="searchButtons">
+            <Calendar />
+            <Filters />
+            <SearchButton />
+          </div>
         </FormControl>
       </div>
       <section className="result-container">
