@@ -1,21 +1,19 @@
-/* eslint-disable no-console */
+/* eslint-disable react/prop-types */
 import './style.scss';
 
 import Button from '@mui/material/Button';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { ThemeProvider } from '@mui/material/styles';
 
 import {
-  MapContainer, TileLayer, Marker, Popup,
+  // eslint-disable-next-line no-unused-vars
+  MapContainer, TileLayer, Marker, Popup, useMap,
 } from 'react-leaflet';
 
 import L from 'leaflet';
 import theme from '../../../tools/themeMui';
-// import test from '../../../data/test.json';
-import image from '../../../img/desk.jpg';
-
-const center = [48.858370, 2.294481];
 
 const markerIcon = new L.Icon({
   // eslint-disable-next-line global-require
@@ -26,10 +24,22 @@ const markerIcon = new L.Icon({
 });
 
 function Map() {
+  const center = [48.858370, 2.294481];
+  // const center2 = [47.4711, -0.547307];
   const workspaces = useSelector((state) => state.search.workspaces);
   const isLoading = useSelector((state) => state.search.worspacesAPIisLoading);
+  const center1 = useSelector((state) => state.search.getMapCenter);
+  console.log('center', center1);
+
+  function FlyMapTo({ lat, lng }) {
+    const map = useMap();
+    useEffect(() => {
+      map.flyTo([lat, lng]);
+    }, [lat, lng]);
+    return null;
+  }
   return (
-    <MapContainer center={center} zoom={12} scrollWheelZoom>
+    <MapContainer center={center} zoom={13} scrollWheelZoom>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -37,22 +47,24 @@ function Map() {
       />
       {!isLoading
         && workspaces.map((workspace) => (
-          <Marker
-            key={workspace.id}
-            position={[workspace.latitude, workspace.longitude]}
-            icon={markerIcon}
-          >
-            <ThemeProvider theme={theme}>
-              <Popup className="popup" margin="0">
-                <img className="popup-image" src={image} width="200" height="150" alt="workspace" />
-                <p className="popup-title">{workspace.title}</p>
-                <div className="popup-flex">
-                  <p className="popup-flex-price">{workspace.day_price}€/jour</p>
-                  <Button className="popup-flex-favorite" sx={{ minWidth: 0 }}> <FavoriteBorderIcon onClick={() => console.log('Je clique sur le coeur!')} /></Button>
-                </div>
-              </Popup>
-            </ThemeProvider>
-          </Marker>
+          <><FlyMapTo lat={workspace.latitude} lng={workspace.longitude} />
+            <Marker
+              key={workspace.id}
+              position={[workspace.latitude, workspace.longitude]}
+              icon={markerIcon}
+            >
+              <ThemeProvider theme={theme}>
+                <Popup className="popup" margin="0">
+                  <img className="popup-image" src={`https://cosyworking-api.onrender.com/${workspace.link}`} width="200" height="150" alt="workspace" />
+                  <p className="popup-title">{workspace.title}</p>
+                  <div className="popup-flex">
+                    <p className="popup-flex-price">{workspace.day_price}€/jour</p>
+                    <Button className="popup-flex-favorite" sx={{ minWidth: 0 }}> <FavoriteBorderIcon onClick={() => console.log('Je clique sur le coeur!')} /></Button>
+                  </div>
+                </Popup>
+              </ThemeProvider>
+            </Marker>
+          </>
         ))}
     </MapContainer>
   );

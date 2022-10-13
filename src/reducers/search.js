@@ -1,5 +1,5 @@
 export const initialState = {
-  city: '',
+  city: 'Paris',
   date_list: [],
   equipments: [],
   workspaces: [],
@@ -9,6 +9,7 @@ export const initialState = {
   equipementsAPIisLoading: true,
   worspacesAPIisLoading: true,
   calendarHomePageIsOpen: false,
+  getMapCenter: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -91,6 +92,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         equipmentsListFromAPI: action.equipmentsListFromAPI,
         equipementsAPIisLoading: false,
+      };
+    case 'GET_MAP_CENTER':
+      return {
+        ...state,
+        getMapCenter: action.getMapCenter,
       };
 
     default:
