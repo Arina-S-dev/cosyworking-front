@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import axiosBaseUrl from 'axios';
+import axiosBaseUrl from '../axios';
 import { actionSaveCurrentWorkspace, GET_WORKSPACE_DETAIL } from '../actions/workspaces';
 
 const WorkspaceDetailMiddleware = (store) => (next) => (action) => {

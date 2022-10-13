@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable camelcase */
-import axiosBaseUrl from 'axios';
+import axiosBaseUrl from '../axios';
 
 const requests = (store) => (next) => (action) => {
 // MiddleWare afin de récupérer les réservations des annonces de l'Hote

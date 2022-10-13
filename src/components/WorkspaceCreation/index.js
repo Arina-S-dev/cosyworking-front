@@ -226,7 +226,7 @@ function WorkspaceCreation() {
     formData.append('title', title);
     formData.append('address', adress);
     formData.append('zip_code', zipCode);
-    formData.append('city', 'city');
+    formData.append('city', city);
     formData.append('description', description);
     formData.append('day_price', fullDayPrice);
     formData.append('half_day_price', halfDayPrice);

@@ -1,4 +1,4 @@
-import axiosBaseUrl from 'axios';
+import axiosBaseUrl from '../axios';
 
 const searchMiddleware = (store) => (next) => (action) => {
   if (action.type === 'GET_WORKSPACES') {

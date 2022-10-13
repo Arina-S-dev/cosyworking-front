@@ -1,4 +1,4 @@
-import axiosBaseUrl from 'axios';
+import axiosBaseUrl from '../axios';
 import { GET_PUBLIC_PROFIL, actionSaveProfilToDisplay } from '../actions/profil';
 
 const profilMiddleware = (store) => (next) => (action) => {

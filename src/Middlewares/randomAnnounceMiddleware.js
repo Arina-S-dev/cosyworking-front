@@ -1,4 +1,4 @@
-import axiosBaseUrl from 'axios';
+import axiosBaseUrl from '../axios';
 
 const randomAnnouncesMiddleware = (store) => (next) => (action) => {
   if (action.type === 'GET_RANDOM_ANNOUNCES') {
