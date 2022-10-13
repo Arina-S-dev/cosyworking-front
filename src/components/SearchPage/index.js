@@ -12,24 +12,28 @@ import Cards from './Cards';
 import FailedSearch from './FailedSearch';
 
 function SearchPage() {
+  const workspaces = useSelector((state) => state.search.workspaces);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({
       type: 'GET_EQUIPMENTS',
     });
+    dispatch({
+      type: 'GET_WORKSPACES',
+    });
   }, []);
-
-  const workspaces = useSelector((state) => state.search.workspaces);
-
+  console.log('useEffect workspaces', workspaces);
   return (
     <div className="search-container">
       <div className="search-title"><Title /></div>
       <div className="search-form">
-        <FormControl className="search-form">
+        <FormControl className="searchBlock">
           <Input />
-          <Calendar />
-          <Filters />
-          <SearchButton />
+          <div className="searchButtons">
+            <Calendar />
+            <Filters />
+            <SearchButton />
+          </div>
         </FormControl>
       </div>
       <section className="result-container">

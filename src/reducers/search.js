@@ -92,7 +92,6 @@ const reducer = (state = initialState, action = {}) => {
         equipmentsListFromAPI: action.equipmentsListFromAPI,
         equipementsAPIisLoading: false,
       };
-
     default:
       return state;
   }

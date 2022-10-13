@@ -54,6 +54,7 @@ function MesReservations() {
           title: element.title,
           workspace_id: element.workspace_id,
           state: element.state,
+          hostAvatar: element.host_avatar,
           timeslot: [
             {
               start: element.start_date,
@@ -176,20 +177,24 @@ function MesReservations() {
             className="MesReservations-Card"
             sx={{ boxShadow: 'none' }}
           >
-            <CardMedia
-              className="MesReservations-Card-CardMedia"
-              component="img"
-              image={`${UrlImage}${list.image_link}`}
-              alt=""
-            />
+            <Link to={`/workspace/${list.workspace_id}`}>
+              <CardMedia
+                className="MesReservations-Card-CardMedia"
+                component="img"
+                image={`${UrlImage}${list.image_link}`}
+                alt=""
+              />
+            </Link>
             <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
               <CardContent
                 sx={{ flex: '1 0 auto' }}
                 className="MesReservations-Card-CardContent"
               >
-                <Typography component="div" variant="h6">
-                  {list.title}
-                </Typography>
+                <Link to={`/workspace/${list.workspace_id}`}>
+                  <Typography component="div" variant="h6">
+                    {list.title}
+                  </Typography>
+                </Link>
                 <Typography variant="subtitle1" color="text.secondary" component="div">
                   {/* eslint-disable-next-line quotes */}
                   À partir du { (new Date(list.timeslot[0].start)).toLocaleDateString("fr-FR", options) }
@@ -206,7 +211,7 @@ function MesReservations() {
                     color="text.secondary"
                     component="div"
                   >
-                    <Avatar className="MesReservations-Card-CardContent-Box-Host-Avatar" />
+                    <Avatar className="MesReservations-Card-CardContent-Box-Host-Avatar" src={`${UrlImage}${list.hostAvatar}`} />
                     <p className="MesReservations-Card-CardContent-Box-Host-Name"> {list.host}</p>
                   </Typography>
                   <Typography className="MesReservations-Card-CardContent-Box-State" variant="string" color="text.secondary" component="div" sx={{ color: getColor(list.state) }}>
