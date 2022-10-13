@@ -18,8 +18,11 @@ function SearchPage() {
     dispatch({
       type: 'GET_EQUIPMENTS',
     });
+    dispatch({
+      type: 'GET_WORKSPACES',
+    });
   }, []);
-
+  console.log('useEffect workspaces', workspaces);
   return (
     <div className="search-container">
       <div className="search-title"><Title /></div>

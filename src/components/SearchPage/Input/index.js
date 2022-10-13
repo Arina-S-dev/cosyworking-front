@@ -1,5 +1,6 @@
 import './style.scss';
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -19,6 +20,12 @@ const cities = [
 
 function Input() {
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({
+      type: 'SEARCH_CITY',
+      city: 'Paris',
+    });
+  }, []);
   const handleChange = (event) => {
     const city = event.target.value;
     dispatch({

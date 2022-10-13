@@ -25,11 +25,8 @@ const markerIcon = new L.Icon({
 
 function Map() {
   const center = [48.858370, 2.294481];
-  // const center2 = [47.4711, -0.547307];
   const workspaces = useSelector((state) => state.search.workspaces);
   const isLoading = useSelector((state) => state.search.worspacesAPIisLoading);
-  const center1 = useSelector((state) => state.search.getMapCenter);
-  console.log('center', center1);
 
   function FlyMapTo({ lat, lng }) {
     const map = useMap();
