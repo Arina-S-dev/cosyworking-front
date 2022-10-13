@@ -47,7 +47,7 @@ function Nav() {
   }
 
   return (
-    <div>
+    <>
       <div className="NavDesktop">
         {/* Composant Mui de la navbar */}
         <Paper
@@ -67,6 +67,8 @@ function Nav() {
               display: 'flex',
               justifyContent: 'space-between',
               height: '50px',
+              mt: '1em',
+              mb: '1em',
             }}
           >
             <div className="menuBurger">
@@ -177,7 +179,7 @@ function Nav() {
           </BottomNavigation>
         </Paper>
       </div>
-    </div>
+    </>
   );
 }
 

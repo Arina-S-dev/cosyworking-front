@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 // eslint-disable-next-line object-curly-newline
 import { Accordion, AccordionDetails, AccordionSummary, Alert, AlertTitle, Avatar, Button, Card, CardContent, CardMedia, CircularProgress, Modal, TableContainer, Typography } from '@mui/material';
 import { Box, ThemeProvider } from '@mui/system';
@@ -13,6 +14,7 @@ import './styles.scss';
 import MesTables from './MesTables';
 import MyAccountMenu from '../../../MyAccountMenu';
 import theme from '../../../../tools/themeMui';
+import UrlImage from '../../../../axiosUrlImage';
 
 function MesReservations() {
   const dispatch = useDispatch();
@@ -37,6 +39,8 @@ function MesReservations() {
         alreadyBookingId.timeslot.push({
           start: element.start_date,
           end: element.end_date,
+          dayPrice: element.day_price,
+          halfDayPrice: element.half_day_price,
         });
       }
       else {
@@ -54,6 +58,8 @@ function MesReservations() {
             {
               start: element.start_date,
               end: element.end_date,
+              dayPrice: element.day_price,
+              halfDayPrice: element.half_day_price,
             },
           ],
         });
@@ -113,6 +119,29 @@ function MesReservations() {
     });
   };
 
+  // eslint-disable-next-line no-console
+  console.log('Mon nouveau tableau', newDataArray);
+
+  // Efface 'annuler réservation' si deja annulé
+  function getIfCanceled(state) {
+    if (state === 'Annulé') {
+      return false;
+    }
+    return true;
+  }
+
+  // Gestion de la couleur du state
+  function getColor(state) {
+    if (state === 'En attente') {
+      return '#00b6ff';
+    }
+    // eslint-disable-next-line no-else-return
+    else if (state === 'Annulé') {
+      return 'red';
+    }
+    return 'green';
+  }
+
   return (
     <div className="MesReservations">
       <MyAccountMenu />
@@ -150,7 +179,7 @@ function MesReservations() {
             <CardMedia
               className="MesReservations-Card-CardMedia"
               component="img"
-              image={`https://cosyworking-api.onrender.com/${list.image_link}`}
+              image={`${UrlImage}${list.image_link}`}
               alt=""
             />
             <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
@@ -180,12 +209,15 @@ function MesReservations() {
                     <Avatar className="MesReservations-Card-CardContent-Box-Host-Avatar" />
                     <p className="MesReservations-Card-CardContent-Box-Host-Name"> {list.host}</p>
                   </Typography>
-                  <Typography className="MesReservations-Card-CardContent-Box-State" variant="string" color="text.secondary" component="div">
+                  <Typography className="MesReservations-Card-CardContent-Box-State" variant="string" color="text.secondary" component="div" sx={{ color: getColor(list.state) }}>
                     Statut : {list.state}
                     <ThemeProvider theme={theme}>
+                      {getIfCanceled(list.state)
+                      && (
                       <Button value={list.booking_ref_id} onClick={handleCancelReservation} sx={{ textTransform: 'none' }}>
                         Annuler ma réservation <DeleteRoundedIcon />
                       </Button>
+                      )}
                     </ThemeProvider>
                     <Modal
                       hideBackdrop

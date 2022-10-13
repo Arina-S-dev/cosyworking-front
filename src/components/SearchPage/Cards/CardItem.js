@@ -13,9 +13,10 @@ import StarIcon from '@mui/icons-material/Star';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import theme from '../../../tools/themeMui';
 // import FavoriteIcon from '@mui/icons-material/Favorite';
-import img from '../../../img/desk.jpg'; // image à récupérer de la BDD à l'avenir
 
-function CardItem({ title, /* image, */ dayPrice, description }) {
+function CardItem({
+  title, image, dayPrice, description,
+}) {
   return (
     <ThemeProvider theme={theme}>
       <div className="card">
@@ -36,7 +37,7 @@ function CardItem({ title, /* image, */ dayPrice, description }) {
             alt={title}
             height="200"
             width="250"
-            image={img}
+            image={image}
           />
           <CardContent className="card-content">
             <div className="card-content-flex">
@@ -61,7 +62,7 @@ function CardItem({ title, /* image, */ dayPrice, description }) {
 
 CardItem.propTypes = {
   title: PropTypes.string.isRequired,
-  // image: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
   dayPrice: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
 };

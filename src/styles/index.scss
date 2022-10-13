@@ -11,6 +11,7 @@ body {
   min-height: 100vh;
   min-height: fill-available;
   min-height: -webkit-fill-available;
+  padding-top: 82px; 
 }
 @supports (-webkit-touch-callout: none) {
   body {
@@ -21,7 +22,12 @@ body {
 #root{
   width: 100%;
 }
-
+@media screen and (max-width: 840px)
+{
+   body{
+    padding-top:0;
+   }
+}
 /* 
   // or you can import your own font
   @font-face {

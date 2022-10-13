@@ -29,42 +29,42 @@ function AboutUs() {
       <div className="team">
         <h2 className="teamTitle"> Notre Equipe</h2>
         <div className="teamCard">
-          <div className="card">
+          <div className="cardAboutUs">
             <img className="teamCardIMG" src={Arina} alt="Membre de l'équipe" />
             <div className="teamCardInfos">
               <h3> Arina</h3>
               <h4>Git Master</h4>
             </div>
           </div>
-          <div className="card">
+          <div className="cardAboutUs">
             <img className="teamCardIMG" src={Clement} alt="Membre de l'équipe" />
             <div className="teamCardInfos">
               <h3> Clement</h3>
               <h4>Scrum Master</h4>
             </div>
           </div>
-          <div className="card">
+          <div className="cardAboutUs">
             <img className="teamCardIMG" src={Corentin} alt="Membre de l'équipe" />
             <div className="teamCardInfos">
               <h3> Corentin</h3>
               <h4>Lead Dev Back</h4>
             </div>
           </div>
-          <div className="card">
+          <div className="cardAboutUs">
             <img className="teamCardIMG" src={Quentin} alt="Membre de l'équipe" />
             <div className="teamCardInfos">
               <h3> Quentin</h3>
               <h4>Product Owner</h4>
             </div>
           </div>
-          <div className="card">
+          <div className="cardAboutUs">
             <img className="teamCardIMG" src={Cyril} alt="Membre de l'équipe" />
             <div className="teamCardInfos">
               <h3> Cyril</h3>
               <h4>Lead Dev Front</h4>
             </div>
           </div>
-          <div className="card">
+          <div className="cardAboutUs">
             <img className="teamCardIMG" src={Nicolas} alt="Membre de l'équipe" />
             <div className="teamCardInfos">
               <h3> Nicolas</h3>
