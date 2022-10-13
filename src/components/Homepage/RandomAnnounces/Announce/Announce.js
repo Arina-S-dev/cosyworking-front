@@ -3,13 +3,14 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import UrlImage from '../../../../axiosUrlImage';
 
 function Announce({
   image, announceName, cityName, price, workspaceId,
 }) {
   return (
     <div className="Card">
-      <img className="cardIMG" src={`https://cosyworking-api.onrender.com/${image}`} alt="bureau" />
+      <img className="cardIMG" src={`${UrlImage}${image}`} alt="bureau" />
       <div className="infoText">
         <div className="nameAnnounce">
           <p>{announceName}</p>
