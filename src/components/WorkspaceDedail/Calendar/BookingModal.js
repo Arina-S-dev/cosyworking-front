@@ -52,6 +52,9 @@ function BookingModal({
       type: 'BOOKING_SUBMIT_STATUS',
       submitStatus: null,
     });
+    dispatch({
+      type: 'GET_COWORKER_RESERVATIONS',
+    });
   }
 
   if (submitStatus === 'fail') {
