@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
-import { Button } from '@mui/material';
+import { Button, ThemeProvider } from '@mui/material';
+import UrlImage from '../../../axiosUrlImage';
+import themeButton from '../../../tools/themeMui';
 
 function ImagesContainer({ imagesList, openPicturesModale }) {
   const mainImage = imagesList.find((image) => image.main === true);
@@ -12,7 +14,7 @@ function ImagesContainer({ imagesList, openPicturesModale }) {
     <section className="imagesContainer">
 
       <div className="imageContainer_main-img">
-        <img className="image" src={`https://cosyworking-api.onrender.com/${mainImage.link}`} alt="" />
+        <img className="image" src={`${UrlImage}${mainImage.link}`} alt="" />
       </div>
 
       <div className="imageContainer_other-images">
@@ -21,7 +23,7 @@ function ImagesContainer({ imagesList, openPicturesModale }) {
         otherImages[0]
         && (
           <div className="imageContainer_other-images-img">
-            <img className="image" src={`https://cosyworking-api.onrender.com/${otherImages[0].link}`} alt="" />
+            <img className="image" src={`${UrlImage}${otherImages[0].link}`} alt="" />
           </div>
         )
       }
@@ -39,7 +41,7 @@ function ImagesContainer({ imagesList, openPicturesModale }) {
         otherImages[1]
         && (
           <div className="imageContainer_other-images-img">
-            <img className="image" src={`https://cosyworking-api.onrender.com/${otherImages[1].link}`} alt="" />
+            <img className="image" src={`${UrlImage}${otherImages[1].link}`} alt="" />
           </div>
         )
       }
@@ -57,7 +59,7 @@ function ImagesContainer({ imagesList, openPicturesModale }) {
         otherImages[2]
         && (
           <div className="imageContainer_other-images-img">
-            <img className="image" src={`https://cosyworking-api.onrender.com/${otherImages[2].link}`} alt="" />
+            <img className="image" src={`${UrlImage}${otherImages[2].link}`} alt="" />
           </div>
         )
       }
@@ -72,36 +74,35 @@ function ImagesContainer({ imagesList, openPicturesModale }) {
       }
 
         {/* <div className="imageContainer_other-images-img">
-          <img className="image" src={`https://cosyworking-api.onrender.com/${otherImages[1].link}` || 'https://d23qowwaqkh3fj.cloudfront.net/wp-content/uploads/2022/05/no-image-1-1.png'} alt="" />
+          <img className="image" src={`${UrlImage}${otherImages[1].link}` || 'https://d23qowwaqkh3fj.cloudfront.net/wp-content/uploads/2022/05/no-image-1-1.png'} alt="" />
         </div>
 
         <div className="imageContainer_other-images-img">
-          <img className="image" src={`https://cosyworking-api.onrender.com/${otherImages[2].link}` || 'https://d23qowwaqkh3fj.cloudfront.net/wp-content/uploads/2022/05/no-image-1-1.png'} alt="" />
+          <img className="image" src={`${UrlImage}${otherImages[2].link}` || 'https://d23qowwaqkh3fj.cloudfront.net/wp-content/uploads/2022/05/no-image-1-1.png'} alt="" />
         </div> */}
 
         {
         otherImages[3]
         && (
           <div className="imageContainer_other-images-img image--button">
-            <img className="image " src={`https://cosyworking-api.onrender.com/${otherImages[3].link}`} alt="" />
+            <img className="image " src={`${UrlImage}${otherImages[3].link}`} alt="" />
             <span className="image--button_cross">
-              <Button
-                variant="contained"
-                size="small"
-                onClick={openPicturesModale}
-                sx={{
-                  width: 90,
-                  height: 30,
-                  color: '#8A8A8A',
-                  fontSize: 10,
-                  backgroundColor: '#FFC000',
-                  ':hover': {
-                    backgroundColor: '#8A8A8A',
-                    color: '#FFC000',
-                  },
-                }}
-              >Show more
-              </Button>
+              <ThemeProvider theme={themeButton}>
+
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={openPicturesModale}
+                  sx={{
+                    width: 90,
+                    height: 30,
+                    color: 'white',
+                    fontSize: 10,
+                    backgroundColor: '#FFC000',
+                  }}
+                >Show more
+                </Button>
+              </ThemeProvider>
             </span>
           </div>
         )
@@ -113,23 +114,24 @@ function ImagesContainer({ imagesList, openPicturesModale }) {
           <div className="imageContainer_other-images-img image--button">
             <img className="image " src="https://d23qowwaqkh3fj.cloudfront.net/wp-content/uploads/2022/05/no-image-1-1.png" alt="" />
             <span className="image--button_cross">
-              <Button
-                variant="contained"
-                size="small"
-                onClick={openPicturesModale}
-                sx={{
-                  width: 90,
-                  height: 30,
-                  color: '#8A8A8A',
-                  fontSize: 10,
-                  backgroundColor: '#FFC000',
-                  ':hover': {
-                    backgroundColor: '#8A8A8A',
-                    color: '#FFC000',
-                  },
-                }}
-              >Show more
-              </Button>
+
+              <ThemeProvider theme={themeButton}>
+
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={openPicturesModale}
+                  sx={{
+                    width: 90,
+                    height: 30,
+                    color: 'white',
+                    fontSize: 10,
+                    backgroundColor: '#FFC000',
+                  }}
+                >Show more
+                </Button>
+              </ThemeProvider>
+
             </span>
           </div>
         )

@@ -12,6 +12,7 @@ import theme from '../../tools/themeMui';
 import { actionGetPublicProfil } from '../../actions/profil';
 
 import WorkspaceCard from './WorkspaceCard';
+import UrlImage from '../../axiosUrlImage';
 
 // import style
 import './style.scss';
@@ -46,7 +47,7 @@ function PublicProfil() {
       <div className=" publicProfileContainer">
 
         <div className="publicProfileContainer__header">
-          <Avatar alt={user.pseudo} src={`https://cosyworking-api.onrender.com/${user.avatar}`} sx={{ width: 140, height: 140 }} />
+          <Avatar alt={user.pseudo} src={`${UrlImage}${user.avatar}`} sx={{ width: 140, height: 140 }} />
 
           <p className="userInfo__pseudo">{user.username}</p>
           <p className="userInfo__membership">Member since: {lightFormat(new Date(user.created_at), 'dd-MM-yy')}</p>

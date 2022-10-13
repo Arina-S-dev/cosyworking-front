@@ -7,6 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+import UrlImage from '../../../axiosUrlImage';
 
 function WorkspaceCard({ mainImage, title, workspaceId }) {
   return (
@@ -18,7 +19,7 @@ function WorkspaceCard({ mainImage, title, workspaceId }) {
       <CardMedia
         component="img"
         height="60%"
-        image={`https://cosyworking-api.onrender.com/${mainImage}`}
+        image={`${UrlImage}${mainImage}`}
         alt="green iguana"
       />
       <CardContent sx={{ paddingBottom: 0 }}>

@@ -1,6 +1,6 @@
 import {
   Button, Modal, Typography, Box, TextField,
-  IconButton,
+  IconButton, ThemeProvider,
 } from '@mui/material';
 // eslint-disable-next-line import/no-unresolved
 import {
@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { LoadingButton } from '@mui/lab';
 import { CancelOutlined } from '@mui/icons-material';
+import themeButton from '../../../tools/themeMui';
 
 // const theme = createTheme({
 //   breakpoints: {
@@ -149,23 +150,24 @@ function BookingModal({
             submitStatus !== 'pending'
 
         && (
-        <Button
-          variant="contained"
-          size="medium"
-          type="submit"
-          sx={{
-            color: '#8A8A8A',
-            margin: '1rem 0',
-            width: '100%',
-            // fontSize: 10,
-            backgroundColor: '#FFC000',
-            ':hover': {
-              backgroundColor: '#8A8A8A',
-              color: '#FFC000',
-            },
-          }}
-        >Valider
-        </Button>
+
+          <ThemeProvider theme={themeButton}>
+
+            <Button
+              variant="contained"
+              size="medium"
+              type="submit"
+              sx={{
+                color: 'white',
+                margin: '1rem 0',
+                width: '100%',
+                // fontSize: 10,
+                backgroundColor: '#FFC000',
+              }}
+            >Valider
+            </Button>
+          </ThemeProvider>
+
         )
         }
 

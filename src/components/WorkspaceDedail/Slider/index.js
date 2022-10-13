@@ -1,10 +1,10 @@
 /* eslint-disable max-len */
 import Slider from 'react-slick';
+import PropTypes from 'prop-types';
+import UrlImage from '../../../axiosUrlImage';
 
 // import 'slick-carousel/slick/slick.css';
 // import 'slick-carousel/slick/slick-theme.css';
-
-import PropTypes from 'prop-types';
 
 function SliderComponent({ classCss, imagesList }) {
   const mainImage = imagesList.find((image) => image.main === true);
@@ -16,12 +16,12 @@ function SliderComponent({ classCss, imagesList }) {
     <div className={classCss}>
       <Slider {...settings}>
         <div>
-          <img src={`https://cosyworking-api.onrender.com/${mainImage.link}`} alt="" />
+          <img src={`${UrlImage}${mainImage.link}`} alt="" />
         </div>
         {
         otherImages.map((image) => (
           <div key={image.image_id}>
-            <img src={`https://cosyworking-api.onrender.com/${image.link}`} alt="" />
+            <img src={`${UrlImage}${image.link}`} alt="" />
           </div>
         ))
       }

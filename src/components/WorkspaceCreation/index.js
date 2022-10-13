@@ -9,6 +9,7 @@ import {
 import DeleteIcon from '@mui/icons-material/DeleteTwoTone';
 import { CancelOutlined } from '@mui/icons-material';
 import themeButton from '../../tools/themeMui';
+import UrlImage from '../../axiosUrlImage';
 
 // import style
 // import './style.scss';
@@ -789,7 +790,7 @@ function WorkspaceCreation() {
               {
                 equipments.map((equipment) => (
                   <div className="equipmentsListContainer__equipment" key={equipment.id}>
-                    <img className="equipment_icon" src={`https://cosyworking-api.onrender.com/${equipment.icon_link}`} alt={equipment.description} />
+                    <img className="equipment_icon" src={`${UrlImage}${equipment.icon_link}`} alt={equipment.description} />
                     <p className="equipmentsListContainer__equipment__name">{equipment.description}</p>
                   </div>
                 ))

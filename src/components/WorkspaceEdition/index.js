@@ -15,6 +15,7 @@ import DeleteIcon from '@mui/icons-material/DeleteTwoTone';
 import themeButton from '../../tools/themeMui';
 // eslint-disable-next-line import/no-unresolved
 import Calendar from './Calendar';
+import UrlImage from '../../axiosUrlImage';
 
 // import style
 import './style.scss';
@@ -456,7 +457,7 @@ function WorkspaceEdition() {
               {
                 mainImage
                 && (
-                  <img className="workspaceEditionContainer__mainImageContainer__img" src={fileDataURL || `https://cosyworking-api.onrender.com/${mainImage[0].link}`} alt="" />
+                  <img className="workspaceEditionContainer__mainImageContainer__img" src={fileDataURL || `${UrlImage}${mainImage[0].link}`} alt="" />
                 )
               }
             </div>
@@ -571,7 +572,7 @@ function WorkspaceEdition() {
               otherImages && otherImages.map((image) => (
                 <div key={image.image_id} className="listItem">
                   <div className="listItem__imageContainer">
-                    <img className="listItem__imageContainer__img" src={`https://cosyworking-api.onrender.com/${image.link}`} alt="" />
+                    <img className="listItem__imageContainer__img" src={`${UrlImage}${image.link}`} alt="" />
                   </div>
                   <IconButton
                     aria-label="delete"
@@ -820,7 +821,7 @@ function WorkspaceEdition() {
               {
                 workspace.equipments_list.map((equipment) => (
                   <div className="equipmentsListContainer__equipment" key={equipment.id}>
-                    <img className="equipment_icon" src={`https://cosyworking-api.onrender.com/${equipment.icon_link}`} alt={equipment.description} />
+                    <img className="equipment_icon" src={`${UrlImage}${equipment.icon_link}`} alt={equipment.description} />
                     <p className="equipmentsListContainer__equipment__name">{equipment.description}</p>
                   </div>
                 ))

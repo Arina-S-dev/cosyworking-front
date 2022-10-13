@@ -68,9 +68,12 @@
 }
 
 .image{
+    // height: 100%;
+    // width: auto;
+    // object-fit: cover;
     height: 100%;
-    width: auto;
     object-fit: cover;
+    width:100%;
 }
 
 .image--button{
