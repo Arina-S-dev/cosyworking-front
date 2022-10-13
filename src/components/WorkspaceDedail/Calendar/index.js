@@ -35,12 +35,12 @@ function MultipleReactDatePicker({
   const [currentMonth, setCurrentMonth] = useState(getMonth(new Date()) + 1);
   const [currentDay, setCurrentDay] = useState(null);
 
-  const [isOpenBookingModal, setIsOpenModaleInfos] = useState(false);
+  const [isOpenBookingModal, setIsOpenBookingModale] = useState(false);
 
   const dispatch = useDispatch();
   const handleOpenBookingModal = () => {
     if (localStorage.getItem('userToken')) {
-      setIsOpenModaleInfos(true);
+      setIsOpenBookingModale(true);
     }
     else {
       // console.log('pas CONECTé');
@@ -50,7 +50,7 @@ function MultipleReactDatePicker({
       });
     }
   };
-  const handleCloseBookingModal = () => setIsOpenModaleInfos(false);
+  const handleCloseBookingModal = () => setIsOpenBookingModale(false);
 
   useEffect(() => {
     const fullDaysSelected = bookings.filter((booking) => (getHours(booking.start_date) === 8 && getHours(booking.end_date) === 17));

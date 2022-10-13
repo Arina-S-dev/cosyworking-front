@@ -112,7 +112,7 @@ const identification = (store) => (next) => (action) => {
     }})
       .then((response) => {
         // eslint-disable-next-line no-console
-        console.log(response);
+        console.log('Mon table : ', response);
         const getDataReservations = response.data;
         const getStatus = response.request.status;
         if (response) {

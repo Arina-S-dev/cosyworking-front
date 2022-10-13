@@ -93,7 +93,7 @@ function Nav() {
                   }}
                 >
                   {/* Gestion du bouton dans la nav */}
-                  {getRole() ? <Link path="/">Louer mon espace</Link> : <Link path="/">Devenir hôte</Link>}
+                  {getRole() ? <Link to="/espace-perso/espace-hote/mes-annonces/create">Louer mon espace</Link> : <Link path="/">Devenir hôte</Link>}
                 </Button>
               </ThemeProvider>
               {/* Composant avec l'avatar de la navbar pour aller sur son espace perso ou */}
@@ -145,7 +145,7 @@ function Nav() {
             <Link to="/recherche">
               <div className="buttonNavBar">
                 <KeyIcon />
-                {getRole() ? <Link path="/"><p className="textNavBar">Louer mon espace</p></Link> : <Link path="/"><p className="textNavBar">Devenir hôte</p></Link>}
+                {getRole() ? <Link to="/espace-perso/espace-hote/mes-annonces/create"><p className="textNavBar">Louer mon espace</p></Link> : <Link path="/"><p className="textNavBar">Devenir hôte</p></Link>}
               </div>
             </Link>
             <div className="Nav-leftNavBar">

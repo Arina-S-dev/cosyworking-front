@@ -17,7 +17,7 @@ import Calendar from './Calendar';
 // import style
 import './style.scss';
 
-const style = {
+const style = (theme) => ({
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -32,8 +32,11 @@ const style = {
   flexDirection: 'column',
   justifyContent: 'space-between',
   alignItems: 'center',
+  [theme.breakpoints.down('sm')]: {
+    width: 350,
+  },
   // gap: '1.5rem',
-};
+});
 
 const imageMimeType = /image\/(png|jpg|jpeg)/i;
 
@@ -195,6 +198,8 @@ function WorkspaceEdition() {
         id: id,
       },
     });
+
+    setFileDataURLOtherImage(null);
   };
 
   const handleAddNewMainImage = (event) => {
@@ -609,7 +614,7 @@ function WorkspaceEdition() {
               </Typography>
 
               <div className="workspaceEditionContainer__mainImageContainer">
-                <img className="workspaceEditionContainer__mainImageContainer__img" src={fileDataURLOtherImage} alt="" />
+                <img className="workspaceEditionContainer__mainImageContainer__img" src={fileDataURLOtherImage || 'https://d23qowwaqkh3fj.cloudfront.net/wp-content/uploads/2022/05/no-image-1-1.png'} alt="" />
               </div>
               <Button
                 variant="contained"

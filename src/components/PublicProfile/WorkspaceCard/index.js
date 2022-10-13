@@ -18,7 +18,7 @@ function WorkspaceCard({ mainImage, title, workspaceId }) {
       <CardMedia
         component="img"
         height="60%"
-        image={mainImage}
+        image={`https://cosyworking-api.onrender.com/${mainImage}`}
         alt="green iguana"
       />
       <CardContent sx={{ paddingBottom: 0 }}>
