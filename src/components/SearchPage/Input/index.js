@@ -1,5 +1,5 @@
 import './style.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 import TextField from '@mui/material/TextField';
@@ -10,7 +10,7 @@ import theme from '../../../tools/themeMui';
 
 const cities = [
   { label: 'Paris' },
-  { label: 'Nantes' },
+  { label: 'Bayonne' },
   { label: 'Angers' },
   { label: 'Rennes' },
   { label: 'Marseille' },
@@ -19,12 +19,16 @@ const cities = [
 ];
 
 function Input() {
+  const cityState = useSelector((state) => state.search.city);
+  console.log('cityState', cityState);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch({
-      type: 'SEARCH_CITY',
-      city: 'Paris',
-    });
+    if (cityState === '') {
+      dispatch({
+        type: 'SEARCH_CITY',
+        city: 'Paris',
+      });
+    }
   }, []);
   const handleChange = (event) => {
     const city = event.target.value;
