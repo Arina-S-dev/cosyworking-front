@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axiosBaseUrl from 'axios';
 
 const randomAnnouncesMiddleware = (store) => (next) => (action) => {
   if (action.type === 'GET_RANDOM_ANNOUNCES') {
-    axios.get('https://cosyworking-api.onrender.com/api/workspace/find-random', {
+    axiosBaseUrl.get('/api/workspace/find-random', {
     })
       .then((response) => {
         const getRandomAnnounces = response.data;

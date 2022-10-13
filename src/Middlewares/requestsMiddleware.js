@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable camelcase */
-import axios from 'axios';
+import axiosBaseUrl from 'axios';
 
 const requests = (store) => (next) => (action) => {
 // MiddleWare afin de récupérer les réservations des annonces de l'Hote
@@ -12,7 +12,7 @@ const requests = (store) => (next) => (action) => {
     // eslint-disable-next-line no-console
     // console.log(user_id);
     // eslint-disable-next-line object-curly-newline, camelcase
-    axios.get(`https://cosyworking-api.onrender.com/api/personalspace/${user_id}/booking`, { headers: {
+    axiosBaseUrl.get(`/api/personalspace/${user_id}/booking`, { headers: {
       // eslint-disable-next-line quote-props, comma-dangle
       'x-access-token': getUserToken
     // eslint-disable-next-line object-curly-spacing, object-curly-newline
@@ -53,7 +53,7 @@ const requests = (store) => (next) => (action) => {
     const stateToUpdate = store.getState().requests.description;
     console.log('State to Update', stateToUpdate);
     console.log('Booking id', bookigId);
-    axios.patch(`https://cosyworking-api.onrender.com/api/booking/${bookigId}/state`, { state: stateToUpdate }, {
+    axiosBaseUrl.patch(`/api/booking/${bookigId}/state`, { state: stateToUpdate }, {
       headers: {
       // eslint-disable-next-line comma-dangle
         'x-access-token': getUserToken
