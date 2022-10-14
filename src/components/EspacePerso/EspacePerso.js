@@ -26,7 +26,7 @@ function EspacePerso() {
 
   const getHostSpacesRequests = () => {
     dispatch({
-      type: 'GET_HOST_REQUESTS',
+      type: 'GET_HOST_ANNONCES',
     });
   };
 
