@@ -136,9 +136,9 @@
                 }
     
                 &-BoxAbout{
-                    margin: 1rem  4em;
+                    margin: 3rem  4em 3rem 4em;
                     width: 100%;
-                    height: auto;
+                    min-height: 150px;
     
                     &-about{
                         padding-left: 0.5rem;
