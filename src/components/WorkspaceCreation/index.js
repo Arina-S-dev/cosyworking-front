@@ -107,10 +107,10 @@ function WorkspaceCreation() {
   const [otherImagesToDisplay, setOtherImagesToDisplay] = useState([]);
 
   const [file, setFile] = useState(null);
-  const [fileDataURL, setFileDataURL] = useState('https://d23qowwaqkh3fj.cloudfront.net/wp-content/uploads/2022/05/no-image-1-1.png');
+  const [fileDataURL, setFileDataURL] = useState(null);
 
   const [fileOtherImage, setFileOtherImage] = useState(null);
-  const [fileDataURLOtherImage, setFileDataURLOtherImage] = useState('https://d23qowwaqkh3fj.cloudfront.net/wp-content/uploads/2022/05/no-image-1-1.png');
+  const [fileDataURLOtherImage, setFileDataURLOtherImage] = useState(null);
   console.log('fileOTHERIMAGE==>', fileOtherImage);
   //   console.log('fileDataURLOtherImage==>', fileDataURLOtherImage);
 
@@ -299,6 +299,8 @@ function WorkspaceCreation() {
     setOtherImages(filteredImagesList);
     setOtherImagesToDisplay(filteredImagesUrlList);
   };
+
+  const textButtonModalImage = fileDataURL ? 'Modifier' : 'Ajouter une image';
 
   return (
     <div>
@@ -548,11 +550,11 @@ function WorkspaceCreation() {
           >
             <Box sx={style} component="form" onSubmit={handleAddNewMainImage}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
-                Text in a modal
+                Image principale
               </Typography>
 
               <div className="workspaceEditionContainer__mainImageContainer">
-                <img className="workspaceEditionContainer__mainImageContainer__img" src={fileDataURL} alt="" />
+                <img className="workspaceEditionContainer__mainImageContainer__img" src={fileDataURL || 'https://d23qowwaqkh3fj.cloudfront.net/wp-content/uploads/2022/05/no-image-1-1.png'} alt="" />
               </div>
 
               <ThemeProvider theme={themeButton}>
@@ -573,7 +575,7 @@ function WorkspaceCreation() {
                   // },
                   }}
                 >
-                  modifier
+                  {textButtonModalImage}
                   <input
                     hidden
                     type="file"
@@ -774,7 +776,7 @@ function WorkspaceCreation() {
           >
             <Box sx={style} component="form" onSubmit={handleDescriptionFormSubmit}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
-                Text in a modal
+                Description
               </Typography>
 
               <TextField
@@ -868,7 +870,7 @@ function WorkspaceCreation() {
           >
             <Box sx={style} component="form" onSubmit={handleEquipmentsSubmit}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
-                Text in a modal
+                Equipements
               </Typography>
 
               <div className="equipmentsListModal">

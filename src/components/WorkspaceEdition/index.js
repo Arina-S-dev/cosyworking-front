@@ -505,7 +505,7 @@ function WorkspaceEdition() {
           >
             <Box sx={style} component="form" onSubmit={handleAddNewMainImage}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
-                Text in a modal
+                Image principale
               </Typography>
 
               <div className="workspaceEditionContainer__mainImageContainer">
@@ -774,7 +774,7 @@ function WorkspaceEdition() {
           >
             <Box sx={style} component="form" onSubmit={(event) => handleSubmit(event, 'description')}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
-                Text in a modal
+                Description
               </Typography>
 
               <TextField
@@ -866,7 +866,7 @@ function WorkspaceEdition() {
           >
             <Box sx={style} component="form" onSubmit={(event) => handleSubmit(event, 'equipments')}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
-                Text in a modal
+                Equipements
               </Typography>
 
               <div className="equipmentsListModal">
