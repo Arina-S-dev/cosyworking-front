@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // eslint-disable-next-line object-curly-newline
-import { Button, Card, CardContent, CardMedia, Typography, Box, Avatar, Input } from '@mui/material';
+import { Button, Card, CardContent, Typography, Box, Avatar, TextField } from '@mui/material';
 import CreateRoundedIcon from '@mui/icons-material/CreateRounded';
 import { Link } from 'react-router-dom';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
@@ -82,21 +82,24 @@ function MonProfil() {
             </Button>
           </Link>
         </ThemeProvider>
-        <h1 className="MonProfil-title">MonProfil</h1>
+
         <Card
           className="MonProfil-Card"
         >
-          <CardMedia
-            className="MonProfil-Card-CardMedia"
-            component="img"
-            image="https://digitalsynopsis.com/wp-content/uploads/2016/01/beautiful-desks-minimal-workstations-33.jpg"
-            alt=""
-          />
+          <div className="backTitleDiv">
+            <h1 className="MonProfil-title">Mon Profil</h1>
+          </div>
           <Box className="MonProfil-Card-MainBox">
-            <Button onClick={handleOpen} sx={{ width: '100%', display: 'flex', justifyContent: 'end' }}>
+            <Button
+              onClick={handleOpen}
+              sx={{
+                width: '100%', display: 'flex', justifyContent: 'end',
+              }}
+            >
               <CreateRoundedIcon />
             </Button>
             <CardContent
+              sx={{ padding: 0 }}
               className="MonProfil-Card-MainBox-CardContent"
             >
               <Box className="MonProfil-Card-MainBox-CardContent-Box">
@@ -104,38 +107,45 @@ function MonProfil() {
                   <Avatar sx={{ width: 150, height: 150 }} alt="" src={`${UrlImage}${avatar}`} />
                 </Box>
                 <Box className="MonProfil-Card-MainBox-CardContent-Box-BoxName">
-                  <Typography variant="h6">
-                    Username : {username}
-                  </Typography>
-                  <Typography
-                    variant="subtitle1"
-                    color="text.secondary"
+                  <Card sx={{
+                    pt: 5, pr: 5, pb: 5, pl: 5,
+                  }}
                   >
-                    Civilité : {gender}
-                  </Typography>
-                  <Typography variant="subtitle1" color="text.secondary">
-                    Prénom : {first_name}
-                  </Typography>
-                  <Typography variant="subtitle1" color="text.secondary" component="div">
-                    Nom : {last_name}
-                  </Typography>
-                  <Typography variant="subtitle1" color="text.secondary" component="div">
-                    Email : {email}
-                  </Typography>
+                    <Typography variant="h6">
+                      Username : {username}
+                    </Typography>
+                    <Typography
+                      variant="subtitle1"
+                      color="text.secondary"
+                    >
+                      Civilité : {gender}
+                    </Typography>
+                    <Typography variant="subtitle1" color="text.secondary">
+                      Prénom : {first_name}
+                    </Typography>
+                    <Typography variant="subtitle1" color="text.secondary" component="div">
+                      Nom : {last_name}
+                    </Typography>
+                    <Typography variant="subtitle1" color="text.secondary" component="div">
+                      Email : {email}
+                    </Typography>
+                  </Card>
                 </Box>
               </Box>
             </CardContent>
-            <Card className="MonProfil-Card-MainBox-BoxAbout">
-              <h3 className="MonProfil-Card-MainBox-BoxAbout-title">A propos</h3>
-              <Typography
-                className="MonProfil-Card-MainBox-BoxAbout-about"
-                variant="subtitle1"
-                color="text.secondary"
-                component="div"
-              >
-                {about}
-              </Typography>
-            </Card>
+            <div className="testCenterAbout">
+              <Card className="MonProfil-Card-MainBox-BoxAbout">
+                <h3 className="MonProfil-Card-MainBox-BoxAbout-title">A propos</h3>
+                <Typography
+                  className="MonProfil-Card-MainBox-BoxAbout-about"
+                  variant="subtitle1"
+                  color="text.secondary"
+                  component="div"
+                >
+                  {about}
+                </Typography>
+              </Card>
+            </div>
           </Box>
         </Card>
       </div>
@@ -151,16 +161,13 @@ function MonProfil() {
             </Button>
           </Link>
         </ThemeProvider>
-        <h1 className="MonProfil-title">MonProfil</h1>
         <Card
           className="MonProfil-Card"
         >
-          <CardMedia
-            className="MonProfil-Card-CardMedia"
-            component="img"
-            image="https://digitalsynopsis.com/wp-content/uploads/2016/01/beautiful-desks-minimal-workstations-33.jpg"
-            alt=""
-          />
+          <div className="backTitleDiv">
+            <h1 className="MonProfil-title">Mon Profil</h1>
+          </div>
+
           <form className="MonProfil-Card-MainBox" onSubmit={changeInfoProfil}>
             <CardContent
               className="MonProfil-Card-MainBox-CardContent"
@@ -170,16 +177,30 @@ function MonProfil() {
                   <Avatar sx={{ width: 150, height: 150 }} alt="" src={`${UrlImage}${avatar}`} />
                 </Box>
                 <Box className="MonProfil-Card-MainBox-CardContent-Box-BoxName">
-                  <Input placeholder={username} onChange={changeUsername} sx={{ marginRight: '0.5rem' }} />
-                  <Input type="text" placeholder={first_name} onChange={changeFirstName} sx={{ marginRight: '0.5rem' }} />
-                  <Input type="text" placeholder={last_name} onChange={changeLastName} sx={{ marginRight: '0.5rem' }} />
-                  <Input type="text" placeholder={email} onChange={changeEmail} sx={{ marginRight: '0.5rem' }} />
+                  <TextField
+                    className="textfieldeditprofil"
+                    label="Nom d'utilisateur"
+                    defaultValue={username}
+                    onChange={changeUsername}
+                    sx={{ marginRight: '0.5rem', marginBottom: '0.5em' }}
+                  />
+                  <TextField label="Prénom" type="text" defaultValue={first_name} onChange={changeFirstName} sx={{ marginRight: '0.5rem', marginBottom: '0.5em' }} />
+                  <TextField label="Nom" type="text" defaultValue={last_name} onChange={changeLastName} sx={{ marginRight: '0.5rem', marginBottom: '0.5em' }} />
+                  <TextField label="Email" type="text" defaultValue={email} onChange={changeEmail} sx={{ marginRight: '0.5rem', marginBottom: '0.5em' }} />
                 </Box>
               </Box>
             </CardContent>
-            <Card className="MonProfil-Card-MainBox-BoxAbout">
+            <Card className="cardAboutUsProfil">
               <h3 className="MonProfil-Card-MainBox-BoxAbout-title">A propos</h3>
-              <Input type="text" placeholder={about} onChange={changeAbout} sx={{ marginRight: '0.5rem' }} />
+              <TextField
+                multiline
+                maxRows={4}
+                label="A Propos de vous "
+                type="text"
+                defaultValue={about}
+                onChange={changeAbout}
+                sx={{ marginRight: '0.5rem', marginBottom: '0.5em', width: '100%' }}
+              />
             </Card>
             <ThemeProvider theme={theme}>
               <Button type="submit" sx={{ width: '100%', display: 'flex', justifyContent: 'end' }}>Envoyer les modifications</Button>
