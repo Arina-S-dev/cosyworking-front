@@ -4,13 +4,16 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  Button, IconButton, Modal, Typography, Box, TextField, FormControlLabel, Checkbox, ThemeProvider,
+  Button, IconButton, Modal, Typography, Box, TextField, FormControlLabel, Checkbox, ThemeProvider, CircularProgress,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/DeleteTwoTone';
 import { CancelOutlined } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
+import Collapse from '@mui/material/Collapse';
+import CloseIcon from '@mui/icons-material/Close';
+import Alert from '@mui/material/Alert';
 import themeButton from '../../tools/themeMui';
 import UrlImage from '../../axiosUrlImage';
-
 // import style
 // import './style.scss';
 
@@ -39,6 +42,7 @@ const imageMimeType = /image\/(png|jpg|jpeg)/i;
 
 function WorkspaceCreation() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch({
@@ -49,6 +53,7 @@ function WorkspaceCreation() {
   //   const workspace = useSelector((state) => state.workspaces.currentWorkspace);
 
   const equipmentsListFromAPI = useSelector((state) => state.workspaces.equipmentsList);
+  const creationRequestStatus = useSelector((state) => state.workspaces.creationRequestStatus);
   console.log('equipmentsListFromAPI ==>', equipmentsListFromAPI);
 
   const [openModaleInfos, setOpenModaleInfos] = useState(false);
@@ -70,6 +75,25 @@ function WorkspaceCreation() {
   const [openModaleEquipments, setOpenModaleEquipments] = useState(false);
   const handleOpenModaleEquipments = () => setOpenModaleEquipments(true);
   const handleCloseModaleEquipments = () => setOpenModaleEquipments(false);
+
+  const [openAlert, setOpenAlert] = useState(false);
+
+  if (creationRequestStatus === 'fail' && !openAlert) {
+    setOpenAlert(true);
+    dispatch({
+      type: 'SET_CREATION_REQUEST_STATUS',
+      creationRequestStatus: null,
+    });
+  }
+
+  const pageTitle = creationRequestStatus === 'pending' ? 'Workspace en cour de creation' : 'Créer mon annonce';
+  if (creationRequestStatus === 'succeed') {
+    navigate('/espace-perso/espace-hote/mes-annonces');
+    dispatch({
+      type: 'SET_CREATION_REQUEST_STATUS',
+      creationRequestStatus: null,
+    });
+  }
 
   const [title, setTitle] = useState('');
   const [adress, setAdress] = useState('');
@@ -250,6 +274,10 @@ function WorkspaceCreation() {
       type: 'CREATE_WORKSPACE',
       payload: formData,
     });
+    dispatch({
+      type: 'SET_CREATION_REQUEST_STATUS',
+      creationRequestStatus: 'pending',
+    });
     // console.log('handleCreateWorkspace ==>');
     // console.log('title ==>', title);
     // console.log('adress ==>', adress);
@@ -275,10 +303,25 @@ function WorkspaceCreation() {
   return (
     <div>
 
-      <h1 className="workspaceEditionTitle">Créer mon annonce</h1>
+      <h1 className="workspaceEditionTitle">{pageTitle}</h1>
 
       {
-        equipmentsListFromAPI
+        creationRequestStatus === 'pending'
+        && (
+          <ThemeProvider theme={themeButton}>
+            <CircularProgress
+              size={200}
+              thickness={2}
+              sx={{
+                margin: '5rem calc(50% - 100px) ',
+              }}
+            />
+          </ThemeProvider>
+        )
+      }
+
+      {
+        equipmentsListFromAPI && creationRequestStatus !== 'pending'
       && (
 
       <div className="workspaceEdition">
@@ -903,6 +946,36 @@ function WorkspaceCreation() {
       </div>
       )
       }
+
+      <Box sx={{
+        width: '100%',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        zIndex: 999999999999999,
+      }}
+      >
+        <Collapse in={openAlert}>
+          <Alert
+            action={(
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  setOpenAlert(false);
+                }}
+              >
+                <CloseIcon fontSize="inherit" />
+              </IconButton>
+              )}
+            sx={{ mb: 2 }}
+            severity="error"
+          >
+            Quelque chose s'est mal passer veuillez reesayer ulterieurement!
+          </Alert>
+        </Collapse>
+      </Box>
     </div>
 
   );

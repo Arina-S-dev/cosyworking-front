@@ -136,9 +136,17 @@ const WorkspaceDetailMiddleware = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log('response CREATE_WORKSPACE ==>', response.data);
+          store.dispatch({
+            type: 'SET_CREATION_REQUEST_STATUS',
+            creationRequestStatus: 'succeed',
+          });
         })
         .catch((error) => {
           console.log('requette API ERREUR', error);
+          store.dispatch({
+            type: 'SET_CREATION_REQUEST_STATUS',
+            creationRequestStatus: 'fail',
+          });
         });
     }
       break;

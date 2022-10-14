@@ -4,6 +4,7 @@ import {
 } from 'react-leaflet';
 
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 // import ReactDOMServer from 'react-dom/server';
 
 // import L from 'leaflet';
@@ -13,10 +14,11 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 function LeafletMap({ latitude, longitude }) {
+  const workspace = useSelector((state) => state.workspaces.currentWorkspace);
   return (
     <MapContainer
       className="map"
-      center={[latitude, longitude]}
+      center={[workspace.workspace.latitude, workspace.workspace.longitude]}
       zoom={12}
       scrollWheelZoom={false}
     >
