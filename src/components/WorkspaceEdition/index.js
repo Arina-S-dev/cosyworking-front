@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-plusplus */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable max-len */
@@ -16,6 +17,7 @@ import Calendar from './Calendar';
 
 // import style
 import './style.scss';
+import MyAccountMenu from '../MyAccountMenu';
 
 const style = {
   position: 'absolute',
@@ -278,9 +280,16 @@ function WorkspaceEdition() {
     // setOtherImages(filteredImagesList);
   };
 
+  useEffect(() => {
+    dispatch({
+      type: 'CONTROL_BAR_ESPACE_PERSO',
+      getAccessNavBar: true,
+    });
+  }, []);
+
   return (
     <div>
-
+      <MyAccountMenu />
       {
         !workspaceIsLoading && equipmentsListFromAPI
       && (

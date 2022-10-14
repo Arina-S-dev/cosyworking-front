@@ -66,6 +66,8 @@ function MesAnnoncesDetails() {
     return getTheGoodCreneau;
   }
 
+  // Permet de vider du state les infos sur le workspace
+  // lorsque l'on quitte la page
   const cleanDataWorkspace = () => {
     dispatch({
       type: 'CLEAN_WORKSPACE_DETAILS',
@@ -77,7 +79,7 @@ function MesAnnoncesDetails() {
       <div className="MesAnnoncesDetails">
         <MyAccountMenu />
         <Link to="/espace-perso/espace-hote/mes-annonces" onClick={cleanDataWorkspace}>
-          <h1 className="MesAnnonces-title"><ReplayRoundedIcon />Revenir à 'Mes Annonces'</h1>
+          <h6 className="MesAnnonces-title"><ReplayRoundedIcon />Revenir à 'Mes Annonces'</h6>
         </Link>
         {getDataWorkspace.map((list) => (
           <>
@@ -176,7 +178,8 @@ function MesAnnoncesDetails() {
                           { (new Date(element.start_date)).toLocaleDateString('fr-FR', options) }
                         </TableCell>
                         <TableCell align="center">{getCreneau((element.start_date), (element.end_date))}</TableCell>
-                        <TableCell align="center">50 euros</TableCell>
+                        {getCreneau((element.start_date), (element.end_date)) === 'Journée' && <TableCell align="center">{list.workspace_details.workspace.day_price} euros</TableCell>}
+                        {getCreneau((element.start_date), (element.end_date)) !== 'Journée' && <TableCell align="center">{list.workspace_details.workspace.half_day_price} euros</TableCell>}
                       </TableRow>
                     ))}
                     {/* <MesAnnoncesDates data={list.workspace_details.booking_list} /> */}
