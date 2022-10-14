@@ -45,7 +45,7 @@ function MesAnnonces() {
   // On récupère les réservations des annonces de l'hote
   const getDataRequestsHost = useSelector((state) => state.user.datahostrequests);
   // On récupère les informations concernant le workspace de l'hôte
-  const getIdWorkspace = useSelector((state) => state.user.workspace_id);
+  // const getIdWorkspace = useSelector((state) => state.user.workspace_id);
   // eslint-disable-next-line no-console
   console.log('Mon tableau host que je recois bien', getDataRequestsHost);
 
@@ -71,6 +71,8 @@ function MesAnnonces() {
               className="MesAnnonces-Card"
               sx={{ boxShadow: 'none' }}
             >
+              {list.json_build_object.images !== null
+              && (
               <CardMedia
                   // sx={{ maxHeight: '200px' }}
                 className="MesAnnonces-Card-CardMedia"
@@ -78,6 +80,17 @@ function MesAnnonces() {
                 image={`${UrlImage}${list.json_build_object.images[0].link}`}
                 alt=""
               />
+              )}
+              {list.json_build_object.images === null
+              && (
+              <CardMedia
+                  // sx={{ maxHeight: '200px' }}
+                className="MesAnnonces-Card-CardMedia"
+                component="img"
+                image="https://resize.elle.fr/original/var/plain_site/storage/images/deco/pieces/petits-espaces/50-objets-deco-pour-le-bureau/70841923-23-fre-FR/30-objets-pour-un-bureau-au-top.jpg"
+                alt=""
+              />
+              )}
               <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                 <CardContent
                   sx={{ flex: '1 0 auto' }}
@@ -105,9 +118,10 @@ function MesAnnonces() {
                   <Typography variant="subtitle1" color="text.secondary" component="div">
                     <Typography sx={{ fontWeight: 'bold' }}>Description :</Typography> {list.json_build_object.workspace.description}
                   </Typography>
-                  <Link to={`/espace-perso/espace-hote/mes-annonces/${getIdWorkspace}`}>
+                  <Link to={`/espace-perso/espace-hote/mes-annonces/${list.json_build_object.workspace.id}`}>
                     <ThemeProvider theme={theme}>
                       <Button
+                        value={list.json_build_object.workspace.id}
                         sx={{ width: '100%', display: 'flex', justifyContent: 'end' }}
                         onClick={() => {
                           getWorkspaceId(list.json_build_object.workspace.id);

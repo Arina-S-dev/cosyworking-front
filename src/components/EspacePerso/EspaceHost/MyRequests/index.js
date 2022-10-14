@@ -71,6 +71,7 @@ function MyRequests() {
   // eslint-disable-next-line object-curly-newline
   const options = { weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric' };
   // Object.keys(bookingList).map((booking) => console.log(bookingList[booking].map((elem) => elem.title)));
+  // console.log('Mon tableau pour le map', Object.keys(bookingList));
   return (
     <>
       <MyAccountMenu />
