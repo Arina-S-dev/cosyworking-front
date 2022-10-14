@@ -94,7 +94,7 @@ function WorkspaceDetail() {
               sx={{ mb: 2 }}
               severity="error"
             >
-              Quelque chose s'est mal passée, veuillez reesayer ulterieurement!
+              Quelque chose s'est mal passé. Veuillez reesayer ulterieurement!
             </Alert>
           </Collapse>
         </Box>

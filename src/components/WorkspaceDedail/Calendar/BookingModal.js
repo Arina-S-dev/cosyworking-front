@@ -122,7 +122,7 @@ function BookingModal({
         }}
       >
         <Typography id="modal-modal-title" variant="h6" component="h3">
-          Validation de votre demande de reservation
+          Validation de votre demande de réservation
         </Typography>
         <div className="bookingDatesModaleContainer">
           <h4 className="bookingDatesModaleContainer_title"> Dates:</h4>
@@ -134,7 +134,7 @@ function BookingModal({
         </div>
 
         <p>Total: {totalPrice}&euro;</p>
-        <h4 className="bookingDatesModaleContainer_title"> Ecrivez un message a {host} pour l'avertire de votre arrivé</h4>
+        <h4 className="bookingDatesModaleContainer_title"> Envoyer un message à {host} pour l'avertir de votre arrivée.</h4>
         <TextField
           id="outlined-multiline-flexible"
           label="Message"

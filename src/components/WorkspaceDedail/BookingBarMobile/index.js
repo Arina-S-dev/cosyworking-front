@@ -22,7 +22,7 @@ function BookingBarMobile({ halfDayPrice, dayPrice, openCalendarModale }) {
             backgroundColor: '#FFC000',
 
           }}
-        >Reserver
+        >Réserver
         </Button>
       </ThemeProvider>
 

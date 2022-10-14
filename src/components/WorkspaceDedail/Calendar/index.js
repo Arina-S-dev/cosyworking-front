@@ -309,7 +309,7 @@ function MultipleReactDatePicker({
           && (
             <div className="totalSelected">
 
-              <p className="bookingsContainer_desc"> Nombres de jours: {totalSelectedDays} </p>
+              <p className="bookingsContainer_desc"> Nombre de jours: {totalSelectedDays} </p>
               <p className="bookingsContainer_desc--total"> TOTAL: {totalPrice} &euro;</p>
             </div>
           )
@@ -332,7 +332,7 @@ function MultipleReactDatePicker({
               backgroundColor: '#FFC000',
 
             }}
-          >Reserver
+          >Réserver
           </Button>
         </ThemeProvider>
 
