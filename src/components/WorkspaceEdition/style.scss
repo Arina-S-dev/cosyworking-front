@@ -121,8 +121,9 @@
 }
 
 .workspaceEditionContainer__mainImageContainer{
-    width: 100%;
+    // width: 100%;
     height:15rem;
+    width: 15rem;
     // max-height: 15rem;
     overflow: hidden;
     display: flex;
@@ -133,8 +134,10 @@
 }
 
 .workspaceEditionContainer__mainImageContainer__img{
+    // height: 100%;
     height: 100%;
-    // width:100%;
+    object-fit: cover;
+    width:100%;
 }
 
 
@@ -258,6 +261,8 @@
 
 .listItem__imageContainer__img{
     height: 100%;
+    object-fit: cover;
+    width:100%;
 }
 
 .equipmentContainer{
@@ -325,6 +330,13 @@
     align-items: flex-start;
     justify-content: center;
     gap: 1rem;
+}
+
+.workspaceEditionTitle{
+    text-align: center;
+    font-size: 1.5rem;
+    // font-weight: bold;
+    padding-top: 1rem;
 }
 
 

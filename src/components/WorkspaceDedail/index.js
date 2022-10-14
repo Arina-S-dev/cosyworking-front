@@ -19,10 +19,10 @@ import ImagesContainer from './ImagesContainer';
 import CalendarModal from './ModalCalendar';
 import ImagesSliderModal from './ImagesSliderModal';
 import { actionGetWorkspaceDetail } from '../../actions/workspaces';
+import UrlImage from '../../axiosUrlImage';
 
 // import style
 import './style.scss';
-import UrlImage from '../../axiosUrlImage';
 
 function WorkspaceDetail() {
   const dispatch = useDispatch();
@@ -90,7 +90,7 @@ function WorkspaceDetail() {
                 >
                   <CloseIcon fontSize="inherit" />
                 </IconButton>
-          )}
+              )}
               sx={{ mb: 2 }}
               severity="error"
             >

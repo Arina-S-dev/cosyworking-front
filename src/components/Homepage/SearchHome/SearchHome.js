@@ -4,7 +4,7 @@ import SearchInput from './SearchInput/SearchInput';
 function searchHome() {
   return (
     <div className="searchHome">
-      <div className="searchInput">
+      <div className="searchInputHome">
         <SearchInput />
       </div>
     </div>

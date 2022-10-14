@@ -12,10 +12,10 @@ import theme from '../../tools/themeMui';
 import { actionGetPublicProfil } from '../../actions/profil';
 
 import WorkspaceCard from './WorkspaceCard';
+import UrlImage from '../../axiosUrlImage';
 
 // import style
 import './style.scss';
-import UrlImage from '../../axiosUrlImage';
 
 function PublicProfil() {
   const dispatch = useDispatch();
