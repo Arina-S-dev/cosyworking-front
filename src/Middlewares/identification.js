@@ -233,18 +233,18 @@ const identification = (store) => (next) => (action) => {
       });
   }
   // MiddleWare afin de récupérer les réservations des annonces de l'Hote
-  if (action.type === 'GET_HOST_REQUESTS') {
+  if (action.type === 'GET_HOST_ANNONCES') {
     // Récupération du token présent dans le LocalStorage
     const getUserToken = JSON.parse(localStorage.getItem('userToken'));
     // eslint-disable-next-line camelcase
     const { user_id } = store.getState().user;
-    const { description } = store.getState().requests;
+    // const { description } = store.getState().requests;
     // eslint-disable-next-line no-console
     // console.log(user_id);
     // eslint-disable-next-line object-curly-newline, camelcase
     axiosBaseUrl.get(`/api/personalspace/${user_id}/workspace`, { headers: {
       // eslint-disable-next-line quote-props, comma-dangle
-      'x-access-token': getUserToken, description: description,
+      'x-access-token': getUserToken,
     // eslint-disable-next-line object-curly-spacing, object-curly-newline
     }})
       .then((response) => {

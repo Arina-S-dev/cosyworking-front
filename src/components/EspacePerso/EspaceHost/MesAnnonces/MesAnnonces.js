@@ -17,17 +17,20 @@ import theme from '../../../../tools/themeMui';
 function MesAnnonces() {
   const dispatch = useDispatch();
 
-  // const cleanInfoWorkspace = () => {
-  //   dispatch({
-  //     type: 'CLEAN_WORKSPACE_DETAILS',
-  //   });
-  // };
+  useEffect(() => {
+    dispatch({
+      type: 'GET_HOST_ANNONCES',
+    });
+  }, []);
 
-  // On controle les boutons qui apparaissent dans la barre de menu
   useEffect(() => {
     dispatch({
       type: 'CLEAN_WORKSPACE_DETAILS',
     });
+  }, []);
+
+  // On controle les boutons qui apparaissent dans la barre de menu
+  useEffect(() => {
     dispatch({
       type: 'CONTROL_BAR_ESPACE_PERSO',
       getAccessNavBar: true,
@@ -44,7 +47,7 @@ function MesAnnonces() {
   // On récupère les informations concernant le workspace de l'hôte
   const getIdWorkspace = useSelector((state) => state.user.workspace_id);
   // eslint-disable-next-line no-console
-  console.log('Mon tableau host que je recois', getDataRequestsHost);
+  console.log('Mon tableau host que je recois bien', getDataRequestsHost);
 
   function getWorkspaceId(workspaceId) {
     dispatch({
