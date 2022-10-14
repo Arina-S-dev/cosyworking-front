@@ -48,7 +48,7 @@ function MyRequests() {
     });
   };
   const modalIsOpen = useSelector((state) => state.requests.openConfimModal);
-  const requestsData = useSelector((state) => state.user.datahostrequests);
+  const requestsData = useSelector((state) => state.requests.hostrequests);
   const alertIsOpen = useSelector((state) => state.requests.alertSuccess);
   // filtre les bookings avec le statut "en attente" uniquement
   const pendingRequests = requestsData.filter((req) => req.description === 'En attente');

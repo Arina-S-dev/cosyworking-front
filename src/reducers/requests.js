@@ -3,10 +3,16 @@ export const initialState = {
   description: '',
   bookigIdforUpdate: 0,
   alertSuccess: false,
+  hostrequests: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case 'SAVE_HOST_REQUESTS':
+      return {
+        ...state,
+        hostrequests: action.hostrequests,
+      };
     case 'OPEN_CONFIRM_MODAL':
       return {
         ...state,

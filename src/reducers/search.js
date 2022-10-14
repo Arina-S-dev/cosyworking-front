@@ -89,11 +89,6 @@ const reducer = (state = initialState, action = {}) => {
         equipmentsListFromAPI: action.equipmentsListFromAPI,
         equipementsAPIisLoading: false,
       };
-    case 'SAVE_CITIES_GROM_API_GOUV':
-      return {
-        ...state,
-        citiesFromAPIGouv: action.citiesFromAPIGouv,
-      };
 
     default:
       return state;

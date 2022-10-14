@@ -9,21 +9,22 @@ const requests = (store) => (next) => (action) => {
     const getUserToken = JSON.parse(localStorage.getItem('userToken'));
     // eslint-disable-next-line camelcase
     const { user_id } = store.getState().user;
+    const { description } = store.getState().requests;
     // eslint-disable-next-line no-console
     // console.log(user_id);
     // eslint-disable-next-line object-curly-newline, camelcase
     axiosBaseUrl.get(`/api/personalspace/${user_id}/booking`, { headers: {
       // eslint-disable-next-line quote-props, comma-dangle
-      'x-access-token': getUserToken
+      'x-access-token': getUserToken, state: description,
     // eslint-disable-next-line object-curly-spacing, object-curly-newline
     }})
       .then((response) => {
         // eslint-disable-next-line no-console
-        console.log('Mes annonces', response);
+        console.log('Mes bookings', response);
         const getDataRequestsHost = response.data;
         if (response) {
           store.dispatch({
-            type: 'GET_DATA_HOST_REQUESTS',
+            type: 'SAVE_HOST_REQUESTS',
             hostrequests: getDataRequestsHost,
           });
         }
