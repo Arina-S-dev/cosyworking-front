@@ -14,21 +14,6 @@ function MesAnnoncesRefs(data) {
       {getData.map((list) => (
         <Box key={list.bookig_ref_id}>
           <Table
-          // eslint-disable-next-line react/no-array-index-key
-            sx={{
-              minWidth: 'auto',
-            }}
-            aria-label="simple table"
-          >
-            <TableHead>
-              <TableRow>
-                <TableCell align="center" sx={{ backgroundColor: '#e8e8e8', fontWeight: 'bolder' }}>
-                  Réservation N°{list.bookig_ref_id}
-                </TableCell>
-              </TableRow>
-            </TableHead>
-          </Table>
-          <Table
             sx={{
               minWidth: 'auto',
             }}

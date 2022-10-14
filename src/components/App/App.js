@@ -9,6 +9,7 @@ import Error from '../Error/Error';
 import EspaceHost from '../EspacePerso/EspaceHost/EspaceHost';
 import MesReservations from '../EspacePerso/EspaceCoworker/MesReservations/MesReservations';
 import MesAnnonces from '../EspacePerso/EspaceHost/MesAnnonces/MesAnnonces';
+import MesAnnoncesDetails from '../EspacePerso/EspaceHost/MesAnnonces/MesAnnoncesDetails/MesAnnoncesDetails';
 import WorkspaceDetail from '../WorkspaceDedail';
 import PublicProfil from '../PublicProfile';
 import WorkspaceEdition from '../WorkspaceEdition';
@@ -52,6 +53,7 @@ function App() {
         <Route path="/espace-perso/espace-coworker/mes-reservations" element={<MesReservations />} />
         <Route path="/espace-perso/espace-hote" element={<EspaceHost />} />
         <Route path="/espace-perso/espace-hote/mes-annonces" element={<MesAnnonces />} />
+        <Route path="/espace-perso/espace-hote/mes-annonces/:id" element={<MesAnnoncesDetails />} />
         <Route path="/espace-perso/espace-hote/mes-demandes" element={<MyRequests />} />
         <Route path="/" element={<Homepage />} />
         <Route path="/apropos" element={<AboutUs />} />

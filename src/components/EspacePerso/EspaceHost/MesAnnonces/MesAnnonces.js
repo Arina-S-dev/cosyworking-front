@@ -1,109 +1,66 @@
+/* eslint-disable object-curly-newline */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable max-len */
 // eslint-disable-next-line object-curly-newline, max-len
-import { Accordion, AccordionDetails, AccordionSummary, Card, CardContent, CardMedia, TableContainer, Typography } from '@mui/material';
-import { Box } from '@mui/system';
+import { Button, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Box, ThemeProvider } from '@mui/system';
 import { useEffect } from 'react';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import { useDispatch, useSelector } from 'react-redux';
-// import data from './data.json';
+import { Link } from 'react-router-dom';
 import './MesAnnonces.scss';
-import MesAnnoncesRefs from './MesAnnoncesRefs/MesAnnoncesRefs';
+// import MesAnnoncesRefs from './MesAnnoncesRefs/MesAnnoncesRefs';
 import MyAccountMenu from '../../../MyAccountMenu';
 import UrlImage from '../../../../axiosUrlImage';
+import theme from '../../../../tools/themeMui';
 
 function MesAnnonces() {
   const dispatch = useDispatch();
+
+  // const cleanInfoWorkspace = () => {
+  //   dispatch({
+  //     type: 'CLEAN_WORKSPACE_DETAILS',
+  //   });
+  // };
+
   // On controle les boutons qui apparaissent dans la barre de menu
   useEffect(() => {
+    dispatch({
+      type: 'CLEAN_WORKSPACE_DETAILS',
+    });
     dispatch({
       type: 'CONTROL_BAR_ESPACE_PERSO',
       getAccessNavBar: true,
     });
   }, []);
 
-  // On récupère les réservations des annonces de l'hote que l'on regroupe
-  // par workspace et par reference de réservation
+  useEffect(() => {
+    // 👇️ scroll to top on page load
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, []);
+
+  // On récupère les réservations des annonces de l'hote
   const getDataRequestsHost = useSelector((state) => state.user.datahostrequests);
+  // On récupère les informations concernant le workspace de l'hôte
+  const getIdWorkspace = useSelector((state) => state.user.workspace_id);
   // eslint-disable-next-line no-console
-  // console.log(getDataCoworker);
-  const newDataArray = [];
-  function getOrderDataHost() {
-    getDataRequestsHost.forEach((element) => {
-      // eslint-disable-next-line max-len
-      const alreadyWorkplaceId = newDataArray.find((list) => list.workspace_id === element.workspace_id);
-      // eslint-disable-next-line max-len
-      const alreadyBookingId = newDataArray.find((list) => list.bookig_ref_id === element.bookig_ref_id);
-      if (alreadyWorkplaceId) {
-        alreadyWorkplaceId.bookingRef.push({
-          bookig_ref_id: element.bookig_ref_id,
-          bookingId: [
-            {
-              booking_id: element.booking_id,
-              start: element.start_date,
-              end: element.end_date,
-              description: element.description,
-              coworker: element.coworker,
-            },
-          ],
-        });
-      }
-      else if (alreadyBookingId) {
-        alreadyBookingId.bookingRef.push({
-          bookig_ref_id: element.bookig_ref_id,
-          bookingId: [
-            {
-              booking_id: element.booking_id,
-              start: element.start_date,
-              end: element.end_date,
-              description: element.description,
-              coworker: element.coworker,
-            },
-          ],
-        });
-      }
-      else {
-        newDataArray.push({
-          address: element.address,
-          city: element.city,
-          main_image: element.main_image,
-          title: element.title,
-          workspace_id: element.workspace_id,
-          bookingRef: [
-            {
-              bookig_ref_id: element.bookig_ref_id,
-              bookingId: [
-                {
-                  booking_id: element.booking_id,
-                  start: element.start_date,
-                  end: element.end_date,
-                  description: element.description,
-                  coworker: element.coworker,
-                },
-              ],
-            },
-          ],
-        });
-      }
+  console.log('Mon tableau host que je recois', getDataRequestsHost);
+
+  function getWorkspaceId(workspaceId) {
+    dispatch({
+      type: 'GET_WORKSPACE_ID',
+      getWorkspaceId: workspaceId,
     });
   }
-
-  getOrderDataHost();
-  // eslint-disable-next-line no-console
-  // console.log('Mon nouveau tableau', newDataArray);
-
-  // Options afin de modifier le format de la date
-  // eslint-disable-next-line object-curly-newline
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
   // eslint-disable-next-line indent
     return (
       <div className="MesAnnonces">
         <MyAccountMenu />
         <h1 className="MesAnnonces-title">Mes Annonces</h1>
-        {/* {newDataArray.map((list, index) => ( */}
-        {newDataArray.map((list, index) => (
+        {getDataRequestsHost.map((list, index) => (
           <Card
-            // eslint-disable-next-line react/no-array-index-key
+              // eslint-disable-next-line react/no-array-index-key
             key={index}
             sx={{ margin: '0.8rem' }}
           >
@@ -112,9 +69,10 @@ function MesAnnonces() {
               sx={{ boxShadow: 'none' }}
             >
               <CardMedia
+                  // sx={{ maxHeight: '200px' }}
                 className="MesAnnonces-Card-CardMedia"
                 component="img"
-                image={`${UrlImage}${list.main_image}`}
+                image={`${UrlImage}${list.json_build_object.images[0].link}`}
                 alt=""
               />
               <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
@@ -122,49 +80,52 @@ function MesAnnonces() {
                   sx={{ flex: '1 0 auto' }}
                   className="MesAnnonces-Card-CardContent"
                 >
-                  <Typography align="right">
-                    <EditRoundedIcon />
-                  </Typography>
-                  <Typography component="div" variant="h6">
-                    {list.title}
+                  <Link to={`/espace-perso/espace-hote/mes-annonces/annonce/${list.json_build_object.workspace.id}`}>
+                    <Button sx={{ width: '100%', display: 'flex', justifyContent: 'end', textTransform: 'none' }}>
+                      <Typography>
+                        Modifier l'annonce <EditRoundedIcon />
+                      </Typography>
+                    </Button>
+                  </Link>
+                  <Typography component="div" sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
+                    {list.json_build_object.workspace.title}
                   </Typography>
                   <Typography variant="subtitle1" color="text.secondary" component="div">
-                    {/* eslint-disable-next-line quotes */}
-                    À partir du { (new Date(list.bookingRef[0].bookingId[0].start)).toLocaleDateString("fr-FR", options) }
-                    {/* {list.timeslot[0].start} */}
+                    {list.json_build_object.workspace.address} à {list.json_build_object.workspace.city} {list.json_build_object.workspace.zip_code}
                   </Typography>
                   <Typography variant="subtitle1" color="text.secondary" component="div">
-                    {list.address} à {list.city}
-                    {/* {list.zipCode} */}
+                    <Typography sx={{ fontWeight: 'bold' }}>Prix à la journée :</Typography> {list.json_build_object.workspace.day_price} euros
                   </Typography>
+                  <Typography variant="subtitle1" color="text.secondary" component="div">
+                    <Typography sx={{ fontWeight: 'bold' }}>Prix à la demi-journée :</Typography> {list.json_build_object.workspace.half_day_price} euros
+                  </Typography>
+                  <Typography variant="subtitle1" color="text.secondary" component="div">
+                    <Typography sx={{ fontWeight: 'bold' }}>Description :</Typography> {list.json_build_object.workspace.description}
+                  </Typography>
+                  <Link to={`/espace-perso/espace-hote/mes-annonces/${getIdWorkspace}`}>
+                    <ThemeProvider theme={theme}>
+                      <Button
+                        sx={{ width: '100%', display: 'flex', justifyContent: 'end' }}
+                        onClick={() => {
+                          getWorkspaceId(list.json_build_object.workspace.id);
+                        }}
+                      >
+                        <Typography
+                          sx={{
+                            fontSize: '0.9rem',
+                            textAlign: 'right',
+                            width: '100%',
+                            textTransform: 'none',
+                          }}
+                        >
+                          Plus de détails sur les réservations
+                        </Typography>
+                      </Button>
+                    </ThemeProvider>
+                  </Link>
                 </CardContent>
               </Box>
             </Card>
-            <Accordion
-              className="MesAnnonces-Card-CardContent-Accordion"
-            >
-              <AccordionSummary
-                className="MesAnnonces-Card-CardContent-Accordion-Summary"
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography
-                  sx={{
-                    fontSize: '0.9rem',
-                    textAlign: 'right',
-                    width: '100%',
-                  }}
-                >
-                  Plus de détails
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <TableContainer>
-                  <MesAnnoncesRefs data={list.bookingRef} />
-                </TableContainer>
-              </AccordionDetails>
-            </Accordion>
           </Card>
         ))}
       </div>

@@ -36,10 +36,32 @@ export const initialState = {
   controlNavBarEspacePerso: false,
   // Gestion du loading page 'Mes Réservations'
   loadingReservationsPage: true,
+  // Workspace id pour afficher dans 'Mes annonces'
+  workspace_id: '',
+  // On recupère les infos du workspace'
+  workspace_info: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    // recuperation de l'id du workspace pour 'mes annonces'
+    case 'GET_WORKSPACE_ID':
+      return {
+        ...state,
+        workspace_id: action.getWorkspaceId,
+      };
+    // On récupère les infos concernant le workspace de l'hôte
+    case 'GET_INFO_WORKSPACE':
+      return {
+        ...state,
+        workspace_info: action.workspace_infos,
+      };
+    case 'CLEAN_WORKSPACE_DETAILS':
+      return {
+        ...state,
+        workspace_info: [],
+        workspace_id: '',
+      };
     case 'GET_EMAIL':
       return {
         ...state,
@@ -115,6 +137,33 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         logged: false,
+        email: '',
+        password: '',
+        role_id: 'coworker',
+        user_id: '',
+        gender: '',
+        last_name: '',
+        first_name: '',
+        avatar: '',
+        username: '',
+        about: '',
+        coworker_id: '',
+        error_connection: false,
+        inscriptionModalOpen: false,
+        connexionModalOpen: false,
+        cancelModalReservation: false,
+        getIdReservationForCancel: 0,
+        emailexistederror: false,
+        passwordwrongformat: false,
+        emailwrongformat: false,
+        errorrequiredelement: false,
+        statusconnection: false,
+        datacoworkerreservations: [],
+        datahostrequests: [],
+        controlNavBarEspacePerso: false,
+        loadingReservationsPage: true,
+        workspace_id: '',
+        workspace_info: [],
       };
     // Alerte erreur si, en cas d'inscription, l'email existe deja
     case 'GET_EMAILEXISTEDERROR':
