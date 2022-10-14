@@ -2,6 +2,7 @@ import './style.scss';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CardItem from './CardItem';
+import UrlImage from '../../../axiosUrlImage';
 
 function Cards() {
   const searchedCity = useSelector((state) => state.search.city);
@@ -21,7 +22,7 @@ function Cards() {
               key={card.id}
               title={card.title}
               dayPrice={card.day_price}
-              image={`https://cosyworking-api.onrender.com/${card.link}`}
+              image={`${UrlImage}${card.link}`}
               description={card.description}
             />
           </Link>

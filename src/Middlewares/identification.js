@@ -142,6 +142,9 @@ const identification = (store) => (next) => (action) => {
             type: 'MODAL_CONNEXION_OPENING',
             getOpening: true,
           });
+          store.dispatch({
+            type: 'LOGOUT',
+          });
         }
       });
   }
@@ -186,6 +189,9 @@ const identification = (store) => (next) => (action) => {
             type: 'MODAL_CONNEXION_OPENING',
             getOpening: true,
           });
+          store.dispatch({
+            type: 'LOGOUT',
+          });
         }
       });
   }
@@ -219,6 +225,9 @@ const identification = (store) => (next) => (action) => {
           store.dispatch({
             type: 'MODAL_CONNEXION_OPENING',
             getOpening: true,
+          });
+          store.dispatch({
+            type: 'LOGOUT',
           });
         }
       });
@@ -263,6 +272,9 @@ const identification = (store) => (next) => (action) => {
             type: 'CONNECTION_STATE',
             error: true,
           });
+          store.dispatch({
+            type: 'LOGOUT',
+          });
         }
       });
   }
@@ -300,6 +312,9 @@ const identification = (store) => (next) => (action) => {
           store.dispatch({
             type: 'CONNECTION_STATE',
             error: true,
+          });
+          store.dispatch({
+            type: 'LOGOUT',
           });
         }
       });
@@ -349,6 +364,9 @@ const identification = (store) => (next) => (action) => {
           store.dispatch({
             type: 'MODAL_CONNEXION_OPENING',
             getOpening: true,
+          });
+          store.dispatch({
+            type: 'LOGOUT',
           });
         }
       });

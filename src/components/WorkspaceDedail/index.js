@@ -22,6 +22,7 @@ import { actionGetWorkspaceDetail } from '../../actions/workspaces';
 
 // import style
 import './style.scss';
+import UrlImage from '../../axiosUrlImage';
 
 function WorkspaceDetail() {
   const dispatch = useDispatch();
@@ -151,7 +152,7 @@ function WorkspaceDetail() {
                   workspace.equipments_list.map((equipment) => (
                     <div className="equipment" key={equipment.equipment_id}>
                       {/* <Avatar alt={equipment.description} src={equipment.icon_link} /> */}
-                      <img className="equipment_icon" src={`https://cosyworking-api.onrender.com/${equipment.icon_link}`} alt={equipment.description} />
+                      <img className="equipment_icon" src={`${UrlImage}${equipment.icon_link}`} alt={equipment.description} />
                       <p className="equipmentName">{equipment.description}</p>
                     </div>
                   ))

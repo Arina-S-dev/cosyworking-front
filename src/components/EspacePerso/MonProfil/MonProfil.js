@@ -9,6 +9,7 @@ import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import './MonProfil.scss';
 import { ThemeProvider } from '@emotion/react';
 import theme from '../../../tools/themeMui';
+import UrlImage from '../../../axiosUrlImage';
 
 function MonProfil() {
   // eslint-disable-next-line max-len, object-curly-newline
@@ -100,7 +101,7 @@ function MonProfil() {
             >
               <Box className="MonProfil-Card-MainBox-CardContent-Box">
                 <Box className="MonProfil-Card-MainBox-CardContent-Box-BoxAvatar">
-                  <Avatar sx={{ width: 150, height: 150 }} alt="" src={`https://cosyworking-api.onrender.com/${avatar}`} />
+                  <Avatar sx={{ width: 150, height: 150 }} alt="" src={`${UrlImage}${avatar}`} />
                 </Box>
                 <Box className="MonProfil-Card-MainBox-CardContent-Box-BoxName">
                   <Typography variant="h6">
@@ -166,7 +167,7 @@ function MonProfil() {
             >
               <Box className="MonProfil-Card-MainBox-CardContent-Box">
                 <Box className="MonProfil-Card-MainBox-CardContent-Box-BoxAvatar">
-                  <Avatar sx={{ width: 150, height: 150 }} alt="" src={`https://cosyworking-api.onrender.com/${avatar}`} />
+                  <Avatar sx={{ width: 150, height: 150 }} alt="" src={`${UrlImage}${avatar}`} />
                 </Box>
                 <Box className="MonProfil-Card-MainBox-CardContent-Box-BoxName">
                   <Input placeholder={username} onChange={changeUsername} sx={{ marginRight: '0.5rem' }} />
