@@ -106,16 +106,16 @@ function MesAnnonces() {
                   <Typography component="div" sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
                     {list.json_build_object.workspace.title}
                   </Typography>
-                  <Typography variant="subtitle1" color="text.secondary" component="div">
+                  <Typography variant="subtitle1" color="text.secondary" component="div" sx={{ marginTop: '0.3rem', marginBottom: '0.7rem', lineHeight: '1rem' }}>
                     {list.json_build_object.workspace.address} à {list.json_build_object.workspace.city} {list.json_build_object.workspace.zip_code}
                   </Typography>
-                  <Typography variant="subtitle1" color="text.secondary" component="div">
+                  <Typography variant="subtitle1" color="text.secondary" component="div" sx={{ marginTop: '0.3rem', marginBottom: '0.7rem', lineHeight: '1rem' }}>
                     <Typography sx={{ fontWeight: 'bold' }}>Prix à la journée :</Typography> {list.json_build_object.workspace.day_price} euros
                   </Typography>
-                  <Typography variant="subtitle1" color="text.secondary" component="div">
+                  <Typography variant="subtitle1" color="text.secondary" component="div" sx={{ marginTop: '0.3rem', marginBottom: '0.7rem', lineHeight: '1rem' }}>
                     <Typography sx={{ fontWeight: 'bold' }}>Prix à la demi-journée :</Typography> {list.json_build_object.workspace.half_day_price} euros
                   </Typography>
-                  <Typography variant="subtitle1" color="text.secondary" component="div">
+                  <Typography variant="subtitle1" color="text.secondary" component="div" sx={{ marginTop: '0.3rem', marginBottom: '0.7rem', lineHeight: '1rem' }}>
                     <Typography sx={{ fontWeight: 'bold' }}>Description :</Typography> {list.json_build_object.workspace.description}
                   </Typography>
                   <Link to={`/espace-perso/espace-hote/mes-annonces/${list.json_build_object.workspace.id}`}>

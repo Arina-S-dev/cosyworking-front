@@ -7,6 +7,7 @@ import { CardActionArea } from '@mui/material';
 import './styles.scss';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 // Obtention des réservations du coworker
 function EspacePerso() {
@@ -37,6 +38,11 @@ function EspacePerso() {
     }
     return false;
   }
+
+  useEffect(() => {
+    // 👇️ scroll to top on page load
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, []);
 
   return (
     <div className="EspacePerso">
