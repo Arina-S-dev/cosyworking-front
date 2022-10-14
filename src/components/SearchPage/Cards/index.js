@@ -1,6 +1,5 @@
 import './style.scss';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import CardItem from './CardItem';
 import UrlImage from '../../../axiosUrlImage';
 
@@ -17,16 +16,13 @@ function Cards() {
     <div className="cards-container">
       {!isLoading
         && workspaces.map((card) => (
-          <Link to={`/workspace/${card.id}`} target="_blank">
-            <CardItem
-              key={card.id}
-              title={card.title}
-              dayPrice={card.day_price}
-              image={`${UrlImage}${card.link}`}
-              description={card.description}
-            />
-          </Link>
-
+          <CardItem
+            key={card.id}
+            title={card.title}
+            dayPrice={card.day_price}
+            image={`${UrlImage}${card.link}`}
+            description={card.description}
+          />
         ))}
     </div>
   );
