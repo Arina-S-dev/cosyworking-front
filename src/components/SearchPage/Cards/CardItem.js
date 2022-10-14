@@ -8,9 +8,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Typography } from '@mui/material';
-import Button from '@mui/material/Button';
 import StarIcon from '@mui/icons-material/Star';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import theme from '../../../tools/themeMui';
 // import FavoriteIcon from '@mui/icons-material/Favorite';
 
@@ -44,7 +42,6 @@ function CardItem({
               <Typography gutterBottom variant="h5" component="div" textAlign="left" margin="0">
                 {title}
               </Typography>
-              <Button sx={{ minWidth: 0 }}> <FavoriteBorderIcon onClick={() => console.log('Je clique sur le coeur!')} /></Button>
             </div>
             <Typography gutterBottom variant="h7" component="div" textAlign="left">
               {description}

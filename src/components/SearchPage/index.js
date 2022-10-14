@@ -2,7 +2,7 @@ import './style.scss';
 import { FormControl } from '@mui/material';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from '@mui/material/CircularProgress';
 import Map from './Map';
 import Input from './Input';
 import Calendar from './Calendar';
@@ -14,7 +14,8 @@ import FailedSearch from './FailedSearch';
 
 function SearchPage() {
   const workspaces = useSelector((state) => state.search.workspaces);
-  // const isLoading = useSelector((state) => state.search.worspacesAPIisLoading);
+  const isLoading = useSelector((state) => state.search.worspacesAPIisLoading);
+  const worspacesAreSave = useSelector((state) => state.search.worspacesAreSave);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({
@@ -40,9 +41,9 @@ function SearchPage() {
       </div>
       <section className="result-container">
         <Map />
-        {/* {isLoading && <CircularProgress />} */}
-        {workspaces.length > 0 && <Cards />}
-        {workspaces.length === 0 && <FailedSearch /> }
+        {isLoading && !worspacesAreSave && <CircularProgress />}
+        {!isLoading && worspacesAreSave && workspaces.length > 0 && <Cards />}
+        {!worspacesAreSave && workspaces.length === 0 && <FailedSearch /> }
       </section>
     </div>
   );

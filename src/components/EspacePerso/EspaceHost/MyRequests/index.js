@@ -4,21 +4,28 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
+import CloseIcon from '@mui/icons-material/Close';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import IconButton from '@mui/material/IconButton';
 import { ThemeProvider } from '@mui/material/styles';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import { Typography } from '@mui/material';
+import {
+  Typography, Avatar, Box, Collapse,
+} from '@mui/material';
 import Alert from '@mui/material/Alert';
 import { Link } from 'react-router-dom';
 import MyAccountMenu from '../../../MyAccountMenu';
 import theme from '../../../../tools/themeMui';
 import ModalConfirm from './modalConfirm';
+import UrlImage from '../../../../axiosUrlImage';
 
 import './style.scss';
 
 function MyRequests() {
+  // const [open, setOpen] = useState(true);
+  // const handleClose = () => setOpen(false);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({
@@ -48,7 +55,7 @@ function MyRequests() {
   const pendingRequests = requestsData.filter((req) => req.description === 'En attente');
   // eslint-disable-next-line object-curly-spacing, camelcase
   // group by bookig_ref_id
-  // console.log('pendingRequests array', pendingRequests);
+  console.log('pendingRequests array', pendingRequests);
   const groupBy = (key) => (array) => array.reduce((objectsByKeyValue, obj) => {
     const value = obj[key];
     objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
@@ -68,9 +75,33 @@ function MyRequests() {
         <div className="card-container">
           {alertIsOpen
           && (
-          <Alert onClose={handleCloseAlert} severity="success" sx={{ borderRadius: '15px' }}>
-            Le statut de la demande a bien été modifié
-          </Alert>
+            <Box sx={{
+              width: '100%',
+              position: 'fixed',
+              top: 50,
+              left: 0,
+              zIndex: 999999999999999,
+            }}
+            >
+              <Collapse in={alertIsOpen}>
+                <Alert
+                  action={(
+                    <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      size="small"
+                      onClick={handleCloseAlert}
+                    >
+                      <CloseIcon fontSize="inherit" />
+                    </IconButton>
+              )}
+                  sx={{ mb: 2 }}
+                  severity="success"
+                >
+                  Le statut de la demande a bien été modifié
+                </Alert>
+              </Collapse>
+            </Box>
           )}
           {Object.keys(bookingList).map((booking) => (
             <Card
@@ -89,7 +120,7 @@ function MyRequests() {
                 component="img"
                 alt="workspace"
                 height="200"
-                image={`https://cosyworking-api.onrender.com/${bookingList[booking][0].main_image}`}
+                image={`${UrlImage}${bookingList[booking][0].main_image}`}
                 width="250"
               />
               <CardContent className="card-details">
@@ -112,11 +143,14 @@ function MyRequests() {
                     Du {(new Date(element.start_date)).toLocaleDateString('fr-FR', options)} au {(new Date(element.end_date)).toLocaleDateString('fr-FR', options)}
                   </Typography>
                 ))}
-                <Link to={`/profil/${bookingList[booking][0].coworker_id}`}>
-                  <Typography gutterBottom variant="h6" component="div" textAlign="left">
-                    Réservation effectuée par {bookingList[booking][0].coworker}
-                  </Typography>
-                </Link>
+
+                <Typography gutterBottom variant="h6" component="div" textAlign="left">
+                  Réservation effectuée par :
+                  <Link to={`/profil/${bookingList[booking][0].coworker_id}`}>
+                    <Avatar src={`${UrlImage}${bookingList[booking][0].avatar}`} /> {bookingList[booking][0].coworker}
+                  </Link>
+                </Typography>
+
                 <Stack className="card-buttons" spacing={2} direction="row">
                   <Button
                     value="Annulé"

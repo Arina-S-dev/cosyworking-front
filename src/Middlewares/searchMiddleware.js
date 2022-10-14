@@ -3,7 +3,7 @@ import axiosBaseUrl from '../axios';
 const searchMiddleware = (store) => (next) => (action) => {
   if (action.type === 'GET_CITIES_GROM_API_GOUV') {
     // eslint-disable-next-line camelcase
-    axios.get('https://geo.api.gouv.fr/communes')
+    axiosBaseUrl.get('https://geo.api.gouv.fr/communes')
       .then((response) => {
         // eslint-disable-next-line no-console
         console.log(response);
