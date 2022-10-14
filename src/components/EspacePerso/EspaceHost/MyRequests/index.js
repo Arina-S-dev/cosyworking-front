@@ -1,25 +1,25 @@
 /* eslint-disable max-len */
-// import Card from '@mui/material/Card';
+import Card from '@mui/material/Card';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-// import CheckIcon from '@mui/icons-material/Check';
-// import ClearIcon from '@mui/icons-material/Clear';
-// import CloseIcon from '@mui/icons-material/Close';
-// import Button from '@mui/material/Button';
-// import Stack from '@mui/material/Stack';
-// import IconButton from '@mui/material/IconButton';
-// import { ThemeProvider } from '@mui/material/styles';
-// import CardContent from '@mui/material/CardContent';
-// import CardMedia from '@mui/material/CardMedia';
-// import {
-//   Typography, Avatar, Box, Collapse,
-// } from '@mui/material';
-// import Alert from '@mui/material/Alert';
-// import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import CheckIcon from '@mui/icons-material/Check';
+import ClearIcon from '@mui/icons-material/Clear';
+import CloseIcon from '@mui/icons-material/Close';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import IconButton from '@mui/material/IconButton';
+import { ThemeProvider } from '@mui/material/styles';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import {
+  Typography, Avatar, Box, Collapse,
+} from '@mui/material';
+import Alert from '@mui/material/Alert';
+import { Link } from 'react-router-dom';
 import MyAccountMenu from '../../../MyAccountMenu';
-// import theme from '../../../../tools/themeMui';
-// import ModalConfirm from './modalConfirm';
-// import UrlImage from '../../../../axiosUrlImage';
+import theme from '../../../../tools/themeMui';
+import ModalConfirm from './modalConfirm';
+import UrlImage from '../../../../axiosUrlImage';
 import './style.scss';
 
 function MyRequests() {
@@ -36,44 +36,46 @@ function MyRequests() {
     });
   }, []);
   // Ouverture de la modale, récupération de la description (Annulée / Validée), récupération du booking id
-  // const handleOpen = (event, bookingId) => {
-  //   const description = event.currentTarget.value;
-  //   dispatch({
-  //     type: 'OPEN_CONFIRM_MODAL',
-  //     description: description,
-  //     bookigIdforUpdate: bookingId,
-  //   });
-  // };
+  const handleOpen = (event, bookingId) => {
+    const description = event.currentTarget.value;
+    dispatch({
+      type: 'OPEN_CONFIRM_MODAL',
+      description: description,
+      bookigIdforUpdate: bookingId,
+    });
+  };
 
-  // const handleCloseAlert = () => {
-  //   dispatch({
-  //     type: 'CLOSE_ALERT',
-  //   });
-  // };
-  // const modalIsOpen = useSelector((state) => state.requests.openConfimModal);
-  // const requestsData = useSelector((state) => state.requests.hostrequests);
-  // const alertIsOpen = useSelector((state) => state.requests.alertSuccess);
+  const handleCloseAlert = () => {
+    dispatch({
+      type: 'CLOSE_ALERT',
+    });
+  };
+  const modalIsOpen = useSelector((state) => state.requests.openConfimModal);
+  const requestsData = useSelector((state) => state.requests.hostrequests);
+  const alertIsOpen = useSelector((state) => state.requests.alertSuccess);
   // filtre les bookings avec le statut "en attente" uniquement
-  // const pendingRequests = requestsData.filter((req) => req.description === 'En attente');
+  const pendingRequests = requestsData.filter((req) => req.description === 'En attente');
   // eslint-disable-next-line object-curly-spacing, camelcase
   // group by bookig_ref_id
-  // console.log('pendingRequests array', pendingRequests);
-  // const groupBy = (key) => (array) => array.reduce((objectsByKeyValue, obj) => {
-  //   const value = obj[key];
-  //   objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
-  //   return objectsByKeyValue;
-  // }, {});
-  // const groupByBookingRefId = groupBy('bookig_ref_id');
-  // const bookingList = groupByBookingRefId(pendingRequests);
+  console.log('pendingRequests array', pendingRequests);
+  const groupBy = (key) => (array) => array.reduce((objectsByKeyValue, obj) => {
+    const value = obj[key];
+    objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
+    return objectsByKeyValue;
+  }, {});
+  const groupByBookingRefId = groupBy('bookig_ref_id');
+  const bookingList = groupByBookingRefId(pendingRequests);
+  console.log('bookingList', bookingList);
+
   // Options afin de modifier le format de la date
   // eslint-disable-next-line object-curly-newline
-  // const options = { weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric' };
+  const options = { weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric' };
   // Object.keys(bookingList).map((booking) => console.log(bookingList[booking].map((elem) => elem.title)));
   return (
     <>
       <MyAccountMenu />
 
-      {/* <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         <div className="card-container">
           {alertIsOpen
           && (
@@ -105,6 +107,8 @@ function MyRequests() {
               </Collapse>
             </Box>
           )}
+          {pendingRequests.length === 0
+          && <p className="text">Aucune demande en cours</p>}
           {Object.keys(bookingList).map((booking) => (
             <Card
               key={bookingList[booking][0].bookig_ref_id}
@@ -170,10 +174,10 @@ function MyRequests() {
                 </Stack>
               </CardContent>
             </Card>
-          ))};
+          ))}
         </div>
         {modalIsOpen && <ModalConfirm />}
-      </ThemeProvider> */}
+      </ThemeProvider>
     </>
   );
 }
