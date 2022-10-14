@@ -79,7 +79,7 @@ function MesAnnoncesDetails() {
       <div className="MesAnnoncesDetails">
         <MyAccountMenu />
         <Link to="/espace-perso/espace-hote/mes-annonces" onClick={cleanDataWorkspace}>
-          <h6 className="MesAnnonces-title"><ReplayRoundedIcon />Revenir à 'Mes Annonces'</h6>
+          <h6 className="MesAnnonces-title"><ReplayRoundedIcon />Revenir à Mes Annonces</h6>
         </Link>
         {getDataWorkspace.map((list) => (
           <>
