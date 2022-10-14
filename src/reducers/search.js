@@ -11,6 +11,7 @@ export const initialState = {
   worspacesAreSave: false,
   calendarHomePageIsOpen: false,
   citiesFromAPIGouv: [],
+  dateAppear: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -22,17 +23,12 @@ const reducer = (state = initialState, action = {}) => {
         date_list: [],
         equipments: [],
         workspaces: [],
-        calendarHomePageIsOpen: false,
+        dateAppear: false,
       };
-    case 'OPEN_CALENDAR_ON_HOMEPAGE':
+    case 'DATE_APPEAR_ON_HOMEPAGE':
       return {
         ...state,
-        calendarHomePageIsOpen: true,
-      };
-    case 'CLOSE_CALENDAR_ON_HOMEPAGE':
-      return {
-        ...state,
-        calendarHomePageIsOpen: false,
+        dateAppear: true,
       };
     case 'OPEN_MODAL_FILTERS':
       return {
