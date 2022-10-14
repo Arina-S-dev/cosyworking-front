@@ -69,6 +69,19 @@ function MonProfil() {
     handleClose();
   };
 
+  // Fonction pour obtenir Monsieur ou Madame
+  const getWellGender = (getGender) => {
+    // eslint-disable-next-line quotes, eqeqeq
+    if (getGender == "female") {
+      return 'Madame';
+    }
+    // eslint-disable-next-line eqeqeq
+    if (getGender == 'male') {
+      return 'Monsieur';
+    }
+    return 'Autre';
+  };
+
   return (
     <>
       {!open
@@ -118,7 +131,7 @@ function MonProfil() {
                       variant="subtitle1"
                       color="text.secondary"
                     >
-                      Civilité : {gender}
+                      Civilité : {getWellGender(gender)}
                     </Typography>
                     <Typography variant="subtitle1" color="text.secondary">
                       Prénom : {first_name}
