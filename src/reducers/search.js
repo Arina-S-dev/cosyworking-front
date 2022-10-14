@@ -8,7 +8,6 @@ export const initialState = {
   equipmentsListFromAPI: '',
   equipementsAPIisLoading: true,
   worspacesAPIisLoading: true,
-  worspacesAreSave: false,
   calendarHomePageIsOpen: false,
   citiesFromAPIGouv: [],
 };
@@ -87,7 +86,6 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         workspaces: action.workspaces,
         worspacesAPIisLoading: false,
-        worspacesAreSave: true,
       };
     case 'SAVE_EQUIPMENTS':
       return {

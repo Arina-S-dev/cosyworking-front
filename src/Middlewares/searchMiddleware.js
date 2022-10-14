@@ -1,24 +1,6 @@
 import axiosBaseUrl from '../axios';
 
 const searchMiddleware = (store) => (next) => (action) => {
-  if (action.type === 'GET_CITIES_GROM_API_GOUV') {
-    // eslint-disable-next-line camelcase
-    axiosBaseUrl.get('https://geo.api.gouv.fr/communes')
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log(response);
-        if (response.data) {
-          store.dispatch({
-            type: 'SAVE_CITIES_GROM_API_GOUV',
-            citiesFromAPIGouv: response.data,
-          });
-        }
-      })
-      .catch((error) => {
-      // eslint-disable-next-line no-console
-        console.log(error.response.data.message);
-      });
-  }
   if (action.type === 'GET_WORKSPACES') {
     // eslint-disable-next-line camelcase
     const { city, date_list, equipments } = store.getState().search;
@@ -26,7 +8,7 @@ const searchMiddleware = (store) => (next) => (action) => {
     axiosBaseUrl.post('/api/workspace/search', { city, date_list, equipments })
       .then((response) => {
         // eslint-disable-next-line no-console
-        // console.log(response.data);
+        console.log('response data', response.data);
         if (response.data) {
           store.dispatch({
             type: 'SAVE_WORKSPACES',
