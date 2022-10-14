@@ -18,6 +18,7 @@ function Cards() {
         && workspaces.map((card) => (
           <CardItem
             key={card.id}
+            id={card.id}
             title={card.title}
             dayPrice={card.day_price}
             image={`${UrlImage}${card.link}`}

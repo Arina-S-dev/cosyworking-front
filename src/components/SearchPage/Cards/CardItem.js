@@ -13,12 +13,12 @@ import theme from '../../../tools/themeMui';
 // import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function CardItem({
-  title, image, dayPrice, description, key,
+  title, image, dayPrice, description, id,
 }) {
   return (
     <ThemeProvider theme={theme}>
-      <div className="card">
-        <Link to={`/workspace/${key}`} target="_blank">
+      <Link to={`/workspace/${id}`} target="_blank">
+        <div className="card">
           <Card
             sx={{
               width: {
@@ -53,8 +53,8 @@ function CardItem({
               </Typography>
             </CardContent>
           </Card>
-        </Link>
-      </div>
+        </div>
+      </Link>
     </ThemeProvider>
   );
 }
@@ -63,7 +63,7 @@ CardItem.propTypes = {
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   dayPrice: PropTypes.number.isRequired,
-  key: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
 };
 

@@ -126,7 +126,7 @@ function MyRequests() {
                 component="img"
                 alt="workspace"
                 height="200"
-                image={`https://cosyworking-api.onrender.com/${bookingList[booking][0].main_image}`}
+                image={`${UrlImage}${bookingList[booking][0].main_image}`}
                 width="250"
               />
               <CardContent className="card-details">
