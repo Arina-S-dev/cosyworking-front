@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable max-len */
 import Card from '@mui/material/Card';
 import { useEffect } from 'react';
@@ -71,8 +70,7 @@ function MyRequests() {
   // eslint-disable-next-line object-curly-newline
   const options = { weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric' };
   // Object.keys(bookingList).map((booking) => console.log(bookingList[booking].map((elem) => elem.title)));
-  console.log('Mon tableau pour le map', Object.keys(bookingList));
-
+  // console.log('Mon tableau pour le map', Object.keys(bookingList));
   return (
     <>
       <MyAccountMenu />
@@ -109,6 +107,8 @@ function MyRequests() {
               </Collapse>
             </Box>
           )}
+          {pendingRequests.length === 0
+          && <p className="text">Aucune demande en cours</p>}
           {Object.keys(bookingList).map((booking) => (
             <Card
               key={bookingList[booking][0].bookig_ref_id}
@@ -126,7 +126,7 @@ function MyRequests() {
                 component="img"
                 alt="workspace"
                 height="200"
-                image={`https://cosyworking-api.onrender.com/${bookingList[booking][0].main_image}`}
+                image={`${UrlImage}${bookingList[booking][0].main_image}`}
                 width="250"
               />
               <CardContent className="card-details">
