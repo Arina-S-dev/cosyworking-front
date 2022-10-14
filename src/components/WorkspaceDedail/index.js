@@ -64,7 +64,7 @@ function WorkspaceDetail() {
 
   return (
 
-    <div>
+    <div className="workspaceContainer">
 
       {workspace && (
 
