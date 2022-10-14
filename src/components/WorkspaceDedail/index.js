@@ -136,7 +136,7 @@ function WorkspaceDetail() {
             <p className="hostName">{workspace.user[0].host}</p>
           </div> */}
           <Link to={`/profil/${workspace.user[0].host_id}`} className="hostDesc_hostInfos">
-            <Avatar alt={workspace.user[0].host} src={workspace.user[0].host_avatar} />
+            <Avatar alt={workspace.user[0].host} src={`${UrlImage}${workspace.user[0].host_avatar}`} />
             <p className="hostName">{workspace.user[0].host}</p>
           </Link>
         </div>
