@@ -307,33 +307,10 @@ h3{
     
 }
 
-@media (max-width: 2560px) {
-
-    .workspaceDetail{
-        padding: .8rem 15rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        box-sizing: border-box;
-    }
-
-
- }
-
- @media (max-width: 1440px) {
-
-    .workspaceDetail{
-        padding: .8rem 5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        box-sizing: border-box;
-    }
-
-
- }
+.workspaceContainer{
+    display: flex;
+    justify-content: center;
+}
 
  @media (max-width: 1100px) {
 
