@@ -6,6 +6,7 @@ import { Box } from '@mui/system';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import UrlImage from '../../../axiosUrlImage';
 import './styles.scss';
 
 function AccountMenu() {
@@ -51,7 +52,7 @@ function AccountMenu() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar src={`https://cosyworking-api.onrender.com/${avatar}`} />
+            <Avatar src={`${UrlImage}${avatar}`} />
           </IconButton>
         </Tooltip>
       </Box>
@@ -88,7 +89,7 @@ function AccountMenu() {
       >
         <MenuItem>
           <Link to="/espace-perso">
-            <div className="avatarAccountdiv"><Avatar src={`https://cosyworking-api.onrender.com/${avatar}`} /> Mon Espace Perso</div>
+            <div className="avatarAccountdiv"><Avatar src={`${UrlImage}${avatar}`} /> Mon Espace Perso</div>
           </Link>
         </MenuItem>
         <Divider />

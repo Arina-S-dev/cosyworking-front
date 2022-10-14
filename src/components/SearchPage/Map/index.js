@@ -14,6 +14,7 @@ import {
 
 import L from 'leaflet';
 import theme from '../../../tools/themeMui';
+import UrlImage from '../../../axiosUrlImage';
 
 const markerIcon = new L.Icon({
   // eslint-disable-next-line global-require
@@ -52,7 +53,7 @@ function Map() {
             >
               <ThemeProvider theme={theme}>
                 <Popup className="popup" margin="0">
-                  <img className="popup-image" src={`https://cosyworking-api.onrender.com/${workspace.link}`} width="200" height="150" alt="workspace" />
+                  <img className="popup-image" src={`${UrlImage}${workspace.link}`} width="200" height="150" alt="workspace" />
                   <p className="popup-title">{workspace.title}</p>
                   <div className="popup-flex">
                     <p className="popup-flex-price">{workspace.day_price}€/jour</p>

@@ -13,13 +13,15 @@ import theme from '../../../../tools/themeMui';
 function SearchInput() {
   const calendarIsOpen = useSelector((state) => state.search.calendarHomePageIsOpen);
   const dispatch = useDispatch();
-  const getOther = () => {
+  const OpenCalendar = () => {
     if (calendarIsOpen === false) {
       dispatch({
         type: 'OPEN_CALENDAR_ON_HOMEPAGE',
       });
     }
-    else {
+  };
+  const CloseCalendar = () => {
+    if (calendarIsOpen === true) {
       dispatch({
         type: 'CLOSE_CALENDAR_ON_HOMEPAGE',
       });
@@ -45,7 +47,7 @@ function SearchInput() {
     <div className="divBox">
       <ThemeProvider theme={theme}>
         <Box sx={{
-          display: 'flex', flexDirection: 'column', alignItems: 'center', borderRadius: '16px', Width: '20vw', bgcolor: 'white', pt: 0.5, pb: 0.5, pl: 6, pr: 6,
+          display: 'flex', flexDirection: 'column', alignItems: 'center', borderRadius: '16px', Width: '20vw', bgcolor: 'white', pt: 0.5, pb: 2.5, pl: 6, pr: 6,
         }}
         >
           <div className="textInfo">
@@ -58,7 +60,7 @@ function SearchInput() {
             }}
             />
             <Input
-              onClick={getOther}
+              onClick={OpenCalendar}
               onChange={getCity}
               className="input"
               placeholder="Ou allez vous ? "
@@ -78,20 +80,35 @@ function SearchInput() {
             <div className="validationDate">
               <p>Vos dates ont bien été prises en compte</p>
 
-              <Button sx={{ fontSize: 14 }} onClick={getOther}>Modifier mes dates</Button>
+              <Button sx={{ fontSize: 14 }} onClick={calendarIsOpen}>Modifier mes dates</Button>
             </div>
           )}
-          <Button
-            variant="contained"
-            sx={{ margin: 3 }}
-            onClick={() => {
-              dispatch({
-                type: 'GET_WORKSPACES',
-              });
-            }}
-          >
-            <Link to="/recherche">Rechercher</Link>
-          </Button>
+          {calendarIsOpen && (
+            <div className="searchInputBottomButton">
+              <Button
+                size="small"
+                variant="text"
+                sx={{ margin: 0.5 }}
+                onClick={CloseCalendar}
+              >Fermer le calendrier
+              </Button>
+
+              <Button
+                variant="contained"
+                sx={{
+                  mt: 1.5,
+                  mb: 1,
+                }}
+                onClick={() => {
+                  dispatch({
+                    type: 'GET_WORKSPACES',
+                  });
+                }}
+              >
+                <Link to="/recherche">Rechercher</Link>
+              </Button>
+            </div>
+          )}
         </Box>
       </ThemeProvider>
     </div>

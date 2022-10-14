@@ -1,3 +1,3 @@
-const UrlImage = 'https://cosyworking-api.onrender.com/';
+const UrlImage = 'http://quentinroggy-server.eddi.cloud/';
 
 export default UrlImage;
