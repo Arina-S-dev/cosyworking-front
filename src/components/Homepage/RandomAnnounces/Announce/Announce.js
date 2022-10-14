@@ -1,9 +1,10 @@
 import './Announce.scss';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import Button from '@mui/material/Button';
+import { Button, ThemeProvider } from '@mui/material/';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import UrlImage from '../../../../axiosUrlImage';
+import theme from '../../../../tools/themeMui';
 
 function Announce({
   image, announceName, cityName, price, workspaceId,
@@ -19,9 +20,11 @@ function Announce({
         <p className="cityName">{cityName}</p>
         <div className="priceButton">
           <p>{price}</p>
-          <Link to={`/workspace/${workspaceId}`}>
-            <Button variant="contained" size="small">Voir l'annonce</Button>
-          </Link>
+          <ThemeProvider theme={theme}>
+            <Link to={`/workspace/${workspaceId}`}>
+              <Button variant="contained" size="small">Voir l'annonce</Button>
+            </Link>
+          </ThemeProvider>
         </div>
       </div>
     </div>

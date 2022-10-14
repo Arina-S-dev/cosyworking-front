@@ -16,278 +16,174 @@ function Faq() {
       </div>
       <div className="questionContainer">
         <div className="ColumnLeft">
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit?</Typography>
+              <Typography>Est-ce que en tant coworker je peux déposer une annonce ?</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo leo
-                non sapien accumsan luctus. Class aptent taciti sociosqu ad litora torquent per
-                conubia nostra, per inceptos himenaeos. Sed quis hendrerit ligula. Nullam imperdiet
-                ut sapien ac egestas. Sed sagittis sollicitudin erat. Duis rutrum est.
+                Oui c'est tout à fait possible. Dans la barre de navigation vous avez un bouton
+                "Devenir hôte" qui vous permet de modifier votre type de compte. Vous pourrez
+                ensuite déposer une annonce.
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit?</Typography>
+              <Typography sx={{ width: '100%' }}>Est-ce qu'il y a des frais ?</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo leo
-                non sapien accumsan luctus. Class aptent taciti sociosqu ad litora torquent per
-                conubia nostra, per inceptos himenaeos. Sed quis hendrerit ligula. Nullam imperdiet
-                ut sapien ac egestas. Sed sagittis sollicitudin erat. Duis rutrum est.
+                La plateforme Cosyworking prends des frais sur chaque réservation.
+                Ces frais sont inclus dans le coût total.
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit?</Typography>
+              <Typography sx={{ width: '100%' }}>Comment contacter l'hôte d'un espace qui m'intéresse ?</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo leo
-                non sapien accumsan luctus. Class aptent taciti sociosqu ad litora torquent per
-                conubia nostra, per inceptos himenaeos. Sed quis hendrerit ligula. Nullam imperdiet
-                ut sapien ac egestas. Sed sagittis sollicitudin erat. Duis rutrum est.
+                Lorsque vous cliquez sur réserver vous serez amené à entrer en contact avec l'hôte.
+                Les échanges se feront ensuite par email.
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit?</Typography>
+              <Typography>Est-il possible d'annuler une réservation après l'avoir
+                confirmée ?
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo leo
-                non sapien accumsan luctus. Class aptent taciti sociosqu ad litora torquent per
-                conubia nostra, per inceptos himenaeos. Sed quis hendrerit ligula. Nullam imperdiet
-                ut sapien ac egestas. Sed sagittis sollicitudin erat. Duis rutrum est.
+                Vous pouvez annuler une réservation depuis votre espace personnel.
+                Dans la section "Mon espace coworker", retrouvez la réservation
+                en question et cliquer sur "Annuler".
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit?</Typography>
+              <Typography>La demande de réservation est-elle engageant ?</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo leo
-                non sapien accumsan luctus. Class aptent taciti sociosqu ad litora torquent per
-                conubia nostra, per inceptos himenaeos. Sed quis hendrerit ligula. Nullam imperdiet
-                ut sapien ac egestas. Sed sagittis sollicitudin erat. Duis rutrum est.
+                Cliquez sur “Réserver en ligne” vous permet de rentrer en contact avec l’hôte.
+                Cela ne vous engage à rien mais vous permet de demander un devis et
+                de discuter avec l’hôte du format de votre projet. Vous ne serez
+                engagé que lorsque vous confirmerez et payerez cette réservation.
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion width="50%">
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit?</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo leo
-                non sapien accumsan luctus. Class aptent taciti sociosqu ad litora torquent per
-                conubia nostra, per inceptos himenaeos. Sed quis hendrerit ligula. Nullam imperdiet
-                ut sapien ac egestas. Sed sagittis sollicitudin erat. Duis rutrum est.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion width="50%">
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit?</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo leo
-                non sapien accumsan luctus. Class aptent taciti sociosqu ad litora torquent per
-                conubia nostra, per inceptos himenaeos. Sed quis hendrerit ligula. Nullam imperdiet
-                ut sapien ac egestas. Sed sagittis sollicitudin erat. Duis rutrum est.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion width="50%">
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit?</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo leo
-                non sapien accumsan luctus. Class aptent taciti sociosqu ad litora torquent per
-                conubia nostra, per inceptos himenaeos. Sed quis hendrerit ligula. Nullam imperdiet
-                ut sapien ac egestas. Sed sagittis sollicitudin erat. Duis rutrum est.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-
         </div>
         <div className="ColumnRight">
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit?</Typography>
+              <Typography>Quelle est la procédure à suivre en cas de dégât sur place ?</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo leo
-                non sapien accumsan luctus. Class aptent taciti sociosqu ad litora torquent per
-                conubia nostra, per inceptos himenaeos. Sed quis hendrerit ligula. Nullam imperdiet
-                ut sapien ac egestas. Sed sagittis sollicitudin erat. Duis rutrum est.
+                En cas de dégât réalisé sur place, l’hôte doit nous en informer dans le 48H, nous
+                vous invitons également à le faire afin d’anticiper. Votre caution peut alors être
+                engagée au minimum de 500 euros. Si les dégâts dépassent le montant de la caution,
+                nous faisons appel à notre assurance pour couvrir les dommages causés.
+                Dès que l’hôte a fait sa demande, vous recevez un mail pour vous avertir que votre
+                caution sera prélevée.
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit?</Typography>
+              <Typography>Le ménage est-il inclus ?</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo leo
-                non sapien accumsan luctus. Class aptent taciti sociosqu ad litora torquent per
-                conubia nostra, per inceptos himenaeos. Sed quis hendrerit ligula. Nullam imperdiet
-                ut sapien ac egestas. Sed sagittis sollicitudin erat. Duis rutrum est.
+                Le ménage est par défaut inclus. Si cela n’est pas le cas vous en serez informé
+                par l’hôte qui l’ajoutera en option (cela est extrêmement rare).
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit?</Typography>
+              <Typography>Dois-je immatriculer mon logement auprès de la mairie ?</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo leo
-                non sapien accumsan luctus. Class aptent taciti sociosqu ad litora torquent per
-                conubia nostra, per inceptos himenaeos. Sed quis hendrerit ligula. Nullam imperdiet
-                ut sapien ac egestas. Sed sagittis sollicitudin erat. Duis rutrum est.
+                Cette démarche n’est pas encore une obligation légale pour la mise à
+                disposition de son logement en journée contrairement au cas d’un démarrage
+                d’activité de location saisonnière à Paris et dans les zones tendues
+                (28 communes de France).En effet, l’activité permise par Cosyworking déroge à
+                cette obligation qui n’a pasété prévue pour ce type d’usage relativement nouveau.
+                Néanmoins, nous conseillons à os hôtes de le faire par mesure de précaution.
+                Rendez-vous sur le site de votre Mairie afin d’entamer cette démarche.
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit?</Typography>
+              <Typography>Dois-je être proriétaire d'un lieu pour
+                le mettre en location ?
+
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo leo
-                non sapien accumsan luctus. Class aptent taciti sociosqu ad litora torquent per
-                conubia nostra, per inceptos himenaeos. Sed quis hendrerit ligula. Nullam imperdiet
-                ut sapien ac egestas. Sed sagittis sollicitudin erat. Duis rutrum est.
+                Il n’est pas obligatoire que vous soyez le propriétaire de l’espace
+                pour le proposer sur le site. Cependant, en tant que locataire,
+                il est important de prévenir votre propriétaire et d'obtenir son accord.
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit?</Typography>
+              <Typography>Qui sont les coworker ? Quel type de client vais-je avoir ?</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo leo
-                non sapien accumsan luctus. Class aptent taciti sociosqu ad litora torquent per
-                conubia nostra, per inceptos himenaeos. Sed quis hendrerit ligula. Nullam imperdiet
-                ut sapien ac egestas. Sed sagittis sollicitudin erat. Duis rutrum est.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion width="50%">
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit?</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo leo
-                non sapien accumsan luctus. Class aptent taciti sociosqu ad litora torquent per
-                conubia nostra, per inceptos himenaeos. Sed quis hendrerit ligula. Nullam imperdiet
-                ut sapien ac egestas. Sed sagittis sollicitudin erat. Duis rutrum est.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion width="50%">
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit?</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo leo
-                non sapien accumsan luctus. Class aptent taciti sociosqu ad litora torquent per
-                conubia nostra, per inceptos himenaeos. Sed quis hendrerit ligula. Nullam imperdiet
-                ut sapien ac egestas. Sed sagittis sollicitudin erat. Duis rutrum est.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion width="50%">
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit?</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo leo
-                non sapien accumsan luctus. Class aptent taciti sociosqu ad litora torquent per
-                conubia nostra, per inceptos himenaeos. Sed quis hendrerit ligula. Nullam imperdiet
-                ut sapien ac egestas. Sed sagittis sollicitudin erat. Duis rutrum est.
+                Les coworker sont des travailleurs nomades, ou bien des personnes en télétravail
+                souhaitant trouver un bureau pour travailler.
               </Typography>
             </AccordionDetails>
           </Accordion>
