@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import { Button } from '@mui/material';
+import { Button, ThemeProvider } from '@mui/material';
+import themeButton from '../../../tools/themeMui';
 
 function BookingBarMobile({ halfDayPrice, dayPrice, openCalendarModale }) {
   return (
@@ -8,22 +9,23 @@ function BookingBarMobile({ halfDayPrice, dayPrice, openCalendarModale }) {
         <p className="bookingsContainer_desc price"> Demi-journée: {halfDayPrice} &euro; </p>
         <p className="bookingsContainer_desc price"> Journée complète: {dayPrice} &euro;</p>
       </div>
-      <Button
-        variant="contained"
-        size="small"
-        onClick={openCalendarModale}
-        sx={{
-          color: '#8A8A8A',
-          margin: 1,
-          // fontSize: 10,
-          backgroundColor: '#FFC000',
-          ':hover': {
-            backgroundColor: '#8A8A8A',
-            color: '#FFC000',
-          },
-        }}
-      >Reserver
-      </Button>
+      <ThemeProvider theme={themeButton}>
+
+        <Button
+          variant="contained"
+          size="small"
+          onClick={openCalendarModale}
+          sx={{
+            color: 'white',
+            margin: 1,
+            // fontSize: 10,
+            backgroundColor: '#FFC000',
+
+          }}
+        >Reserver
+        </Button>
+      </ThemeProvider>
+
     </div>
   );
 }

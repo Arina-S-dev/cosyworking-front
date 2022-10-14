@@ -11,10 +11,11 @@ import {
 import classNames from 'classnames';
 import { fr } from 'date-fns/locale';
 import { Trash2 } from 'react-feather';
-import { Button } from '@mui/material';
+import { Button, ThemeProvider } from '@mui/material';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 import { useSelector, useDispatch } from 'react-redux';
 import BookingModal from './BookingModal';
+import themeButton from '../../../tools/themeMui';
 
 import './index.scss';
 
@@ -316,23 +317,25 @@ function MultipleReactDatePicker({
 
         </div>
 
-        <Button
-          variant="contained"
-          size="small"
-          onClick={handleOpenBookingModal}
-          disabled={bookings.length === 0}
-          sx={{
-            color: '#8A8A8A',
-            margin: 1,
-            // fontSize: 10,
-            backgroundColor: '#FFC000',
-            ':hover': {
-              backgroundColor: '#8A8A8A',
-              color: '#FFC000',
-            },
-          }}
-        >Reserver
-        </Button>
+        <ThemeProvider theme={themeButton}>
+
+          <Button
+            variant="contained"
+            size="small"
+            onClick={handleOpenBookingModal}
+            disabled={bookings.length === 0}
+            sx={{
+              // width: '30%',
+              margin: 1,
+              color: 'white',
+              // fontSize: 10,
+              backgroundColor: '#FFC000',
+
+            }}
+          >Reserver
+          </Button>
+        </ThemeProvider>
+
         <BookingModal handleCloseBookingModal={handleCloseBookingModal} isOpenBookingModal={isOpenBookingModal} bookings={bookings} setBookings={setBookings} totalPrice={totalPrice || 0} />
 
       </DatePicker>

@@ -12,7 +12,7 @@ export const initialState = {
   workspaceIsLoading: true,
   imagesAreLoading: true,
   imagesModalIsOpen: false,
-
+  creationRequestStatus: null,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -170,6 +170,12 @@ const reducer = (state = initialState, action = {}) => {
 
         },
       };
+    case 'SET_CREATION_REQUEST_STATUS':
+      return {
+        ...state,
+        creationRequestStatus: action.creationRequestStatus,
+      };
+
     default:
       return state;
   }

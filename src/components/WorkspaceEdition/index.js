@@ -9,16 +9,18 @@ import { getHours, format } from 'date-fns/esm';
 import { LoadingButton } from '@mui/lab';
 import {
   Button, IconButton, Modal, Typography, Box, TextField, FormControlLabel, Checkbox,
-  TableBody, TableCell, TableHead, TableRow, Table,
+  TableBody, TableCell, TableHead, TableRow, Table, ThemeProvider,
 } from '@mui/material';
-// eslint-disable-next-line import/no-unresolved
+import { CancelOutlined } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/DeleteTwoTone';
+import themeButton from '../../tools/themeMui';
+// eslint-disable-next-line import/no-unresolved
 import Calendar from './Calendar';
+import UrlImage from '../../axiosUrlImage';
 
 // import style
 import './style.scss';
 import MyAccountMenu from '../MyAccountMenu';
-import UrlImage from '../../axiosUrlImage';
 
 const style = (theme) => ({
   position: 'absolute',
@@ -296,6 +298,8 @@ function WorkspaceEdition() {
   return (
     <div>
       <MyAccountMenu />
+      <h1 className="workspaceEditionTitle">Modifier mon annonce</h1>
+
       {
         !workspaceIsLoading && equipmentsListFromAPI
       && (
@@ -315,24 +319,23 @@ function WorkspaceEdition() {
               <p>Prix demi-journée: {workspace.workspace.half_day_price}&euro;</p>
             </div>
 
-            <Button
-              variant="contained"
-              size="small"
-              onClick={handleModal('infos', true)}
-              // onClick={openPicturesModale}
-              sx={{
-                width: '30%',
-                height: 40,
-                color: '#8A8A8A',
-                fontSize: 10,
-                backgroundColor: '#FFC000',
-                ':hover': {
-                  backgroundColor: '#8A8A8A',
-                  color: '#FFC000',
-                },
-              }}
-            >Modifier
-            </Button>
+            <ThemeProvider theme={themeButton}>
+
+              <Button
+                variant="contained"
+                size="small"
+                onClick={handleModal('infos', true)}
+                sx={{
+                  width: '30%',
+                  height: 40,
+                  color: 'white',
+                  fontSize: 10,
+                  backgroundColor: '#FFC000',
+
+                }}
+              >Modifier
+              </Button>
+            </ThemeProvider>
 
           </div>
 
@@ -425,23 +428,35 @@ function WorkspaceEdition() {
                 }}
               />
 
-              <Button
-                variant="contained"
-                size="medium"
-                type="submit"
+              <ThemeProvider theme={themeButton}>
+
+                <Button
+                  variant="contained"
+                  size="medium"
+                  type="submit"
+                  sx={{
+                    color: 'white',
+                    width: '50%',
+                    backgroundColor: '#FFC000',
+                  }}
+                >Valider
+                </Button>
+              </ThemeProvider>
+
+              <IconButton
+                aria-label="delete"
+                size="small"
+                onClick={handleModal('infos', false)}
                 sx={{
-                  color: '#8A8A8A',
-                  // marginBottom: '1.5rem',
-                  width: '50%',
-                  // fontSize: 10,
-                  backgroundColor: '#FFC000',
-                  ':hover': {
-                    backgroundColor: '#8A8A8A',
-                    color: '#FFC000',
-                  },
+
+                  color: 'black',
+                  position: 'absolute',
+                  top: 10,
+                  right: 10,
                 }}
-              >Valider
-              </Button>
+              >
+                <CancelOutlined sx={{ fontSize: 26 }} />
+              </IconButton>
             </Box>
           </Modal>
 
@@ -459,26 +474,24 @@ function WorkspaceEdition() {
 
             {/* <form onSubmit={handleSubmit}> */}
 
-            <Button
-              variant="contained"
-              component="label"
-              onClick={handleModal('image', true)}
-              sx={{
-                width: '100%',
-                height: 40,
-                marginTop: '.7rem',
-                color: '#8A8A8A',
-                fontSize: 10,
-                backgroundColor: '#FFC000',
-                ':hover': {
-                  backgroundColor: '#8A8A8A',
-                  color: '#FFC000',
-                },
-              }}
-            >
-              modifier
+            <ThemeProvider theme={themeButton}>
 
-            </Button>
+              <Button
+                variant="contained"
+                size="small"
+                onClick={handleModal('image', true)}
+                sx={{
+                  width: '100%',
+                  height: 40,
+                  marginTop: '.7rem',
+                  color: 'white',
+                  fontSize: 10,
+                  backgroundColor: '#FFC000',
+
+                }}
+              >Modifier
+              </Button>
+            </ThemeProvider>
 
             {/* </form> */}
 
@@ -504,50 +517,60 @@ function WorkspaceEdition() {
                 }
               </div>
 
-              <Button
-                variant="contained"
-                component="label"
+              <ThemeProvider theme={themeButton}>
+
+                <Button
+                  variant="contained"
+                  component="label"
+                  sx={{
+                    width: '30%',
+                    // height: 40,
+                    // marginTop: '.7rem',
+                    color: 'white',
+                    // fontSize: 10,
+                    backgroundColor: '#FFC000',
+                  }}
+                >
+                  modifier
+                  <input
+                    hidden
+                    type="file"
+                    id="image"
+                    accept=".png, .jpg, .jpeg"
+                    onChange={changeHandler}
+                  />
+                </Button>
+
+                <Button
+                  variant="contained"
+                  size="small"
+                  type="submit"
+                  disabled={!file}
+                  sx={{
+                    width: '30%',
+                    // height: 40,
+                    color: 'white',
+                    // fontSize: 10,
+                    backgroundColor: '#FFC000',
+                  }}
+                >valider
+                </Button>
+              </ThemeProvider>
+
+              <IconButton
+                aria-label="delete"
+                size="small"
+                onClick={handleModal('image', false)}
                 sx={{
-                  width: '30%',
-                  height: 40,
-                  marginTop: '.7rem',
-                  color: '#8A8A8A',
-                  fontSize: 10,
-                  backgroundColor: '#FFC000',
-                  ':hover': {
-                    backgroundColor: '#8A8A8A',
-                    color: '#FFC000',
-                  },
+
+                  color: 'black',
+                  position: 'absolute',
+                  top: 10,
+                  right: 10,
                 }}
               >
-                modifier
-                <input
-                  hidden
-                  type="file"
-                  id="image"
-                  accept=".png, .jpg, .jpeg"
-                  onChange={changeHandler}
-                />
-              </Button>
-
-              <Button
-                variant="contained"
-                size="small"
-                type="submit"
-                disabled={!file}
-                sx={{
-                  width: '30%',
-                  height: 40,
-                  color: '#8A8A8A',
-                  fontSize: 10,
-                  backgroundColor: '#FFC000',
-                  ':hover': {
-                    backgroundColor: '#8A8A8A',
-                    color: '#FFC000',
-                  },
-                }}
-              >valider
-              </Button>
+                <CancelOutlined sx={{ fontSize: 26 }} />
+              </IconButton>
 
             </Box>
           </Modal>
@@ -582,29 +605,31 @@ function WorkspaceEdition() {
               ))
             }
             </div>
-            <Button
-              variant="contained"
-              size="small"
-              onClick={() => {
-                dispatch({
-                  type: 'SET_IMAGES_MODAL_STATUS',
-                  isOpen: true,
-                });
-              }}
-              sx={{
-                width: '30%',
-                height: 40,
-                color: '#8A8A8A',
-                marginTop: '1rem',
-                fontSize: 10,
-                backgroundColor: '#FFC000',
-                ':hover': {
-                  backgroundColor: '#8A8A8A',
-                  color: '#FFC000',
-                },
-              }}
-            >Ajouter une photos
-            </Button>
+
+            <ThemeProvider theme={themeButton}>
+
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() => {
+                  dispatch({
+                    type: 'SET_IMAGES_MODAL_STATUS',
+                    isOpen: true,
+                  });
+                }}
+                sx={{
+                  width: '30%',
+                  height: 40,
+                  color: 'white',
+                  marginTop: '1rem',
+                  fontSize: 10,
+                  backgroundColor: '#FFC000',
+
+                }}
+              >Ajouter une photos
+              </Button>
+            </ThemeProvider>
+
           </div>
 
           <Modal
@@ -626,55 +651,55 @@ function WorkspaceEdition() {
               <div className="workspaceEditionContainer__mainImageContainer">
                 <img className="workspaceEditionContainer__mainImageContainer__img" src={fileDataURLOtherImage || 'https://d23qowwaqkh3fj.cloudfront.net/wp-content/uploads/2022/05/no-image-1-1.png'} alt="" />
               </div>
-              <Button
-                variant="contained"
-                component="label"
-                sx={{
-                  width: '30%',
-                  height: 40,
-                  marginTop: '.7rem',
-                  color: '#8A8A8A',
-                  fontSize: 10,
-                  backgroundColor: '#FFC000',
-                  ':hover': {
-                    backgroundColor: '#8A8A8A',
-                    color: '#FFC000',
-                  },
-                }}
-              >
-                {textButtonModalOtherImages}
-                <input
-                  hidden
-                  type="file"
-                  id="image"
-                  accept=".png, .jpg, .jpeg"
-                  onChange={changeHandlerOtherImage}
-                />
-              </Button>
+
+              <ThemeProvider theme={themeButton}>
+
+                <Button
+                  variant="contained"
+                  component="label"
+                  sx={{
+                    width: '30%',
+                    // height: 40,
+                    marginTop: '.7rem',
+                    color: 'white',
+                    fontSize: 10,
+                    backgroundColor: '#FFC000',
+                  }}
+                >
+                  {textButtonModalOtherImages}
+                  <input
+                    hidden
+                    type="file"
+                    id="image"
+                    accept=".png, .jpg, .jpeg"
+                    onChange={changeHandlerOtherImage}
+                  />
+                </Button>
+              </ThemeProvider>
 
               {
               !imagesAreLoading
 
                 && (
-                  <Button
-                    variant="contained"
-                    size="small"
-                    type="submit"
-                    disabled={!fileOtherImage}
+                  <ThemeProvider theme={themeButton}>
+
+                    <Button
+                      variant="contained"
+                      size="small"
+                      type="submit"
+                      disabled={!fileOtherImage}
                     // onClick={handleModal('images', false)}
-                    sx={{
-                      width: '30%',
-                      height: 40,
-                      color: '#8A8A8A',
-                      fontSize: 10,
-                      backgroundColor: '#FFC000',
-                      ':hover': {
-                        backgroundColor: '#8A8A8A',
-                        color: '#FFC000',
-                      },
-                    }}
-                  >valider
-                  </Button>
+                      sx={{
+                        width: '30%',
+                        // height: 40,
+                        color: 'white',
+                        // fontSize: 10,
+                        backgroundColor: '#FFC000',
+                      }}
+                    >valider
+                    </Button>
+
+                  </ThemeProvider>
                 )
             }
 
@@ -682,11 +707,35 @@ function WorkspaceEdition() {
               imagesAreLoading
 
                 && (
-                  <LoadingButton loading variant="outlined">
-                    Submit
-                  </LoadingButton>
+                  <ThemeProvider theme={themeButton}>
+
+                    <LoadingButton loading variant="outlined">
+                      Submit
+                    </LoadingButton>
+
+                  </ThemeProvider>
                 )
             }
+
+              <IconButton
+                aria-label="delete"
+                size="small"
+                onClick={() => {
+                  dispatch({
+                    type: 'SET_IMAGES_MODAL_STATUS',
+                    isOpen: false,
+                  });
+                }}
+                sx={{
+
+                  color: 'black',
+                  position: 'absolute',
+                  top: 10,
+                  right: 10,
+                }}
+              >
+                <CancelOutlined sx={{ fontSize: 26 }} />
+              </IconButton>
 
             </Box>
           </Modal>
@@ -697,23 +746,24 @@ function WorkspaceEdition() {
               <p>{workspace.workspace.description}</p>
             </div>
 
-            <Button
-              variant="contained"
-              size="small"
-              onClick={handleModal('description', true)}
-              sx={{
-                width: '30%',
-                height: 40,
-                color: '#8A8A8A',
-                fontSize: 10,
-                backgroundColor: '#FFC000',
-                ':hover': {
-                  backgroundColor: '#8A8A8A',
-                  color: '#FFC000',
-                },
-              }}
-            >Modifier
-            </Button>
+            <ThemeProvider theme={themeButton}>
+
+              <Button
+                variant="contained"
+                size="small"
+                onClick={handleModal('description', true)}
+                sx={{
+                  width: '30%',
+                  height: 40,
+                  color: 'white',
+                  fontSize: 10,
+                  backgroundColor: '#FFC000',
+
+                }}
+              >Modifier
+              </Button>
+            </ThemeProvider>
+
           </div>
 
           <Modal
@@ -742,23 +792,35 @@ function WorkspaceEdition() {
                 }}
               />
 
-              <Button
-                variant="contained"
-                size="medium"
-                type="submit"
+              <ThemeProvider theme={themeButton}>
+
+                <Button
+                  variant="contained"
+                  size="medium"
+                  type="submit"
+                  sx={{
+                    color: 'white',
+                    width: '50%',
+                    backgroundColor: '#FFC000',
+                  }}
+                >Valider
+                </Button>
+              </ThemeProvider>
+
+              <IconButton
+                aria-label="delete"
+                size="small"
+                onClick={handleModal('description', false)}
                 sx={{
-                  color: '#8A8A8A',
-                  // marginBottom: '1.5rem',
-                  width: '50%',
-                  // fontSize: 10,
-                  backgroundColor: '#FFC000',
-                  ':hover': {
-                    backgroundColor: '#8A8A8A',
-                    color: '#FFC000',
-                  },
+
+                  color: 'black',
+                  position: 'absolute',
+                  top: 10,
+                  right: 10,
                 }}
-              >Valider
-              </Button>
+              >
+                <CancelOutlined sx={{ fontSize: 26 }} />
+              </IconButton>
 
             </Box>
           </Modal>
@@ -776,23 +838,24 @@ function WorkspaceEdition() {
               }
             </div>
 
-            <Button
-              variant="contained"
-              size="small"
-              onClick={handleModal('equipments', true)}
-              sx={{
-                width: '30%',
-                height: 40,
-                color: '#8A8A8A',
-                fontSize: 10,
-                backgroundColor: '#FFC000',
-                ':hover': {
-                  backgroundColor: '#8A8A8A',
-                  color: '#FFC000',
-                },
-              }}
-            >Ajouter des equipements
-            </Button>
+            <ThemeProvider theme={themeButton}>
+
+              <Button
+                variant="contained"
+                size="small"
+                onClick={handleModal('equipments', true)}
+                sx={{
+                  width: '30%',
+                  height: 40,
+                  color: 'white',
+                  fontSize: 10,
+                  backgroundColor: '#FFC000',
+
+                }}
+              >Ajouter des equipements
+              </Button>
+            </ThemeProvider>
+
           </div>
 
           <Modal
@@ -823,23 +886,35 @@ function WorkspaceEdition() {
                 ))}
               </div>
 
-              <Button
-                variant="contained"
+              <ThemeProvider theme={themeButton}>
+
+                <Button
+                  variant="contained"
+                  size="medium"
+                  type="submit"
+                  sx={{
+                    color: 'white',
+                    width: '50%',
+                    backgroundColor: '#FFC000',
+                  }}
+                >Valider
+                </Button>
+              </ThemeProvider>
+
+              <IconButton
+                aria-label="delete"
                 size="small"
-                type="submit"
+                onClick={handleModal('equipments', false)}
                 sx={{
-                  width: '30%',
-                  height: 40,
-                  color: '#8A8A8A',
-                  fontSize: 10,
-                  backgroundColor: '#FFC000',
-                  ':hover': {
-                    backgroundColor: '#8A8A8A',
-                    color: '#FFC000',
-                  },
+
+                  color: 'black',
+                  position: 'absolute',
+                  top: 10,
+                  right: 10,
                 }}
-              >valider
-              </Button>
+              >
+                <CancelOutlined sx={{ fontSize: 26 }} />
+              </IconButton>
 
             </Box>
           </Modal>
