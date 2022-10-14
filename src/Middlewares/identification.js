@@ -228,12 +228,12 @@ const identification = (store) => (next) => (action) => {
     // Récupération du token présent dans le LocalStorage
     const getUserToken = JSON.parse(localStorage.getItem('userToken'));
     // eslint-disable-next-line camelcase
-    const { booking_id } = store.getState().user;
+    const { user_id } = store.getState().user;
     const { description } = store.getState().requests;
     // eslint-disable-next-line no-console
     // console.log(user_id);
     // eslint-disable-next-line object-curly-newline, camelcase
-    axiosBaseUrl.get(`/api/personalspace/${booking_id}/booking`, { headers: {
+    axiosBaseUrl.get(`/api/personalspace/${user_id}/workspace`, { headers: {
       // eslint-disable-next-line quote-props, comma-dangle
       'x-access-token': getUserToken, description: description,
     // eslint-disable-next-line object-curly-spacing, object-curly-newline
@@ -249,6 +249,44 @@ const identification = (store) => (next) => (action) => {
           });
           store.dispatch({
             type: 'CLOSE_CONFIRM_MODAL',
+          });
+        }
+      })
+      .catch((error) => {
+      // en cas d’échec de la requête
+      // eslint-disable-next-line no-console
+        console.log(error);
+        // Erreur si jamais le token est expiré
+        const errorToken = error.response.data.message;
+        if (errorToken === 'Token Expired !') {
+          store.dispatch({
+            type: 'CONNECTION_STATE',
+            error: true,
+          });
+        }
+      });
+  }
+  // MiddleWare afin de récupérer les informations concernant un espace
+  if (action.type === 'GET_WORKSPACE_INFO') {
+    // Récupération du token présent dans le LocalStorage
+    const getUserToken = JSON.parse(localStorage.getItem('userToken'));
+    // eslint-disable-next-line camelcase
+    const { workspace_id } = store.getState().user;
+    console.log('idworkspace', workspace_id);
+    // eslint-disable-next-line object-curly-newline, camelcase
+    axiosBaseUrl.get(`/api/workspace/${workspace_id}`, { headers: {
+      // eslint-disable-next-line quote-props, comma-dangle
+      'x-access-token': getUserToken,
+    // eslint-disable-next-line object-curly-spacing, object-curly-newline
+    }})
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log('Mes workspaces', response);
+        const getDataWorkspaceHost = response.data;
+        if (response) {
+          store.dispatch({
+            type: 'GET_INFO_WORKSPACE',
+            workspace_infos: getDataWorkspaceHost,
           });
         }
       })

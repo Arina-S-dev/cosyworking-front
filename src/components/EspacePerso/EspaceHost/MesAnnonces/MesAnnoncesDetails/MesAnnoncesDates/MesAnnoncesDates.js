@@ -1,13 +1,13 @@
 // import './styles.scss';
 // eslint-disable-next-line object-curly-newline
 import { TableCell, TableRow } from '@mui/material';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
-function MesAnnoncesDates(allDates) {
+function MesAnnoncesDates(data) {
   // eslint-disable-next-line react/destructuring-assignment
-  const getData = allDates.allDates;
+  const getData = data.data;
   // eslint-disable-next-line no-console
-  // console.log('Data qui arrivent dans MesAnnoncesDates', allDates);
+  console.log('Data qui arrivent dans MesAnnoncesDates', getData);
 
   // eslint-disable-next-line indent
 
@@ -26,10 +26,10 @@ function MesAnnoncesDates(allDates) {
     if (getTheGoodCreneau === 'de 13h à 17h') {
       return 'Après-midi';
     }
-    if (getTheGoodCreneau === 'de 9h à 12h') {
+    if (getTheGoodCreneau === 'de 8h à 12h') {
       return 'Matin';
     }
-    if (getTheGoodCreneau === 'de 9h à 17h') {
+    if (getTheGoodCreneau === 'de 8h à 17h') {
       return 'Journée';
     }
 
@@ -44,12 +44,10 @@ function MesAnnoncesDates(allDates) {
           sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
         >
           <TableCell align="center" component="th" scope="row">
-            { (new Date(list.start)).toLocaleDateString('fr-FR', options) }
+            { (new Date(list.start_date)).toLocaleDateString('fr-FR', options) }
           </TableCell>
-          <TableCell align="center">{getCreneau((list.start), (list.end))}</TableCell>
+          <TableCell align="center">{getCreneau((list.start_date), (list.end_date))}</TableCell>
           <TableCell align="center">50 euros</TableCell>
-          <TableCell align="center"><Link to={`/profil/${list.coworker}`}>{list.coworker}</Link></TableCell>
-          <TableCell align="center">{list.description}</TableCell>
         </TableRow>
       ))}
     </>
