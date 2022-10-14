@@ -16,13 +16,13 @@ function Faq() {
       </div>
       <div className="questionContainer">
         <div className="ColumnLeft">
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography sx={{ width: '100%' }}>Est-ce que en tant coworker je peux déposer une annonce ?</Typography>
+              <Typography>Est-ce que en tant coworker je peux déposer une annonce ?</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
@@ -32,7 +32,7 @@ function Faq() {
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
@@ -47,7 +47,7 @@ function Faq() {
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
@@ -62,7 +62,7 @@ function Faq() {
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
@@ -80,7 +80,7 @@ function Faq() {
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
@@ -99,7 +99,7 @@ function Faq() {
           </Accordion>
         </div>
         <div className="ColumnRight">
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
@@ -118,7 +118,7 @@ function Faq() {
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
@@ -133,7 +133,7 @@ function Faq() {
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
@@ -153,7 +153,7 @@ function Faq() {
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
@@ -172,7 +172,7 @@ function Faq() {
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion width="50%">
+          <Accordion sx={{ width: '100%' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
