@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { ThemeProvider } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 
 import {
   // eslint-disable-next-line no-unused-vars
@@ -53,12 +54,14 @@ function Map() {
             >
               <ThemeProvider theme={theme}>
                 <Popup className="popup" margin="0">
-                  <img className="popup-image" src={`${UrlImage}${workspace.link}`} width="200" height="150" alt="workspace" />
-                  <p className="popup-title">{workspace.title}</p>
-                  <div className="popup-flex">
-                    <p className="popup-flex-price">{workspace.day_price}€/jour</p>
-                    <Button className="popup-flex-favorite" sx={{ minWidth: 0 }}> <FavoriteBorderIcon onClick={() => console.log('Je clique sur le coeur!')} /></Button>
-                  </div>
+                  <Link to={`/workspace/${workspace.id}`} target="_blank">
+                    <img className="popup-image" src={`${UrlImage}${workspace.link}`} width="200" height="150" alt="workspace" />
+                    <p className="popup-title">{workspace.title}</p>
+                    <div className="popup-flex">
+                      <p className="popup-flex-price">{workspace.day_price}€/jour</p>
+                      <Button className="popup-flex-favorite" sx={{ minWidth: 0 }}> <FavoriteBorderIcon onClick={() => console.log('Je clique sur le coeur!')} /></Button>
+                    </div>
+                  </Link>
                 </Popup>
               </ThemeProvider>
             </Marker>
