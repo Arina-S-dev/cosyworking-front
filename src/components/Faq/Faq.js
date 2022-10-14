@@ -191,7 +191,7 @@ function Faq() {
       </div>
       <div className="contactFaq">
         <h1> Vous n'avez pas trouvé votre réponse ?  </h1>
-        <Link className="buttonToContact" to="/">Contactez-nous</Link>
+        <Link className="buttonToContact" to="/contact">Contactez-nous</Link>
       </div>
     </div>
   );
