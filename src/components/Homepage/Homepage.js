@@ -13,6 +13,7 @@ function Homepage() {
     dispatch({ type: 'GET_RANDOM_ANNOUNCES' });
     dispatch({ type: 'EMPTY_STATE' });
   }, []);
+
   return (
     <div className="Homepage">
       <SearchHome />

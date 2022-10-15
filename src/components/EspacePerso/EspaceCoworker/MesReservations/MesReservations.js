@@ -49,6 +49,7 @@ function MesReservations() {
           city: element.city,
           booking_ref_id: element.booking_ref_id,
           host: element.host,
+          hostId: element.host_id,
           id: element.id,
           image_link: element.image_link,
           title: element.title,
@@ -210,15 +211,17 @@ function MesReservations() {
                   {/* {list.zipCode} */}
                 </Typography>
                 <Box className="MesReservations-Card-CardContent-Box">
-                  <Typography
-                    className="MesReservations-Card-CardContent-Box-Host"
-                    variant="subtitle1"
-                    color="text.secondary"
-                    component="div"
-                  >
-                    <Avatar className="MesReservations-Card-CardContent-Box-Host-Avatar" src={`${UrlImage}${list.hostAvatar}`} />
-                    <p className="MesReservations-Card-CardContent-Box-Host-Name"> {list.host}</p>
-                  </Typography>
+                  <Link to={`/profil/${list.hostId}`}>
+                    <Typography
+                      className="MesReservations-Card-CardContent-Box-Host"
+                      variant="subtitle1"
+                      color="text.secondary"
+                      component="div"
+                    >
+                      <Avatar className="MesReservations-Card-CardContent-Box-Host-Avatar" src={`${UrlImage}${list.hostAvatar}`} />
+                      <p className="MesReservations-Card-CardContent-Box-Host-Name"> {list.host}</p>
+                    </Typography>
+                  </Link>
                   <Typography className="MesReservations-Card-CardContent-Box-State" variant="string" color="text.secondary" component="div" sx={{ color: getColor(list.state) }}>
                     Statut : {list.state}
                     <ThemeProvider theme={theme}>

@@ -3,6 +3,7 @@
 import { BottomNavigation, Button, Paper, ThemeProvider } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import KeyIcon from '@mui/icons-material/Key';
 import logo from '../../img/logo_reduit.png';
@@ -45,6 +46,11 @@ function Nav() {
       logged: false,
     });
   }
+
+  useEffect(() => {
+    dispatch({ type: 'GET_RANDOM_ANNOUNCES' });
+    dispatch({ type: 'EMPTY_STATE' });
+  });
 
   return (
     <>
