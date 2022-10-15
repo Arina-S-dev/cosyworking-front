@@ -86,7 +86,7 @@ function WorkspaceCreation() {
     });
   }
 
-  const pageTitle = creationRequestStatus === 'pending' ? 'Workspace en cour de creation' : 'Créer mon annonce';
+  const pageTitle = creationRequestStatus === 'pending' ? 'Workspace en cour de creation' : 'Bienvenue sur la page de Création de votre annonce';
   if (creationRequestStatus === 'succeed') {
     navigate('/espace-perso/espace-hote/mes-annonces');
     dispatch({
@@ -334,12 +334,24 @@ function WorkspaceCreation() {
             <h3 className="h3WorkspaceEdition">Infos</h3>
 
             <div className="infosContainer__infos">
-              <p>Titre: {title} </p>
-              <p>adresse: {adress}</p>
-              <p>Code postale: {zipCode}</p>
-              <p>Ville: {city}</p>
-              <p>Prix journée complète: {fullDayPrice} &euro; </p>
-              <p>Prix demi-journée: {halfDayPrice} &euro; </p>
+              <div className="priceDivInfos">
+                <p className="userResponseRequest">Titre:</p> <p className="userResponseInfos">{title}</p>
+              </div>
+              <div className="priceDivInfos">
+                <p className="userResponseRequest">Adresse:</p> <p className="userResponseInfos">{adress}</p>
+              </div>
+              <div className="priceDivInfos">
+                <p className="userResponseRequest">Code postal:</p> <p className="userResponseInfos">{zipCode}</p>
+              </div>
+              <div className="priceDivInfos">
+                <p className="userResponseRequest">Ville:</p> <p className="userResponseInfos">{city}</p>
+              </div>
+              <div className="priceDivInfos">
+                <p className="userResponseRequest">Prix d'une journée complète:</p> <p className="userResponseInfos">{fullDayPrice} &euro;</p>
+              </div>
+              <div className="priceDivInfos">
+                <p className="userResponseRequest">Prixd'une demi-journée:</p> <p className="userResponseInfos">{halfDayPrice} &euro;</p>
+              </div>
             </div>
 
             <ThemeProvider theme={themeButton}>
@@ -391,12 +403,11 @@ function WorkspaceCreation() {
               </Typography>
               <TextField
                 id="title"
-                label="title"
+                label="Nom de l'annonce"
                 multiline
                 maxRows={4}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="Message"
                 size="small"
                 required
                 sx={{
@@ -405,12 +416,11 @@ function WorkspaceCreation() {
               />
               <TextField
                 id="adress"
-                label="adress"
+                label="Adresse"
                 multiline
                 maxRows={4}
                 value={adress}
                 onChange={(e) => setAdress(e.target.value)}
-                placeholder="Message"
                 size="small"
                 required
                 sx={{
@@ -419,10 +429,9 @@ function WorkspaceCreation() {
               />
               <TextField
                 id="zipCode"
-                label="zipCode"
+                label="Code Postal"
                 value={zipCode}
                 onChange={(e) => setZipCode(e.target.value)}
-                placeholder="Message"
                 size="small"
                 required
                 sx={{
@@ -431,10 +440,9 @@ function WorkspaceCreation() {
               />
               <TextField
                 id="city"
-                label="city"
+                label="Ville"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                placeholder="Message"
                 size="small"
                 required
                 sx={{
@@ -443,11 +451,10 @@ function WorkspaceCreation() {
               />
               <TextField
                 id="fullDayPrice"
-                label="fullDayPrice"
+                label="Prix pour une journée"
                 type="number"
                 value={fullDayPrice}
                 onChange={(e) => setFullDayPrice(e.target.value)}
-                placeholder="prix journée"
                 size="small"
                 required
                 sx={{
@@ -456,11 +463,10 @@ function WorkspaceCreation() {
               />
               <TextField
                 id="halfDayPrice"
-                label="halfDayPrice"
+                label="Prix pour une demi journée"
                 type="number"
                 value={halfDayPrice}
                 onChange={(e) => setHalfDayPrice(e.target.value)}
-                placeholder="prix journée"
                 size="small"
                 required
                 sx={{
@@ -933,14 +939,16 @@ function WorkspaceCreation() {
               type="button"
               onClick={handleCreateWorkspace}
               sx={{
-                width: '70%',
+                width: '20%',
+                ml: 'auto',
+                mr: 'auto',
                 height: 45,
                 color: 'white',
                 fontSize: 15,
                 backgroundColor: '#FFC000',
                 marginTop: '1rem',
               }}
-            >valider
+            >Mettre en ligne mon annonce
             </Button>
           </ThemeProvider>
 
