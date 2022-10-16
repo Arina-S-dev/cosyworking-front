@@ -98,8 +98,8 @@ function MesTables(data) {
                 { (new Date(list.start)).toLocaleDateString('fr-FR', options) }
               </TableCell>
               <TableCell align="center">{getCreneau((list.start), (list.end))}</TableCell>
-              {getPrice((list.start), (list.end)) && (<TableCell align="center">{list.halfDayPrice}</TableCell>)}
-              {!getPrice((list.start), (list.end)) && (<TableCell align="center">{list.dayPrice}</TableCell>)}
+              {getPrice((list.start), (list.end)) && (<TableCell align="center">{list.halfDayPrice} €</TableCell>)}
+              {!getPrice((list.start), (list.end)) && (<TableCell align="center">{list.dayPrice} €</TableCell>)}
             </TableRow>
           ))}
         </TableBody>

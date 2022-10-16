@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable max-len */
 import Card from '@mui/material/Card';
 import { useEffect } from 'react';
@@ -69,7 +70,7 @@ function MyRequests() {
 
   // Options afin de modifier le format de la date
   // eslint-disable-next-line object-curly-newline
-  const options = { weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric' };
+  const options = { weekday: 'short', year: 'numeric', month: 'long', day: '2-digit', hour: 'numeric', minute: 'numeric' };
   // Object.keys(bookingList).map((booking) => console.log(bookingList[booking].map((elem) => elem.title)));
   // console.log('Mon tableau pour le map', Object.keys(bookingList));
   return (
@@ -136,25 +137,27 @@ function MyRequests() {
                     {bookingList[booking][0].title}
                   </Typography>
                 </div>
-                <Typography gutterBottom variant="h7" component="div" textAlign="left">
+                <Typography gutterBottom variant="subtitle1" component="div" textAlign="left">
                   Adresse : {bookingList[booking][0].address} à {bookingList[booking][0].city}
                 </Typography>
-                <Typography gutterBottom variant="h6" component="div" textAlign="left">
+                <Typography gutterBottom variant="subtitle1" component="div" textAlign="left">
                   Référence réservation: {bookingList[booking][0].bookig_ref_id}
                 </Typography>
-                <Typography gutterBottom variant="h6" component="div" textAlign="left">
+                <Typography gutterBottom variant="subtitle1" component="div" textAlign="left">
                   Statut: <em>{bookingList[booking][0].description}</em>
                 </Typography>
                 {bookingList[booking].map((element) => (
-                  <Typography gutterBottom variant="h6" component="div" textAlign="left">
+                  <Typography gutterBottom variant="subtitle1" component="div" textAlign="left">
                     Du {(new Date(element.start_date)).toLocaleDateString('fr-FR', options)} au {(new Date(element.end_date)).toLocaleDateString('fr-FR', options)}
                   </Typography>
                 ))}
 
-                <Typography gutterBottom variant="h6" component="div" textAlign="left">
+                <Typography gutterBottom variant="subtitle1" component="div" textAlign="left">
                   Réservation effectuée par :
                   <Link to={`/profil/${bookingList[booking][0].coworker_id}`}>
-                    <Avatar src={`${UrlImage}${bookingList[booking][0].avatar}`} /> {bookingList[booking][0].coworker}
+                    <Typography sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                      <Avatar src={`${UrlImage}${bookingList[booking][0].avatar}`} sx={{ marginRight: '1rem' }} /> {bookingList[booking][0].coworker}
+                    </Typography>
                   </Link>
                 </Typography>
 
@@ -163,14 +166,14 @@ function MyRequests() {
                     value="Annulé"
                     onClick={(event) => handleOpen(event, bookingList[booking][0].bookig_ref_id)}
                     title="Annuler la demande"
-                  ><ClearIcon fontSize="large" sx={{ color: 'red', margin: 1 }} />
+                  ><ClearIcon fontSize="large" sx={{ color: 'red', margin: 1 }} />Annuler
                   </Button>
                   <Button
                     value="Validé"
                     onClick={(event) => handleOpen(event, bookingList[booking][0].bookig_ref_id)}
                     className={bookingList[booking][0].bookig_ref_id}
                     title="Valider la demande"
-                  ><CheckIcon fontSize="large" sx={{ color: 'green', margin: 1 }} />
+                  ><CheckIcon fontSize="large" sx={{ color: 'green', margin: 1 }} />Confirmer
                   </Button>
                 </Stack>
               </CardContent>

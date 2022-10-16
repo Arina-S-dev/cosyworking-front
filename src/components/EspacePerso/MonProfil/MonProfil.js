@@ -215,9 +215,12 @@ function MonProfil() {
                 sx={{ marginRight: '0.5rem', marginBottom: '0.5em', width: '100%' }}
               />
             </Card>
-            <ThemeProvider theme={theme}>
-              <Button type="submit" sx={{ width: '100%', display: 'flex', justifyContent: 'end' }}>Envoyer les modifications</Button>
-            </ThemeProvider>
+            <Box className="MonProfil-Card-MainBox-BoxButtons">
+              <ThemeProvider theme={theme}>
+                <Button className="MonProfil-Card-MainBox-BoxButtons-ButtonSend" type="submit">Envoyer les modifications</Button>
+                <Button className="MonProfil-Card-MainBox-BoxButtons-ButtonCanceled" onClose={handleClose} type="submit">Annuler</Button>
+              </ThemeProvider>
+            </Box>
           </form>
         </Card>
       </div>

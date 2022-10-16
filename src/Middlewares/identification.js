@@ -71,6 +71,7 @@ const identification = (store) => (next) => (action) => {
           store.dispatch({
             type: 'MODAL_INSCRIPTION_OPENING',
             getOpening: false,
+            alertWellSignUp: true,
           });
         }
       })

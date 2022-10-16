@@ -3,7 +3,6 @@
 
 .MonProfil{
     margin: auto;
-    margin-top: 4rem;
     min-height: 100vh;
 
     &-title{
@@ -23,6 +22,23 @@
 
         &-MainBox{
             width: 100%;
+
+            &-BoxButtons{
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content:center ;
+
+                &-ButtonSend{
+                  width: 100%;
+                  text-align: center;
+                }
+
+                &-ButtonCanceled{
+                  width: 100%; 
+                  text-align: center;
+                }
+              }
 
             &-CardContent{  
             //   width: 100%;              
@@ -86,7 +102,6 @@
     .MonProfil{
         width: 80vw;
         margin: auto;
-        margin-top: 4rem;
         min-height: 100vh;
     
         &-title{
@@ -105,6 +120,23 @@
     
             &-MainBox{
                 width: 100%;
+
+                &-BoxButtons{
+                  display: flex;
+                  align-items: center;
+                  justify-content:flex-end ;
+
+                  &-ButtonSend{
+                    width: 50%;
+                    text-align: center;
+                  }
+
+                  &-ButtonCanceled{
+                    width: 50%; 
+                    text-align: center;
+                    color: red;
+                  }
+                }
     
                 &-CardContent{  
                 //   width: 100%;              

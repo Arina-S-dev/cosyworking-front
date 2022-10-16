@@ -40,6 +40,8 @@ export const initialState = {
   workspace_id: '',
   // On recupère les infos du workspace'
   workspace_info: [],
+  // On informe l'user que son inscription a fonctionné
+  alertWellSignUp: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -229,6 +231,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         inscriptionModalOpen: action.getOpening,
+        alertWellSignUp: action.alertWellSignUp,
       };
       // Gestion de l'ouverture / fermeture de la modale de connexion
     case 'MODAL_CONNEXION_OPENING':

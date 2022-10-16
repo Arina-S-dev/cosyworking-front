@@ -26,12 +26,14 @@ import './styles.scss';
 
 function ModalInscription() {
   // Gestion de l'ouverture et fermeture de la Modale d'inscription
+  // Gestion également de la fermeture de l'alerte Well SignUp
   const open = useSelector((state) => state.user.inscriptionModalOpen);
   const dispatch = useDispatch();
   const handleClose = () => {
     dispatch({
       type: 'MODAL_INSCRIPTION_OPENING',
       getOpening: false,
+      alertWellSignUp: false,
     });
   };
 
@@ -46,6 +48,9 @@ function ModalInscription() {
 
   // Récupération de l'erreur pour le format du mot de passe
   const emailFormatError = useSelector((state) => state.user.emailwrongformat);
+
+  // Récupération de l'etat de l'alerte pour informer l'utilisateur de son inscription
+  const alertWellSignUp = useSelector((state) => state.user.alertWellSignUp);
 
   // Recupération de la selection du user pour le genre
   const getSelectedGender = (event) => {
@@ -148,7 +153,6 @@ function ModalInscription() {
 
   return (
     <div className="ModalInscription">
-      {/* {!getStatus && ( */}
       <Modal
         onSubmit={setSignUp}
         open={open}
@@ -195,14 +199,6 @@ function ModalInscription() {
                 margin: 'auto',
               }}
             >
-              {/* <FormLabel
-                id="demo-row-radio-buttons-group-label"
-                sx={{
-                  color: 'grey',
-                }}
-              >
-                Civilité
-              </FormLabel> */}
               { getErrorGender && <p className="ModalInscription-genderRequired">*Merci de renseigner votre civilité.</p>}
               <RadioGroup
                 onChange={getSelectedGender}
@@ -327,7 +323,12 @@ function ModalInscription() {
           </div>
         </Box>
       </Modal>
-      {/* )} */}
+      {alertWellSignUp
+      && (
+        <Modal open onClose={handleClose} align="center" sx={{ margin: '3rem' }}>
+          <Alert severity="success">Vous êtes bien inscrit ! Vous pouvez maintenant vous connecter.</Alert>
+        </Modal>
+        )}
     </div>
   );
 }
