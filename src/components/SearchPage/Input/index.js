@@ -69,7 +69,8 @@ function Input() {
           renderInput={(params) => (
             <TextField
               {...params}
-              label="Recherchez par ville"
+              placeholder="Recherchez par ville"
+              label={cityState}
               onChange={handleChange}
               InputProps={{
                 ...params.InputProps,

@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // eslint-disable-next-line object-curly-newline
 import { Button, Card, CardContent, Typography, Box, Avatar, TextField } from '@mui/material';
@@ -20,6 +20,11 @@ function MonProfil() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  useEffect(() => {
+    // 👇️ scroll to top on page load
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  });
 
   const changeFirstName = (event) => {
     event.preventDefault();
