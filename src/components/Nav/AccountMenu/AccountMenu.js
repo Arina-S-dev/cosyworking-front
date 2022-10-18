@@ -33,7 +33,7 @@ function AccountMenu() {
     dispatch({
       type: 'GET_USER_PRIVATE_PROFIL',
     });
-  }, []);
+  });
 
   return (
     <div className="AccountMenu">
