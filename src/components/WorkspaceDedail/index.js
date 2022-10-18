@@ -35,6 +35,11 @@ function WorkspaceDetail() {
     dispatch(actionGetWorkspaceDetail(id));
   }, []);
 
+  useEffect(() => {
+    // 👇️ scroll to top on page load
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, []);
+
   const workspace = useSelector((state) => state.workspaces.currentWorkspace);
   const submitStatus = useSelector((state) => state.workspaces.submitStatus);
   // const isLoading = useSelector((state) => state.workspaces.isLoading);

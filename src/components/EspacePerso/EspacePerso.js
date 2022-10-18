@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 function EspacePerso() {
   const dispatch = useDispatch();
   const getrole = useSelector((state) => state.user.role_id);
+  const askCoworkerReservations = useSelector((state) => state.user.datacoworkerreservations);
   const getCoworkerReservations = () => {
     dispatch({
       type: 'GET_COWORKER_RESERVATIONS',
@@ -38,6 +39,23 @@ function EspacePerso() {
     }
     return false;
   }
+
+  // Gestion de la rubrique "Mes Réservations"
+  // si l'user est : hôte + sans réservations
+  const appearReservations = () => {
+    if (askCoworkerReservations.length === 0 && getrole === 'host') {
+      return true;
+    }
+    return false;
+  };
+
+  // On charge directement les reservations afin de savoir
+  // si l'hôte a également des reservations
+  useEffect(() => {
+    dispatch({
+      type: 'GET_COWORKER_RESERVATIONS',
+    });
+  }, []);
 
   useEffect(() => {
     // 👇️ scroll to top on page load
@@ -65,23 +83,43 @@ function EspacePerso() {
             </CardActionArea>
           </Card>
         </Link>
-        <Link to="/espace-perso/espace-coworker" className="EspacePerso-Link" onClick={getCoworkerReservations}>
-          <Card className="EspacePerso-Card">
-            <CardActionArea>
-              <CardMedia
-                className="EspacePerso-Card-CardMedia"
-                component="img"
-                image="https://cdn.pixabay.com/photo/2016/11/19/17/25/furniture-1840463_1280.jpg"
-                alt="mon profil"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h7" component="div">
-                  Mon espace co-worker
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </Link>
+        {appearReservations() ? (
+          <Link to="/recherche" className="EspacePerso-Link" onClick={getCoworkerReservations}>
+            <Card className="EspacePerso-Card">
+              <CardActionArea>
+                <CardMedia
+                  className="EspacePerso-Card-CardMedia"
+                  component="img"
+                  image="https://cdn.pixabay.com/photo/2016/11/19/17/25/furniture-1840463_1280.jpg"
+                  alt="mon profil"
+                />
+                <CardContent sx={{ backgroundColor: '#e8e8e8' }}>
+                  <Typography gutterBottom variant="h7" component="div">
+                    Réservez un espace et devenez co-worker !
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Link>
+        ) : (
+          <Link to="/espace-perso/espace-coworker" className="EspacePerso-Link" onClick={getCoworkerReservations}>
+            <Card className="EspacePerso-Card">
+              <CardActionArea>
+                <CardMedia
+                  className="EspacePerso-Card-CardMedia"
+                  component="img"
+                  image="https://cdn.pixabay.com/photo/2016/11/19/17/25/furniture-1840463_1280.jpg"
+                  alt="mon profil"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h7" component="div">
+                    Mon espace co-worker
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Link>
+        )}
         {getRoleUser() ? (
           <Link to="/espace-perso/espace-hote" className="EspacePerso-Link" onClick={getHostSpacesRequests}>
             <Card className="EspacePerso-Card">

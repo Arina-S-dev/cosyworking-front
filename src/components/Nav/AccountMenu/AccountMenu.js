@@ -29,11 +29,11 @@ function AccountMenu() {
     });
   };
 
-  // const checkToken = () => {
-  //   dispatch({
-  //     type: 'CHECK_CONNECTION',
-  //   });
-  // };
+  React.useEffect(() => {
+    dispatch({
+      type: 'GET_USER_PRIVATE_PROFIL',
+    });
+  }, []);
 
   return (
     <div className="AccountMenu">
