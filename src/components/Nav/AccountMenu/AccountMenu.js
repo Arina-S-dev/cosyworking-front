@@ -29,11 +29,12 @@ function AccountMenu() {
     });
   };
 
-  React.useEffect(() => {
-    dispatch({
-      type: 'GET_USER_PRIVATE_PROFIL',
-    });
-  });
+  // Pour obtention de l'avatar au chargement de la page
+  // React.useEffect(() => {
+  //   dispatch({
+  //     type: 'GET_USER_PRIVATE_PROFIL',
+  //   });
+  // });
 
   return (
     <div className="AccountMenu">

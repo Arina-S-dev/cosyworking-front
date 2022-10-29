@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-const axiosBaseUrl = axios.create({ baseURL: 'http://quentinroggy-server.eddi.cloud' });
+const axiosBaseUrl = axios.create({ baseURL: 'http://www.api.cosyworking.fr/' });
 
 export default axiosBaseUrl;
