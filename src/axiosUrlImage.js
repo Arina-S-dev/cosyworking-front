@@ -1,3 +1,3 @@
-const UrlImage = 'http://quentinroggy-server.eddi.cloud/';
+const UrlImage = 'http://localhost/3001';
 
 export default UrlImage;
