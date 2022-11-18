@@ -9,13 +9,13 @@ import 'swiper/css/navigation';
 import './RandomAnnounces.scss';
 import { Pagination, Navigation } from 'swiper';
 import { useSelector } from 'react-redux';
+
 import Announce from './Announce/Announce';
 
 function RandomAnnounces() {
   const data = useSelector((state) => state.randomannounce.randomannounce);
 
   const datainfos = data.map((dataresults) => (
-
     <SwiperSlide>
       <Announce
         key={dataresults.workspace_id}
@@ -27,7 +27,7 @@ function RandomAnnounces() {
       />
     </SwiperSlide>
   ));
-  console.log(data);
+  // console.log(data);
   return (
     <div className="containerCard">
       <div className="cardTitle">

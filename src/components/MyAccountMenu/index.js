@@ -59,6 +59,7 @@ function MyAccountMenu() {
               </Link>
             </>
           )}
+
           {!controlNavBarEspacePerso
           && (
           <>
@@ -86,6 +87,18 @@ function MyAccountMenu() {
             </Button>
           </>
           )}
+          <Link to="/espace-perso/wishlist">
+            <Button
+              sx={{ whiteSpace: 'nowrap', minWidth: 'max-content' }}
+              color="neutral"
+              className="account-menu-elem"
+              onClick={() => {
+                // eslint-disable-next-line no-console
+                console.log('je clique');
+              }}
+            > Mes favoris
+            </Button>
+          </Link>
         </Stack>
       </ThemeProvider>
     </div>

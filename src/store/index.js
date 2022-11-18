@@ -10,6 +10,7 @@ import reducer from '../reducers/index';
 import randomAnnouncesMiddleware from '../Middlewares/randomAnnounceMiddleware';
 import profilMiddleware from '../Middlewares/profilMiddleware';
 import requestsMiddleware from '../Middlewares/requestsMiddleware';
+import wishlistMiddleware from '../Middlewares/wishlistMiddleware';
 
 const persistConfig = {
   key: 'root',
@@ -19,7 +20,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, reducer);
 
 // eslint-disable-next-line max-len
-const middlewareEnhancer = applyMiddleware(requestsMiddleware, randomAnnouncesMiddleware, identification, searchMiddleware, WorkspaceDetailMiddleware, profilMiddleware);
+const middlewareEnhancer = applyMiddleware(requestsMiddleware, randomAnnouncesMiddleware, identification, searchMiddleware, WorkspaceDetailMiddleware, profilMiddleware, wishlistMiddleware);
 
 const composedEnhancers = composeWithDevTools(middlewareEnhancer);
 

@@ -10,6 +10,7 @@ function Homepage() {
   const loading = useSelector((state) => state.randomannounce.loading);
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch({ type: 'FETCH_WISHLIST' });
     dispatch({ type: 'GET_RANDOM_ANNOUNCES' });
     dispatch({ type: 'EMPTY_STATE' });
   }, []);

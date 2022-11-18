@@ -1,3 +1,3 @@
-const UrlImage = 'http://localhost/3001';
+const UrlImage = 'http://localhost:4000/';
 
 export default UrlImage;

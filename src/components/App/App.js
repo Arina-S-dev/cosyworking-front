@@ -28,6 +28,7 @@ import MonProfil from '../EspacePerso/MonProfil/MonProfil';
 import AboutUs from '../AboutUs/AboutUs';
 import ModalConnexion from '../Nav/ModalConnexion/ModalConnexion';
 import MyRequests from '../EspacePerso/EspaceHost/MyRequests';
+import Wishlist from '../EspacePerso/Wishlist/Wishlist';
 
 function App() {
   const error = useSelector((state) => state.user.error_connection);
@@ -55,6 +56,7 @@ function App() {
         <Route path="/espace-perso/espace-hote/mes-annonces" element={<MesAnnonces />} />
         <Route path="/espace-perso/espace-hote/mes-annonces/:id" element={<MesAnnoncesDetails />} />
         <Route path="/espace-perso/espace-hote/mes-demandes" element={<MyRequests />} />
+        <Route path="/espace-perso/wishlist" element={<Wishlist />} />
         <Route path="/" element={<Homepage />} />
         <Route path="/apropos" element={<AboutUs />} />
         <Route path="/*" element={<Error />} />

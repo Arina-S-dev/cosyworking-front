@@ -42,6 +42,7 @@ export const initialState = {
   workspace_info: [],
   // On informe l'user que son inscription a fonctionné
   alertWellSignUp: false,
+  wishlist: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -166,6 +167,7 @@ const reducer = (state = initialState, action = {}) => {
         loadingReservationsPage: true,
         workspace_id: '',
         workspace_info: [],
+        wishlist: [],
       };
     // Alerte erreur si, en cas d'inscription, l'email existe deja
     case 'GET_EMAILEXISTEDERROR':
@@ -256,6 +258,17 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         getIdReservationForCancel: action.idReservation,
+      };
+
+    case 'DELETE_FROM_WISHLIST':
+      return {
+        ...state,
+        wishlist: action.wishlist,
+      };
+    case 'SAVE_WISHLIST':
+      return {
+        ...state,
+        wishlist: action.wishlist,
       };
     default:
       return state;

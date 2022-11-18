@@ -26,6 +26,12 @@ function EspacePerso() {
     });
   }
 
+  const getWishlist = () => {
+    dispatch({
+      type: 'FETCH_WISHLIST',
+    });
+  };
+
   const getHostSpacesRequests = () => {
     dispatch({
       type: 'GET_HOST_ANNONCES',
@@ -156,7 +162,25 @@ function EspacePerso() {
               </CardActionArea>
             </Card>
           </Link>
+
         )}
+        <Link to="/espace-perso/wishlist" className="EspacePerso-Link" onClick={getWishlist}>
+          <Card className="EspacePerso-Card">
+            <CardActionArea>
+              <CardMedia
+                className="EspacePerso-Card-CardMedia"
+                component="img"
+                image="https://www.aventbirthday.fr/wp-content/uploads/WISHLIST.jpeg"
+                alt="mon profil"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h7" component="div">
+                  Ma liste de souhaits
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Link>
       </div>
     </div>
   );
