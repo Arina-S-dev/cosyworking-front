@@ -17,8 +17,8 @@ function CardItem({
 }) {
   return (
     <ThemeProvider theme={theme}>
-      <Link to={`/workspace/${id}`} target="_blank">
-        <div className="card">
+      <div className="card">
+        <Link className="" to={`/workspace/${id}`} target="_blank">
           <Card
             sx={{
               width: {
@@ -53,8 +53,8 @@ function CardItem({
               </Typography>
             </CardContent>
           </Card>
-        </div>
-      </Link>
+        </Link>
+      </div>
     </ThemeProvider>
   );
 }
