@@ -9,16 +9,48 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Typography } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import { useDispatch, useSelector } from 'react-redux';
 import theme from '../../../tools/themeMui';
 // import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function CardItem({
   title, image, dayPrice, description, id,
 }) {
+  const isLogged = useSelector((state) => state.user.logged);
+  const wishlist = useSelector((state) => state.user.wishlist);
+
+  const isWished = wishlist.map((workspace) => workspace.id).includes(id);
+  console.log(isWished);
+
+  const dispatch = useDispatch();
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    if (!isLogged) {
+      console.log('Erreur vous devez être connecté');
+      return;
+    }
+    if (!isWished) {
+      dispatch({
+        type: 'ADD_WISHLIST',
+        workspaceId: id,
+      });
+    }
+    else if (isWished) {
+      const newWishlist = wishlist.filter((workspace) => workspace.id !== id);
+      dispatch({
+        type: 'REMOVE_FROM_WISHLIST',
+        wishlist: newWishlist,
+        workspaceId: id,
+      });
+    }
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <div className="card">
-        <Link className="" to={`/workspace/${id}`} target="_blank">
+        <Link to={`/workspace/${id}`} target="_blank">
           <Card
             sx={{
               width: {
@@ -49,7 +81,11 @@ function CardItem({
               </Typography>
               <Typography className="card-content-flex" variant="body2" color="text.secondary" textAlign="left">
                 {dayPrice}€/jour
-                <p><StarIcon color="primary" fontSize="small" />5 (17 avis)</p>
+                <p>
+                  {!isWished && (<StarBorderIcon className="star" onClick={handleClick} />)}
+                  {isWished && isLogged && (<StarIcon className="star" onClick={handleClick} color="primary" />)}
+
+                </p>
               </Typography>
             </CardContent>
           </Card>

@@ -43,8 +43,10 @@ function Announce({
       <div className="infoText">
         <div className="nameAnnounce">
           <p>{announceName}</p>
-          {!isWished && (<StarBorderIcon className="star" onClick={handleClick} />)}
-          {isWished && isLogged && (<StarIcon className="star" onClick={handleClick} color="error" />)}
+          <ThemeProvider theme={theme}>
+            {!isWished && (<StarBorderIcon className="star" onClick={handleClick} />)}
+            {isWished && isLogged && (<StarIcon className="star" onClick={handleClick} color="primary" />)}
+          </ThemeProvider>
         </div>
         <p className="cityName">{cityName}</p>
         <div className="priceButton">
